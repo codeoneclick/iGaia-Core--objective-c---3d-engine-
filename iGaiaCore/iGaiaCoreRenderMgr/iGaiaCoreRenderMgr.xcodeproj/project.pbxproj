@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A45F60B916032725005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F60B816032725005B10A3 /* Foundation.framework */; };
+		A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */; };
+		A45F61B016032E66005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F618D16032DD9005B10A3 /* libiGaiaCoreCommunicator.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A45F618C16032DD9005B10A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A45F617416032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+		A45F61AE16032E61005B10A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A45F617316032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A45F60B316032725005B10A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A45F60B516032725005B10A3 /* libiGaiaCoreRenderMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreRenderMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A45F60B816032725005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A45F60BC16032725005B10A3 /* iGaiaCoreRenderMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreRenderMgr-Prefix.pch"; sourceTree = "<group>"; };
+		A45F6148160328FD005B10A3 /* iGaiaCoreRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreRenderMgr.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgr.h; sourceTree = "<group>"; };
+		A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreRenderMgr.m; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgr.m; sourceTree = "<group>"; };
+		A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A45F60B216032725005B10A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A45F61B016032E66005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */,
+				A45F60B916032725005B10A3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A45F60AA16032725005B10A3 = {
+			isa = PBXGroup;
+			children = (
+				A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */,
+				A45F6147160328EE005B10A3 /* Classes */,
+				A45F60BA16032725005B10A3 /* iGaiaCoreRenderMgr */,
+				A45F60B716032725005B10A3 /* Frameworks */,
+				A45F60B616032725005B10A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A45F60B616032725005B10A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A45F60B516032725005B10A3 /* libiGaiaCoreRenderMgr.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A45F60B716032725005B10A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A45F60B816032725005B10A3 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A45F60BA16032725005B10A3 /* iGaiaCoreRenderMgr */ = {
+			isa = PBXGroup;
+			children = (
+				A45F60BB16032725005B10A3 /* Supporting Files */,
+			);
+			path = iGaiaCoreRenderMgr;
+			sourceTree = "<group>";
+		};
+		A45F60BB16032725005B10A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A45F60BC16032725005B10A3 /* iGaiaCoreRenderMgr-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A45F6147160328EE005B10A3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A45F6148160328FD005B10A3 /* iGaiaCoreRenderMgr.h */,
+				A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		A45F618616032DD8005B10A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A45F618D16032DD9005B10A3 /* libiGaiaCoreCommunicator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A45F60B416032725005B10A3 /* iGaiaCoreRenderMgr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A45F60C316032725005B10A3 /* Build configuration list for PBXNativeTarget "iGaiaCoreRenderMgr" */;
+			buildPhases = (
+				A45F60B116032725005B10A3 /* Sources */,
+				A45F60B216032725005B10A3 /* Frameworks */,
+				A45F60B316032725005B10A3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A45F61AF16032E61005B10A3 /* PBXTargetDependency */,
+			);
+			name = iGaiaCoreRenderMgr;
+			productName = iGaiaCoreRenderMgr;
+			productReference = A45F60B516032725005B10A3 /* libiGaiaCoreRenderMgr.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A45F60AC16032725005B10A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Sergey Sergeev";
+			};
+			buildConfigurationList = A45F60AF16032725005B10A3 /* Build configuration list for PBXProject "iGaiaCoreRenderMgr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A45F60AA16032725005B10A3;
+			productRefGroup = A45F60B616032725005B10A3 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A45F618616032DD8005B10A3 /* Products */;
+					ProjectRef = A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A45F60B416032725005B10A3 /* iGaiaCoreRenderMgr */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A45F618D16032DD9005B10A3 /* libiGaiaCoreCommunicator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommunicator.a;
+			remoteRef = A45F618C16032DD9005B10A3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A45F60B116032725005B10A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A45F61AF16032E61005B10A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommunicator;
+			targetProxy = A45F61AE16032E61005B10A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A45F60C116032725005B10A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A45F60C216032725005B10A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A45F60C416032725005B10A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/iGaiaCoreRenderMgr.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGaiaCoreRenderMgr/iGaiaCoreRenderMgr-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A45F60C516032725005B10A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/iGaiaCoreRenderMgr.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGaiaCoreRenderMgr/iGaiaCoreRenderMgr-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A45F60AF16032725005B10A3 /* Build configuration list for PBXProject "iGaiaCoreRenderMgr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A45F60C116032725005B10A3 /* Debug */,
+				A45F60C216032725005B10A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A45F60C316032725005B10A3 /* Build configuration list for PBXNativeTarget "iGaiaCoreRenderMgr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A45F60C416032725005B10A3 /* Debug */,
+				A45F60C516032725005B10A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A45F60AC16032725005B10A3 /* Project object */;
+}

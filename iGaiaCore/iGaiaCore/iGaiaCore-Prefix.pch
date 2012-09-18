@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'iGaiaCore' target in the 'iGaiaCore' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
