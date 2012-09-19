@@ -10,9 +10,8 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreIndexBuffer.h"
-#import "iGaiaCoreIndexBufferProtocol.h"
 
-@interface iGaiaCoreIndexBuffer()<iGaiaCoreIndexBufferProtocol>
+@interface iGaiaCoreIndexBuffer()
 
 @property(nonatomic, unsafe_unretained) unsigned short* indexes;
 @property(nonatomic, readwrite) NSUInteger numIndexes;

@@ -10,4 +10,10 @@
 
 @implementation iGaiaCore
 
+- (void)test
+{
+    iGaiaCoreShader shader;
+    [shader setFloat:0 forAttribute:@"test"];
+}
+
 @end

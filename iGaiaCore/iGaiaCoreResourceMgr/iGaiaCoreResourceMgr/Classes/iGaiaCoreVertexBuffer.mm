@@ -10,10 +10,9 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreVertexBuffer.h"
-#import "iGaiaCoreVertexBufferProtocol.h"
 #import "iGaiaCoreShaderProtocol.h"
 
-@interface iGaiaCoreVertexBuffer()<iGaiaCoreVertexBufferProtocol>
+@interface iGaiaCoreVertexBuffer()
 
 @property(nonatomic, readwrite) NSUInteger numVertexes;
 @property(nonatomic, assign) NSUInteger handle;

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
-		A45F612116032871005B10A3 /* iGaiaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F612016032871005B10A3 /* iGaiaCore.m */; };
+		A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F612016032871005B10A3 /* iGaiaCore.mm */; };
 		A45F616216032988005B10A3 /* libiGaiaCoreInteractiveMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F6133160328CC005B10A3 /* libiGaiaCoreInteractiveMgr.a */; };
 		A45F616316032988005B10A3 /* libiGaiaCoreRenderMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F6145160328E3005B10A3 /* libiGaiaCoreRenderMgr.a */; };
 		A45F616416032988005B10A3 /* libiGaiaCoreResourceMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F612A160328BD005B10A3 /* libiGaiaCoreResourceMgr.a */; };
@@ -91,7 +91,7 @@
 		A45F610C160327D2005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F6110160327D2005B10A3 /* iGaiaCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCore-Prefix.pch"; sourceTree = "<group>"; };
 		A45F611F16032871005B10A3 /* iGaiaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCore.h; path = iGaiaCore/Classes/iGaiaCore.h; sourceTree = "<group>"; };
-		A45F612016032871005B10A3 /* iGaiaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCore.m; path = iGaiaCore/Classes/iGaiaCore.m; sourceTree = "<group>"; };
+		A45F612016032871005B10A3 /* iGaiaCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCore.mm; path = iGaiaCore/Classes/iGaiaCore.mm; sourceTree = "<group>"; };
 		A45F6122160328BD005B10A3 /* iGaiaCoreResourceMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreResourceMgr.xcodeproj; path = iGaiaCoreResourceMgr/iGaiaCoreResourceMgr.xcodeproj; sourceTree = "<group>"; };
 		A45F612B160328CB005B10A3 /* iGaiaCoreInteractiveMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreInteractiveMgr.xcodeproj; path = iGaiaCoreInteractiveMgr/iGaiaCoreInteractiveMgr.xcodeproj; sourceTree = "<group>"; };
 		A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreSceneMgr.xcodeproj; path = iGaiaCoreSceneMgr/iGaiaCoreSceneMgr.xcodeproj; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				A45F611F16032871005B10A3 /* iGaiaCore.h */,
-				A45F612016032871005B10A3 /* iGaiaCore.m */,
+				A45F612016032871005B10A3 /* iGaiaCore.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A45F612116032871005B10A3 /* iGaiaCore.m in Sources */,
+				A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +387,7 @@
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCoreCommunicator\"/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -399,6 +400,7 @@
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCoreCommunicator\"/**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

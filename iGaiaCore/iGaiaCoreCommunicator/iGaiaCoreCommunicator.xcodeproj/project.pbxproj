@@ -24,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A416EE091609F97B00B5B1ED /* PVRTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTGlobal.h; sourceTree = "<group>"; };
+		A416EE0A1609F97B00B5B1ED /* PVRTTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTTexture.h; sourceTree = "<group>"; };
 		A45F617416032DAA005B10A3 /* libiGaiaCoreCommunicator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreCommunicator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F617716032DAA005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F617B16032DAA005B10A3 /* iGaiaCoreCommunicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreCommunicator-Prefix.pch"; sourceTree = "<group>"; };
@@ -269,6 +271,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A416EE081609F97B00B5B1ED /* pvr */ = {
+			isa = PBXGroup;
+			children = (
+				A416EE091609F97B00B5B1ED /* PVRTGlobal.h */,
+				A416EE0A1609F97B00B5B1ED /* PVRTTexture.h */,
+			);
+			name = pvr;
+			path = iGaiaCoreCommunicator/Libs/pvr;
+			sourceTree = "<group>";
+		};
 		A45F616916032DAA005B10A3 = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +340,7 @@
 		A45F61E916035BD8005B10A3 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A416EE081609F97B00B5B1ED /* pvr */,
 				A45F61EA16035BE8005B10A3 /* glm */,
 			);
 			name = Libs;

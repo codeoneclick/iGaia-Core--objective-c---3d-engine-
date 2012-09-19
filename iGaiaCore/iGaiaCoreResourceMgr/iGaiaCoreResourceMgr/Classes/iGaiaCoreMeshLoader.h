@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol iGaiaCoreMeshProtocol;
 @interface iGaiaCoreMeshLoader : NSObject
+
+- (void)loadWithName:(NSString*)name;
+- (id<iGaiaCoreMeshProtocol>)commit;
 
 @end

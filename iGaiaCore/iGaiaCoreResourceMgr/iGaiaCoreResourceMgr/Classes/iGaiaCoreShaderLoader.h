@@ -10,4 +10,6 @@
 
 @interface iGaiaCoreShaderLoader : NSObject
 
+- (NSUInteger)loadWithVertexDataSource:(const char*)vertexDataSource withFragmentDataSource:(const char*)fragmentDataSource;
+
 @end

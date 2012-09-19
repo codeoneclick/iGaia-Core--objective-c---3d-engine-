@@ -7,11 +7,10 @@
 //
 
 #import "iGaiaCoreMesh.h"
-#import "iGaiaCoreMeshProtocol.h"
 #import "iGaiaCoreVertexBufferProtocol.h"
 #import "iGaiaCoreIndexBufferProtocol.h"
 
-@interface iGaiaCoreMesh()<iGaiaCoreMeshProtocol>
+@interface iGaiaCoreMesh()
 
 @property(nonatomic, readwrite) id<iGaiaCoreVertexBufferProtocol> vertexBuffer;
 @property(nonatomic, readwrite) id<iGaiaCoreIndexBufferProtocol> indexBuffer;
