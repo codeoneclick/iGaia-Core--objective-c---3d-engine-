@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol iGaiaCoreTextureProtocol <NSObject>
+#import "iGaiaCoreResourceProtocol.h"
+
+@protocol iGaiaCoreTextureProtocol <iGaiaCoreResourceProtocol>
 
 @property(nonatomic, readonly) NSUInteger handle;
 @property(nonatomic, readonly) CGSize size;

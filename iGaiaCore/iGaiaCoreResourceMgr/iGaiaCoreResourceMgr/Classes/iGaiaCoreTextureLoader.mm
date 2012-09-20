@@ -14,6 +14,7 @@
 #import "PVRTTexture.h"
 
 #import "iGaiaCoreTextureLoader.h"
+#import "iGaiaCoreTexture.h"
 #import "iGaiaCoreTextureProtocol.h"
 
 #import "NSData+iGaiaCoreExtension.h"
@@ -41,7 +42,7 @@
 @synthesize numFaces = _numFaces;
 @synthesize data = _data;
 
-- (void)loadWithName:(NSString*)name;
+- (BOOL)loadWithName:(NSString*)name;
 {
     NSString* path = [[NSBundle mainBundle] resourcePath];
     path = [path stringByAppendingPathComponent:name];
@@ -79,7 +80,7 @@
                 }
                 break;
             default:
-                return;
+                return NO;
         }
         _size.width = header->dwWidth;
         _size.height = header->dwHeight;
@@ -117,7 +118,7 @@
             }
                 break;
             default:
-                return;
+                return NO;
         }
         _size.width = header->u32Width;
         _size.height = header->u32Height;
@@ -125,75 +126,45 @@
         _compressed = YES;
         _numFaces = header->u32NumFaces;
     }
+    return YES;
 }
 
-- (id<iGaiaCoreTextureProtocol>)commit;
+- (id<iGaiaCoreResourceProtocol>)commit;
 {
-    
-}
+    GLuint handle = 0;
+    glGenTextures(1, &handle);
+    glBindTexture(GL_TEXTURE_2D, handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+    char* data = (char*)_data.bytes;
+    data += _offset;
 
-IResource* CParser_PVR::Commit(void)
-{
-    int iWidth  = m_pDescription->m_vSize.x;
-    int iHeight = m_pDescription->m_vSize.y;
-    char* pData = m_pDescription->m_pData;
+    NSInteger width = _size.width;
+    NSInteger height = _size.height;
 
-    GLuint iHandle = 0;
-    glGenTextures(1, &iHandle);
-
-    GLenum iTextureTarget = GL_TEXTURE_2D;
-
-    if(m_pDescription->m_iNumFaces > 1)
+    for(NSUInteger face = 0; face < _numFaces; ++face)
     {
-        iTextureTarget = GL_TEXTURE_CUBE_MAP;
-    }
-
-    glBindTexture(iTextureTarget, iHandle);
-    if(iTextureTarget == GL_TEXTURE_2D)
-    {
-        glTexParameteri(iTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-        glTexParameteri(iTextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    }
-    else
-    {
-        glTexParameteri(iTextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(iTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        m_pDescription->m_bCompressed = false;
-    }
-
-    if(iTextureTarget == GL_TEXTURE_CUBE_MAP)
-    {
-        iTextureTarget = GL_TEXTURE_CUBE_MAP_POSITIVE_X;
-    }
-
-    for(unsigned int iFaces = 0; iFaces < m_pDescription->m_iNumFaces; iFaces++)
-    {
-        if (m_pDescription->m_bCompressed)
+        if (_compressed)
         {
-            for (int level = 0; iWidth > 0 && iHeight > 0; ++level)
+            for (NSUInteger level = 0; width > 0 && height > 0; ++level)
             {
-                GLsizei iSize = std::max(32, iWidth * iHeight * m_pDescription->m_uiBPP / 8);
-                glCompressedTexImage2D(iTextureTarget + iFaces, level, m_pDescription->m_glFormat, iWidth, iHeight, 0, iSize, pData);
-                pData += iSize;
-                iWidth >>= 1; iHeight >>= 1;
+                GLsizei size = MAX(32, width * height * _bytesPerPixel / 8);
+                glCompressedTexImage2D(GL_TEXTURE_2D + face, level, _format, width, height, 0, size, data);
+                data += size;
+                width >>= 1; height >>= 1;
             }
         }
         else
         {
-            glTexImage2D(iTextureTarget + iFaces, 0, m_pDescription->m_glFormat, iWidth, iHeight, 0, m_pDescription->m_glFormat, m_pDescription->m_glType, pData);
+            glTexImage2D(GL_TEXTURE_2D + face, 0, _format, width, height, 0, _format, _type, data);
             glHint(GL_GENERATE_MIPMAP_HINT, GL_FASTEST);
-            glGenerateMipmap(iTextureTarget + iFaces);
+            glGenerateMipmap(GL_TEXTURE_2D + face);
         }
     }
 
-    CTexture* pTexture = new CTexture();
-    pTexture->Set_Handle(iHandle);
-    pTexture->Set_Width(m_pDescription->m_vSize.x);
-    pTexture->Set_Height(m_pDescription->m_vSize.y);
-    return pTexture;
+    iGaiaCoreTexture* texture = [[iGaiaCoreTexture alloc] initWithHandle:handle withSize:_size];
+    return texture;
 }
-
-
 
 @end

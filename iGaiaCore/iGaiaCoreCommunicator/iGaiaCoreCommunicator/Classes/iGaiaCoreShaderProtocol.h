@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <glm/glm.hpp>
 
+#import "iGaiaCoreResourceProtocol.h"
+
 extern const struct iGaiaCoreShaderVertexSlot
 {
     NSString *position;
@@ -17,7 +19,7 @@ extern const struct iGaiaCoreShaderVertexSlot
     NSString *tangent;
     NSString *color;
     
-} iGaiaCoreVertexSlot;
+} iGaiaCoreShaderVertexSlot;
 
 extern const struct iGaiaCoreShaderAttribute
 {
@@ -46,7 +48,7 @@ extern const struct iGaiaCoreShaderTextureSlot
     
 } iGaiaCoreShaderTextureSlot;
 
-@protocol iGaiaCoreShaderProtocol <NSObject>
+@protocol iGaiaCoreShaderProtocol <iGaiaCoreResourceProtocol>
 
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSUInteger handle;

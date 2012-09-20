@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreResourceService.h"
 
-@interface iGaiaCoreTextureService : NSObject
+@protocol iGaiaCoreResourceLoaderProtocol;
+@interface iGaiaCoreTextureService : iGaiaCoreResourceService
+
+- (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
 
 @end

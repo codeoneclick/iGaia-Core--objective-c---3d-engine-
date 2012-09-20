@@ -36,7 +36,7 @@
 @synthesize numVertexes = _numVertexes;
 @synthesize numIndexes = _numIndexes;
 
-- (void)loadWithName:(NSString*)name;
+- (BOOL)loadWithName:(NSString*)name;
 {
     NSString* path = [[NSBundle mainBundle] resourcePath];
     path = [path stringByAppendingPathComponent:name];
@@ -69,9 +69,10 @@
         _indexData[i + 1] = _indexData[i + 2];
         _indexData[i + 2] = index;
     }
+    return YES;
 }
 
-- (id<iGaiaCoreMeshProtocol>)commit;
+- (id<iGaiaCoreResourceProtocol>)commit;
 {
     iGaiaCoreVertexBuffer* vertexBuffer = [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:_numVertexes withMode:GL_STATIC_DRAW];
     iGaiaCoreVertex* vertexData = [vertexBuffer lock];

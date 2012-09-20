@@ -10,9 +10,8 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreTexture.h"
-#import "iGaiaCoreTextureProtocol.h"
 
-@interface iGaiaCoreTexture()<iGaiaCoreTextureProtocol>
+@interface iGaiaCoreTexture()
 
 @property(nonatomic, readwrite) NSUInteger handle;
 @property(nonatomic, readwrite) CGSize size;

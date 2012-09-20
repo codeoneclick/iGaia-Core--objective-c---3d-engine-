@@ -257,6 +257,7 @@
 		A45F62D216036A0E005B10A3 /* iGaiaCoreMeshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreMeshProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreMeshProtocol.h; sourceTree = "<group>"; };
 		A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreVertexBufferProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreVertexBufferProtocol.h; sourceTree = "<group>"; };
 		A45F62D416036A4A005B10A3 /* iGaiaCoreIndexBufferProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreIndexBufferProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreIndexBufferProtocol.h; sourceTree = "<group>"; };
+		A4ADF416160B4101000D6A0A /* iGaiaCoreResourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreResourceProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -615,6 +616,7 @@
 				A45F62D216036A0E005B10A3 /* iGaiaCoreMeshProtocol.h */,
 				A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */,
 				A45F62D416036A4A005B10A3 /* iGaiaCoreIndexBufferProtocol.h */,
+				A4ADF416160B4101000D6A0A /* iGaiaCoreResourceProtocol.h */,
 			);
 			name = ResourceMgr;
 			sourceTree = "<group>";

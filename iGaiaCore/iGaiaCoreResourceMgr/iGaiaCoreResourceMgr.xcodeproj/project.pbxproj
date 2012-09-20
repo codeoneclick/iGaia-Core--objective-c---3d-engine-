@@ -10,7 +10,6 @@
 		A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m */; };
 		A45F609D16032700005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F609C16032700005B10A3 /* Foundation.framework */; };
 		A45F61591603294D005B10A3 /* iGaiaCoreResourceMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61581603294D005B10A3 /* iGaiaCoreResourceMgr.mm */; };
-		A45F616816032B93005B10A3 /* iGaiaCoreResource.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F616716032B93005B10A3 /* iGaiaCoreResource.m */; };
 		A45F61A716032E38005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F61A416032E27005B10A3 /* libiGaiaCoreCommunicator.a */; };
 		A45F61B316032EF9005B10A3 /* iGaiaCoreShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61B216032EF9005B10A3 /* iGaiaCoreShader.mm */; };
 		A45F61B616032F0F005B10A3 /* iGaiaCoreMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61B516032F0F005B10A3 /* iGaiaCoreMesh.mm */; };
@@ -18,11 +17,12 @@
 		A45F61BC16032F3D005B10A3 /* iGaiaCoreShaderLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F61BB16032F3D005B10A3 /* iGaiaCoreShaderLoader.m */; };
 		A45F61BF16032F5E005B10A3 /* iGaiaCoreMeshLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61BE16032F5E005B10A3 /* iGaiaCoreMeshLoader.mm */; };
 		A45F61C216032F74005B10A3 /* iGaiaCoreTextureLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61C116032F74005B10A3 /* iGaiaCoreTextureLoader.mm */; };
-		A45F61C516032F96005B10A3 /* iGaiaCoreShaderService.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F61C416032F95005B10A3 /* iGaiaCoreShaderService.m */; };
-		A45F61C816032FB3005B10A3 /* iGaiaCoreMeshService.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.m */; };
-		A45F61CB16032FC8005B10A3 /* iGaiaCoreTextureService.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.m */; };
+		A45F61C516032F96005B10A3 /* iGaiaCoreShaderComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F61C416032F95005B10A3 /* iGaiaCoreShaderComposite.m */; };
+		A45F61C816032FB3005B10A3 /* iGaiaCoreMeshService.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.mm */; };
+		A45F61CB16032FC8005B10A3 /* iGaiaCoreTextureService.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.mm */; };
 		A45F61D116033D10005B10A3 /* iGaiaCoreIndexBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61D016033D10005B10A3 /* iGaiaCoreIndexBuffer.mm */; };
 		A45F61D416033D25005B10A3 /* iGaiaCoreVertexBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61D316033D25005B10A3 /* iGaiaCoreVertexBuffer.mm */; };
+		A4ADF41A160B4595000D6A0A /* iGaiaCoreResourceService.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF419160B4595000D6A0A /* iGaiaCoreResourceService.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,6 @@
 		A45F60A016032700005B10A3 /* iGaiaCoreResourceMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreResourceMgr-Prefix.pch"; sourceTree = "<group>"; };
 		A45F61571603294D005B10A3 /* iGaiaCoreResourceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceMgr.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceMgr.h; sourceTree = "<group>"; };
 		A45F61581603294D005B10A3 /* iGaiaCoreResourceMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreResourceMgr.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceMgr.mm; sourceTree = "<group>"; };
-		A45F616616032B93005B10A3 /* iGaiaCoreResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResource.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResource.h; sourceTree = "<group>"; };
-		A45F616716032B93005B10A3 /* iGaiaCoreResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreResource.m; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResource.m; sourceTree = "<group>"; };
 		A45F619F16032E27005B10A3 /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
 		A45F61B116032EF9005B10A3 /* iGaiaCoreShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShader.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShader.h; sourceTree = "<group>"; };
 		A45F61B216032EF9005B10A3 /* iGaiaCoreShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreShader.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShader.mm; sourceTree = "<group>"; };
@@ -77,16 +75,19 @@
 		A45F61BE16032F5E005B10A3 /* iGaiaCoreMeshLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreMeshLoader.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreMeshLoader.mm; sourceTree = "<group>"; };
 		A45F61C016032F74005B10A3 /* iGaiaCoreTextureLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreTextureLoader.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreTextureLoader.h; sourceTree = "<group>"; };
 		A45F61C116032F74005B10A3 /* iGaiaCoreTextureLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreTextureLoader.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreTextureLoader.mm; sourceTree = "<group>"; };
-		A45F61C316032F95005B10A3 /* iGaiaCoreShaderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShaderService.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShaderService.h; sourceTree = "<group>"; };
-		A45F61C416032F95005B10A3 /* iGaiaCoreShaderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreShaderService.m; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShaderService.m; sourceTree = "<group>"; };
+		A45F61C316032F95005B10A3 /* iGaiaCoreShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShaderComposite.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShaderComposite.h; sourceTree = "<group>"; };
+		A45F61C416032F95005B10A3 /* iGaiaCoreShaderComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreShaderComposite.m; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreShaderComposite.m; sourceTree = "<group>"; };
 		A45F61C616032FB2005B10A3 /* iGaiaCoreMeshService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreMeshService.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreMeshService.h; sourceTree = "<group>"; };
-		A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreMeshService.m; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreMeshService.m; sourceTree = "<group>"; };
+		A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreMeshService.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreMeshService.mm; sourceTree = "<group>"; };
 		A45F61C916032FC8005B10A3 /* iGaiaCoreTextureService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreTextureService.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreTextureService.h; sourceTree = "<group>"; };
-		A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreTextureService.m; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreTextureService.m; sourceTree = "<group>"; };
+		A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreTextureService.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreTextureService.mm; sourceTree = "<group>"; };
 		A45F61CF16033D10005B10A3 /* iGaiaCoreIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreIndexBuffer.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreIndexBuffer.h; sourceTree = "<group>"; };
 		A45F61D016033D10005B10A3 /* iGaiaCoreIndexBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreIndexBuffer.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreIndexBuffer.mm; sourceTree = "<group>"; };
 		A45F61D216033D25005B10A3 /* iGaiaCoreVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreVertexBuffer.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreVertexBuffer.h; sourceTree = "<group>"; };
 		A45F61D316033D25005B10A3 /* iGaiaCoreVertexBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreVertexBuffer.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreVertexBuffer.mm; sourceTree = "<group>"; };
+		A4ADF418160B4595000D6A0A /* iGaiaCoreResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceService.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceService.h; sourceTree = "<group>"; };
+		A4ADF419160B4595000D6A0A /* iGaiaCoreResourceService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreResourceService.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceService.mm; sourceTree = "<group>"; };
+		A4ADF41B160B4661000D6A0A /* iGaiaCoreLoaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreLoaderProtocol.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreLoaderProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +179,6 @@
 		A45F61CC16033C04005B10A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A45F616616032B93005B10A3 /* iGaiaCoreResource.h */,
-				A45F616716032B93005B10A3 /* iGaiaCoreResource.m */,
 				A45F61B116032EF9005B10A3 /* iGaiaCoreShader.h */,
 				A45F61B216032EF9005B10A3 /* iGaiaCoreShader.mm */,
 				A45F61B416032F0F005B10A3 /* iGaiaCoreMesh.h */,
@@ -197,6 +196,7 @@
 		A45F61CD16033C11005B10A3 /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				A4ADF41B160B4661000D6A0A /* iGaiaCoreLoaderProtocol.h */,
 				A45F61BA16032F3C005B10A3 /* iGaiaCoreShaderLoader.h */,
 				A45F61BB16032F3D005B10A3 /* iGaiaCoreShaderLoader.m */,
 				A45F61BD16032F5E005B10A3 /* iGaiaCoreMeshLoader.h */,
@@ -210,12 +210,14 @@
 		A45F61CE16033C1F005B10A3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A45F61C316032F95005B10A3 /* iGaiaCoreShaderService.h */,
-				A45F61C416032F95005B10A3 /* iGaiaCoreShaderService.m */,
+				A4ADF418160B4595000D6A0A /* iGaiaCoreResourceService.h */,
+				A4ADF419160B4595000D6A0A /* iGaiaCoreResourceService.mm */,
 				A45F61C616032FB2005B10A3 /* iGaiaCoreMeshService.h */,
-				A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.m */,
+				A45F61C716032FB2005B10A3 /* iGaiaCoreMeshService.mm */,
 				A45F61C916032FC8005B10A3 /* iGaiaCoreTextureService.h */,
-				A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.m */,
+				A45F61CA16032FC8005B10A3 /* iGaiaCoreTextureService.mm */,
+				A45F61C316032F95005B10A3 /* iGaiaCoreShaderComposite.h */,
+				A45F61C416032F95005B10A3 /* iGaiaCoreShaderComposite.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -289,19 +291,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45F61591603294D005B10A3 /* iGaiaCoreResourceMgr.mm in Sources */,
-				A45F616816032B93005B10A3 /* iGaiaCoreResource.m in Sources */,
 				A45F61B316032EF9005B10A3 /* iGaiaCoreShader.mm in Sources */,
 				A45F61B616032F0F005B10A3 /* iGaiaCoreMesh.mm in Sources */,
 				A45F61B916032F22005B10A3 /* iGaiaCoreTexture.mm in Sources */,
 				A45F61BC16032F3D005B10A3 /* iGaiaCoreShaderLoader.m in Sources */,
 				A45F61BF16032F5E005B10A3 /* iGaiaCoreMeshLoader.mm in Sources */,
 				A45F61C216032F74005B10A3 /* iGaiaCoreTextureLoader.mm in Sources */,
-				A45F61C516032F96005B10A3 /* iGaiaCoreShaderService.m in Sources */,
-				A45F61C816032FB3005B10A3 /* iGaiaCoreMeshService.m in Sources */,
-				A45F61CB16032FC8005B10A3 /* iGaiaCoreTextureService.m in Sources */,
+				A45F61C516032F96005B10A3 /* iGaiaCoreShaderComposite.m in Sources */,
+				A45F61C816032FB3005B10A3 /* iGaiaCoreMeshService.mm in Sources */,
+				A45F61CB16032FC8005B10A3 /* iGaiaCoreTextureService.mm in Sources */,
 				A45F61D116033D10005B10A3 /* iGaiaCoreIndexBuffer.mm in Sources */,
 				A45F61D416033D25005B10A3 /* iGaiaCoreVertexBuffer.mm in Sources */,
 				A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m in Sources */,
+				A4ADF41A160B4595000D6A0A /* iGaiaCoreResourceService.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -65,35 +65,35 @@
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
     id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
     unsigned char bytesOffset = 0;
-    GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.position];
+    GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.position];
     if(slotHandle >= 0)
     {
         glEnableVertexAttribArray(slotHandle);
         glVertexAttribPointer(slotHandle, 3, GL_FLOAT, GL_FALSE, sizeof(iGaiaCoreVertex), (GLvoid*)bytesOffset);
     }
     bytesOffset += sizeof(glm::vec3);
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.textcoord];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.textcoord];
     if(slotHandle >= 0)
     {
         glEnableVertexAttribArray(slotHandle);
         glVertexAttribPointer(slotHandle, 2, GL_FLOAT, GL_FALSE, sizeof(iGaiaCoreVertex), (GLvoid*)bytesOffset);
     }
     bytesOffset += sizeof(glm::vec2);
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.normal];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.normal];
     if(slotHandle >= 0)
     {
         glEnableVertexAttribArray(slotHandle);
         glVertexAttribPointer(slotHandle, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(iGaiaCoreVertex), (GLvoid*)bytesOffset);
     }
     bytesOffset += sizeof(glm::u8vec4);
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.tangent];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.tangent];
     if(slotHandle >= 0)
     {
         glEnableVertexAttribArray(slotHandle);
         glVertexAttribPointer(slotHandle, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(iGaiaCoreVertex), (GLvoid*)bytesOffset);
     }
     bytesOffset += sizeof(glm::u8vec4);
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.color];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.color];
     if(slotHandle >= 0)
     {
         glEnableVertexAttribArray(slotHandle);
@@ -105,27 +105,27 @@
 {
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
     id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
-    GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.position];
+    GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.position];
     if(slotHandle >= 0)
     {
         glDisableVertexAttribArray(slotHandle);
     }
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.textcoord];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.textcoord];
     if(slotHandle >= 0)
     {
         glDisableVertexAttribArray(slotHandle);
     }
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.normal];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.normal];
     if(slotHandle >= 0)
     {
         glDisableVertexAttribArray(slotHandle);
     }
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.tangent];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.tangent];
     if(slotHandle >= 0)
     {
         glDisableVertexAttribArray(slotHandle);
     }
-    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreVertexSlot.color];
+    slotHandle = [shaderReference getHandleForSlot:iGaiaCoreShaderVertexSlot.color];
     if(slotHandle >= 0)
     {
         glDisableVertexAttribArray(slotHandle);

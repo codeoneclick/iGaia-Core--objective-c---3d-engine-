@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <glm/glm.hpp>
 
+#import "iGaiaCoreResourceProtocol.h"
+
 @protocol iGaiaCoreVertexBufferProtocol, iGaiaCoreIndexBufferProtocol;
-@protocol iGaiaCoreMeshProtocol <NSObject>
+@protocol iGaiaCoreMeshProtocol <iGaiaCoreResourceProtocol>
 
 @property(nonatomic, readonly) id<iGaiaCoreVertexBufferProtocol> vertexBuffer;
 @property(nonatomic, readonly) id<iGaiaCoreIndexBufferProtocol> indexBufer;

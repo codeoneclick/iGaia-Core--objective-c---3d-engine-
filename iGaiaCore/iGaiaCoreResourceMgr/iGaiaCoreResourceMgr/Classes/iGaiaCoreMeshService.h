@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreResourceService.h"
 
-@interface iGaiaCoreMeshService : NSObject
+@protocol iGaiaCoreResourceLoaderProtocol;
+@interface iGaiaCoreMeshService : iGaiaCoreResourceService
+
+- (void)loadMeshForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
 
 @end

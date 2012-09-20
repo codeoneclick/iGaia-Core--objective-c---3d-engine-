@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreLoaderProtocol.h"
 
-@interface iGaiaCoreTextureLoader : NSObject
+@interface iGaiaCoreTextureLoader : NSObject<iGaiaCoreLoaderProtocol>
 
 @end

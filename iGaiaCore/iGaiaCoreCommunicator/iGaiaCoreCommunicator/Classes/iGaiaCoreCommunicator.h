@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <glm/glm.hpp>
+
+#import "iGaiaCoreShaderProtocol.h"
+#import "iGaiaCoreTextureProtocol.h"
+#import "iGaiaCoreMeshProtocol.h"
+#import "iGaiaCoreResourceProtocol.h"
+
+@protocol iGaiaCoreResourceLoaderProtocol <NSObject>
+
+- (void)onResourceLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString*)name;
+
+@end
 
 @interface iGaiaCoreCommunicator : NSObject
 
