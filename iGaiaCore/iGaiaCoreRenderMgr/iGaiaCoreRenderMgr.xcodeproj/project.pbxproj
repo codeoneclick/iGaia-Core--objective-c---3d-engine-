@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42F81D7160CB37D00453D28 /* iGaiaCoreGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42F81D6160CB37D00453D28 /* iGaiaCoreGLView.mm */; };
+		A42F81DA160CC09400453D28 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81D9160CC09400453D28 /* OpenGLES.framework */; };
+		A42F81DE160CC0B900453D28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81DD160CC0B900453D28 /* CoreGraphics.framework */; };
+		A42F81E0160CC0F300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81DF160CC0F300453D28 /* QuartzCore.framework */; };
+		A42F81E5160CC18E00453D28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E4160CC18E00453D28 /* UIKit.framework */; };
 		A45F60B916032725005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F60B816032725005B10A3 /* Foundation.framework */; };
-		A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */; };
+		A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.mm */; };
 		A45F61B016032E66005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F618D16032DD9005B10A3 /* libiGaiaCoreCommunicator.a */; };
 /* End PBXBuildFile section */
 
@@ -42,11 +47,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A42F81D5160CB37D00453D28 /* iGaiaCoreGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreGLView.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreGLView.h; sourceTree = "<group>"; };
+		A42F81D6160CB37D00453D28 /* iGaiaCoreGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreGLView.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreGLView.mm; sourceTree = "<group>"; };
+		A42F81D9160CC09400453D28 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A42F81DD160CC0B900453D28 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A42F81DF160CC0F300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A42F81E4160CC18E00453D28 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A45F60B516032725005B10A3 /* libiGaiaCoreRenderMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreRenderMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F60B816032725005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F60BC16032725005B10A3 /* iGaiaCoreRenderMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreRenderMgr-Prefix.pch"; sourceTree = "<group>"; };
 		A45F6148160328FD005B10A3 /* iGaiaCoreRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreRenderMgr.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgr.h; sourceTree = "<group>"; };
-		A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreRenderMgr.m; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgr.m; sourceTree = "<group>"; };
+		A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreRenderMgr.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgr.mm; sourceTree = "<group>"; };
 		A45F618516032DD8005B10A3 /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,6 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42F81E5160CC18E00453D28 /* UIKit.framework in Frameworks */,
+				A42F81E0160CC0F300453D28 /* QuartzCore.framework in Frameworks */,
+				A42F81DE160CC0B900453D28 /* CoreGraphics.framework in Frameworks */,
+				A42F81DA160CC09400453D28 /* OpenGLES.framework in Frameworks */,
 				A45F61B016032E66005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */,
 				A45F60B916032725005B10A3 /* Foundation.framework in Frameworks */,
 			);
@@ -85,6 +100,10 @@
 		A45F60B716032725005B10A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A42F81E4160CC18E00453D28 /* UIKit.framework */,
+				A42F81DD160CC0B900453D28 /* CoreGraphics.framework */,
+				A42F81D9160CC09400453D28 /* OpenGLES.framework */,
+				A42F81DF160CC0F300453D28 /* QuartzCore.framework */,
 				A45F60B816032725005B10A3 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -110,7 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				A45F6148160328FD005B10A3 /* iGaiaCoreRenderMgr.h */,
-				A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.m */,
+				A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.mm */,
+				A42F81D5160CB37D00453D28 /* iGaiaCoreGLView.h */,
+				A42F81D6160CB37D00453D28 /* iGaiaCoreGLView.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -191,7 +212,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.m in Sources */,
+				A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.mm in Sources */,
+				A42F81D7160CB37D00453D28 /* iGaiaCoreGLView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +280,10 @@
 				DSTROOT = /tmp/iGaiaCoreRenderMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreRenderMgr/iGaiaCoreRenderMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -270,6 +296,10 @@
 				DSTROOT = /tmp/iGaiaCoreRenderMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreRenderMgr/iGaiaCoreRenderMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

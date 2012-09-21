@@ -55,8 +55,6 @@
         [data seekBytes:&_vertexData[i].normal length:sizeof(glm::vec3)];
         [data seekBytes:&_vertexData[i].tangent length:sizeof(glm::vec3)];
         [data seekBytes:&_vertexData[i].texcoord length:sizeof(glm::vec2)];
-
-        iGaiaLog(@"vertex position x : %f, y : %f,  z: %f", _vertexData[i].position.x, _vertexData[i].position.y, _vertexData[i].position.z);
     }
 
     _indexData = new unsigned short[_numIndexes];
@@ -89,6 +87,9 @@
 
     delete [] vertexData;
     delete [] indexData;
+
+    delete [] _vertexData;
+    delete [] _indexData;
 
     iGaiaCoreMesh* mesh = [[iGaiaCoreMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
     return mesh;

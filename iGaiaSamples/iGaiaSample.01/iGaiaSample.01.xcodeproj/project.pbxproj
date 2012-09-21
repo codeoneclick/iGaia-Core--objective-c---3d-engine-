@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
 		A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF476160B6FE4000D6A0A /* Foundation.framework */; };
 		A4ADF479160B6FE4000D6A0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF478160B6FE4000D6A0A /* CoreGraphics.framework */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ADF474160B6FE4000D6A0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A4ADF476160B6FE4000D6A0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,11 +84,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */,
 				A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */,
 				A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */,
 				A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */,
 				A4ADF479160B6FE4000D6A0A /* CoreGraphics.framework in Frameworks */,
+				A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */,
+				A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +118,7 @@
 		A4ADF473160B6FE4000D6A0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A42F81E6160CC1D300453D28 /* QuartzCore.framework */,
 				A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */,
 				A4ADF474160B6FE4000D6A0A /* UIKit.framework */,
 				A4ADF476160B6FE4000D6A0A /* Foundation.framework */,

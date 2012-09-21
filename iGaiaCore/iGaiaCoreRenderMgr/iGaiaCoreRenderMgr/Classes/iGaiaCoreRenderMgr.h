@@ -7,7 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+#import "iGaiaCoreCommunicator.h"
+
+@protocol iGaiaCoreRenderViewProtocol, iGaiaCoreTextureProtocol, iGaiaCoreShaderProtocol;
 @interface iGaiaCoreRenderMgr : NSObject
+
+- (UIView*)createViewWithFrame:(CGRect)frame withOwner:(id<iGaiaCoreRenderViewProtocol>)owner;
+
+- (void)enableRenderMode:(BOOL)value withName:(NSString*)renderMode;
+
+/*
+- (void)addWorldSpaceRenderModeWithName:(NSString*)name withFrameSize:(CGSize)size;
+- (void)removeWorldSpaceRenderModeWithName:(NSString*)name;
+
+- (void)addScreenSpaceRenderModeWithName:(NSString*)name withFrameSize:(CGSize)size withShader:(id<iGaiaCoreShaderProtocol>)shader;
+- (void)removeScreenSpaceRenderModeWithName:(NSString*)name;
+
+- (void)startDrawSurfaceForWorldSpaceRenderModeWithName:(NSString*)name;
+- (void)endDrawSurfaceForWorldSpaceRenderModeWithName:(NSString*)name;
+
+- (void)drawSurfaceForScreenSpaceRenderModeWithName:(NSString*)name;
+
+- (void)setDefaultScreenRenderModeWithName:(NSString*)name;
+
+- (id<iGaiaCoreTextureProtocol>)getSurfaceForRenderMode:(NSString*)renderMode;
+*/
 
 @end
