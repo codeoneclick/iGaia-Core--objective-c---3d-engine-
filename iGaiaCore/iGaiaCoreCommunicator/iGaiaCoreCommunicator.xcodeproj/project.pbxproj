@@ -285,7 +285,6 @@
 		A45F616916032DAA005B10A3 = {
 			isa = PBXGroup;
 			children = (
-				A45F618E16032DDF005B10A3 /* Classes */,
 				A45F61E916035BD8005B10A3 /* Libs */,
 				A45F617916032DAA005B10A3 /* iGaiaCoreCommunicator */,
 				A45F617616032DAA005B10A3 /* Frameworks */,
@@ -312,6 +311,7 @@
 		A45F617916032DAA005B10A3 /* iGaiaCoreCommunicator */ = {
 			isa = PBXGroup;
 			children = (
+				A45F618E16032DDF005B10A3 /* Classes */,
 				A45F617A16032DAA005B10A3 /* Supporting Files */,
 			);
 			path = iGaiaCoreCommunicator;
@@ -336,6 +336,7 @@
 				A45F619116032DFD005B10A3 /* iGaiaCoreCommunicator.mm */,
 			);
 			name = Classes;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A45F61E916035BD8005B10A3 /* Libs */ = {

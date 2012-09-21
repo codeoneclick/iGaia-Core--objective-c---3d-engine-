@@ -10,6 +10,8 @@
 
 @interface NSData (iGaiaCoreExtension)
 
+@property(nonatomic, readonly) NSNumber* seek;
+
 - (void)seekBytes:(void *)buffer length:(NSUInteger)length;
 
 @end

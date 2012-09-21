@@ -12,20 +12,22 @@
 		A4ADF479160B6FE4000D6A0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF478160B6FE4000D6A0A /* CoreGraphics.framework */; };
 		A4ADF47F160B6FE4000D6A0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF47D160B6FE4000D6A0A /* InfoPlist.strings */; };
 		A4ADF481160B6FE4000D6A0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF480160B6FE4000D6A0A /* main.m */; };
-		A4ADF485160B6FE4000D6A0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF484160B6FE4000D6A0A /* AppDelegate.m */; };
-		A4ADF487160B6FE4000D6A0A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF486160B6FE4000D6A0A /* Default.png */; };
-		A4ADF489160B6FE4000D6A0A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF488160B6FE4000D6A0A /* Default@2x.png */; };
-		A4ADF48B160B6FE4000D6A0A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF48A160B6FE4000D6A0A /* Default-568h@2x.png */; };
-		A4ADF48E160B6FE4000D6A0A /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF48D160B6FE4000D6A0A /* FirstViewController.mm */; };
-		A4ADF490160B6FE4000D6A0A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF48F160B6FE4000D6A0A /* first.png */; };
-		A4ADF492160B6FE5000D6A0A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF491160B6FE5000D6A0A /* first@2x.png */; };
-		A4ADF495160B6FE5000D6A0A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF494160B6FE5000D6A0A /* SecondViewController.m */; };
-		A4ADF497160B6FE5000D6A0A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF496160B6FE5000D6A0A /* second.png */; };
-		A4ADF499160B6FE5000D6A0A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF498160B6FE5000D6A0A /* second@2x.png */; };
-		A4ADF49C160B6FE5000D6A0A /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF49A160B6FE5000D6A0A /* FirstViewController.xib */; };
-		A4ADF49F160B6FE5000D6A0A /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4ADF49D160B6FE5000D6A0A /* SecondViewController.xib */; };
 		A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4EB160B70E4000D6A0A /* libiGaiaCore.a */; };
 		A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */; };
+		A4D1F071160C43D7005307F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06A160C43D7005307F4 /* AppDelegate.m */; };
+		A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06C160C43D7005307F4 /* FirstViewController.mm */; };
+		A4D1F073160C43D7005307F4 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F06D160C43D7005307F4 /* FirstViewController.xib */; };
+		A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06F160C43D7005307F4 /* SecondViewController.m */; };
+		A4D1F075160C43D7005307F4 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F070160C43D7005307F4 /* SecondViewController.xib */; };
+		A4D1F07E160C43FC005307F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F077160C43FC005307F4 /* Default-568h@2x.png */; };
+		A4D1F07F160C43FC005307F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F078160C43FC005307F4 /* Default.png */; };
+		A4D1F080160C43FC005307F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F079160C43FC005307F4 /* Default@2x.png */; };
+		A4D1F081160C43FC005307F4 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07A160C43FC005307F4 /* first.png */; };
+		A4D1F082160C43FC005307F4 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07B160C43FC005307F4 /* first@2x.png */; };
+		A4D1F083160C43FC005307F4 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07C160C43FC005307F4 /* second.png */; };
+		A4D1F084160C43FC005307F4 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07D160C43FC005307F4 /* second@2x.png */; };
+		A4D1F0F5160C6B8B005307F4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0F4160C6B8B005307F4 /* default.pvr */; };
+		A4D1F0FB160C7231005307F4 /* building_01.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0FA160C7231005307F4 /* building_01.mdl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,23 +56,25 @@
 		A4ADF47E160B6FE4000D6A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A4ADF480160B6FE4000D6A0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4ADF482160B6FE4000D6A0A /* iGaiaSample.01-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaSample.01-Prefix.pch"; sourceTree = "<group>"; };
-		A4ADF483160B6FE4000D6A0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A4ADF484160B6FE4000D6A0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A4ADF486160B6FE4000D6A0A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A4ADF488160B6FE4000D6A0A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		A4ADF48A160B6FE4000D6A0A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A4ADF48C160B6FE4000D6A0A /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		A4ADF48D160B6FE4000D6A0A /* FirstViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FirstViewController.mm; sourceTree = "<group>"; };
-		A4ADF48F160B6FE4000D6A0A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		A4ADF491160B6FE5000D6A0A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		A4ADF493160B6FE5000D6A0A /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		A4ADF494160B6FE5000D6A0A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		A4ADF496160B6FE5000D6A0A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		A4ADF498160B6FE5000D6A0A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		A4ADF49B160B6FE5000D6A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
-		A4ADF49E160B6FE5000D6A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		A4ADF4CC160B70E3000D6A0A /* iGaiaCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCore.xcodeproj; path = ../../iGaiaCore/iGaiaCore.xcodeproj; sourceTree = "<group>"; };
 		A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A4D1F069160C43D7005307F4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A4D1F06A160C43D7005307F4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A4D1F06B160C43D7005307F4 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		A4D1F06C160C43D7005307F4 /* FirstViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FirstViewController.mm; sourceTree = "<group>"; };
+		A4D1F06D160C43D7005307F4 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		A4D1F06E160C43D7005307F4 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		A4D1F06F160C43D7005307F4 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A4D1F070160C43D7005307F4 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		A4D1F077160C43FC005307F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A4D1F078160C43FC005307F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A4D1F079160C43FC005307F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A4D1F07A160C43FC005307F4 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		A4D1F07B160C43FC005307F4 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		A4D1F07C160C43FC005307F4 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		A4D1F07D160C43FC005307F4 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		A4D1F0F4160C6B8B005307F4 /* default.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pvr; sourceTree = "<group>"; };
+		A4D1F0FA160C7231005307F4 /* building_01.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_01.mdl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +96,10 @@
 		A4ADF465160B6FE4000D6A0A = {
 			isa = PBXGroup;
 			children = (
-				A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */,
 				A4ADF4CC160B70E3000D6A0A /* iGaiaCore.xcodeproj */,
 				A4ADF47A160B6FE4000D6A0A /* iGaiaSample.01 */,
 				A4ADF473160B6FE4000D6A0A /* Frameworks */,
+				A4D1F076160C43FC005307F4 /* Resources */,
 				A4ADF471160B6FE4000D6A0A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +115,7 @@
 		A4ADF473160B6FE4000D6A0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */,
 				A4ADF474160B6FE4000D6A0A /* UIKit.framework */,
 				A4ADF476160B6FE4000D6A0A /* Foundation.framework */,
 				A4ADF478160B6FE4000D6A0A /* CoreGraphics.framework */,
@@ -121,18 +126,7 @@
 		A4ADF47A160B6FE4000D6A0A /* iGaiaSample.01 */ = {
 			isa = PBXGroup;
 			children = (
-				A4ADF483160B6FE4000D6A0A /* AppDelegate.h */,
-				A4ADF484160B6FE4000D6A0A /* AppDelegate.m */,
-				A4ADF48C160B6FE4000D6A0A /* FirstViewController.h */,
-				A4ADF48D160B6FE4000D6A0A /* FirstViewController.mm */,
-				A4ADF48F160B6FE4000D6A0A /* first.png */,
-				A4ADF491160B6FE5000D6A0A /* first@2x.png */,
-				A4ADF493160B6FE5000D6A0A /* SecondViewController.h */,
-				A4ADF494160B6FE5000D6A0A /* SecondViewController.m */,
-				A4ADF496160B6FE5000D6A0A /* second.png */,
-				A4ADF498160B6FE5000D6A0A /* second@2x.png */,
-				A4ADF49A160B6FE5000D6A0A /* FirstViewController.xib */,
-				A4ADF49D160B6FE5000D6A0A /* SecondViewController.xib */,
+				A4D1F068160C43D7005307F4 /* Classes */,
 				A4ADF47B160B6FE4000D6A0A /* Supporting Files */,
 			);
 			path = iGaiaSample.01;
@@ -145,9 +139,6 @@
 				A4ADF47D160B6FE4000D6A0A /* InfoPlist.strings */,
 				A4ADF480160B6FE4000D6A0A /* main.m */,
 				A4ADF482160B6FE4000D6A0A /* iGaiaSample.01-Prefix.pch */,
-				A4ADF486160B6FE4000D6A0A /* Default.png */,
-				A4ADF488160B6FE4000D6A0A /* Default@2x.png */,
-				A4ADF48A160B6FE4000D6A0A /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -158,6 +149,38 @@
 				A4ADF4EB160B70E4000D6A0A /* libiGaiaCore.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A4D1F068160C43D7005307F4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A4D1F069160C43D7005307F4 /* AppDelegate.h */,
+				A4D1F06A160C43D7005307F4 /* AppDelegate.m */,
+				A4D1F06B160C43D7005307F4 /* FirstViewController.h */,
+				A4D1F06C160C43D7005307F4 /* FirstViewController.mm */,
+				A4D1F06D160C43D7005307F4 /* FirstViewController.xib */,
+				A4D1F06E160C43D7005307F4 /* SecondViewController.h */,
+				A4D1F06F160C43D7005307F4 /* SecondViewController.m */,
+				A4D1F070160C43D7005307F4 /* SecondViewController.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A4D1F076160C43FC005307F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4D1F0FA160C7231005307F4 /* building_01.mdl */,
+				A4D1F0F4160C6B8B005307F4 /* default.pvr */,
+				A4D1F077160C43FC005307F4 /* Default-568h@2x.png */,
+				A4D1F078160C43FC005307F4 /* Default.png */,
+				A4D1F079160C43FC005307F4 /* Default@2x.png */,
+				A4D1F07A160C43FC005307F4 /* first.png */,
+				A4D1F07B160C43FC005307F4 /* first@2x.png */,
+				A4D1F07C160C43FC005307F4 /* second.png */,
+				A4D1F07D160C43FC005307F4 /* second@2x.png */,
+			);
+			name = Resources;
+			path = iGaiaSample.01/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,15 +252,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4ADF47F160B6FE4000D6A0A /* InfoPlist.strings in Resources */,
-				A4ADF487160B6FE4000D6A0A /* Default.png in Resources */,
-				A4ADF489160B6FE4000D6A0A /* Default@2x.png in Resources */,
-				A4ADF48B160B6FE4000D6A0A /* Default-568h@2x.png in Resources */,
-				A4ADF490160B6FE4000D6A0A /* first.png in Resources */,
-				A4ADF492160B6FE5000D6A0A /* first@2x.png in Resources */,
-				A4ADF497160B6FE5000D6A0A /* second.png in Resources */,
-				A4ADF499160B6FE5000D6A0A /* second@2x.png in Resources */,
-				A4ADF49C160B6FE5000D6A0A /* FirstViewController.xib in Resources */,
-				A4ADF49F160B6FE5000D6A0A /* SecondViewController.xib in Resources */,
+				A4D1F073160C43D7005307F4 /* FirstViewController.xib in Resources */,
+				A4D1F075160C43D7005307F4 /* SecondViewController.xib in Resources */,
+				A4D1F07E160C43FC005307F4 /* Default-568h@2x.png in Resources */,
+				A4D1F07F160C43FC005307F4 /* Default.png in Resources */,
+				A4D1F080160C43FC005307F4 /* Default@2x.png in Resources */,
+				A4D1F081160C43FC005307F4 /* first.png in Resources */,
+				A4D1F082160C43FC005307F4 /* first@2x.png in Resources */,
+				A4D1F083160C43FC005307F4 /* second.png in Resources */,
+				A4D1F084160C43FC005307F4 /* second@2x.png in Resources */,
+				A4D1F0F5160C6B8B005307F4 /* default.pvr in Resources */,
+				A4D1F0FB160C7231005307F4 /* building_01.mdl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +274,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4ADF481160B6FE4000D6A0A /* main.m in Sources */,
-				A4ADF485160B6FE4000D6A0A /* AppDelegate.m in Sources */,
-				A4ADF48E160B6FE4000D6A0A /* FirstViewController.mm in Sources */,
-				A4ADF495160B6FE5000D6A0A /* SecondViewController.m in Sources */,
+				A4D1F071160C43D7005307F4 /* AppDelegate.m in Sources */,
+				A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */,
+				A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,22 +297,6 @@
 				A4ADF47E160B6FE4000D6A0A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A4ADF49A160B6FE5000D6A0A /* FirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A4ADF49B160B6FE5000D6A0A /* en */,
-			);
-			name = FirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		A4ADF49D160B6FE5000D6A0A /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A4ADF49E160B6FE5000D6A0A /* en */,
-			);
-			name = SecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -350,6 +359,10 @@
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-v",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -363,6 +376,10 @@
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-v",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -387,6 +404,7 @@
 				A4ADF4A4160B6FE5000D6A0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

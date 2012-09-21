@@ -10,50 +10,39 @@
 #import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
+#import "iGaiaCoreLogger.h"
 
 @interface iGaiaCoreTextureService()
-
-@property(nonatomic, strong) NSMutableDictionary* container;
-@property(nonatomic, strong) NSMutableDictionary* tasks;
 
 @end
 
 @implementation iGaiaCoreTextureService
 
-@synthesize container = _container;
-@synthesize tasks = _tasks;
-
-- (id)init
-{
-    self = [super init];
-    if(self)
-    {
-        _container = [NSMutableDictionary new];
-        _tasks = [NSMutableDictionary new];
-    }
-    return self;
-}
-
 - (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
 {
+    if(owner == nil)
+    {
+        iGaiaLog(@"texture owner is nil");
+        return;
+    }
+    if(name == nil)
+    {
+        iGaiaLog(@"texture name is nil");
+        return;
+    }
+    
     if([self.container objectForKey:name] == nil)
     {
-        if([self.container objectForKey:name] == nil)
-        {
-            [self validateTaskWithName:name forOwner:owner];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                iGaiaCoreTextureLoader* loader = [iGaiaCoreTextureLoader new];
-                [self loadWithLoader:loader withName:name];
-            });
-        }
-        else
-        {
-            [owner onResourceLoad:[self.container objectForKey:name] withName:name];
-        }
+        [self validateTaskWithName:name forOwner:owner];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            iGaiaCoreTextureLoader* loader = [iGaiaCoreTextureLoader new];
+            [self loadWithLoader:loader withName:name];
+        });
     }
     else
     {
         [owner onResourceLoad:[self.container objectForKey:name] withName:name];
+        iGaiaLog(@"texture with name : %@ get from cache for owner : %@", name, owner);
     }
 }
 

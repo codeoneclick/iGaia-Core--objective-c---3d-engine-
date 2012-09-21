@@ -17,6 +17,7 @@
 #import "iGaiaCoreVertexBufferProtocol.h"
 #import "iGaiaCoreIndexBufferProtocol.h"
 #import "iGaiaCoreMeshProtocol.h"
+#import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
 
@@ -50,10 +51,12 @@
 
     for(NSUInteger i = 0; i < _numVertexes; ++i)
     {
-        [data seekBytes:&_vertexData->position length:sizeof(glm::vec3)];
-        [data seekBytes:&_vertexData->normal length:sizeof(glm::vec3)];
-        [data seekBytes:&_vertexData->tangent length:sizeof(glm::vec3)];
-        [data seekBytes:&_vertexData->texcoord length:sizeof(glm::vec2)];
+        [data seekBytes:&_vertexData[i].position length:sizeof(glm::vec3)];
+        [data seekBytes:&_vertexData[i].normal length:sizeof(glm::vec3)];
+        [data seekBytes:&_vertexData[i].tangent length:sizeof(glm::vec3)];
+        [data seekBytes:&_vertexData[i].texcoord length:sizeof(glm::vec2)];
+
+        iGaiaLog(@"vertex position x : %f, y : %f,  z: %f", _vertexData[i].position.x, _vertexData[i].position.y, _vertexData[i].position.z);
     }
 
     _indexData = new unsigned short[_numIndexes];

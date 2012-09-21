@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m */; };
+		A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.mm in Sources */ = {isa = PBXBuildFile; fileRef = A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.mm */; };
 		A45F609D16032700005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F609C16032700005B10A3 /* Foundation.framework */; };
 		A45F61591603294D005B10A3 /* iGaiaCoreResourceMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61581603294D005B10A3 /* iGaiaCoreResourceMgr.mm */; };
-		A45F61A716032E38005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F61A416032E27005B10A3 /* libiGaiaCoreCommunicator.a */; };
+		A45F61A716032E38005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F61A416032E27005B10A3 /* libiGaiaCoreCommunicator.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		A45F61B316032EF9005B10A3 /* iGaiaCoreShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61B216032EF9005B10A3 /* iGaiaCoreShader.mm */; };
 		A45F61B616032F0F005B10A3 /* iGaiaCoreMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61B516032F0F005B10A3 /* iGaiaCoreMesh.mm */; };
 		A45F61B916032F22005B10A3 /* iGaiaCoreTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61B816032F22005B10A3 /* iGaiaCoreTexture.mm */; };
@@ -23,6 +23,7 @@
 		A45F61D116033D10005B10A3 /* iGaiaCoreIndexBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61D016033D10005B10A3 /* iGaiaCoreIndexBuffer.mm */; };
 		A45F61D416033D25005B10A3 /* iGaiaCoreVertexBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F61D316033D25005B10A3 /* iGaiaCoreVertexBuffer.mm */; };
 		A4ADF41A160B4595000D6A0A /* iGaiaCoreResourceService.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF419160B4595000D6A0A /* iGaiaCoreResourceService.mm */; };
+		A4D1F0E6160C49C2005307F4 /* libiGaiaCoreCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D1F0B7160C48B6005307F4 /* libiGaiaCoreCommon.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,20 @@
 			remoteGlobalIDString = A45F617316032DAA005B10A3;
 			remoteInfo = iGaiaCoreCommunicator;
 		};
+		A4D1F0B6160C48B6005307F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D1F0B2160C48B5005307F4 /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4D1F0A1160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
+		A4D1F0E2160C49BC005307F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4D1F0B2160C48B5005307F4 /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A4D1F0A0160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,7 +71,7 @@
 
 /* Begin PBXFileReference section */
 		A416EE0E160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+iGaiaCoreExtension.h"; path = "iGaiaCoreResourceMgr/Classes/NSData+iGaiaCoreExtension.h"; sourceTree = "<group>"; };
-		A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+iGaiaCoreExtension.m"; path = "iGaiaCoreResourceMgr/Classes/NSData+iGaiaCoreExtension.m"; sourceTree = "<group>"; };
+		A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSData+iGaiaCoreExtension.mm"; path = "iGaiaCoreResourceMgr/Classes/NSData+iGaiaCoreExtension.mm"; sourceTree = "<group>"; };
 		A45F609916032700005B10A3 /* libiGaiaCoreResourceMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreResourceMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F609C16032700005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F60A016032700005B10A3 /* iGaiaCoreResourceMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreResourceMgr-Prefix.pch"; sourceTree = "<group>"; };
@@ -88,6 +103,7 @@
 		A4ADF418160B4595000D6A0A /* iGaiaCoreResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceService.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceService.h; sourceTree = "<group>"; };
 		A4ADF419160B4595000D6A0A /* iGaiaCoreResourceService.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreResourceService.mm; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreResourceService.mm; sourceTree = "<group>"; };
 		A4ADF41B160B4661000D6A0A /* iGaiaCoreLoaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreLoaderProtocol.h; path = iGaiaCoreResourceMgr/Classes/iGaiaCoreLoaderProtocol.h; sourceTree = "<group>"; };
+		A4D1F0B2160C48B5005307F4 /* iGaiaCoreCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommon.xcodeproj; path = ../iGaiaCoreCommon/iGaiaCoreCommon.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D1F0E6160C49C2005307F4 /* libiGaiaCoreCommon.a in Frameworks */,
 				A45F61A716032E38005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */,
 				A45F609D16032700005B10A3 /* Foundation.framework in Frameworks */,
 			);
@@ -107,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				A416EE0E160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.h */,
-				A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m */,
+				A416EE0F160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.mm */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -115,6 +132,7 @@
 		A45F608E16032700005B10A3 = {
 			isa = PBXGroup;
 			children = (
+				A4D1F0B2160C48B5005307F4 /* iGaiaCoreCommon.xcodeproj */,
 				A45F619F16032E27005B10A3 /* iGaiaCoreCommunicator.xcodeproj */,
 				A45F615616032942005B10A3 /* Classes */,
 				A45F609E16032700005B10A3 /* iGaiaCoreResourceMgr */,
@@ -222,6 +240,14 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		A4D1F0B3160C48B5005307F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4D1F0B7160C48B6005307F4 /* libiGaiaCoreCommon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +262,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A4D1F0E3160C49BC005307F4 /* PBXTargetDependency */,
 				A45F61A616032E2F005B10A3 /* PBXTargetDependency */,
 			);
 			name = iGaiaCoreResourceMgr;
@@ -264,6 +291,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = A4D1F0B3160C48B5005307F4 /* Products */;
+					ProjectRef = A4D1F0B2160C48B5005307F4 /* iGaiaCoreCommon.xcodeproj */;
+				},
+				{
 					ProductGroup = A45F61A016032E27005B10A3 /* Products */;
 					ProjectRef = A45F619F16032E27005B10A3 /* iGaiaCoreCommunicator.xcodeproj */;
 				},
@@ -281,6 +312,13 @@
 			fileType = archive.ar;
 			path = libiGaiaCoreCommunicator.a;
 			remoteRef = A45F61A316032E27005B10A3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4D1F0B7160C48B6005307F4 /* libiGaiaCoreCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommon.a;
+			remoteRef = A4D1F0B6160C48B6005307F4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -302,7 +340,7 @@
 				A45F61CB16032FC8005B10A3 /* iGaiaCoreTextureService.mm in Sources */,
 				A45F61D116033D10005B10A3 /* iGaiaCoreIndexBuffer.mm in Sources */,
 				A45F61D416033D25005B10A3 /* iGaiaCoreVertexBuffer.mm in Sources */,
-				A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.m in Sources */,
+				A416EE10160A00FE00B5B1ED /* NSData+iGaiaCoreExtension.mm in Sources */,
 				A4ADF41A160B4595000D6A0A /* iGaiaCoreResourceService.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +352,11 @@
 			isa = PBXTargetDependency;
 			name = iGaiaCoreCommunicator;
 			targetProxy = A45F61A516032E2F005B10A3 /* PBXContainerItemProxy */;
+		};
+		A4D1F0E3160C49BC005307F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommon;
+			targetProxy = A4D1F0E2160C49BC005307F4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -370,7 +413,10 @@
 				DSTROOT = /tmp/iGaiaCoreResourceMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreResourceMgr/iGaiaCoreResourceMgr-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -383,7 +429,10 @@
 				DSTROOT = /tmp/iGaiaCoreResourceMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreResourceMgr/iGaiaCoreResourceMgr-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

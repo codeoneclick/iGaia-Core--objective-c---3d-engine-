@@ -9,6 +9,7 @@
 #import "iGaiaCoreResourceService.h"
 #import "iGaiaCoreLoaderProtocol.h"
 #import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreLogger.h"
 
 @implementation iGaiaCoreResourceService
 
@@ -49,12 +50,13 @@
             for(id<iGaiaCoreResourceLoaderProtocol> owner in owners)
             {
                 [owner onResourceLoad:[self.container objectForKey:name] withName:name];
+                iGaiaLog(@"resource with name : %@ load for owner : %@", name, owner);
             }
             [self.taskPool removeObjectForKey:name];
         }
         else
         {
-            // TODO : ASSERT
+             iGaiaLog(@"resource loader error for resource with name : %@", name);
         }
     });
 

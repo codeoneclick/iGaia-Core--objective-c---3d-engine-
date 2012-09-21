@@ -16,6 +16,7 @@
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
 #import "iGaiaCoreTextureProtocol.h"
+#import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
 
@@ -48,6 +49,9 @@
     path = [path stringByAppendingPathComponent:name];
 
     _data = [NSData dataWithContentsOfFile:path];
+
+
+    NSUInteger mips = 1;
     
     if(*(PVRTuint32*)_data.bytes != PVRTEX3_IDENT)
 	{
@@ -87,6 +91,7 @@
         _offset =  header->dwHeaderSize;
         _compressed = YES;
         _numFaces = 1;
+        mips = header->dwMipMapCount ? header->dwMipMapCount : 1;
     }
     else
     {
@@ -125,7 +130,11 @@
         _offset =  PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
         _compressed = YES;
         _numFaces = header->u32NumFaces;
+        mips = header->u32MIPMapCount ? header->u32MIPMapCount : 1;
     }
+
+    iGaiaLog(@"texture name : %@, with width : %f,  with height : %f, with mips : %d", name, _size.width, _size.height, mips);
+
     return YES;
 }
 

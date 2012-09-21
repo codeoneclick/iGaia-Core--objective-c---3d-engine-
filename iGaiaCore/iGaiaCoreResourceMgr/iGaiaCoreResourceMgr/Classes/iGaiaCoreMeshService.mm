@@ -10,21 +10,27 @@
 #import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreMeshLoader.h"
 #import "iGaiaCoreMesh.h"
+#import "iGaiaCoreLogger.h"
 
 @interface iGaiaCoreMeshService()
-
-@property(nonatomic, strong) NSMutableDictionary* container;
-@property(nonatomic, strong) NSMutableDictionary* taskPool;
 
 @end
 
 @implementation iGaiaCoreMeshService
 
-@synthesize container = _container;
-@synthesize taskPool = _taskPool;
-
 - (void)loadMeshForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
 {
+    if(owner == nil)
+    {
+        iGaiaLog(@"mesh owner is nil");
+        return;
+    }
+    if(name == nil)
+    {
+        iGaiaLog(@"mesh name is nil");
+        return;
+    }
+
     if([self.container objectForKey:name] == nil)
     {
         [self validateTaskWithName:name forOwner:owner];
@@ -36,6 +42,7 @@
     else
     {
         [owner onResourceLoad:[self.container objectForKey:name] withName:name];
+        iGaiaLog(@"mesh with name : %@ get from cache for owner : %@", name, owner);
     }
 }
 

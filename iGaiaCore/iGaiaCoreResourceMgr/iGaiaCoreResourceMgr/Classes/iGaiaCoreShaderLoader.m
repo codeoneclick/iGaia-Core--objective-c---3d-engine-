@@ -10,6 +10,7 @@
 #import <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreShaderLoader.h"
+#import "iGaiaCoreLogger.h"
 
 @interface iGaiaCoreShaderLoader()
 
@@ -35,7 +36,7 @@
     {
         GLchar message[256];
         glGetProgramInfoLog(shaderHandle, sizeof(message), 0, &message[0]);
-        NSLog(@"%s", message);
+        iGaiaLog(@"shader loading error : %s", message);
     }
     return shaderHandle;
 }
@@ -52,7 +53,7 @@
     {
         GLchar message[256];
         glGetShaderInfoLog(handle, sizeof(message), 0, &message[0]);
-        NSLog(@"%s", message);
+        iGaiaLog(@"shader compile error : %s", message);
         handle = 0;
     }
     return handle;
