@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "iGaiaCoreCommunicator.h"
-#import "iGaiaCoreShaderComposite.h"
 
 @interface iGaiaCoreResourceMgr : NSObject
-
-@property(nonatomic, readonly) iGaiaCoreShaderComposite* shaderComposite;
 
 + (iGaiaCoreResourceMgr*)sharedInstance;
 - (void)loadResourceForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;

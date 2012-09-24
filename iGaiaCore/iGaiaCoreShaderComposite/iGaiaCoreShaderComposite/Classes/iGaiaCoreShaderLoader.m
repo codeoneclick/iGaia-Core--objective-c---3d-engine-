@@ -1,8 +1,8 @@
 //
 //  iGaiaCoreShaderLoader.m
-//  iGaiaCoreResourceMgr
+//  iGaiaCoreShaderComposite
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 9/24/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
@@ -20,7 +20,32 @@
 
 @implementation iGaiaCoreShaderLoader
 
-- (NSUInteger)loadWithVertexDataSource:(const char*)vertexDataSource withFragmentDataSource:(const char*)fragmentDataSource;
+- (NSUInteger)loadWithVertexShaderName:(NSString*)vertexShaderName withFragmentShaderName:(NSString*)fragmentShaderName;
+{
+    NSString* path = [[NSBundle mainBundle] resourcePath];
+    path = [path stringByAppendingPathComponent:vertexShaderName];
+    NSData* vertexShaderDataSource = [NSData dataWithContentsOfFile:path];
+
+    [[NSBundle mainBundle] resourcePath];
+    path = [path stringByAppendingPathComponent:fragmentShaderName];
+    NSData* fragmentShaderDataSource = [NSData dataWithContentsOfFile:path];
+
+    if(vertexShaderDataSource == nil)
+    {
+        iGaiaLog(@"vertex shader data source loading error");
+        return 0;
+    }
+
+    if(fragmentShaderDataSource == nil)
+    {
+        iGaiaLog(@"fragment shader data source loading error");
+        return 0;
+    }
+
+    return [self loadWithVertexShaderDataSource:[vertexShaderDataSource bytes] withFragmentShaderDataSource:[fragmentShaderDataSource bytes]];
+}
+
+- (NSUInteger)loadWithVertexShaderDataSource:(const char*)vertexDataSource withFragmentShaderDataSource:(const char*)fragmentDataSource;
 {
     NSUInteger vertexShaderHandle = [self buildWithDataSource:vertexDataSource withShaderType:GL_VERTEX_SHADER];
     NSUInteger fragmentShaderHandle = [self buildWithDataSource:fragmentDataSource withShaderType:GL_FRAGMENT_SHADER];

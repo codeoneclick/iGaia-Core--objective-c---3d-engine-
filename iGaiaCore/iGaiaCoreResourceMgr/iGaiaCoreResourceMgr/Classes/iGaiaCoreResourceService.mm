@@ -59,7 +59,6 @@
              iGaiaLog(@"resource loader error for resource with name : %@", name);
         }
     });
-
 }
 
 @end

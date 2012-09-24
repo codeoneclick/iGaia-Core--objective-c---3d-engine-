@@ -16,6 +16,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A42411E216104368000DB128 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A42411CD16104367000DB128;
+			remoteInfo = iGaiaCoreShaderComposite;
+		};
 		A45F6129160328BD005B10A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A45F6122160328BD005B10A3 /* iGaiaCoreResourceMgr.xcodeproj */;
@@ -87,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreShaderComposite.xcodeproj; path = iGaiaCoreShaderComposite/iGaiaCoreShaderComposite.xcodeproj; sourceTree = "<group>"; };
 		A45F6109160327D2005B10A3 /* libiGaiaCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F610C160327D2005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F6110160327D2005B10A3 /* iGaiaCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCore-Prefix.pch"; sourceTree = "<group>"; };
@@ -114,9 +122,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42411DF16104367000DB128 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A42411E316104368000DB128 /* libiGaiaCoreShaderComposite.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A45F60FE160327D1005B10A3 = {
 			isa = PBXGroup;
 			children = (
+				A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */,
 				A45F613D160328E2005B10A3 /* iGaiaCoreRenderMgr.xcodeproj */,
 				A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */,
 				A45F612B160328CB005B10A3 /* iGaiaCoreInteractiveMgr.xcodeproj */,
@@ -261,6 +278,10 @@
 					ProductGroup = A45F6135160328DA005B10A3 /* Products */;
 					ProjectRef = A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */;
 				},
+				{
+					ProductGroup = A42411DF16104367000DB128 /* Products */;
+					ProjectRef = A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -270,6 +291,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		A42411E316104368000DB128 /* libiGaiaCoreShaderComposite.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreShaderComposite.a;
+			remoteRef = A42411E216104368000DB128 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A45F612A160328BD005B10A3 /* libiGaiaCoreResourceMgr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

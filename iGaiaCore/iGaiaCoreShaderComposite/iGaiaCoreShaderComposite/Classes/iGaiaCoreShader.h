@@ -1,8 +1,8 @@
 //
 //  iGaiaCoreShader.h
-//  iGaiaCoreResourceMgr
+//  iGaiaCoreShaderComposite
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 9/24/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 

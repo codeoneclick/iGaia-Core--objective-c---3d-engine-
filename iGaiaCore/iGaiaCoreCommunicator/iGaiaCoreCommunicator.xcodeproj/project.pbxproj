@@ -282,6 +282,14 @@
 			path = iGaiaCoreCommunicator/Libs/pvr;
 			sourceTree = "<group>";
 		};
+		A42411FF161046DB000DB128 /* ShaderComposite */ = {
+			isa = PBXGroup;
+			children = (
+				A45F62D0160369AD005B10A3 /* iGaiaCoreShaderProtocol.h */,
+			);
+			name = ShaderComposite;
+			sourceTree = "<group>";
+		};
 		A45F616916032DAA005B10A3 = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +336,7 @@
 		A45F618E16032DDF005B10A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A42411FF161046DB000DB128 /* ShaderComposite */,
 				A45F62CF1603696E005B10A3 /* InteractiveMgr */,
 				A45F62CE16036966005B10A3 /* RenderMgr */,
 				A45F62CD16036957005B10A3 /* SceneMgr */,
@@ -612,7 +621,6 @@
 		A45F62CC160368C0005B10A3 /* ResourceMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A45F62D0160369AD005B10A3 /* iGaiaCoreShaderProtocol.h */,
 				A45F62D1160369CC005B10A3 /* iGaiaCoreTextureProtocol.h */,
 				A45F62D216036A0E005B10A3 /* iGaiaCoreMeshProtocol.h */,
 				A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */,

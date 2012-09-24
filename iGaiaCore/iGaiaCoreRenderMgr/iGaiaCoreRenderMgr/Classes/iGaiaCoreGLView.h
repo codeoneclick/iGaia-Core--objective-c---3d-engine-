@@ -11,4 +11,6 @@
 
 @interface iGaiaCoreGLView : UIView
 
+- (id)initWithFrame:(CGRect)frame withCallbackDrawOwner:(id)owner withCallbackDrawSelector:(SEL)selector;
+
 @end

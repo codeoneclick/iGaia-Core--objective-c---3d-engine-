@@ -1,8 +1,8 @@
 //
 //  iGaiaCoreShader.m
-//  iGaiaCoreResourceMgr
+//  iGaiaCoreShaderComposite
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 9/24/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
@@ -73,7 +73,7 @@ const struct iGaiaCoreShaderTextureSlot iGaiaCoreShaderTextureSlot =
         _handle = handle;
 
         _attributesContainer = [NSMutableDictionary new];
-        
+
         [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixWorld cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixWorld];
         [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixView cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixView];
         [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixProjection cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixProjection];
@@ -96,7 +96,7 @@ const struct iGaiaCoreShaderTextureSlot iGaiaCoreShaderTextureSlot =
         [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_08 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_08];
 
         _vertexSlotsContainer = [NSMutableDictionary new];
-        
+
         [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.position cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.position];
         [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.textcoord cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.textcoord];
         [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.normal cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.normal];

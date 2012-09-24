@@ -33,7 +33,6 @@ const struct iGaiaCoreResourceFormat iGaiaCoreResourceFormat =
 
 @synthesize textureService = _textureService;
 @synthesize meshService = _meshService;
-@synthesize shaderComposite = _shaderComposite;
 
 + (iGaiaCoreResourceMgr *)sharedInstance;
 {
@@ -53,7 +52,6 @@ const struct iGaiaCoreResourceFormat iGaiaCoreResourceFormat =
     {
         _textureService = [iGaiaCoreTextureService new];
         _meshService = [iGaiaCoreMeshService new];
-        _shaderComposite = [iGaiaCoreShaderComposite new];
     }
     return self;
 }

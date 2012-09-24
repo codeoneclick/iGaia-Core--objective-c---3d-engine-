@@ -48,7 +48,7 @@ extern const struct iGaiaCoreShaderTextureSlot
     
 } iGaiaCoreShaderTextureSlot;
 
-@protocol iGaiaCoreShaderProtocol <iGaiaCoreResourceProtocol>
+@protocol iGaiaCoreShaderProtocol <NSObject>
 
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSUInteger handle;

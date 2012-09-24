@@ -28,7 +28,7 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withCallbackDrawOwner:(id)owner withCallbackDrawSelector:(SEL)selector;
 {
     if (self = [super initWithFrame:frame])
     {
@@ -58,21 +58,10 @@
             
         }
 
-        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawView:)];
+        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:owner selector:selector];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;
 }
-
-- (void)didRotate: (NSNotification*) notification
-{
-
-}
-
-- (void) drawView:(CADisplayLink*)displayLink
-{
-
-}
-
 
 @end

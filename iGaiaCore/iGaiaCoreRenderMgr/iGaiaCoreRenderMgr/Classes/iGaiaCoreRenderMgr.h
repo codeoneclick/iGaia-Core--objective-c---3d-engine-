@@ -11,12 +11,32 @@
 
 #import "iGaiaCoreCommunicator.h"
 
+
+extern const struct iGaiaCoreWorldSpaceRenderMode
+{
+    NSString *simple;
+    NSString *reflection;
+    NSString *refraction;
+    NSString *screenNormalMapping;
+
+} iGaiaCoreWorldSpaceRenderMode;
+
+extern const struct iGaiaCoreScreenSpaceRenderMode
+{
+    NSString *simple;
+    NSString *blur;
+    NSString *bloom;
+    NSString *edgeDetect;
+    NSString *sepia;
+
+} iGaiaCoreScreenSpaceRenderMode;
+
 @protocol iGaiaCoreRenderViewProtocol, iGaiaCoreTextureProtocol, iGaiaCoreShaderProtocol;
 @interface iGaiaCoreRenderMgr : NSObject
 
++ (iGaiaCoreRenderMgr*)sharedInstance;
 - (UIView*)createViewWithFrame:(CGRect)frame withOwner:(id<iGaiaCoreRenderViewProtocol>)owner;
-
-- (void)enableRenderMode:(BOOL)value withName:(NSString*)renderMode;
+- (void)addRenderNodeWithOwner:(id<iGaiaCoreRenderProtocol>)owner forRenderState:(NSString*)renderState;
 
 /*
 - (void)addWorldSpaceRenderModeWithName:(NSString*)name withFrameSize:(CGSize)size;

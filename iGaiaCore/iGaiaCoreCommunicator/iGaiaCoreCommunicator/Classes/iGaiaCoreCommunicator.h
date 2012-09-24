@@ -19,6 +19,13 @@
 
 @end
 
+@protocol iGaiaCoreRenderProtocol <NSObject>
+
+- (void)onUpdateWithRenderMode:(NSString*)renderMode;
+- (void)onRenderWithRenderMode:(NSString*)renderMode;
+
+@end
+
 @interface iGaiaCoreCommunicator : NSObject
 
 @end
