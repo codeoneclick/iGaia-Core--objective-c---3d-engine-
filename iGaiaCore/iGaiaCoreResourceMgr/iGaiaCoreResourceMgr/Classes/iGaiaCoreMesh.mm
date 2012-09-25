@@ -7,26 +7,25 @@
 //
 
 #import "iGaiaCoreMesh.h"
-#import "iGaiaCoreVertexBufferProtocol.h"
-#import "iGaiaCoreIndexBufferProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 
-@interface iGaiaCoreMesh()
+@interface iGaiaCoreMesh_()
 
-@property(nonatomic, readwrite) id<iGaiaCoreVertexBufferProtocol> vertexBuffer;
-@property(nonatomic, readwrite) id<iGaiaCoreIndexBufferProtocol> indexBuffer;
+@property(nonatomic, readwrite) iGaiaCoreVertexBuffer vertexBuffer;
+@property(nonatomic, readwrite) iGaiaCoreIndexBuffer indexBuffer;
 @property(nonatomic, readwrite) glm::vec3 maxBound;
 @property(nonatomic, readwrite) glm::vec3 minBound;
 
 @end
 
-@implementation iGaiaCoreMesh
+@implementation iGaiaCoreMesh_
 
 @synthesize vertexBuffer = _vertexBuffer;
 @synthesize indexBufer = _indexBufer;
 @synthesize maxBound = _maxBound;
 @synthesize minBound = _minBound;
 
-- (id)initWithVertexBuffer:(id<iGaiaCoreVertexBufferProtocol>)vertexBuffer withIndexBuffer:(id<iGaiaCoreIndexBufferProtocol>)indexBuffer;
+- (id)initWithVertexBuffer:(iGaiaCoreVertexBuffer)vertexBuffer withIndexBuffer:(iGaiaCoreIndexBuffer)indexBuffer;
 {
     self = [super init];
     if(self)

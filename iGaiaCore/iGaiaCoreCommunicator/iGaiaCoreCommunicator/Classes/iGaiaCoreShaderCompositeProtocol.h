@@ -1,15 +1,12 @@
 //
-//  iGaiaCoreShaderProtocol.h
+//  iGaiaCoreShaderCompositeProtocol.h
 //  iGaiaCoreCommunicator
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 9/25/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <glm/glm.hpp>
-
-#import "iGaiaCoreResourceProtocol.h"
 
 @protocol iGaiaCoreShaderProtocol <NSObject>
 
@@ -28,5 +25,11 @@
 - (void)setVector4:(glm::vec4&)vector forAttribute:(NSString*)attribute;
 - (void)setFloat:(float)value forAttribute:(NSString*)attribute;
 - (void)setTexture:(NSUInteger)handle forSlot:(NSString*)slot;
+
+@end
+
+typedef id<iGaiaCoreShaderProtocol> iGaiaCoreShader;
+
+@protocol iGaiaCoreShaderCompositeProtocol <NSObject>
 
 @end

@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "iGaiaCoreResourceMgrProtocol.h"
-
-typedef id<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol> iGaiaCoreResourceMgr_;
+#import "IGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreFacade : NSObject
 
-+(iGaiaCoreResourceMgr_)resourceMgr;
++(iGaiaCoreResourceMgr)resourceMgr;
 
 @end

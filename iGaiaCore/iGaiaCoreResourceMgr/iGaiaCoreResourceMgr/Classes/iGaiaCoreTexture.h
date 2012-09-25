@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "iGaiaCoreCommunicator.h"
 
-#import "iGaiaCoreTextureProtocol.h"
-
-@interface iGaiaCoreTexture : NSObject<iGaiaCoreTextureProtocol>
+@interface iGaiaCoreTexture_ : NSObject<iGaiaCoreTextureProtocol>
 
 -(id)initWithHandle:(NSUInteger)handle withSize:(CGSize)size;
 

@@ -11,14 +11,14 @@
 
 #import "iGaiaCoreTexture.h"
 
-@interface iGaiaCoreTexture()
+@interface iGaiaCoreTexture_()
 
 @property(nonatomic, readwrite) NSUInteger handle;
 @property(nonatomic, readwrite) CGSize size;
 
 @end
 
-@implementation iGaiaCoreTexture
+@implementation iGaiaCoreTexture_
 @synthesize handle = _handle;
 @synthesize size = _size;
 

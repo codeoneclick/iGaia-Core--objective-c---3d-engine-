@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		154410A7161223A5003DAA91 /* iGaiaCoreShaderCompositeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShaderCompositeProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreShaderCompositeProtocol.h; sourceTree = "<group>"; };
 		A416EE091609F97B00B5B1ED /* PVRTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTGlobal.h; sourceTree = "<group>"; };
 		A416EE0A1609F97B00B5B1ED /* PVRTTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTTexture.h; sourceTree = "<group>"; };
 		A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceMgrProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreResourceMgrProtocol.h; sourceTree = "<group>"; };
@@ -256,12 +257,6 @@
 		A45F62C816035BE8005B10A3 /* wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wrap.hpp; sourceTree = "<group>"; };
 		A45F62C916035BE8005B10A3 /* wrap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrap.inl; sourceTree = "<group>"; };
 		A45F62CB16035BE8005B10A3 /* xstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xstream.hpp; sourceTree = "<group>"; };
-		A45F62D0160369AD005B10A3 /* iGaiaCoreShaderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShaderProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreShaderProtocol.h; sourceTree = "<group>"; };
-		A45F62D1160369CC005B10A3 /* iGaiaCoreTextureProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreTextureProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreTextureProtocol.h; sourceTree = "<group>"; };
-		A45F62D216036A0E005B10A3 /* iGaiaCoreMeshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreMeshProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreMeshProtocol.h; sourceTree = "<group>"; };
-		A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreVertexBufferProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreVertexBufferProtocol.h; sourceTree = "<group>"; };
-		A45F62D416036A4A005B10A3 /* iGaiaCoreIndexBufferProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreIndexBufferProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreIndexBufferProtocol.h; sourceTree = "<group>"; };
-		A4ADF416160B4101000D6A0A /* iGaiaCoreResourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreResourceProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,14 +279,6 @@
 			);
 			name = pvr;
 			path = iGaiaCoreCommunicator/Libs/pvr;
-			sourceTree = "<group>";
-		};
-		A42411FF161046DB000DB128 /* ShaderComposite */ = {
-			isa = PBXGroup;
-			children = (
-				A45F62D0160369AD005B10A3 /* iGaiaCoreShaderProtocol.h */,
-			);
-			name = ShaderComposite;
 			sourceTree = "<group>";
 		};
 		A45F616916032DAA005B10A3 = {
@@ -340,15 +327,12 @@
 		A45F618E16032DDF005B10A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A42411FF161046DB000DB128 /* ShaderComposite */,
-				A45F62CF1603696E005B10A3 /* InteractiveMgr */,
-				A45F62CE16036966005B10A3 /* RenderMgr */,
-				A45F62CD16036957005B10A3 /* SceneMgr */,
-				A45F62CC160368C0005B10A3 /* ResourceMgr */,
 				A45F619016032DFD005B10A3 /* iGaiaCoreCommunicator.h */,
 				A45F619116032DFD005B10A3 /* iGaiaCoreCommunicator.mm */,
 				A447CA521611F0EF00F539C0 /* iGaiaCoreDefinitions.h */,
 				A447CA531611F0EF00F539C0 /* iGaiaCoreDefinitions.mm */,
+				A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrProtocol.h */,
+				154410A7161223A5003DAA91 /* iGaiaCoreShaderCompositeProtocol.h */,
 			);
 			name = Classes;
 			path = ..;
@@ -622,40 +606,6 @@
 				A45F62CB16035BE8005B10A3 /* xstream.hpp */,
 			);
 			path = virtrev;
-			sourceTree = "<group>";
-		};
-		A45F62CC160368C0005B10A3 /* ResourceMgr */ = {
-			isa = PBXGroup;
-			children = (
-				A45F62D1160369CC005B10A3 /* iGaiaCoreTextureProtocol.h */,
-				A45F62D216036A0E005B10A3 /* iGaiaCoreMeshProtocol.h */,
-				A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */,
-				A45F62D416036A4A005B10A3 /* iGaiaCoreIndexBufferProtocol.h */,
-				A4ADF416160B4101000D6A0A /* iGaiaCoreResourceProtocol.h */,
-				A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrProtocol.h */,
-			);
-			name = ResourceMgr;
-			sourceTree = "<group>";
-		};
-		A45F62CD16036957005B10A3 /* SceneMgr */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = SceneMgr;
-			sourceTree = "<group>";
-		};
-		A45F62CE16036966005B10A3 /* RenderMgr */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = RenderMgr;
-			sourceTree = "<group>";
-		};
-		A45F62CF1603696E005B10A3 /* InteractiveMgr */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = InteractiveMgr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

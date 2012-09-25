@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void)validateTaskWithName:(NSString*)name forOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner;
+- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreResourceLoadDispatcher)owner;
 {
     if([self.taskPool objectForKey:name] == nil)
     {
@@ -38,16 +38,16 @@
     [owners addObject:owner];
 }
 
-- (void)loadWithLoader:(id<iGaiaCoreLoaderProtocol>)loader withName:(NSString*)name;
+- (void)loadWithLoader:(iGaiaCoreLoader)loader withName:(NSString*)name;
 {
     BOOL result = [loader loadWithName:name];
     dispatch_async(dispatch_get_main_queue(), ^{
         if(result != NO)
         {
-            id<iGaiaCoreResourceProtocol> resource = [loader commit];
+            iGaiaCoreResource resource = [loader commit];
             [self.container setObject:resource forKey:name];
             NSMutableArray* owners = [self.taskPool objectForKey:name];
-            for(id<iGaiaCoreResourceLoaderProtocol> owner in owners)
+            for(iGaiaCoreResourceLoadDispatcher owner in owners)
             {
                 [owner onResourceLoad:[self.container objectForKey:name] withName:name];
                 iGaiaLog(@"resource with name : %@ load for owner : %@", name, owner);

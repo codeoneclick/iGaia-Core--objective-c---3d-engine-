@@ -18,7 +18,7 @@
 
 @implementation iGaiaCoreTextureService
 
-- (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcher)owner withName:(NSString*)name;
 {
     if(owner == nil)
     {

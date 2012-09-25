@@ -14,9 +14,7 @@
 #import "iGaiaCoreIndexBuffer.h"
 #import "iGaiaCoreMesh.h"
 
-#import "iGaiaCoreVertexBufferProtocol.h"
-#import "iGaiaCoreIndexBufferProtocol.h"
-#import "iGaiaCoreMeshProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
@@ -73,14 +71,14 @@
     return YES;
 }
 
-- (id<iGaiaCoreResourceProtocol>)commit;
+- (iGaiaCoreResource)commit;
 {
-    iGaiaCoreVertexBuffer* vertexBuffer = [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:_numVertexes withMode:GL_STATIC_DRAW];
+    iGaiaCoreVertexBuffer_* vertexBuffer = [[iGaiaCoreVertexBuffer_ alloc] initWithNumVertexes:_numVertexes withMode:GL_STATIC_DRAW];
     iGaiaCoreVertex* vertexData = [vertexBuffer lock];
     memcpy(_vertexData, vertexData, sizeof(iGaiaCoreVertex) * _numVertexes);
     [vertexBuffer unlock];
 
-    iGaiaCoreIndexBuffer* indexBuffer = [[iGaiaCoreIndexBuffer alloc] initWithNumIndexes:_numIndexes withMode:GL_STATIC_DRAW];
+    iGaiaCoreIndexBuffer_* indexBuffer = [[iGaiaCoreIndexBuffer_ alloc] initWithNumIndexes:_numIndexes withMode:GL_STATIC_DRAW];
     unsigned short* indexData = [indexBuffer lock];
     memcpy(_indexData, indexData, sizeof(unsigned short) * _numIndexes);
     [indexBuffer unlock];
@@ -91,7 +89,7 @@
     delete [] _vertexData;
     delete [] _indexData;
 
-    iGaiaCoreMesh* mesh = [[iGaiaCoreMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
+    iGaiaCoreMesh_* mesh = [[iGaiaCoreMesh_ alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
     return mesh;
 }
 

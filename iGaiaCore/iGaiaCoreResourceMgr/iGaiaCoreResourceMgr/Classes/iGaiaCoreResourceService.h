@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreLoaderProtocol.h"
 
-@protocol iGaiaCoreLoaderProtocol, iGaiaCoreResourceLoaderProtocol;
 @interface iGaiaCoreResourceService : NSObject
 
 @property(nonatomic, strong) NSMutableDictionary* container;
 @property(nonatomic, strong) NSMutableDictionary* taskPool;
 
-- (void)loadWithLoader:(id<iGaiaCoreLoaderProtocol>)loader withName:(NSString*)name;
-- (void)validateTaskWithName:(NSString*)name forOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner;
+- (void)loadWithLoader:(iGaiaCoreLoader)loader withName:(NSString*)name;
+- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreResourceLoadDispatcher)owner;
 
 @end

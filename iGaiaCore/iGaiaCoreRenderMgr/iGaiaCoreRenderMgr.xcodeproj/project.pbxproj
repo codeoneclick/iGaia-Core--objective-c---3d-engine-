@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154410A41612201E003DAA91 /* iGaiaCoreRenderMgrBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 154410A31612201E003DAA91 /* iGaiaCoreRenderMgrBridge.mm */; };
 		A42F81D7160CB37D00453D28 /* iGaiaCoreGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42F81D6160CB37D00453D28 /* iGaiaCoreGLView.mm */; };
 		A42F81DA160CC09400453D28 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81D9160CC09400453D28 /* OpenGLES.framework */; };
 		A42F81DE160CC0B900453D28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81DD160CC0B900453D28 /* CoreGraphics.framework */; };
@@ -64,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		154410A21612201E003DAA91 /* iGaiaCoreRenderMgrBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreRenderMgrBridge.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgrBridge.h; sourceTree = "<group>"; };
+		154410A31612201E003DAA91 /* iGaiaCoreRenderMgrBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreRenderMgrBridge.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgrBridge.mm; sourceTree = "<group>"; };
 		A42F81D5160CB37D00453D28 /* iGaiaCoreGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreGLView.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreGLView.h; sourceTree = "<group>"; };
 		A42F81D6160CB37D00453D28 /* iGaiaCoreGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreGLView.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreGLView.mm; sourceTree = "<group>"; };
 		A42F81D9160CC09400453D28 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,8 @@
 				A447C9DD1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm */,
 				A447C9E91611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.h */,
 				A447C9EA1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm */,
+				154410A21612201E003DAA91 /* iGaiaCoreRenderMgrBridge.h */,
+				154410A31612201E003DAA91 /* iGaiaCoreRenderMgrBridge.mm */,
 			);
 			name = Classes;
 			path = ..;
@@ -265,6 +270,7 @@
 				A42F81D7160CB37D00453D28 /* iGaiaCoreGLView.mm in Sources */,
 				A447C9DE1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm in Sources */,
 				A447C9EB1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm in Sources */,
+				154410A41612201E003DAA91 /* iGaiaCoreRenderMgrBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

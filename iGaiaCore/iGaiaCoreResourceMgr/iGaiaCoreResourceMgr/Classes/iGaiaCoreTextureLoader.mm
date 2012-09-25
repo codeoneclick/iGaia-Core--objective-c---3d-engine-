@@ -15,7 +15,7 @@
 
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
-#import "iGaiaCoreTextureProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
@@ -138,7 +138,7 @@
     return YES;
 }
 
-- (id<iGaiaCoreResourceProtocol>)commit;
+- (iGaiaCoreResource)commit;
 {
     GLuint handle = 0;
     glGenTextures(1, &handle);
@@ -172,7 +172,7 @@
         }
     }
 
-    iGaiaCoreTexture* texture = [[iGaiaCoreTexture alloc] initWithHandle:handle withSize:_size];
+    iGaiaCoreTexture_* texture = [[iGaiaCoreTexture_ alloc] initWithHandle:handle withSize:_size];
     return texture;
 }
 

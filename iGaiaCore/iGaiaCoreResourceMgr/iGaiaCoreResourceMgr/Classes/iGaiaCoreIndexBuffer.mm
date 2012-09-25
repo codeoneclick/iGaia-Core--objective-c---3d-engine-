@@ -11,7 +11,7 @@
 
 #import "iGaiaCoreIndexBuffer.h"
 
-@interface iGaiaCoreIndexBuffer()
+@interface iGaiaCoreIndexBuffer_()
 
 @property(nonatomic, unsafe_unretained) unsigned short* indexes;
 @property(nonatomic, readwrite) NSUInteger numIndexes;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation iGaiaCoreIndexBuffer
+@implementation iGaiaCoreIndexBuffer_
 @synthesize indexes = _indexes;
 @synthesize numIndexes = _numIndexes;
 @synthesize handle = _handle;

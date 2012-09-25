@@ -12,6 +12,6 @@
 @protocol iGaiaCoreResourceLoaderProtocol;
 @interface iGaiaCoreTextureService : iGaiaCoreResourceService
 
-- (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcher)owner withName:(NSString*)name;
 
 @end

@@ -13,7 +13,7 @@
 #import "iGaiaCoreShaderProtocol.h"
 
 
-@interface iGaiaCoreShader()<iGaiaCoreShaderProtocol>
+@interface iGaiaCoreShader_()<iGaiaCoreShaderProtocol>
 
 @property (nonatomic, readwrite) NSString* name;
 @property (nonatomic, readwrite) NSUInteger handle;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation iGaiaCoreShader
+@implementation iGaiaCoreShader_
 
 @synthesize name = _name;
 @synthesize handle = _handle;

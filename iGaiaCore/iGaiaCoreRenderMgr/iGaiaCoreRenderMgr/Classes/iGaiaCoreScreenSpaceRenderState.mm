@@ -9,8 +9,8 @@
 #import <OpenGLES/ES2/gl.h>
 
 #import "iGaiaCoreScreenSpaceRenderState.h"
-//#import "iGaiaCoreVertexBufferProtocol.h"
-//#import "iGaiaCoreIndexBufferProtocol.h"
+#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreRenderMgrBridge.h"
 #import "iGaiaCoreLogger.h"
 
 @interface iGaiaCoreScreenSpaceRenderState()
@@ -54,7 +54,33 @@
             iGaiaLog(@"Failed init render state");
         }
 
-        //id<iGaiaCoreVertexBufferProtocol> vertexBuffer =
+        iGaiaCoreVertexBuffer vertexBuffer = [[iGaiaCoreRenderMgrBridge sharedInstance].resourceMgrBridge createVertexBufferWithNumVertexes:4 withMode:GL_STATIC_DRAW];
+        
+        iGaiaCoreVertex* vertexData = [vertexBuffer lock];
+        
+        vertexData[0].position = glm::vec3(-1.0f,-1.0f,0.0f);
+        vertexData[0].texcoord = glm::vec2(0.0f,0.0f);
+        vertexData[1].position = glm::vec3(-1.0f,1.0f,0.0f);
+        vertexData[1].texcoord = glm::vec2(0.0f,1.0f);
+        vertexData[2].position = glm::vec3(1.0f,-1.0f,0.0f);
+        vertexData[2].texcoord = glm::vec2(1.0f,0.0f);
+        vertexData[3].position = glm::vec3(1.0f,1.0f,0.0f);
+        vertexData[3].texcoord = glm::vec2(1.0f,1.0f);
+        
+        [vertexBuffer unlock];
+        
+        iGaiaCoreIndexBuffer indexBuffer = [[iGaiaCoreRenderMgrBridge sharedInstance].resourceMgrBridge createIndexBufferWithNumIndexes:6 withMode:GL_STATIC_DRAW];
+        
+        unsigned short* indexData = [indexBuffer lock];
+        
+        indexData[0] = 0;
+        indexData[1] = 1;
+        indexData[2] = 2;
+        indexData[3] = 1;
+        indexData[4] = 2;
+        indexData[5] = 3;
+        
+        [indexBuffer unlock];
 
         /*iGaiaCoreVertexBuffer* vertexBuffer = [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaCoreVertex* vertexData = [vertexBuffer lock];

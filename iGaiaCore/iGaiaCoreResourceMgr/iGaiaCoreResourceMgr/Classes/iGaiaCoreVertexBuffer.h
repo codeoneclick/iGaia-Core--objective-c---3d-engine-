@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iGaiaCoreVertexBufferProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 
-@interface iGaiaCoreVertexBuffer : NSObject<iGaiaCoreVertexBufferProtocol>
+@interface iGaiaCoreVertexBuffer_ : NSObject<iGaiaCoreVertexBufferProtocol>
 
 - (id)initWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
 

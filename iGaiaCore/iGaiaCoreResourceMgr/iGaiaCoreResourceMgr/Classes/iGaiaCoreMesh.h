@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iGaiaCoreMeshProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 
-@protocol iGaiaCoreVertexBufferProtocol, iGaiaCoreIndexBufferProtocol;
-@interface iGaiaCoreMesh : NSObject<iGaiaCoreMeshProtocol>
+@interface iGaiaCoreMesh_ : NSObject<iGaiaCoreMeshProtocol>
 
-- (id)initWithVertexBuffer:(id<iGaiaCoreVertexBufferProtocol>)vertexBuffer withIndexBuffer:(id<iGaiaCoreIndexBufferProtocol>)indexBuffer;
+- (id)initWithVertexBuffer:(iGaiaCoreVertexBuffer)vertexBuffer withIndexBuffer:(iGaiaCoreIndexBuffer)indexBuffer;
 
 @end

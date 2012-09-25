@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface iGaiaCoreShader : NSObject
+@interface iGaiaCoreShader_ : NSObject
 
 - (id)initWithHandle:(NSUInteger)handle;
 

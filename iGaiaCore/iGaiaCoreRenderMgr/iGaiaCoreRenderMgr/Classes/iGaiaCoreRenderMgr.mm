@@ -49,7 +49,7 @@
     return _glView = [[iGaiaCoreGLView alloc] initWithFrame:frame withCallbackDrawOwner:self withCallbackDrawSelector:@selector(drawView:)];
 }
 
-- (void)createRelationForObjectOwner:(id<iGaiaCoreRenderProtocol>)owner withRenderState:(NSString*)renderState;
+- (void)createRelationForObjectOwner:(iGaiaCoreRenderDispatcher)owner withRenderState:(NSString*)renderState;
 {
     NSMutableArray* owners = [self.container objectForKey:renderState];
     if(owners == nil)
@@ -63,17 +63,17 @@
 - (void)drawView:(CADisplayLink*)displayLink
 {
     NSArray* owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.simple];
-    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    for(iGaiaCoreRenderDispatcher owner in owners)
     {
         [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.simple withForceUpdate:NO];
     }
     owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.reflection];
-    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    for(iGaiaCoreRenderDispatcher owner in owners)
     {
         [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.reflection withForceUpdate:YES];
     }
     owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.refraction];
-    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    for(iGaiaCoreRenderDispatcher owner in owners)
     {
         [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.refraction withForceUpdate:YES];
     }

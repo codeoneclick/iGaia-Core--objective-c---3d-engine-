@@ -18,7 +18,7 @@
 
 @implementation iGaiaCoreMeshService
 
-- (void)loadMeshForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadMeshForOwner:(iGaiaCoreResourceLoadDispatcher)owner withName:(NSString*)name;
 {
     if(owner == nil)
     {

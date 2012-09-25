@@ -11,9 +11,9 @@
 
 @implementation iGaiaCoreFacade
 
-+(iGaiaCoreResourceMgr*)resourceMgr;
++(iGaiaCoreResourceMgr_*)resourceMgr;
 {
-    return [iGaiaCoreResourceMgr sharedInstance];
+    return [iGaiaCoreResourceMgr_ sharedInstance];
 }
 
 @end

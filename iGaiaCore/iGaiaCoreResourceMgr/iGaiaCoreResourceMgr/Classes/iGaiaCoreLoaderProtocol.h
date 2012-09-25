@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreCommunicator.h"
 
-@protocol iGaiaCoreResourceProtocol;
 @protocol iGaiaCoreLoaderProtocol <NSObject>
 
 - (BOOL)loadWithName:(NSString*)name;
-- (id<iGaiaCoreResourceProtocol>)commit;
+- (iGaiaCoreResource)commit;
 
 @end
+
+typedef id<iGaiaCoreLoaderProtocol> iGaiaCoreLoader;

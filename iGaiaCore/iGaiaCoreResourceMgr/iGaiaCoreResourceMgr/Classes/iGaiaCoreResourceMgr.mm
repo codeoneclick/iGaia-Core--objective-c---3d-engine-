@@ -14,21 +14,21 @@
 #import "iGaiaCoreMesh.h"
 #import "iGaiaCoreDefinitions.h"
 
-@interface iGaiaCoreResourceMgr()
+@interface iGaiaCoreResourceMgr_()
 
 @property(nonatomic, strong) iGaiaCoreTextureService* textureService;
 @property(nonatomic, strong) iGaiaCoreMeshService* meshService;
 
 @end
 
-@implementation iGaiaCoreResourceMgr
+@implementation iGaiaCoreResourceMgr_
 
 @synthesize textureService = _textureService;
 @synthesize meshService = _meshService;
 
-+ (id<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol>)sharedInstance;
++ (iGaiaCoreResourceMgr)sharedInstance;
 {
-    static iGaiaCoreResourceMgr *_sharedInstance = nil;
+    static iGaiaCoreResourceMgr_ *_sharedInstance = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _sharedInstance = [[self alloc] init];
@@ -48,7 +48,7 @@
     return self;
 }
 
-- (void)loadResourceForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadResourceForOwner:(iGaiaCoreResourceLoadDispatcher)owner withName:(NSString*)name;
 {
     NSRange range;
     range =[[name lowercaseString] rangeOfString:[iGaiaCoreDefinitionResourceFormat.pvr lowercaseString]];
@@ -65,19 +65,19 @@
     }
 }
 
-- (id<iGaiaCoreVertexBufferProtocol>)createVertexBufferWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
+- (iGaiaCoreVertexBuffer)createVertexBufferWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
 {
-    return [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:numVertexes withMode:GL_STATIC_DRAW];
+    return [[iGaiaCoreVertexBuffer_ alloc] initWithNumVertexes:numVertexes withMode:GL_STATIC_DRAW];
 }
 
-- (id<iGaiaCoreIndexBufferProtocol>)createIndexBufferWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
+- (iGaiaCoreIndexBuffer)createIndexBufferWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
 {
-    return [[iGaiaCoreIndexBuffer alloc] initWithNumIndexes:numIndexes withMode:GL_STATIC_DRAW];
+    return [[iGaiaCoreIndexBuffer_ alloc] initWithNumIndexes:numIndexes withMode:GL_STATIC_DRAW];
 }
 
-- (id<iGaiaCoreMeshProtocol>)createMeshWithVertexBuffer:(id<iGaiaCoreVertexBufferProtocol>)vertexBuffer withIndexBuffer:(id<iGaiaCoreIndexBufferProtocol>)indexBuffer;
+- (iGaiaCoreMesh)createMeshWithVertexBuffer:(iGaiaCoreVertexBuffer)vertexBuffer withIndexBuffer:(iGaiaCoreIndexBuffer)indexBuffer;
 {
-    return [[iGaiaCoreMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
+    return [[iGaiaCoreMesh_ alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
 }
 
 @end

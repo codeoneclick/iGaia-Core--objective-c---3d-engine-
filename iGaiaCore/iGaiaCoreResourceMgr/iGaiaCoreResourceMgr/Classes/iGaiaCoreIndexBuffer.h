@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iGaiaCoreIndexBufferProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 
-@interface iGaiaCoreIndexBuffer : NSObject<iGaiaCoreIndexBufferProtocol>
+@interface iGaiaCoreIndexBuffer_ : NSObject<iGaiaCoreIndexBufferProtocol>
 
 - (id)initWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
 

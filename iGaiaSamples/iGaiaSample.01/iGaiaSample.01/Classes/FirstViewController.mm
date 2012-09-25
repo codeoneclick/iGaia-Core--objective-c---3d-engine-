@@ -39,7 +39,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)onResourceLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString *)name
+- (void)onResourceLoad:(iGaiaCoreResource)resource withName:(NSString *)name
 {
     iGaiaLog(@"resource : %@, name : %@",resource, name);
 }

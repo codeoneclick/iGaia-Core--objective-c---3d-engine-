@@ -10,10 +10,10 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreVertexBuffer.h"
-#import "iGaiaCoreShaderProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreDefinitions.h"
 
-@interface iGaiaCoreVertexBuffer()
+@interface iGaiaCoreVertexBuffer_()
 
 @property(nonatomic, readwrite) NSUInteger numVertexes;
 @property(nonatomic, assign) NSUInteger handle;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation iGaiaCoreVertexBuffer
+@implementation iGaiaCoreVertexBuffer_
 
 @synthesize numVertexes = _numVertexes;
 @synthesize handle = _handle;
@@ -45,7 +45,7 @@
     return self;
 }
 
-- (void)addShaderReference:(id<iGaiaCoreShaderProtocol>)shaderReference forRenderMode:(NSString*)renderMode;
+- (void)addShaderReference:(iGaiaCoreShader)shaderReference forRenderMode:(NSString*)renderMode;
 {
     [self.shaderReferencesContainer setObject:shaderReference forKey:renderMode];
 }
@@ -64,7 +64,7 @@
 - (void)bindForRenderMode:(NSString*)renderMode;
 {
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
-    id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
+    iGaiaCoreShader shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
     unsigned char bytesOffset = 0;
     GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreDefinitionShaderVertexSlot.position];
     if(slotHandle >= 0)
@@ -105,7 +105,7 @@
 - (void)unbindForRenderMode:(NSString*)renderMode;
 {
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
-    id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
+    iGaiaCoreShader shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
     GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreDefinitionShaderVertexSlot.position];
     if(slotHandle >= 0)
     {
