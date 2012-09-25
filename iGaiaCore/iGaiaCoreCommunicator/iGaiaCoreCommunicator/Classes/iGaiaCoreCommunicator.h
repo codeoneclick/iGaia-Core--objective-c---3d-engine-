@@ -12,17 +12,14 @@
 #import "iGaiaCoreTextureProtocol.h"
 #import "iGaiaCoreMeshProtocol.h"
 #import "iGaiaCoreResourceProtocol.h"
+#import "iGaiaCoreResourceMgrProtocol.h"
 
-@protocol iGaiaCoreResourceLoaderProtocol <NSObject>
-
-- (void)onResourceLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString*)name;
-
-@end
-
+@protocol iGaiaCoreResourceMgrProtocol;
 @protocol iGaiaCoreRenderProtocol <NSObject>
 
-- (void)onUpdateWithRenderMode:(NSString*)renderMode;
-- (void)onRenderWithRenderMode:(NSString*)renderMode;
+@property(nonatomic, assign) NSInteger priority;
+
+- (void)onRenderWithRenderMode:(NSString*)renderMode withForceUpdate:(BOOL)force;
 
 @end
 

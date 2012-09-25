@@ -14,6 +14,7 @@
 
 - (unsigned short*)lock;
 - (void)unlock;
+
 - (void)bind;
 - (void)unbind;
 

@@ -7,7 +7,7 @@
 //
 
 #import "iGaiaCoreMeshService.h"
-#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreResourceMgrProtocol.h"
 #import "iGaiaCoreMeshLoader.h"
 #import "iGaiaCoreMesh.h"
 #import "iGaiaCoreLogger.h"

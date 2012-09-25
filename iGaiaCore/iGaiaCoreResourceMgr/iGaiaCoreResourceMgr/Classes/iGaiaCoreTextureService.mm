@@ -7,7 +7,7 @@
 //
 
 #import "iGaiaCoreTextureService.h"
-#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreResourceMgrProtocol.h"
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
 #import "iGaiaCoreLogger.h"

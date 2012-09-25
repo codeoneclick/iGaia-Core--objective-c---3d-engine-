@@ -8,25 +8,7 @@
 
 #import "iGaiaCoreRenderMgr.h"
 #import "iGaiaCoreGLView.h"
-
-
-const struct iGaiaCoreWorldSpaceRenderMode iGaiaCoreWorldSpaceRenderMode =
-{
-    .simple = @"igaia.worldspace.rendermode.simple",
-    .reflection = @"igaia.worldspace.rendermode.reflection",
-    .refraction = @"igaia.worldspace.rendermode.refraction",
-    .screenNormalMapping = @"igaia.worldspace.rendermode.screennormalmapping"
-};
-
-
-const struct iGaiaCoreScreenSpaceRenderMode iGaiaCoreScreenSpaceRenderMode =
-{
-    .simple = @"igaia.screenspace.rendermode.simple",
-    .blur = @"igaia.screenspace.rendermode.blur",
-    .bloom = @"igaia.screenspace.rendermode.bloom",
-    .edgeDetect = @"igaia.screenspace.rendermode.edgeDetect",
-    .sepia = @"igaia.screenspace.rendermode.sepia",
-};
+#import "iGaiaCoreDefinitions.h"
 
 @interface iGaiaCoreRenderMgr()
 
@@ -67,20 +49,34 @@ const struct iGaiaCoreScreenSpaceRenderMode iGaiaCoreScreenSpaceRenderMode =
     return _glView = [[iGaiaCoreGLView alloc] initWithFrame:frame withCallbackDrawOwner:self withCallbackDrawSelector:@selector(drawView:)];
 }
 
-- (void)addRenderNodeWithOwner:(id<iGaiaCoreRenderProtocol>)owner forRenderState:(NSString*)renderState;
+- (void)createRelationForObjectOwner:(id<iGaiaCoreRenderProtocol>)owner withRenderState:(NSString*)renderState;
 {
-    NSMutableArray* nodes = [self.container objectForKey:renderState];
-    if(nodes == nil)
+    NSMutableArray* owners = [self.container objectForKey:renderState];
+    if(owners == nil)
     {
-        nodes = [NSMutableArray new];
-        [self.container setObject:nodes forKey:renderState];
+        owners = [NSMutableArray new];
+        [self.container setObject:owners forKey:renderState];
     }
-    [nodes addObject:owner];
+    [owners addObject:owner];
 }
 
-- (void) drawView:(CADisplayLink*)displayLink
+- (void)drawView:(CADisplayLink*)displayLink
 {
-
+    NSArray* owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.simple];
+    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    {
+        [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.simple withForceUpdate:NO];
+    }
+    owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.reflection];
+    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    {
+        [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.reflection withForceUpdate:YES];
+    }
+    owners = [self.container objectForKey:iGaiaCoreDefinitionWorldSpaceRenderMode.refraction];
+    for(id<iGaiaCoreRenderProtocol> owner in owners)
+    {
+        [owner onRenderWithRenderMode:iGaiaCoreDefinitionWorldSpaceRenderMode.refraction withForceUpdate:YES];
+    }
 }
 
 

@@ -11,43 +11,6 @@
 
 #import "iGaiaCoreResourceProtocol.h"
 
-extern const struct iGaiaCoreShaderVertexSlot
-{
-    NSString *position;
-    NSString *textcoord;
-    NSString *normal;
-    NSString *tangent;
-    NSString *color;
-    
-} iGaiaCoreShaderVertexSlot;
-
-extern const struct iGaiaCoreShaderAttribute
-{
-    NSString *matrixWorld;
-    NSString *matrixView;
-    NSString *matrixProjection;
-    NSString *matrixWorldViewProjection;
-    NSString *vectorCameraPosition;
-    NSString *vectorLightPosition;
-    NSString *vectorClipPlane;
-    NSString *vectorTexcoordOffset;
-    NSString *floatTimer;
-    
-} iGaiaCoreShaderAttribute;
-
-extern const struct iGaiaCoreShaderTextureSlot
-{
-    NSString *texture_01;
-    NSString *texture_02;
-    NSString *texture_03;
-    NSString *texture_04;
-    NSString *texture_05;
-    NSString *texture_06;
-    NSString *texture_07;
-    NSString *texture_08;
-    
-} iGaiaCoreShaderTextureSlot;
-
 @protocol iGaiaCoreShaderProtocol <NSObject>
 
 @property (nonatomic, readonly) NSString* name;

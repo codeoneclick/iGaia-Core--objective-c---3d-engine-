@@ -8,7 +8,7 @@
 
 #import "iGaiaCoreResourceService.h"
 #import "iGaiaCoreLoaderProtocol.h"
-#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreResourceMgrProtocol.h"
 #import "iGaiaCoreLogger.h"
 
 @implementation iGaiaCoreResourceService

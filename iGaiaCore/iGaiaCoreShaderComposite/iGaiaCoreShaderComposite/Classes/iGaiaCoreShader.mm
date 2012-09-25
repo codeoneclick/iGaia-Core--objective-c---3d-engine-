@@ -12,39 +12,6 @@
 #import "iGaiaCoreShader.h"
 #import "iGaiaCoreShaderProtocol.h"
 
-const struct iGaiaCoreShaderVertexSlot iGaiaCoreShaderVertexSlot =
-{
-    .position = @"",
-    .textcoord = @"",
-    .normal = @"",
-    .tangent = @"",
-    .color = @""
-};
-
-const struct iGaiaCoreShaderAttribute iGaiaCoreShaderAttribute =
-{
-    .matrixWorld = @"",
-    .matrixView = @"",
-    .matrixProjection = @"",
-    .matrixWorldViewProjection = @"",
-    .vectorCameraPosition = @"",
-    .vectorLightPosition = @"",
-    .vectorClipPlane = @"",
-    .vectorTexcoordOffset = @"",
-    .floatTimer = @""
-};
-
-const struct iGaiaCoreShaderTextureSlot iGaiaCoreShaderTextureSlot =
-{
-    .texture_01 = @"",
-    .texture_02 = @"",
-    .texture_03 = @"",
-    .texture_04 = @"",
-    .texture_05 = @"",
-    .texture_06 = @"",
-    .texture_07 = @"",
-    .texture_08 = @""
-};
 
 @interface iGaiaCoreShader()<iGaiaCoreShaderProtocol>
 

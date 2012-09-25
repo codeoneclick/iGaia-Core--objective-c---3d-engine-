@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A447CA541611F0EF00F539C0 /* iGaiaCoreDefinitions.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447CA531611F0EF00F539C0 /* iGaiaCoreDefinitions.mm */; };
 		A45F617816032DAA005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F617716032DAA005B10A3 /* Foundation.framework */; };
 		A45F619216032DFD005B10A3 /* iGaiaCoreCommunicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F619116032DFD005B10A3 /* iGaiaCoreCommunicator.mm */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,9 @@
 /* Begin PBXFileReference section */
 		A416EE091609F97B00B5B1ED /* PVRTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTGlobal.h; sourceTree = "<group>"; };
 		A416EE0A1609F97B00B5B1ED /* PVRTTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTTexture.h; sourceTree = "<group>"; };
+		A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResourceMgrProtocol.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreResourceMgrProtocol.h; sourceTree = "<group>"; };
+		A447CA521611F0EF00F539C0 /* iGaiaCoreDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreDefinitions.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreDefinitions.h; sourceTree = "<group>"; };
+		A447CA531611F0EF00F539C0 /* iGaiaCoreDefinitions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreDefinitions.mm; path = iGaiaCoreCommunicator/Classes/iGaiaCoreDefinitions.mm; sourceTree = "<group>"; };
 		A45F617416032DAA005B10A3 /* libiGaiaCoreCommunicator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreCommunicator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F617716032DAA005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F617B16032DAA005B10A3 /* iGaiaCoreCommunicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreCommunicator-Prefix.pch"; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				A45F62CC160368C0005B10A3 /* ResourceMgr */,
 				A45F619016032DFD005B10A3 /* iGaiaCoreCommunicator.h */,
 				A45F619116032DFD005B10A3 /* iGaiaCoreCommunicator.mm */,
+				A447CA521611F0EF00F539C0 /* iGaiaCoreDefinitions.h */,
+				A447CA531611F0EF00F539C0 /* iGaiaCoreDefinitions.mm */,
 			);
 			name = Classes;
 			path = ..;
@@ -626,6 +632,7 @@
 				A45F62D316036A31005B10A3 /* iGaiaCoreVertexBufferProtocol.h */,
 				A45F62D416036A4A005B10A3 /* iGaiaCoreIndexBufferProtocol.h */,
 				A4ADF416160B4101000D6A0A /* iGaiaCoreResourceProtocol.h */,
+				A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrProtocol.h */,
 			);
 			name = ResourceMgr;
 			sourceTree = "<group>";
@@ -703,6 +710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45F619216032DFD005B10A3 /* iGaiaCoreCommunicator.mm in Sources */,
+				A447CA541611F0EF00F539C0 /* iGaiaCoreDefinitions.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

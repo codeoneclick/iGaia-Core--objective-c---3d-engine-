@@ -8,20 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern const struct iGaiaCoreResourceType
-{
-    NSString *texture;
-    NSString *mesh;
-
-} iGaiaCoreResourceType;
-
-extern const struct iGaiaCoreResourceFormat
-{
-    NSString *pvr;
-    NSString *mdl;
-
-} iGaiaCoreResourceFormat;
-
 @protocol iGaiaCoreResourceProtocol <NSObject>
 
 @end

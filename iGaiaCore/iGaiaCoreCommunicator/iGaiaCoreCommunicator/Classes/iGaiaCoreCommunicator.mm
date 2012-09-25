@@ -1,5 +1,5 @@
 //
-//  iGaiaCoreCommunicator.m
+//  iGaiaCoreCommunicatorFacade.m
 //  iGaiaCoreCommunicator
 //
 //  Created by Sergey Sergeev on 9/14/12.
@@ -9,5 +9,6 @@
 #import "iGaiaCoreCommunicator.h"
 
 @implementation iGaiaCoreCommunicator
+
 
 @end
