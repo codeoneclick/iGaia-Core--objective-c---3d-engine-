@@ -16,7 +16,6 @@
 		A45F616216032988005B10A3 /* libiGaiaCoreInteractiveMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F6133160328CC005B10A3 /* libiGaiaCoreInteractiveMgr.a */; };
 		A45F616316032988005B10A3 /* libiGaiaCoreRenderMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F6145160328E3005B10A3 /* libiGaiaCoreRenderMgr.a */; };
 		A45F616416032988005B10A3 /* libiGaiaCoreResourceMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F612A160328BD005B10A3 /* libiGaiaCoreResourceMgr.a */; };
-		A45F616516032988005B10A3 /* libiGaiaCoreSceneMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F613C160328DB005B10A3 /* libiGaiaCoreSceneMgr.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,13 +75,6 @@
 			remoteGlobalIDString = A45F60ED1603276E005B10A3;
 			remoteInfo = iGaiaCoreInteractiveMgr;
 		};
-		A45F613B160328DB005B10A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A45F60D116032747005B10A3;
-			remoteInfo = iGaiaCoreSceneMgr;
-		};
 		A45F6144160328E3005B10A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A45F613D160328E2005B10A3 /* iGaiaCoreRenderMgr.xcodeproj */;
@@ -103,13 +95,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A45F60EC1603276D005B10A3;
 			remoteInfo = iGaiaCoreInteractiveMgr;
-		};
-		A45F615E16032971005B10A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A45F60D016032747005B10A3;
-			remoteInfo = iGaiaCoreSceneMgr;
 		};
 		A45F616016032975005B10A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -145,7 +130,6 @@
 		A45F612016032871005B10A3 /* iGaiaCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCore.mm; path = iGaiaCore/Classes/iGaiaCore.mm; sourceTree = "<group>"; };
 		A45F6122160328BD005B10A3 /* iGaiaCoreResourceMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreResourceMgr.xcodeproj; path = iGaiaCoreResourceMgr/iGaiaCoreResourceMgr.xcodeproj; sourceTree = "<group>"; };
 		A45F612B160328CB005B10A3 /* iGaiaCoreInteractiveMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreInteractiveMgr.xcodeproj; path = iGaiaCoreInteractiveMgr/iGaiaCoreInteractiveMgr.xcodeproj; sourceTree = "<group>"; };
-		A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreSceneMgr.xcodeproj; path = iGaiaCoreSceneMgr/iGaiaCoreSceneMgr.xcodeproj; sourceTree = "<group>"; };
 		A45F613D160328E2005B10A3 /* iGaiaCoreRenderMgr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreRenderMgr.xcodeproj; path = iGaiaCoreRenderMgr/iGaiaCoreRenderMgr.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,7 +144,6 @@
 				A45F616216032988005B10A3 /* libiGaiaCoreInteractiveMgr.a in Frameworks */,
 				A45F616316032988005B10A3 /* libiGaiaCoreRenderMgr.a in Frameworks */,
 				A45F616416032988005B10A3 /* libiGaiaCoreResourceMgr.a in Frameworks */,
-				A45F616516032988005B10A3 /* libiGaiaCoreSceneMgr.a in Frameworks */,
 				A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +182,6 @@
 				A447C9B01611DDE100F539C0 /* iGaiaCoreStorageMgr.xcodeproj */,
 				A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */,
 				A45F613D160328E2005B10A3 /* iGaiaCoreRenderMgr.xcodeproj */,
-				A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */,
 				A45F612B160328CB005B10A3 /* iGaiaCoreInteractiveMgr.xcodeproj */,
 				A45F6122160328BD005B10A3 /* iGaiaCoreResourceMgr.xcodeproj */,
 				A45F611E16032860005B10A3 /* Classes */,
@@ -268,14 +250,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A45F6135160328DA005B10A3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A45F613C160328DB005B10A3 /* libiGaiaCoreSceneMgr.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A45F613E160328E2005B10A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,7 +276,6 @@
 				A45EB7DD16131D0C0000FDB5 /* PBXTargetDependency */,
 				A45EB7D716131D090000FDB5 /* PBXTargetDependency */,
 				A45F616116032975005B10A3 /* PBXTargetDependency */,
-				A45F615F16032971005B10A3 /* PBXTargetDependency */,
 				A45F615D1603296D005B10A3 /* PBXTargetDependency */,
 				A45F615B16032969005B10A3 /* PBXTargetDependency */,
 			);
@@ -342,10 +315,6 @@
 				{
 					ProductGroup = A45F6123160328BD005B10A3 /* Products */;
 					ProjectRef = A45F6122160328BD005B10A3 /* iGaiaCoreResourceMgr.xcodeproj */;
-				},
-				{
-					ProductGroup = A45F6135160328DA005B10A3 /* Products */;
-					ProjectRef = A45F6134160328DA005B10A3 /* iGaiaCoreSceneMgr.xcodeproj */;
 				},
 				{
 					ProductGroup = A42411DF16104367000DB128 /* Products */;
@@ -403,13 +372,6 @@
 			remoteRef = A45F6132160328CC005B10A3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A45F613C160328DB005B10A3 /* libiGaiaCoreSceneMgr.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libiGaiaCoreSceneMgr.a;
-			remoteRef = A45F613B160328DB005B10A3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A45F6145160328E3005B10A3 /* libiGaiaCoreRenderMgr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -456,11 +418,6 @@
 			isa = PBXTargetDependency;
 			name = iGaiaCoreInteractiveMgr;
 			targetProxy = A45F615C1603296D005B10A3 /* PBXContainerItemProxy */;
-		};
-		A45F615F16032971005B10A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iGaiaCoreSceneMgr;
-			targetProxy = A45F615E16032971005B10A3 /* PBXContainerItemProxy */;
 		};
 		A45F616116032975005B10A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
