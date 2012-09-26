@@ -14,7 +14,6 @@
 @interface iGaiaCoreGLView()
 
 @property(nonatomic, strong) CAEAGLLayer* eaglLayer;
-@property(nonatomic, strong) EAGLContext* context;
 
 @end
 
@@ -22,6 +21,8 @@
 
 @synthesize eaglLayer = _eaglLayer;
 @synthesize context = _context;
+@synthesize frameBufferHandle = _frameBufferHandle;
+@synthesize renderBufferHandle = _renderBufferHandle;
 
 + (Class) layerClass
 {
@@ -43,15 +44,13 @@
             return nil;
         }
 
-        GLuint handleRenderBuffer;
-        glGenRenderbuffers(1, &handleRenderBuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, handleRenderBuffer);
+        glGenRenderbuffers(1, &_renderBufferHandle);
+        glBindRenderbuffer(GL_RENDERBUFFER, _renderBufferHandle);
         [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eaglLayer];
 
-        GLuint handleFrameBuffer;
-        glGenFramebuffers(1, &handleFrameBuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, handleFrameBuffer);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, handleRenderBuffer);
+        glGenFramebuffers(1, &_frameBufferHandle);
+        glBindFramebuffer(GL_FRAMEBUFFER, _frameBufferHandle);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBufferHandle);
 
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         {

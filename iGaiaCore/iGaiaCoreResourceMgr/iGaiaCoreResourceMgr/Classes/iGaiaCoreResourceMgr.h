@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "iGaiaCoreCommunicator.h"
-#import "iGaiaCoreResourceMgrProtocol.h"
 
-@interface iGaiaCoreResourceMgr : NSObject<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol>
+@interface iGaiaCoreResourceMgr : NSObject<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFactoryProtocol>
 
-+ (id<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol>)sharedInstance;
++ (iGaiaCoreResourceMgrObjectRule)sharedInstance;
 
 @end

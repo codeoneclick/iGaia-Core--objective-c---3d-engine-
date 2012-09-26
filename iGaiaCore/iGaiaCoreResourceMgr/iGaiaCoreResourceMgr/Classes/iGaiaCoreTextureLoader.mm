@@ -15,7 +15,6 @@
 
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
-#import "iGaiaCoreTextureProtocol.h"
 #import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
@@ -138,7 +137,7 @@
     return YES;
 }
 
-- (id<iGaiaCoreResourceProtocol>)commit;
+- (iGaiaCoreResourceObjectRule)commit;
 {
     GLuint handle = 0;
     glGenTextures(1, &handle);

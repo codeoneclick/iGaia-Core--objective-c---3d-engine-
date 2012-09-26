@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface iGaiaCoreShader : NSObject
+#import "iGaiaCoreCommunicator.h"
 
-- (id)initWithHandle:(NSUInteger)handle;
+@interface iGaiaCoreShader : NSObject<iGaiaCoreShaderProtocol>
 
 @end

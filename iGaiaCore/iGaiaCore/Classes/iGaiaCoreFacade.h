@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "iGaiaCoreResourceMgrProtocol.h"
-
-typedef id<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol> iGaiaCoreResourceMgr_;
+#import "iGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreFacade : NSObject
 
-+(iGaiaCoreResourceMgr_)resourceMgr;
++(iGaiaCoreResourceMgrObjectRule)resourceMgr;
++(iGaiaCoreShaderCompositeObjectRule)shaderComposite;
++(iGaiaCoreRenderMgrObjectRule)renderMgr;
 
 @end

@@ -14,9 +14,7 @@
 #import "iGaiaCoreIndexBuffer.h"
 #import "iGaiaCoreMesh.h"
 
-#import "iGaiaCoreVertexBufferProtocol.h"
-#import "iGaiaCoreIndexBufferProtocol.h"
-#import "iGaiaCoreMeshProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreLogger.h"
 
 #import "NSData+iGaiaCoreExtension.h"
@@ -73,7 +71,7 @@
     return YES;
 }
 
-- (id<iGaiaCoreResourceProtocol>)commit;
+- (iGaiaCoreResourceObjectRule)commit;
 {
     iGaiaCoreVertexBuffer* vertexBuffer = [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:_numVertexes withMode:GL_STATIC_DRAW];
     iGaiaCoreVertex* vertexData = [vertexBuffer lock];

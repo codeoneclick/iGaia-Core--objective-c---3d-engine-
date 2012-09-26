@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A42411D116104367000DB128 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42411D016104367000DB128 /* Foundation.framework */; };
-		A42411E8161043A4000DB128 /* iGaiaCoreShaderComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.m */; };
+		A42411E8161043A4000DB128 /* iGaiaCoreShaderComposite.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.mm */; };
 		A42411F9161043F7000DB128 /* libiGaiaCoreCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42411F4161043C4000DB128 /* libiGaiaCoreCommon.a */; };
 		A42411FA161043F7000DB128 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42411EE161043BD000DB128 /* libiGaiaCoreCommunicator.a */; };
-		A42411FD161044C4000DB128 /* iGaiaCoreShaderLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.m */; };
+		A42411FD161044C4000DB128 /* iGaiaCoreShaderLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.mm */; };
 		A424120316104703000DB128 /* iGaiaCoreShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A424120216104703000DB128 /* iGaiaCoreShader.mm */; };
 /* End PBXBuildFile section */
 
@@ -63,13 +63,49 @@
 		A42411D016104367000DB128 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A42411D416104367000DB128 /* iGaiaCoreShaderComposite-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreShaderComposite-Prefix.pch"; sourceTree = "<group>"; };
 		A42411E5161043A4000DB128 /* iGaiaCoreShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaCoreShaderComposite.h; sourceTree = "<group>"; };
-		A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGaiaCoreShaderComposite.m; sourceTree = "<group>"; };
+		A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaCoreShaderComposite.mm; sourceTree = "<group>"; };
 		A42411E9161043BC000DB128 /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
 		A42411EF161043C4000DB128 /* iGaiaCoreCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommon.xcodeproj; path = ../iGaiaCoreCommon/iGaiaCoreCommon.xcodeproj; sourceTree = "<group>"; };
 		A42411FB161044C4000DB128 /* iGaiaCoreShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaCoreShaderLoader.h; sourceTree = "<group>"; };
-		A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGaiaCoreShaderLoader.m; sourceTree = "<group>"; };
+		A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaCoreShaderLoader.mm; sourceTree = "<group>"; };
 		A424120116104703000DB128 /* iGaiaCoreShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaCoreShader.h; sourceTree = "<group>"; };
 		A424120216104703000DB128 /* iGaiaCoreShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaCoreShader.mm; sourceTree = "<group>"; };
+		A45EB78C1612EF680000FDB5 /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderDecal.frag; sourceTree = "<group>"; };
+		A45EB78D1612EF680000FDB5 /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderDecal.vert; sourceTree = "<group>"; };
+		A45EB78E1612EF680000FDB5 /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderGrass.frag; sourceTree = "<group>"; };
+		A45EB78F1612EF680000FDB5 /* ShaderGrass.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderGrass.vert; sourceTree = "<group>"; };
+		A45EB7901612EF680000FDB5 /* ShaderGrassND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderGrassND.frag; sourceTree = "<group>"; };
+		A45EB7911612EF680000FDB5 /* ShaderGrassND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderGrassND.vert; sourceTree = "<group>"; };
+		A45EB7921612EF680000FDB5 /* ShaderLandscape.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscape.frag; sourceTree = "<group>"; };
+		A45EB7931612EF680000FDB5 /* ShaderLandscape.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscape.vert; sourceTree = "<group>"; };
+		A45EB7941612EF680000FDB5 /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
+		A45EB7951612EF680000FDB5 /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
+		A45EB7961612EF680000FDB5 /* ShaderLandscapeND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscapeND.frag; sourceTree = "<group>"; };
+		A45EB7971612EF680000FDB5 /* ShaderLandscapeND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderLandscapeND.vert; sourceTree = "<group>"; };
+		A45EB7981612EF680000FDB5 /* ShaderModel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderModel.frag; sourceTree = "<group>"; };
+		A45EB7991612EF680000FDB5 /* ShaderModel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderModel.vert; sourceTree = "<group>"; };
+		A45EB79A1612EF680000FDB5 /* ShaderModelND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderModelND.frag; sourceTree = "<group>"; };
+		A45EB79B1612EF680000FDB5 /* ShaderModelND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderModelND.vert; sourceTree = "<group>"; };
+		A45EB79C1612EF680000FDB5 /* ShaderOcean.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderOcean.frag; sourceTree = "<group>"; };
+		A45EB79D1612EF680000FDB5 /* ShaderOcean.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderOcean.vert; sourceTree = "<group>"; };
+		A45EB79E1612EF680000FDB5 /* ShaderParticle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderParticle.frag; sourceTree = "<group>"; };
+		A45EB79F1612EF680000FDB5 /* ShaderParticle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderParticle.vert; sourceTree = "<group>"; };
+		A45EB7A01612EF680000FDB5 /* ShaderParticleND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderParticleND.frag; sourceTree = "<group>"; };
+		A45EB7A11612EF680000FDB5 /* ShaderParticleND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderParticleND.vert; sourceTree = "<group>"; };
+		A45EB7A21612EF680000FDB5 /* ShaderPostBloomCombine.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBloomCombine.frag; sourceTree = "<group>"; };
+		A45EB7A31612EF680000FDB5 /* ShaderPostBloomCombine.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBloomCombine.vert; sourceTree = "<group>"; };
+		A45EB7A41612EF680000FDB5 /* ShaderPostBloomExtract.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBloomExtract.frag; sourceTree = "<group>"; };
+		A45EB7A51612EF680000FDB5 /* ShaderPostBloomExtract.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBloomExtract.vert; sourceTree = "<group>"; };
+		A45EB7A61612EF680000FDB5 /* ShaderPostBlur.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBlur.frag; sourceTree = "<group>"; };
+		A45EB7A71612EF680000FDB5 /* ShaderPostBlur.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostBlur.vert; sourceTree = "<group>"; };
+		A45EB7A81612EF680000FDB5 /* ShaderPostEdgeDetect.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostEdgeDetect.frag; sourceTree = "<group>"; };
+		A45EB7A91612EF680000FDB5 /* ShaderPostEdgeDetect.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostEdgeDetect.vert; sourceTree = "<group>"; };
+		A45EB7AA1612EF680000FDB5 /* ShaderPostLandscapeDetail.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostLandscapeDetail.frag; sourceTree = "<group>"; };
+		A45EB7AB1612EF680000FDB5 /* ShaderPostLandscapeDetail.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostLandscapeDetail.vert; sourceTree = "<group>"; };
+		A45EB7AC1612EF680000FDB5 /* ShaderPostPlane.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostPlane.frag; sourceTree = "<group>"; };
+		A45EB7AD1612EF680000FDB5 /* ShaderPostPlane.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderPostPlane.vert; sourceTree = "<group>"; };
+		A45EB7AE1612EF680000FDB5 /* ShaderSkybox.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderSkybox.frag; sourceTree = "<group>"; };
+		A45EB7AF1612EF680000FDB5 /* ShaderSkybox.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderSkybox.vert; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				A42411E5161043A4000DB128 /* iGaiaCoreShaderComposite.h */,
-				A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.m */,
+				A42411E6161043A4000DB128 /* iGaiaCoreShaderComposite.mm */,
 				A42411FB161044C4000DB128 /* iGaiaCoreShaderLoader.h */,
-				A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.m */,
+				A42411FC161044C4000DB128 /* iGaiaCoreShaderLoader.mm */,
 				A424120116104703000DB128 /* iGaiaCoreShader.h */,
 				A424120216104703000DB128 /* iGaiaCoreShader.mm */,
 			);
@@ -147,6 +183,42 @@
 		A42411E7161043A4000DB128 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				A45EB78C1612EF680000FDB5 /* ShaderDecal.frag */,
+				A45EB78D1612EF680000FDB5 /* ShaderDecal.vert */,
+				A45EB78E1612EF680000FDB5 /* ShaderGrass.frag */,
+				A45EB78F1612EF680000FDB5 /* ShaderGrass.vert */,
+				A45EB7901612EF680000FDB5 /* ShaderGrassND.frag */,
+				A45EB7911612EF680000FDB5 /* ShaderGrassND.vert */,
+				A45EB7921612EF680000FDB5 /* ShaderLandscape.frag */,
+				A45EB7931612EF680000FDB5 /* ShaderLandscape.vert */,
+				A45EB7941612EF680000FDB5 /* ShaderLandscapeEdges.frag */,
+				A45EB7951612EF680000FDB5 /* ShaderLandscapeEdges.vert */,
+				A45EB7961612EF680000FDB5 /* ShaderLandscapeND.frag */,
+				A45EB7971612EF680000FDB5 /* ShaderLandscapeND.vert */,
+				A45EB7981612EF680000FDB5 /* ShaderModel.frag */,
+				A45EB7991612EF680000FDB5 /* ShaderModel.vert */,
+				A45EB79A1612EF680000FDB5 /* ShaderModelND.frag */,
+				A45EB79B1612EF680000FDB5 /* ShaderModelND.vert */,
+				A45EB79C1612EF680000FDB5 /* ShaderOcean.frag */,
+				A45EB79D1612EF680000FDB5 /* ShaderOcean.vert */,
+				A45EB79E1612EF680000FDB5 /* ShaderParticle.frag */,
+				A45EB79F1612EF680000FDB5 /* ShaderParticle.vert */,
+				A45EB7A01612EF680000FDB5 /* ShaderParticleND.frag */,
+				A45EB7A11612EF680000FDB5 /* ShaderParticleND.vert */,
+				A45EB7A21612EF680000FDB5 /* ShaderPostBloomCombine.frag */,
+				A45EB7A31612EF680000FDB5 /* ShaderPostBloomCombine.vert */,
+				A45EB7A41612EF680000FDB5 /* ShaderPostBloomExtract.frag */,
+				A45EB7A51612EF680000FDB5 /* ShaderPostBloomExtract.vert */,
+				A45EB7A61612EF680000FDB5 /* ShaderPostBlur.frag */,
+				A45EB7A71612EF680000FDB5 /* ShaderPostBlur.vert */,
+				A45EB7A81612EF680000FDB5 /* ShaderPostEdgeDetect.frag */,
+				A45EB7A91612EF680000FDB5 /* ShaderPostEdgeDetect.vert */,
+				A45EB7AA1612EF680000FDB5 /* ShaderPostLandscapeDetail.frag */,
+				A45EB7AB1612EF680000FDB5 /* ShaderPostLandscapeDetail.vert */,
+				A45EB7AC1612EF680000FDB5 /* ShaderPostPlane.frag */,
+				A45EB7AD1612EF680000FDB5 /* ShaderPostPlane.vert */,
+				A45EB7AE1612EF680000FDB5 /* ShaderSkybox.frag */,
+				A45EB7AF1612EF680000FDB5 /* ShaderSkybox.vert */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -247,8 +319,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42411E8161043A4000DB128 /* iGaiaCoreShaderComposite.m in Sources */,
-				A42411FD161044C4000DB128 /* iGaiaCoreShaderLoader.m in Sources */,
+				A42411E8161043A4000DB128 /* iGaiaCoreShaderComposite.mm in Sources */,
+				A42411FD161044C4000DB128 /* iGaiaCoreShaderLoader.mm in Sources */,
 				A424120316104703000DB128 /* iGaiaCoreShader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +438,7 @@
 				A42411DD16104367000DB128 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

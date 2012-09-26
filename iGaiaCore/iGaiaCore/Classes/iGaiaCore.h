@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "iGaiaCoreShaderProtocol.h"
-typedef id<iGaiaCoreShaderProtocol> iGaiaCoreShader;
+#import "iGaiaCoreCommunicator.h"
 
-@interface iGaiaCore : NSObject
+@interface iGaiaCore : NSObject<iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol>
 
 @end

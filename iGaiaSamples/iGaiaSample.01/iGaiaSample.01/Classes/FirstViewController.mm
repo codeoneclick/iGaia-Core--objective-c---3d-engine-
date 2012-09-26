@@ -10,8 +10,9 @@
 #import "iGaiaCoreLogger.h"
 #import "iGaiaCoreCommunicator.h"
 #import "iGaiaCoreFacade.h"
+#import "iGaiaCore.h"
 
-@interface FirstViewController ()<iGaiaCoreResourceLoaderProtocol>
+@interface FirstViewController ()<iGaiaCoreResourceLoadDispatcherProtocol>
 
 @end
 
@@ -30,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    iGaiaCore* core = [iGaiaCore new];
+    UIView* glView = [[iGaiaCoreFacade renderMgr] createViewWithFrame:self.view.frame];
+    [self.view addSubview:glView];
     [[iGaiaCoreFacade resourceMgr] loadResourceForOwner:self withName:@"building_01.mdl"];
     [[iGaiaCoreFacade resourceMgr] loadResourceForOwner:self withName:@"default.pvr"];
 }
@@ -39,7 +43,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)onResourceLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString *)name
+- (void)onResourceLoad:(iGaiaCoreResourceObjectRule)resource withName:(NSString *)name
 {
     iGaiaLog(@"resource : %@, name : %@",resource, name);
 }

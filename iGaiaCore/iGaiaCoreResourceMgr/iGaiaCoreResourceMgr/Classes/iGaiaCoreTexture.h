@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-#import "iGaiaCoreTextureProtocol.h"
+#import "iGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreTexture : NSObject<iGaiaCoreTextureProtocol>
 

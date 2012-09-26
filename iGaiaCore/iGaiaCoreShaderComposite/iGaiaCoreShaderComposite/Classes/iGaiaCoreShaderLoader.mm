@@ -11,6 +11,7 @@
 
 #import "iGaiaCoreShaderLoader.h"
 #import "iGaiaCoreLogger.h"
+#import "iGaiaCoreShader.h"
 
 @interface iGaiaCoreShaderLoader()
 
@@ -20,7 +21,7 @@
 
 @implementation iGaiaCoreShaderLoader
 
-- (NSUInteger)loadWithVertexShaderName:(NSString*)vertexShaderName withFragmentShaderName:(NSString*)fragmentShaderName;
+- (iGaiaCoreShaderObjectRule)loadWithVertexShaderName:(NSString*)vertexShaderName withFragmentShaderName:(NSString*)fragmentShaderName;
 {
     NSString* path = [[NSBundle mainBundle] resourcePath];
     path = [path stringByAppendingPathComponent:vertexShaderName];
@@ -42,10 +43,10 @@
         return 0;
     }
 
-    return [self loadWithVertexShaderDataSource:[vertexShaderDataSource bytes] withFragmentShaderDataSource:[fragmentShaderDataSource bytes]];
+    return [self loadWithVertexShaderDataSource:(const char*)[vertexShaderDataSource bytes] withFragmentShaderDataSource:(const char*)[fragmentShaderDataSource bytes]];
 }
 
-- (NSUInteger)loadWithVertexShaderDataSource:(const char*)vertexDataSource withFragmentShaderDataSource:(const char*)fragmentDataSource;
+- (iGaiaCoreShaderObjectRule)loadWithVertexShaderDataSource:(const char*)vertexDataSource withFragmentShaderDataSource:(const char*)fragmentDataSource;
 {
     NSUInteger vertexShaderHandle = [self buildWithDataSource:vertexDataSource withShaderType:GL_VERTEX_SHADER];
     NSUInteger fragmentShaderHandle = [self buildWithDataSource:fragmentDataSource withShaderType:GL_FRAGMENT_SHADER];
@@ -63,7 +64,9 @@
         glGetProgramInfoLog(shaderHandle, sizeof(message), 0, &message[0]);
         iGaiaLog(@"shader loading error : %s", message);
     }
-    return shaderHandle;
+
+    iGaiaCoreShader* shader = [[iGaiaCoreShader alloc] initWithHandle:shaderHandle];
+    return shader;
 }
 
 - (NSUInteger)buildWithDataSource:(const char*)dataSource withShaderType:(GLenum)shaderType;

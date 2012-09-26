@@ -78,7 +78,19 @@ extern const struct iGaiaCoreDefinitionScreenSpaceRenderMode
     NSString *edgeDetect;
     NSString *sepia;
 
-} iGaiaCoreScreenDefinitionSpaceRenderMode;
+} iGaiaCoreDefinitionScreenSpaceRenderMode;
+
+
+extern const struct iGaiaCoreDefinitionShaderName
+{
+    NSString *worldSpaceModel;
+    NSString *worldSpaceOcean;
+    NSString *worldSpaceSkybox;
+    NSString *worldSpaceParticle;
+    NSString *screenSpaceSimple;
+
+} iGaiaCoreDefinitionShaderName;
+
 
 
 

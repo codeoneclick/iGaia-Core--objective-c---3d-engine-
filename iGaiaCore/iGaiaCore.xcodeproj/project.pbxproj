@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A447CA581611FEA400F539C0 /* iGaiaCoreFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447CA571611FEA400F539C0 /* iGaiaCoreFacade.mm */; };
+		A45EB7E016131D190000FDB5 /* libiGaiaCoreShaderComposite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42411E316104368000DB128 /* libiGaiaCoreShaderComposite.a */; };
+		A45EB7E116131D190000FDB5 /* libiGaiaCoreStorageMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A447C9B51611DDE200F539C0 /* libiGaiaCoreStorageMgr.a */; };
+		A45EB7E216131D190000FDB5 /* libiGaiaCoreSupportMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A447C9D71611DDF900F539C0 /* libiGaiaCoreSupportMgr.a */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F612016032871005B10A3 /* iGaiaCore.mm */; };
 		A45F616216032988005B10A3 /* libiGaiaCoreInteractiveMgr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F6133160328CC005B10A3 /* libiGaiaCoreInteractiveMgr.a */; };
@@ -37,6 +40,27 @@
 			proxyType = 2;
 			remoteGlobalIDString = A447C9C11611DDF800F539C0;
 			remoteInfo = iGaiaCoreSupportMgr;
+		};
+		A45EB7D616131D090000FDB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A42411DE16104367000DB128 /* iGaiaCoreShaderComposite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A42411CC16104367000DB128;
+			remoteInfo = iGaiaCoreShaderComposite;
+		};
+		A45EB7DC16131D0C0000FDB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A447C9D21611DDF800F539C0 /* iGaiaCoreSupportMgr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A447C9C01611DDF800F539C0;
+			remoteInfo = iGaiaCoreSupportMgr;
+		};
+		A45EB7DE16131D0F0000FDB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A447C9B01611DDE100F539C0 /* iGaiaCoreStorageMgr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A447C99E1611DDE100F539C0;
+			remoteInfo = iGaiaCoreStorageMgr;
 		};
 		A45F6129160328BD005B10A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -130,6 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A45EB7E016131D190000FDB5 /* libiGaiaCoreShaderComposite.a in Frameworks */,
+				A45EB7E116131D190000FDB5 /* libiGaiaCoreStorageMgr.a in Frameworks */,
+				A45EB7E216131D190000FDB5 /* libiGaiaCoreSupportMgr.a in Frameworks */,
 				A45F616216032988005B10A3 /* libiGaiaCoreInteractiveMgr.a in Frameworks */,
 				A45F616316032988005B10A3 /* libiGaiaCoreRenderMgr.a in Frameworks */,
 				A45F616416032988005B10A3 /* libiGaiaCoreResourceMgr.a in Frameworks */,
@@ -271,6 +298,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				A45EB7DF16131D0F0000FDB5 /* PBXTargetDependency */,
+				A45EB7DD16131D0C0000FDB5 /* PBXTargetDependency */,
+				A45EB7D716131D090000FDB5 /* PBXTargetDependency */,
 				A45F616116032975005B10A3 /* PBXTargetDependency */,
 				A45F615F16032971005B10A3 /* PBXTargetDependency */,
 				A45F615D1603296D005B10A3 /* PBXTargetDependency */,
@@ -402,6 +432,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A45EB7D716131D090000FDB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreShaderComposite;
+			targetProxy = A45EB7D616131D090000FDB5 /* PBXContainerItemProxy */;
+		};
+		A45EB7DD16131D0C0000FDB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreSupportMgr;
+			targetProxy = A45EB7DC16131D0C0000FDB5 /* PBXContainerItemProxy */;
+		};
+		A45EB7DF16131D0F0000FDB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreStorageMgr;
+			targetProxy = A45EB7DE16131D0F0000FDB5 /* PBXContainerItemProxy */;
+		};
 		A45F615B16032969005B10A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iGaiaCoreResourceMgr;

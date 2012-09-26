@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "iGaiaCoreCommunicator.h"
+
 @interface iGaiaCoreScreenSpaceRenderState : NSObject
+
+@property(nonatomic, readonly) iGaiaCoreTextureObjectRule texture;
+
+- (id)initWithSize:(CGSize)size withShaderName:(NSString*)shaderName withRenderStateName:(NSString*)renderStateName;
+- (void)bindWithOriginTexture:(iGaiaCoreTextureObjectRule)texture;
+- (void)draw;
+- (void)unbind;
 
 @end

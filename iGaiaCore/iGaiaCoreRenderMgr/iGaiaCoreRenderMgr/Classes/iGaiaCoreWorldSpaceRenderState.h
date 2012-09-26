@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "iGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreWorldSpaceRenderState : NSObject
+
+@property(nonatomic, readonly) iGaiaCoreTextureObjectRule texture;
+
+- (id)initWithSize:(CGSize)size;
+- (void)bind;
+- (void)unbind;
 
 @end

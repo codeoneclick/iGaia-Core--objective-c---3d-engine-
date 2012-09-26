@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "iGaiaCoreResourceService.h"
 
-@protocol iGaiaCoreResourceLoaderProtocol;
 @interface iGaiaCoreTextureService : iGaiaCoreResourceService
 
-- (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreShaderLoader : NSObject
 
-- (NSUInteger)loadWithVertexShaderName:(NSString*)vertexShaderName withFragmentShaderName:(NSString*)fragmentShaderName;
-- (NSUInteger)loadWithVertexShaderDataSource:(const char*)vertexDataSource withFragmentShaderDataSource:(const char*)fragmentDataSource;
+- (iGaiaCoreShaderObjectRule)loadWithVertexShaderName:(NSString*)vertexShaderName withFragmentShaderName:(NSString*)fragmentShaderName;
+- (iGaiaCoreShaderObjectRule)loadWithVertexShaderDataSource:(const char*)vertexDataSource withFragmentShaderDataSource:(const char*)fragmentDataSource;
 
 @end

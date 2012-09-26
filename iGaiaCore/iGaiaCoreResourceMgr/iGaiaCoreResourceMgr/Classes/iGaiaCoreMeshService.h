@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "iGaiaCoreResourceService.h"
 
-@protocol iGaiaCoreResourceLoaderProtocol;
 @interface iGaiaCoreMeshService : iGaiaCoreResourceService
 
-- (void)loadMeshForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadMeshForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
 
 @end

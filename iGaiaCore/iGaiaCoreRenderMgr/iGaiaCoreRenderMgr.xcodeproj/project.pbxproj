@@ -15,6 +15,8 @@
 		A447C9DE1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447C9DD1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm */; };
 		A447C9E81611E24500F539C0 /* libiGaiaCoreCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A447C9E51611E23400F539C0 /* libiGaiaCoreCommon.a */; };
 		A447C9EB1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447C9EA1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm */; };
+		A45EB78A1612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45EB7891612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.mm */; };
+		A45EB84E1613430E0000FDB5 /* iGaiaCoreResultRenderState.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45EB84D1613430E0000FDB5 /* iGaiaCoreResultRenderState.mm */; };
 		A45F60B916032725005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F60B816032725005B10A3 /* Foundation.framework */; };
 		A45F614A160328FD005B10A3 /* iGaiaCoreRenderMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F6149160328FD005B10A3 /* iGaiaCoreRenderMgr.mm */; };
 		A45F61B016032E66005B10A3 /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F618D16032DD9005B10A3 /* libiGaiaCoreCommunicator.a */; };
@@ -75,6 +77,10 @@
 		A447C9E01611E23300F539C0 /* iGaiaCoreCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommon.xcodeproj; path = ../iGaiaCoreCommon/iGaiaCoreCommon.xcodeproj; sourceTree = "<group>"; };
 		A447C9E91611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreScreenSpaceRenderState.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreScreenSpaceRenderState.h; sourceTree = "<group>"; };
 		A447C9EA1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreScreenSpaceRenderState.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreScreenSpaceRenderState.mm; sourceTree = "<group>"; };
+		A45EB7881612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreRenderMgrBridge.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgrBridge.h; sourceTree = "<group>"; };
+		A45EB7891612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreRenderMgrBridge.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreRenderMgrBridge.mm; sourceTree = "<group>"; };
+		A45EB84C1613430D0000FDB5 /* iGaiaCoreResultRenderState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreResultRenderState.h; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreResultRenderState.h; sourceTree = "<group>"; };
+		A45EB84D1613430E0000FDB5 /* iGaiaCoreResultRenderState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreResultRenderState.mm; path = iGaiaCoreRenderMgr/Classes/iGaiaCoreResultRenderState.mm; sourceTree = "<group>"; };
 		A45F60B516032725005B10A3 /* libiGaiaCoreRenderMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreRenderMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45F60B816032725005B10A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A45F60BC16032725005B10A3 /* iGaiaCoreRenderMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreRenderMgr-Prefix.pch"; sourceTree = "<group>"; };
@@ -168,6 +174,10 @@
 				A447C9DD1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm */,
 				A447C9E91611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.h */,
 				A447C9EA1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm */,
+				A45EB84C1613430D0000FDB5 /* iGaiaCoreResultRenderState.h */,
+				A45EB84D1613430E0000FDB5 /* iGaiaCoreResultRenderState.mm */,
+				A45EB7881612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.h */,
+				A45EB7891612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.mm */,
 			);
 			name = Classes;
 			path = ..;
@@ -265,6 +275,8 @@
 				A42F81D7160CB37D00453D28 /* iGaiaCoreGLView.mm in Sources */,
 				A447C9DE1611DF2500F539C0 /* iGaiaCoreWorldSpaceRenderState.mm in Sources */,
 				A447C9EB1611E2D100F539C0 /* iGaiaCoreScreenSpaceRenderState.mm in Sources */,
+				A45EB78A1612E8F40000FDB5 /* iGaiaCoreRenderMgrBridge.mm in Sources */,
+				A45EB84E1613430E0000FDB5 /* iGaiaCoreResultRenderState.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

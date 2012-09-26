@@ -7,7 +7,27 @@
 //
 
 #import "iGaiaCore.h"
+#import "iGaiaCoreResourceMgr.h"
+#import "iGaiaCoreShaderComposite.h"
+#import "iGaiaCoreRenderMgr.h"
+#import "iGaiaCoreRenderMgrBridge.h"
 
 @implementation iGaiaCore
+
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        [iGaiaCoreRenderMgr sharedInstance].bridgeSetupDelegate = self;
+    }
+    return self;
+}
+
+- (void)onRenderMgrBridgeReadyToSetup
+{
+    [iGaiaCoreRenderMgrBridge sharedInstance].resourceMgrBridge = [iGaiaCoreResourceMgr sharedInstance];
+    [iGaiaCoreRenderMgrBridge sharedInstance].shaderCompositeBrigde = [iGaiaCoreShaderComposite sharedInstance];
+}
 
 @end

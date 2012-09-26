@@ -7,7 +7,6 @@
 //
 
 #import "iGaiaCoreMeshService.h"
-#import "iGaiaCoreResourceMgrProtocol.h"
 #import "iGaiaCoreMeshLoader.h"
 #import "iGaiaCoreMesh.h"
 #import "iGaiaCoreLogger.h"
@@ -18,7 +17,7 @@
 
 @implementation iGaiaCoreMeshService
 
-- (void)loadMeshForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadMeshForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
 {
     if(owner == nil)
     {

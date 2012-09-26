@@ -1,20 +1,21 @@
 //
-//  iGaiaCoreShaderProtocol.h
+//  iGaiaCoreShaderCompositeCommunicator.h
 //  iGaiaCoreCommunicator
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 9/26/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <glm/glm.hpp>
 
-#import "iGaiaCoreResourceProtocol.h"
+#import <glm/glm.hpp>
 
 @protocol iGaiaCoreShaderProtocol <NSObject>
 
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSUInteger handle;
+
+- (id)initWithHandle:(NSUInteger)handle;
 
 - (void)bind;
 - (void)unbind;
@@ -30,3 +31,14 @@
 - (void)setTexture:(NSUInteger)handle forSlot:(NSString*)slot;
 
 @end
+
+typedef id<iGaiaCoreShaderProtocol> iGaiaCoreShaderObjectRule;
+
+
+@protocol iGaiaCoreShaderCompositeProtocol <NSObject>
+
+- (iGaiaCoreShaderObjectRule)retrieveShaderWithName:(NSString*)name;
+
+@end
+
+typedef id<iGaiaCoreShaderCompositeProtocol> iGaiaCoreShaderCompositeObjectRule;

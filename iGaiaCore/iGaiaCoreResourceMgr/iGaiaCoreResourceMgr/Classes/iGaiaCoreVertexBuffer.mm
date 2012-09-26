@@ -10,7 +10,6 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreVertexBuffer.h"
-#import "iGaiaCoreShaderProtocol.h"
 #import "iGaiaCoreDefinitions.h"
 
 @interface iGaiaCoreVertexBuffer()
@@ -45,7 +44,7 @@
     return self;
 }
 
-- (void)addShaderReference:(id<iGaiaCoreShaderProtocol>)shaderReference forRenderMode:(NSString*)renderMode;
+- (void)addShaderReference:(iGaiaCoreShaderObjectRule)shaderReference forRenderMode:(NSString*)renderMode;
 {
     [self.shaderReferencesContainer setObject:shaderReference forKey:renderMode];
 }
@@ -64,7 +63,7 @@
 - (void)bindForRenderMode:(NSString*)renderMode;
 {
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
-    id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
+    iGaiaCoreShaderObjectRule shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
     unsigned char bytesOffset = 0;
     GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreDefinitionShaderVertexSlot.position];
     if(slotHandle >= 0)
@@ -105,7 +104,7 @@
 - (void)unbindForRenderMode:(NSString*)renderMode;
 {
     glBindBuffer(GL_ARRAY_BUFFER, self.handle);
-    id<iGaiaCoreShaderProtocol> shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
+    iGaiaCoreShaderObjectRule shaderReference = [self.shaderReferencesContainer objectForKey:renderMode];
     GLint slotHandle = [shaderReference getHandleForSlot:iGaiaCoreDefinitionShaderVertexSlot.position];
     if(slotHandle >= 0)
     {

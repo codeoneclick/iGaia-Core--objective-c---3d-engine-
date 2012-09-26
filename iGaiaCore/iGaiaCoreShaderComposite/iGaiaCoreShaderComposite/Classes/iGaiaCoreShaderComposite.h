@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface iGaiaCoreShaderComposite : NSObject
+#import "iGaiaCoreCommunicator.h"
+#import "iGaiaCoreDefinitions.h"
+
+@interface iGaiaCoreShaderComposite : NSObject<iGaiaCoreShaderCompositeProtocol>
+
++ (iGaiaCoreShaderComposite*)sharedInstance;
 
 @end

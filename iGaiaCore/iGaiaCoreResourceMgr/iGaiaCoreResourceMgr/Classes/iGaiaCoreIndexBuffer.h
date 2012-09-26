@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "iGaiaCoreIndexBufferProtocol.h"
+
+#import "iGaiaCoreCommunicator.h"
 
 @interface iGaiaCoreIndexBuffer : NSObject<iGaiaCoreIndexBufferProtocol>
 

@@ -8,20 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "iGaiaCoreShaderProtocol.h"
-#import "iGaiaCoreTextureProtocol.h"
-#import "iGaiaCoreMeshProtocol.h"
-#import "iGaiaCoreResourceProtocol.h"
-#import "iGaiaCoreResourceMgrProtocol.h"
-
-@protocol iGaiaCoreResourceMgrProtocol;
-@protocol iGaiaCoreRenderProtocol <NSObject>
-
-@property(nonatomic, assign) NSInteger priority;
-
-- (void)onRenderWithRenderMode:(NSString*)renderMode withForceUpdate:(BOOL)force;
-
-@end
+#import "iGaiaCoreResourceMgrCommunicator.h"
+#import "iGaiaCoreShaderCompositeCommunicator.h"
+#import "iGaiaCoreRenderMgrCommunicator.h"
+#import "iGaiaCoreBridgeCommunicator.h"
 
 @interface iGaiaCoreCommunicator : NSObject
 

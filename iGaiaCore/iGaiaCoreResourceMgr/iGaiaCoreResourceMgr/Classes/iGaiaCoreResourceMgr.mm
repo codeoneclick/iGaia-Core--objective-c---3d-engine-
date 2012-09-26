@@ -12,6 +12,7 @@
 #import "iGaiaCoreVertexBuffer.h"
 #import "iGaiaCoreIndexBuffer.h"
 #import "iGaiaCoreMesh.h"
+#import "iGaiaCoreTexture.h"
 #import "iGaiaCoreDefinitions.h"
 
 @interface iGaiaCoreResourceMgr()
@@ -26,7 +27,7 @@
 @synthesize textureService = _textureService;
 @synthesize meshService = _meshService;
 
-+ (id<iGaiaCoreResourceMgrProtocol, iGaiaCoreResourceFabricaProtocol>)sharedInstance;
++ (iGaiaCoreResourceMgrObjectRule)sharedInstance;
 {
     static iGaiaCoreResourceMgr *_sharedInstance = nil;
     static dispatch_once_t oncePredicate;
@@ -48,7 +49,7 @@
     return self;
 }
 
-- (void)loadResourceForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadResourceForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
 {
     NSRange range;
     range =[[name lowercaseString] rangeOfString:[iGaiaCoreDefinitionResourceFormat.pvr lowercaseString]];
@@ -65,19 +66,24 @@
     }
 }
 
-- (id<iGaiaCoreVertexBufferProtocol>)createVertexBufferWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
+- (iGaiaCoreVertexBufferObjectRule)createVertexBufferWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
 {
     return [[iGaiaCoreVertexBuffer alloc] initWithNumVertexes:numVertexes withMode:GL_STATIC_DRAW];
 }
 
-- (id<iGaiaCoreIndexBufferProtocol>)createIndexBufferWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
+- (iGaiaCoreIndexBufferObjectRule)createIndexBufferWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
 {
     return [[iGaiaCoreIndexBuffer alloc] initWithNumIndexes:numIndexes withMode:GL_STATIC_DRAW];
 }
 
-- (id<iGaiaCoreMeshProtocol>)createMeshWithVertexBuffer:(id<iGaiaCoreVertexBufferProtocol>)vertexBuffer withIndexBuffer:(id<iGaiaCoreIndexBufferProtocol>)indexBuffer;
+- (iGaiaCoreMeshObjectRule)createMeshWithVertexBuffer:(iGaiaCoreVertexBufferObjectRule)vertexBuffer withIndexBuffer:(iGaiaCoreIndexBufferObjectRule)indexBuffer;
 {
     return [[iGaiaCoreMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer];
+}
+
+- (id<iGaiaCoreTextureProtocol>)createTextureWithHandle:(NSUInteger)handle withSize:(CGSize)size;
+{
+    return [[iGaiaCoreTexture alloc] initWithHandle:handle withSize:size];
 }
 
 @end

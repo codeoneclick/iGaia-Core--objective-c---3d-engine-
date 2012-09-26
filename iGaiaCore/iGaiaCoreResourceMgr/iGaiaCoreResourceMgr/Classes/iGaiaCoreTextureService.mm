@@ -7,7 +7,6 @@
 //
 
 #import "iGaiaCoreTextureService.h"
-#import "iGaiaCoreResourceMgrProtocol.h"
 #import "iGaiaCoreTextureLoader.h"
 #import "iGaiaCoreTexture.h"
 #import "iGaiaCoreLogger.h"
@@ -18,7 +17,7 @@
 
 @implementation iGaiaCoreTextureService
 
-- (void)loadTextureForOwner:(id<iGaiaCoreResourceLoaderProtocol>)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
 {
     if(owner == nil)
     {

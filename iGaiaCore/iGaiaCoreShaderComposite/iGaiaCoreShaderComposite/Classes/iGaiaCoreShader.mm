@@ -10,10 +10,9 @@
 #include <OpenGLES/ES2/glext.h>
 
 #import "iGaiaCoreShader.h"
-#import "iGaiaCoreShaderProtocol.h"
+#import "iGaiaCoreDefinitions.h"
 
-
-@interface iGaiaCoreShader()<iGaiaCoreShaderProtocol>
+@interface iGaiaCoreShader()
 
 @property (nonatomic, readwrite) NSString* name;
 @property (nonatomic, readwrite) NSUInteger handle;
@@ -41,34 +40,34 @@
 
         _attributesContainer = [NSMutableDictionary new];
 
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixWorld cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixWorld];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixView cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixView];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixProjection cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixProjection];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.matrixWorldViewProjection cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.matrixWorldViewProjection];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.vectorCameraPosition cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.vectorCameraPosition];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.vectorLightPosition cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.vectorLightPosition];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.vectorClipPlane cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.vectorClipPlane];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.vectorTexcoordOffset cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.vectorTexcoordOffset];
-        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderAttribute.floatTimer cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderAttribute.floatTimer];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.matrixWorld cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.matrixWorld];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.matrixView cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.matrixView];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.matrixProjection cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.matrixProjection];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.matrixWorldViewProjection cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.matrixWorldViewProjection];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.vectorCameraPosition cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.vectorCameraPosition];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.vectorLightPosition cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.vectorLightPosition];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.vectorClipPlane cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.vectorClipPlane];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.vectorTexcoordOffset cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.vectorTexcoordOffset];
+        [_attributesContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderAttribute.floatTimer cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderAttribute.floatTimer];
 
         _textureSlotsContainer = [NSMutableDictionary new];
 
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_01 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_01];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_02 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_02];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_03 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_03];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_04 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_04];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_05 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_05];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_06 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_06];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_07 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_07];
-        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreShaderTextureSlot.texture_08 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderTextureSlot.texture_08];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_01 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_01];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_02 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_02];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_03 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_03];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_04 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_04];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_05 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_05];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_06 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_06];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_07 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_07];
+        [_textureSlotsContainer setObject:[NSNumber numberWithInteger:glGetUniformLocation(_handle, [iGaiaCoreDefinitionShaderTextureSlot.texture_08 cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderTextureSlot.texture_08];
 
         _vertexSlotsContainer = [NSMutableDictionary new];
 
-        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.position cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.position];
-        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.textcoord cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.textcoord];
-        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.normal cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.normal];
-        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.tangent cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.tangent];
-        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreShaderVertexSlot.color cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreShaderVertexSlot.color];
+        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreDefinitionShaderVertexSlot.position cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderVertexSlot.position];
+        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreDefinitionShaderVertexSlot.textcoord cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderVertexSlot.textcoord];
+        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreDefinitionShaderVertexSlot.normal cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderVertexSlot.normal];
+        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreDefinitionShaderVertexSlot.tangent cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderVertexSlot.tangent];
+        [_vertexSlotsContainer setObject:[NSNumber numberWithInteger:glGetAttribLocation(_handle, [iGaiaCoreDefinitionShaderVertexSlot.color cStringUsingEncoding:NSUTF8StringEncoding])] forKey:iGaiaCoreDefinitionShaderVertexSlot.color];
 
         self.textureSlotsIndexes = [self.textureSlotsContainer allKeys];
     }
