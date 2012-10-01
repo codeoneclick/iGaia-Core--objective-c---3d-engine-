@@ -11,6 +11,6 @@
 
 @interface iGaiaCoreTextureService : iGaiaCoreResourceService
 
-- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreLoadDispatcherObjectRule)owner withName:(NSString*)name;
 
 @end

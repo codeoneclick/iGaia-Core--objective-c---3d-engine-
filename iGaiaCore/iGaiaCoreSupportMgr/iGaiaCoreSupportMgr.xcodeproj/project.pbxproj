@@ -8,9 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		A447C9C51611DDF800F539C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A447C9C41611DDF800F539C0 /* Foundation.framework */; };
-		A447C9CA1611DDF800F539C0 /* iGaiaCoreSupportMgr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A447C9C91611DDF800F539C0 /* iGaiaCoreSupportMgr.h */; };
-		A447C9CC1611DDF800F539C0 /* iGaiaCoreSupportMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A447C9CB1611DDF800F539C0 /* iGaiaCoreSupportMgr.m */; };
+		A461C9C316144CB0000B6D8C /* iGaiaCoreSupportMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9C216144CB0000B6D8C /* iGaiaCoreSupportMgr.m */; };
+		A461C9C616144CC5000B6D8C /* iGaiaCoreCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9C516144CC5000B6D8C /* iGaiaCoreCamera.m */; };
+		A461C9C916144CD8000B6D8C /* iGaiaCoreFrustum.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9C816144CD8000B6D8C /* iGaiaCoreFrustum.m */; };
+		A461C9CC16144CE9000B6D8C /* iGaiaCoreLight.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9CB16144CE9000B6D8C /* iGaiaCoreLight.m */; };
+		A461C9CF16144D04000B6D8C /* iGaiaCoreMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9CE16144D04000B6D8C /* iGaiaCoreMaterial.m */; };
+		A461C9E016144D91000B6D8C /* libiGaiaCoreCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A461C9D516144D13000B6D8C /* libiGaiaCoreCommon.a */; };
+		A461C9E116144D91000B6D8C /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A461C9DB16144D1A000B6D8C /* libiGaiaCoreCommunicator.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A461C9D416144D13000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9D016144D12000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4D1F0A1160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
+		A461C9DA16144D1A000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9D616144D19000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A45F617416032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+		A461C9DC16144D8A000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9D016144D12000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A4D1F0A0160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
+		A461C9DE16144D8A000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9D616144D19000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A45F617316032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A447C9BF1611DDF800F539C0 /* CopyFiles */ = {
@@ -19,7 +55,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				A447C9CA1611DDF800F539C0 /* iGaiaCoreSupportMgr.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,8 +64,18 @@
 		A447C9C11611DDF800F539C0 /* libiGaiaCoreSupportMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreSupportMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447C9C41611DDF800F539C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A447C9C81611DDF800F539C0 /* iGaiaCoreSupportMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreSupportMgr-Prefix.pch"; sourceTree = "<group>"; };
-		A447C9C91611DDF800F539C0 /* iGaiaCoreSupportMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGaiaCoreSupportMgr.h; sourceTree = "<group>"; };
-		A447C9CB1611DDF800F539C0 /* iGaiaCoreSupportMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGaiaCoreSupportMgr.m; sourceTree = "<group>"; };
+		A461C9C116144CB0000B6D8C /* iGaiaCoreSupportMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreSupportMgr.h; path = Classes/iGaiaCoreSupportMgr.h; sourceTree = "<group>"; };
+		A461C9C216144CB0000B6D8C /* iGaiaCoreSupportMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreSupportMgr.m; path = Classes/iGaiaCoreSupportMgr.m; sourceTree = "<group>"; };
+		A461C9C416144CC5000B6D8C /* iGaiaCoreCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreCamera.h; path = Classes/iGaiaCoreCamera.h; sourceTree = "<group>"; };
+		A461C9C516144CC5000B6D8C /* iGaiaCoreCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreCamera.m; path = Classes/iGaiaCoreCamera.m; sourceTree = "<group>"; };
+		A461C9C716144CD8000B6D8C /* iGaiaCoreFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreFrustum.h; path = Classes/iGaiaCoreFrustum.h; sourceTree = "<group>"; };
+		A461C9C816144CD8000B6D8C /* iGaiaCoreFrustum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreFrustum.m; path = Classes/iGaiaCoreFrustum.m; sourceTree = "<group>"; };
+		A461C9CA16144CE9000B6D8C /* iGaiaCoreLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreLight.h; path = Classes/iGaiaCoreLight.h; sourceTree = "<group>"; };
+		A461C9CB16144CE9000B6D8C /* iGaiaCoreLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreLight.m; path = Classes/iGaiaCoreLight.m; sourceTree = "<group>"; };
+		A461C9CD16144D04000B6D8C /* iGaiaCoreMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreMaterial.h; path = Classes/iGaiaCoreMaterial.h; sourceTree = "<group>"; };
+		A461C9CE16144D04000B6D8C /* iGaiaCoreMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreMaterial.m; path = Classes/iGaiaCoreMaterial.m; sourceTree = "<group>"; };
+		A461C9D016144D12000B6D8C /* iGaiaCoreCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommon.xcodeproj; path = ../iGaiaCoreCommon/iGaiaCoreCommon.xcodeproj; sourceTree = "<group>"; };
+		A461C9D616144D19000B6D8C /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A461C9E016144D91000B6D8C /* libiGaiaCoreCommon.a in Frameworks */,
+				A461C9E116144D91000B6D8C /* libiGaiaCoreCommunicator.a in Frameworks */,
 				A447C9C51611DDF800F539C0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +95,8 @@
 		A447C9B61611DDF800F539C0 = {
 			isa = PBXGroup;
 			children = (
+				A461C9D016144D12000B6D8C /* iGaiaCoreCommon.xcodeproj */,
+				A461C9D616144D19000B6D8C /* iGaiaCoreCommunicator.xcodeproj */,
 				A447C9C61611DDF800F539C0 /* iGaiaCoreSupportMgr */,
 				A447C9C31611DDF800F539C0 /* Frameworks */,
 				A447C9C21611DDF800F539C0 /* Products */,
@@ -73,8 +122,7 @@
 		A447C9C61611DDF800F539C0 /* iGaiaCoreSupportMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A447C9C91611DDF800F539C0 /* iGaiaCoreSupportMgr.h */,
-				A447C9CB1611DDF800F539C0 /* iGaiaCoreSupportMgr.m */,
+				A461C9C016144CA6000B6D8C /* Classes */,
 				A447C9C71611DDF800F539C0 /* Supporting Files */,
 			);
 			path = iGaiaCoreSupportMgr;
@@ -86,6 +134,39 @@
 				A447C9C81611DDF800F539C0 /* iGaiaCoreSupportMgr-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A461C9C016144CA6000B6D8C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A461C9C116144CB0000B6D8C /* iGaiaCoreSupportMgr.h */,
+				A461C9C216144CB0000B6D8C /* iGaiaCoreSupportMgr.m */,
+				A461C9C416144CC5000B6D8C /* iGaiaCoreCamera.h */,
+				A461C9C516144CC5000B6D8C /* iGaiaCoreCamera.m */,
+				A461C9C716144CD8000B6D8C /* iGaiaCoreFrustum.h */,
+				A461C9C816144CD8000B6D8C /* iGaiaCoreFrustum.m */,
+				A461C9CA16144CE9000B6D8C /* iGaiaCoreLight.h */,
+				A461C9CB16144CE9000B6D8C /* iGaiaCoreLight.m */,
+				A461C9CD16144D04000B6D8C /* iGaiaCoreMaterial.h */,
+				A461C9CE16144D04000B6D8C /* iGaiaCoreMaterial.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		A461C9D116144D12000B6D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A461C9D516144D13000B6D8C /* libiGaiaCoreCommon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A461C9D716144D19000B6D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A461C9DB16144D1A000B6D8C /* libiGaiaCoreCommunicator.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +183,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				A461C9DD16144D8A000B6D8C /* PBXTargetDependency */,
+				A461C9DF16144D8A000B6D8C /* PBXTargetDependency */,
 			);
 			name = iGaiaCoreSupportMgr;
 			productName = iGaiaCoreSupportMgr;
@@ -127,6 +210,16 @@
 			mainGroup = A447C9B61611DDF800F539C0;
 			productRefGroup = A447C9C21611DDF800F539C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A461C9D116144D12000B6D8C /* Products */;
+					ProjectRef = A461C9D016144D12000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+				},
+				{
+					ProductGroup = A461C9D716144D19000B6D8C /* Products */;
+					ProjectRef = A461C9D616144D19000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A447C9C01611DDF800F539C0 /* iGaiaCoreSupportMgr */,
@@ -134,16 +227,50 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A461C9D516144D13000B6D8C /* libiGaiaCoreCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommon.a;
+			remoteRef = A461C9D416144D13000B6D8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A461C9DB16144D1A000B6D8C /* libiGaiaCoreCommunicator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommunicator.a;
+			remoteRef = A461C9DA16144D1A000B6D8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A447C9BD1611DDF800F539C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A447C9CC1611DDF800F539C0 /* iGaiaCoreSupportMgr.m in Sources */,
+				A461C9C316144CB0000B6D8C /* iGaiaCoreSupportMgr.m in Sources */,
+				A461C9C616144CC5000B6D8C /* iGaiaCoreCamera.m in Sources */,
+				A461C9C916144CD8000B6D8C /* iGaiaCoreFrustum.m in Sources */,
+				A461C9CC16144CE9000B6D8C /* iGaiaCoreLight.m in Sources */,
+				A461C9CF16144D04000B6D8C /* iGaiaCoreMaterial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A461C9DD16144D8A000B6D8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommon;
+			targetProxy = A461C9DC16144D8A000B6D8C /* PBXContainerItemProxy */;
+		};
+		A461C9DF16144D8A000B6D8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommunicator;
+			targetProxy = A461C9DE16144D8A000B6D8C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A447C9CD1611DDF800F539C0 /* Debug */ = {
@@ -198,6 +325,10 @@
 				DSTROOT = /tmp/iGaiaCoreSupportMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreSupportMgr/iGaiaCoreSupportMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -210,6 +341,10 @@
 				DSTROOT = /tmp/iGaiaCoreSupportMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreSupportMgr/iGaiaCoreSupportMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -235,6 +370,7 @@
 				A447C9D11611DDF800F539C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

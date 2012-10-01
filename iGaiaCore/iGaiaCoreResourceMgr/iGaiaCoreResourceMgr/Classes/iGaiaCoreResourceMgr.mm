@@ -49,7 +49,7 @@
     return self;
 }
 
-- (void)loadResourceForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
+- (void)loadResourceForOwner:(iGaiaCoreLoadDispatcherObjectRule)owner withName:(NSString*)name;
 {
     NSRange range;
     range =[[name lowercaseString] rangeOfString:[iGaiaCoreDefinitionResourceFormat.pvr lowercaseString]];

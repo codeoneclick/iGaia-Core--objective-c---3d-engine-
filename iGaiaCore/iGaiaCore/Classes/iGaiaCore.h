@@ -10,6 +10,6 @@
 
 #import "iGaiaCoreCommunicator.h"
 
-@interface iGaiaCore : NSObject<iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol>
+@interface iGaiaCore : NSObject<iGaiaCoreBridgeSetupDispatcherProtocol>
 
 @end

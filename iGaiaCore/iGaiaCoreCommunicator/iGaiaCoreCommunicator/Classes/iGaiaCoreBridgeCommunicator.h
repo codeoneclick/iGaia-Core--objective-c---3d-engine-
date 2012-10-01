@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol <NSObject>
+@protocol iGaiaCoreBridgeSetupDispatcherProtocol <NSObject>
 
 - (void)onRenderMgrBridgeReadyToSetup;
 
 @end
 
-typedef id<iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol> iGaiaCoreRenderMgrBridgeSetupDispatcherObjectRule;
+typedef id<iGaiaCoreBridgeSetupDispatcherProtocol> iGaiaCoreBridgeSetupDispatcherObjectRule;

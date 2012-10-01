@@ -12,7 +12,7 @@
 #import "iGaiaCoreFacade.h"
 #import "iGaiaCore.h"
 
-@interface FirstViewController ()<iGaiaCoreResourceLoadDispatcherProtocol>
+@interface FirstViewController ()<iGaiaCoreLoadDispatcherProtocol>
 
 @end
 
@@ -43,7 +43,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)onResourceLoad:(iGaiaCoreResourceObjectRule)resource withName:(NSString *)name
+- (void)onLoad:(iGaiaCoreResourceObjectRule)resource withName:(NSString *)name
 {
     iGaiaLog(@"resource : %@, name : %@",resource, name);
 }

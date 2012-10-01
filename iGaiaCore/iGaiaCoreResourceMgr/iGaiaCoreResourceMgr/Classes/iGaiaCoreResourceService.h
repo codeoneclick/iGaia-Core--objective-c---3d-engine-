@@ -17,6 +17,6 @@
 @property(nonatomic, strong) NSMutableDictionary* taskPool;
 
 - (void)loadWithLoader:(iGaiaCoreLoaderObjectRule)loader withName:(NSString*)name;
-- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner;
+- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreLoadDispatcherObjectRule)owner;
 
 @end

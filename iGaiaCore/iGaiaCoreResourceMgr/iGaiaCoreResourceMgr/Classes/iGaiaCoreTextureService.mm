@@ -17,7 +17,7 @@
 
 @implementation iGaiaCoreTextureService
 
-- (void)loadTextureForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
+- (void)loadTextureForOwner:(iGaiaCoreLoadDispatcherObjectRule)owner withName:(NSString*)name;
 {
     if(owner == nil)
     {
@@ -40,7 +40,7 @@
     }
     else
     {
-        [owner onResourceLoad:[self.container objectForKey:name] withName:name];
+        [owner onLoad:[self.container objectForKey:name] withName:name];
         iGaiaLog(@"texture with name : %@ get from cache for owner : %@", name, owner);
     }
 }

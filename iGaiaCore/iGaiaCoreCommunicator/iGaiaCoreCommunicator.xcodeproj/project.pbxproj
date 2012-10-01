@@ -259,6 +259,8 @@
 		A45F62C816035BE8005B10A3 /* wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wrap.hpp; sourceTree = "<group>"; };
 		A45F62C916035BE8005B10A3 /* wrap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrap.inl; sourceTree = "<group>"; };
 		A45F62CB16035BE8005B10A3 /* xstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xstream.hpp; sourceTree = "<group>"; };
+		A461C9B8161432DD000B6D8C /* iGaiaCoreStorageMgrCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreStorageMgrCommunicator.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreStorageMgrCommunicator.h; sourceTree = "<group>"; };
+		A461C9E816144E24000B6D8C /* iGaiaCoreSupportMgrCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreSupportMgrCommunicator.h; path = iGaiaCoreCommunicator/Classes/iGaiaCoreSupportMgrCommunicator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,8 @@
 				A447CA1D1611E76000F539C0 /* iGaiaCoreResourceMgrCommunicator.h */,
 				A45EB7831612DB130000FDB5 /* iGaiaCoreShaderCompositeCommunicator.h */,
 				A45EB7D516131AD80000FDB5 /* iGaiaCoreRenderMgrCommunicator.h */,
+				A461C9B8161432DD000B6D8C /* iGaiaCoreStorageMgrCommunicator.h */,
+				A461C9E816144E24000B6D8C /* iGaiaCoreSupportMgrCommunicator.h */,
 				A45EB84A16132F090000FDB5 /* iGaiaCoreBridgeCommunicator.h */,
 			);
 			name = Classes;

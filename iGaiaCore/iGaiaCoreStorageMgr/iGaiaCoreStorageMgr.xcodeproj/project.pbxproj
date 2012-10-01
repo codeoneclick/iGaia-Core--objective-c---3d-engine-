@@ -8,9 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		A447C9A31611DDE100F539C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A447C9A21611DDE100F539C0 /* Foundation.framework */; };
-		A447C9A81611DDE100F539C0 /* iGaiaCoreStorageMgr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A447C9A71611DDE100F539C0 /* iGaiaCoreStorageMgr.h */; };
-		A447C9AA1611DDE100F539C0 /* iGaiaCoreStorageMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A447C9A91611DDE100F539C0 /* iGaiaCoreStorageMgr.m */; };
+		A461C99E16142FE4000B6D8C /* iGaiaCoreObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = A461C99B16142FE4000B6D8C /* iGaiaCoreObject3d.mm */; };
+		A461C99F16142FE4000B6D8C /* iGaiaCoreStorageMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C99D16142FE4000B6D8C /* iGaiaCoreStorageMgr.m */; };
+		A461C9A216143003000B6D8C /* iGaiaCoreShape3d.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9A116143003000B6D8C /* iGaiaCoreShape3d.m */; };
+		A461C9A5161431A0000B6D8C /* iGaiaCoreOcean.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9A4161431A0000B6D8C /* iGaiaCoreOcean.m */; };
+		A461C9A8161431BF000B6D8C /* iGaiaCoreDecal.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9A7161431BF000B6D8C /* iGaiaCoreDecal.m */; };
+		A461C9AB161431DD000B6D8C /* iGaiaCoreBillboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9AA161431DD000B6D8C /* iGaiaCoreBillboard.m */; };
+		A461C9E616144D9E000B6D8C /* libiGaiaCoreCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A461C9B716143261000B6D8C /* libiGaiaCoreCommon.a */; };
+		A461C9E716144D9E000B6D8C /* libiGaiaCoreCommunicator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A461C9B116143256000B6D8C /* libiGaiaCoreCommunicator.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A461C9B016143256000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9AC16143256000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A45F617416032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+		A461C9B616143261000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9B216143260000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4D1F0A1160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
+		A461C9E216144D99000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9B216143260000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A4D1F0A0160C486B005307F4;
+			remoteInfo = iGaiaCoreCommon;
+		};
+		A461C9E416144D99000B6D8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A461C9AC16143256000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A45F617316032DAA005B10A3;
+			remoteInfo = iGaiaCoreCommunicator;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A447C99D1611DDE100F539C0 /* CopyFiles */ = {
@@ -19,7 +56,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				A447C9A81611DDE100F539C0 /* iGaiaCoreStorageMgr.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,8 +65,20 @@
 		A447C99F1611DDE100F539C0 /* libiGaiaCoreStorageMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCoreStorageMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447C9A21611DDE100F539C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A447C9A61611DDE100F539C0 /* iGaiaCoreStorageMgr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCoreStorageMgr-Prefix.pch"; sourceTree = "<group>"; };
-		A447C9A71611DDE100F539C0 /* iGaiaCoreStorageMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGaiaCoreStorageMgr.h; sourceTree = "<group>"; };
-		A447C9A91611DDE100F539C0 /* iGaiaCoreStorageMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGaiaCoreStorageMgr.m; sourceTree = "<group>"; };
+		A461C99A16142FE4000B6D8C /* iGaiaCoreObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreObject3d.h; path = Classes/iGaiaCoreObject3d.h; sourceTree = "<group>"; };
+		A461C99B16142FE4000B6D8C /* iGaiaCoreObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreObject3d.mm; path = Classes/iGaiaCoreObject3d.mm; sourceTree = "<group>"; };
+		A461C99C16142FE4000B6D8C /* iGaiaCoreStorageMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreStorageMgr.h; path = Classes/iGaiaCoreStorageMgr.h; sourceTree = "<group>"; };
+		A461C99D16142FE4000B6D8C /* iGaiaCoreStorageMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreStorageMgr.m; path = Classes/iGaiaCoreStorageMgr.m; sourceTree = "<group>"; };
+		A461C9A016143003000B6D8C /* iGaiaCoreShape3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreShape3d.h; path = Classes/iGaiaCoreShape3d.h; sourceTree = "<group>"; };
+		A461C9A116143003000B6D8C /* iGaiaCoreShape3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreShape3d.m; path = Classes/iGaiaCoreShape3d.m; sourceTree = "<group>"; };
+		A461C9A3161431A0000B6D8C /* iGaiaCoreOcean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreOcean.h; path = Classes/iGaiaCoreOcean.h; sourceTree = "<group>"; };
+		A461C9A4161431A0000B6D8C /* iGaiaCoreOcean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreOcean.m; path = Classes/iGaiaCoreOcean.m; sourceTree = "<group>"; };
+		A461C9A6161431BF000B6D8C /* iGaiaCoreDecal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreDecal.h; path = Classes/iGaiaCoreDecal.h; sourceTree = "<group>"; };
+		A461C9A7161431BF000B6D8C /* iGaiaCoreDecal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreDecal.m; path = Classes/iGaiaCoreDecal.m; sourceTree = "<group>"; };
+		A461C9A9161431DD000B6D8C /* iGaiaCoreBillboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreBillboard.h; path = Classes/iGaiaCoreBillboard.h; sourceTree = "<group>"; };
+		A461C9AA161431DD000B6D8C /* iGaiaCoreBillboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCoreBillboard.m; path = Classes/iGaiaCoreBillboard.m; sourceTree = "<group>"; };
+		A461C9AC16143256000B6D8C /* iGaiaCoreCommunicator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommunicator.xcodeproj; path = ../iGaiaCoreCommunicator/iGaiaCoreCommunicator.xcodeproj; sourceTree = "<group>"; };
+		A461C9B216143260000B6D8C /* iGaiaCoreCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCoreCommon.xcodeproj; path = ../iGaiaCoreCommon/iGaiaCoreCommon.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A461C9E616144D9E000B6D8C /* libiGaiaCoreCommon.a in Frameworks */,
+				A461C9E716144D9E000B6D8C /* libiGaiaCoreCommunicator.a in Frameworks */,
 				A447C9A31611DDE100F539C0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +98,8 @@
 		A447C9941611DDE100F539C0 = {
 			isa = PBXGroup;
 			children = (
+				A461C9B216143260000B6D8C /* iGaiaCoreCommon.xcodeproj */,
+				A461C9AC16143256000B6D8C /* iGaiaCoreCommunicator.xcodeproj */,
 				A447C9A41611DDE100F539C0 /* iGaiaCoreStorageMgr */,
 				A447C9A11611DDE100F539C0 /* Frameworks */,
 				A447C9A01611DDE100F539C0 /* Products */,
@@ -73,8 +125,7 @@
 		A447C9A41611DDE100F539C0 /* iGaiaCoreStorageMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A447C9A71611DDE100F539C0 /* iGaiaCoreStorageMgr.h */,
-				A447C9A91611DDE100F539C0 /* iGaiaCoreStorageMgr.m */,
+				A461C99916142FC7000B6D8C /* Classes */,
 				A447C9A51611DDE100F539C0 /* Supporting Files */,
 			);
 			path = iGaiaCoreStorageMgr;
@@ -86,6 +137,41 @@
 				A447C9A61611DDE100F539C0 /* iGaiaCoreStorageMgr-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A461C99916142FC7000B6D8C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A461C99C16142FE4000B6D8C /* iGaiaCoreStorageMgr.h */,
+				A461C99D16142FE4000B6D8C /* iGaiaCoreStorageMgr.m */,
+				A461C99A16142FE4000B6D8C /* iGaiaCoreObject3d.h */,
+				A461C99B16142FE4000B6D8C /* iGaiaCoreObject3d.mm */,
+				A461C9A016143003000B6D8C /* iGaiaCoreShape3d.h */,
+				A461C9A116143003000B6D8C /* iGaiaCoreShape3d.m */,
+				A461C9A3161431A0000B6D8C /* iGaiaCoreOcean.h */,
+				A461C9A4161431A0000B6D8C /* iGaiaCoreOcean.m */,
+				A461C9A6161431BF000B6D8C /* iGaiaCoreDecal.h */,
+				A461C9A7161431BF000B6D8C /* iGaiaCoreDecal.m */,
+				A461C9A9161431DD000B6D8C /* iGaiaCoreBillboard.h */,
+				A461C9AA161431DD000B6D8C /* iGaiaCoreBillboard.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		A461C9AD16143256000B6D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A461C9B116143256000B6D8C /* libiGaiaCoreCommunicator.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A461C9B316143260000B6D8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A461C9B716143261000B6D8C /* libiGaiaCoreCommon.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +188,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				A461C9E316144D99000B6D8C /* PBXTargetDependency */,
+				A461C9E516144D99000B6D8C /* PBXTargetDependency */,
 			);
 			name = iGaiaCoreStorageMgr;
 			productName = iGaiaCoreStorageMgr;
@@ -127,6 +215,16 @@
 			mainGroup = A447C9941611DDE100F539C0;
 			productRefGroup = A447C9A01611DDE100F539C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A461C9B316143260000B6D8C /* Products */;
+					ProjectRef = A461C9B216143260000B6D8C /* iGaiaCoreCommon.xcodeproj */;
+				},
+				{
+					ProductGroup = A461C9AD16143256000B6D8C /* Products */;
+					ProjectRef = A461C9AC16143256000B6D8C /* iGaiaCoreCommunicator.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A447C99E1611DDE100F539C0 /* iGaiaCoreStorageMgr */,
@@ -134,16 +232,51 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A461C9B116143256000B6D8C /* libiGaiaCoreCommunicator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommunicator.a;
+			remoteRef = A461C9B016143256000B6D8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A461C9B716143261000B6D8C /* libiGaiaCoreCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiGaiaCoreCommon.a;
+			remoteRef = A461C9B616143261000B6D8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A447C99B1611DDE100F539C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A447C9AA1611DDE100F539C0 /* iGaiaCoreStorageMgr.m in Sources */,
+				A461C99E16142FE4000B6D8C /* iGaiaCoreObject3d.mm in Sources */,
+				A461C99F16142FE4000B6D8C /* iGaiaCoreStorageMgr.m in Sources */,
+				A461C9A216143003000B6D8C /* iGaiaCoreShape3d.m in Sources */,
+				A461C9A5161431A0000B6D8C /* iGaiaCoreOcean.m in Sources */,
+				A461C9A8161431BF000B6D8C /* iGaiaCoreDecal.m in Sources */,
+				A461C9AB161431DD000B6D8C /* iGaiaCoreBillboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A461C9E316144D99000B6D8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommon;
+			targetProxy = A461C9E216144D99000B6D8C /* PBXContainerItemProxy */;
+		};
+		A461C9E516144D99000B6D8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iGaiaCoreCommunicator;
+			targetProxy = A461C9E416144D99000B6D8C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A447C9AB1611DDE100F539C0 /* Debug */ = {
@@ -198,6 +331,10 @@
 				DSTROOT = /tmp/iGaiaCoreStorageMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreStorageMgr/iGaiaCoreStorageMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -210,6 +347,10 @@
 				DSTROOT = /tmp/iGaiaCoreStorageMgr.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCoreStorageMgr/iGaiaCoreStorageMgr-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../iGaiaCoreCommon\"/**",
+					"\"$(SRCROOT)/../iGaiaCoreCommunicator\"/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -235,6 +376,7 @@
 				A447C9AF1611DDE100F539C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

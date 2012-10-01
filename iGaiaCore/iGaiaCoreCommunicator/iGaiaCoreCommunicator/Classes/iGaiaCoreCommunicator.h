@@ -12,6 +12,8 @@
 #import "iGaiaCoreShaderCompositeCommunicator.h"
 #import "iGaiaCoreRenderMgrCommunicator.h"
 #import "iGaiaCoreBridgeCommunicator.h"
+#import "iGaiaCoreStorageMgrCommunicator.h"
+#import "iGaiaCoreSupportMgrCommunicator.h"
 
 @interface iGaiaCoreCommunicator : NSObject
 

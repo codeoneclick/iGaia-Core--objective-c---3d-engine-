@@ -97,13 +97,13 @@ typedef id<iGaiaCoreMeshProtocol> iGaiaCoreMeshObjectRule;
 
 // -- --- --- //
 
-@protocol iGaiaCoreResourceLoadDispatcherProtocol <NSObject>
+@protocol iGaiaCoreLoadDispatcherProtocol <NSObject>
 
-- (void)onResourceLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString*)name;
+- (void)onLoad:(id<iGaiaCoreResourceProtocol>)resource withName:(NSString*)name;
 
 @end
 
-typedef id<iGaiaCoreResourceLoadDispatcherProtocol> iGaiaCoreResourceLoadDispatcherObjectRule;
+typedef id<iGaiaCoreLoadDispatcherProtocol> iGaiaCoreLoadDispatcherObjectRule;
 
 // -- --- --- //
 
@@ -118,7 +118,7 @@ typedef id<iGaiaCoreResourceLoadDispatcherProtocol> iGaiaCoreResourceLoadDispatc
 
 @protocol iGaiaCoreResourceMgrProtocol <NSObject>
 
-- (void)loadResourceForOwner:(id<iGaiaCoreResourceLoadDispatcherProtocol>)owner withName:(NSString*)name;
+- (void)loadResourceForOwner:(id<iGaiaCoreLoadDispatcherProtocol>)owner withName:(NSString*)name;
 
 @end
 

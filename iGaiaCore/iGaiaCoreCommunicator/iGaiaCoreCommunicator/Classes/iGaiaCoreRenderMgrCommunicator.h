@@ -19,10 +19,10 @@
 typedef id<iGaiaCoreRenderDispatcherProtocol> iGaiaCoreRenderDispatcherObjectRule;
 
 
-@protocol iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol;
+@protocol iGaiaCoreBridgeSetupDispatcherProtocol;
 @protocol iGaiaCoreRenderMgrProtocol <NSObject>
 
-@property(nonatomic, assign) id<iGaiaCoreRenderMgrBridgeSetupDispatcherProtocol> bridgeSetupDelegate;
+@property(nonatomic, assign) id<iGaiaCoreBridgeSetupDispatcherProtocol> bridgeSetupDelegate;
 
 - (UIView*)createViewWithFrame:(CGRect)frame;
 - (void)createRelationForObjectOwner:(id<iGaiaCoreRenderDispatcherProtocol>)owner withRenderState:(NSString*)renderState;

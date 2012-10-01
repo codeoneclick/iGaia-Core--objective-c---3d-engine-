@@ -11,6 +11,6 @@
 
 @interface iGaiaCoreMeshService : iGaiaCoreResourceService
 
-- (void)loadMeshForOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner withName:(NSString*)name;
+- (void)loadMeshForOwner:(iGaiaCoreLoadDispatcherObjectRule)owner withName:(NSString*)name;
 
 @end

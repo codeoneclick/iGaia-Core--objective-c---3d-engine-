@@ -26,7 +26,7 @@
     return self;
 }
 
-- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreResourceLoadDispatcherObjectRule)owner;
+- (void)validateTaskWithName:(NSString*)name forOwner:(iGaiaCoreLoadDispatcherObjectRule)owner;
 {
     if([self.taskPool objectForKey:name] == nil)
     {
@@ -46,9 +46,9 @@
             iGaiaCoreResourceObjectRule resource = [loader commit];
             [self.container setObject:resource forKey:name];
             NSMutableArray* owners = [self.taskPool objectForKey:name];
-            for(iGaiaCoreResourceLoadDispatcherObjectRule owner in owners)
+            for(iGaiaCoreLoadDispatcherObjectRule owner in owners)
             {
-                [owner onResourceLoad:[self.container objectForKey:name] withName:name];
+                [owner onLoad:[self.container objectForKey:name] withName:name];
                 iGaiaLog(@"resource with name : %@ load for owner : %@", name, owner);
             }
             [self.taskPool removeObjectForKey:name];
