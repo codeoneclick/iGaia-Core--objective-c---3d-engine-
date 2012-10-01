@@ -6,8 +6,3 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaCore.h"
-
-@implementation iGaiaCore
-
-@end

@@ -6,14 +6,4 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaCoreFacade.h"
-#import "iGaiaCoreResourceMgr.h"
 
-@implementation iGaiaCoreFacade
-
-+(iGaiaCoreResourceMgr_*)resourceMgr;
-{
-    return [iGaiaCoreResourceMgr_ sharedInstance];
-}
-
-@end

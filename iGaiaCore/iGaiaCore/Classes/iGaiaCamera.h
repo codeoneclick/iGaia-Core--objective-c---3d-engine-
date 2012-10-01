@@ -1,9 +1,13 @@
 //
-//  iGaiaCore.h
+//  iGaiaCamera.h
 //  iGaiaCore
 //
-//  Created by Sergey Sergeev on 9/14/12.
+//  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
+@interface iGaiaCamera : NSObject
+
+@end

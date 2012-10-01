@@ -7,10 +7,3 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IGaiaCoreCommunicator.h"
-
-@interface iGaiaCoreFacade : NSObject
-
-+(iGaiaCoreResourceMgr)resourceMgr;
-
-@end
