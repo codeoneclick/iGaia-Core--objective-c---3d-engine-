@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "iGaiaShader.h"
+
 @interface iGaiaLoader_GLSL : NSObject
 
++ (iGaiaShader*)loadWithVertexShaderData:(const char*)vertexShaderData withFragmentShaderData:(const char*)fragmentShaderData;
+
 @end
+
+

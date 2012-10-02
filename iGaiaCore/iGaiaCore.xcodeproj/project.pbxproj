@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4466549161B1A490025601F /* iGaiaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLView.mm */; };
 		A447CA581611FEA400F539C0 /* iGaiaCoreFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447CA571611FEA400F539C0 /* iGaiaCoreFacade.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F612016032871005B10A3 /* iGaiaCore.mm */; };
 		A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */; };
 		A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF116197A4B00004F34 /* iGaiaLoader_PVR.mm */; };
 		A4BF9EF816197A7C00004F34 /* iGaiaLoader_MDL.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */; };
-		A4BF9EFB16197A9000004F34 /* iGaiaLoader_GLSL.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.m */; };
+		A4BF9EFB16197A9000004F34 /* iGaiaLoader_GLSL.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.mm */; };
 		A4BF9EFE16197AB600004F34 /* iGaiaVertexBufferObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EFD16197AB600004F34 /* iGaiaVertexBufferObject.mm */; };
 		A4BF9F0416197AE500004F34 /* iGaiaIndexBufferObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0316197AE500004F34 /* iGaiaIndexBufferObject.mm */; };
-		A4BF9F0716197AFD00004F34 /* iGaiaMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0616197AFD00004F34 /* iGaiaMesh.m */; };
-		A4BF9F0A16197BA200004F34 /* iGaiaShader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0916197BA200004F34 /* iGaiaShader.m */; };
+		A4BF9F0716197AFD00004F34 /* iGaiaMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0616197AFD00004F34 /* iGaiaMesh.mm */; };
+		A4BF9F0A16197BA200004F34 /* iGaiaShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0916197BA200004F34 /* iGaiaShader.mm */; };
 		A4BF9F0D16197BB500004F34 /* iGaiaMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0C16197BB500004F34 /* iGaiaMaterial.m */; };
-		A4BF9F1016197C0900004F34 /* iGaiaResourceMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.m */; };
-		A4BF9F1316197C3200004F34 /* iGaiaTextureMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.m */; };
-		A4BF9F1616197C4700004F34 /* iGaiaMeshMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.m */; };
-		A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.m */; };
+		A4BF9F1016197C0900004F34 /* iGaiaResourceMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.mm */; };
+		A4BF9F1316197C3200004F34 /* iGaiaTextureMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.mm */; };
+		A4BF9F1616197C4700004F34 /* iGaiaMeshMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.mm */; };
+		A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.mm */; };
 		A4BF9F1F16197CD200004F34 /* iGaiaObject3d.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1E16197CD200004F34 /* iGaiaObject3d.m */; };
 		A4BF9F2216197CFC00004F34 /* iGaiaShape3d.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2116197CFC00004F34 /* iGaiaShape3d.m */; };
 		A4BF9F2516197D1500004F34 /* iGaiaBillboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2416197D1500004F34 /* iGaiaBillboard.m */; };
@@ -33,10 +34,10 @@
 		A4BF9F3716197DC300004F34 /* iGaiaLight.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3616197DC300004F34 /* iGaiaLight.m */; };
 		A4BF9F3A16197DDF00004F34 /* iGaiaBoundBox.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3916197DDF00004F34 /* iGaiaBoundBox.m */; };
 		A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.m */; };
-		A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.m */; };
-		A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.m */; };
-		A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.m */; };
-		A4BFA08B1619A59300004F34 /* iGaiaRenderMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.m */; };
+		A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm */; };
+		A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm */; };
+		A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.mm */; };
+		A4BFA08B1619A59300004F34 /* iGaiaRenderMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.mm */; };
 		A4BFA2091619D3C600004F34 /* NSData+iGaiaExtension.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA2081619D3C600004F34 /* NSData+iGaiaExtension.mm */; };
 		A4BFA20D1619D6D500004F34 /* iGaiaLogger.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,45 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A44664F1161AED5C0025601F /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
+		A44664F2161AED5C0025601F /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.vert; path = Shaders/ShaderDecal.vert; sourceTree = "<group>"; };
+		A44664F3161AED5C0025601F /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.frag; path = Shaders/ShaderGrass.frag; sourceTree = "<group>"; };
+		A44664F4161AED5C0025601F /* ShaderGrass.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.vert; path = Shaders/ShaderGrass.vert; sourceTree = "<group>"; };
+		A44664F5161AED5C0025601F /* ShaderGrassND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrassND.frag; path = Shaders/ShaderGrassND.frag; sourceTree = "<group>"; };
+		A44664F6161AED5C0025601F /* ShaderGrassND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrassND.vert; path = Shaders/ShaderGrassND.vert; sourceTree = "<group>"; };
+		A44664F7161AED5C0025601F /* ShaderLandscape.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscape.frag; path = Shaders/ShaderLandscape.frag; sourceTree = "<group>"; };
+		A44664F8161AED5C0025601F /* ShaderLandscape.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscape.vert; path = Shaders/ShaderLandscape.vert; sourceTree = "<group>"; };
+		A44664F9161AED5C0025601F /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.frag; path = Shaders/ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
+		A44664FA161AED5C0025601F /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.vert; path = Shaders/ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
+		A44664FB161AED5C0025601F /* ShaderLandscapeND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeND.frag; path = Shaders/ShaderLandscapeND.frag; sourceTree = "<group>"; };
+		A44664FC161AED5C0025601F /* ShaderLandscapeND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeND.vert; path = Shaders/ShaderLandscapeND.vert; sourceTree = "<group>"; };
+		A44664FD161AED5C0025601F /* ShaderModel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModel.frag; path = Shaders/ShaderModel.frag; sourceTree = "<group>"; };
+		A44664FE161AED5C0025601F /* ShaderModel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModel.vert; path = Shaders/ShaderModel.vert; sourceTree = "<group>"; };
+		A44664FF161AED5C0025601F /* ShaderModelND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModelND.frag; path = Shaders/ShaderModelND.frag; sourceTree = "<group>"; };
+		A4466500161AED5C0025601F /* ShaderModelND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModelND.vert; path = Shaders/ShaderModelND.vert; sourceTree = "<group>"; };
+		A4466501161AED5C0025601F /* ShaderOcean.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderOcean.frag; path = Shaders/ShaderOcean.frag; sourceTree = "<group>"; };
+		A4466502161AED5C0025601F /* ShaderOcean.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderOcean.vert; path = Shaders/ShaderOcean.vert; sourceTree = "<group>"; };
+		A4466503161AED5C0025601F /* ShaderParticle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderParticle.frag; path = Shaders/ShaderParticle.frag; sourceTree = "<group>"; };
+		A4466504161AED5C0025601F /* ShaderParticle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderParticle.vert; path = Shaders/ShaderParticle.vert; sourceTree = "<group>"; };
+		A4466505161AED5C0025601F /* ShaderParticleND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderParticleND.frag; path = Shaders/ShaderParticleND.frag; sourceTree = "<group>"; };
+		A4466506161AED5C0025601F /* ShaderParticleND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderParticleND.vert; path = Shaders/ShaderParticleND.vert; sourceTree = "<group>"; };
+		A4466507161AED5C0025601F /* ShaderPostBloomCombine.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomCombine.frag; path = Shaders/ShaderPostBloomCombine.frag; sourceTree = "<group>"; };
+		A4466508161AED5C0025601F /* ShaderPostBloomCombine.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomCombine.vert; path = Shaders/ShaderPostBloomCombine.vert; sourceTree = "<group>"; };
+		A4466509161AED5C0025601F /* ShaderPostBloomExtract.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomExtract.frag; path = Shaders/ShaderPostBloomExtract.frag; sourceTree = "<group>"; };
+		A446650A161AED5C0025601F /* ShaderPostBloomExtract.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomExtract.vert; path = Shaders/ShaderPostBloomExtract.vert; sourceTree = "<group>"; };
+		A446650B161AED5C0025601F /* ShaderPostBlur.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBlur.frag; path = Shaders/ShaderPostBlur.frag; sourceTree = "<group>"; };
+		A446650C161AED5C0025601F /* ShaderPostBlur.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBlur.vert; path = Shaders/ShaderPostBlur.vert; sourceTree = "<group>"; };
+		A446650D161AED5C0025601F /* ShaderPostEdgeDetect.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostEdgeDetect.frag; path = Shaders/ShaderPostEdgeDetect.frag; sourceTree = "<group>"; };
+		A446650E161AED5C0025601F /* ShaderPostEdgeDetect.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostEdgeDetect.vert; path = Shaders/ShaderPostEdgeDetect.vert; sourceTree = "<group>"; };
+		A446650F161AED5C0025601F /* ShaderPostLandscapeDetail.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.frag; path = Shaders/ShaderPostLandscapeDetail.frag; sourceTree = "<group>"; };
+		A4466510161AED5C0025601F /* ShaderPostLandscapeDetail.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.vert; path = Shaders/ShaderPostLandscapeDetail.vert; sourceTree = "<group>"; };
+		A4466511161AED5C0025601F /* ShaderPostPlane.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostPlane.frag; path = Shaders/ShaderPostPlane.frag; sourceTree = "<group>"; };
+		A4466512161AED5C0025601F /* ShaderPostPlane.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostPlane.vert; path = Shaders/ShaderPostPlane.vert; sourceTree = "<group>"; };
+		A4466513161AED5C0025601F /* ShaderSkybox.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderSkybox.frag; path = Shaders/ShaderSkybox.frag; sourceTree = "<group>"; };
+		A4466514161AED5C0025601F /* ShaderSkybox.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderSkybox.vert; path = Shaders/ShaderSkybox.vert; sourceTree = "<group>"; };
+		A4466547161B1A490025601F /* iGaiaGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGLView.h; path = iGaiaCore/Classes/iGaiaGLView.h; sourceTree = "<group>"; };
+		A4466548161B1A490025601F /* iGaiaGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGLView.mm; path = iGaiaCore/Classes/iGaiaGLView.mm; sourceTree = "<group>"; };
+		A446654A161B1B920025601F /* iGaiaRenderListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderListener.h; path = iGaiaCore/Classes/iGaiaRenderListener.h; sourceTree = "<group>"; };
 		A447CA561611FEA400F539C0 /* iGaiaCoreFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreFacade.h; path = iGaiaCore/Classes/iGaiaCoreFacade.h; sourceTree = "<group>"; };
 		A447CA571611FEA400F539C0 /* iGaiaCoreFacade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreFacade.mm; path = iGaiaCore/Classes/iGaiaCoreFacade.mm; sourceTree = "<group>"; };
 		A45F6109160327D2005B10A3 /* libiGaiaCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,25 +110,25 @@
 		A4BF9EF616197A7C00004F34 /* iGaiaLoader_MDL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLoader_MDL.h; path = iGaiaCore/Classes/iGaiaLoader_MDL.h; sourceTree = "<group>"; };
 		A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoader_MDL.mm; path = iGaiaCore/Classes/iGaiaLoader_MDL.mm; sourceTree = "<group>"; };
 		A4BF9EF916197A9000004F34 /* iGaiaLoader_GLSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLoader_GLSL.h; path = iGaiaCore/Classes/iGaiaLoader_GLSL.h; sourceTree = "<group>"; };
-		A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaLoader_GLSL.m; path = iGaiaCore/Classes/iGaiaLoader_GLSL.m; sourceTree = "<group>"; };
+		A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoader_GLSL.mm; path = iGaiaCore/Classes/iGaiaLoader_GLSL.mm; sourceTree = "<group>"; };
 		A4BF9EFC16197AB600004F34 /* iGaiaVertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaVertexBufferObject.h; path = iGaiaCore/Classes/iGaiaVertexBufferObject.h; sourceTree = "<group>"; };
 		A4BF9EFD16197AB600004F34 /* iGaiaVertexBufferObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaVertexBufferObject.mm; path = iGaiaCore/Classes/iGaiaVertexBufferObject.mm; sourceTree = "<group>"; };
 		A4BF9F0216197AE500004F34 /* iGaiaIndexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaIndexBufferObject.h; path = iGaiaCore/Classes/iGaiaIndexBufferObject.h; sourceTree = "<group>"; };
 		A4BF9F0316197AE500004F34 /* iGaiaIndexBufferObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaIndexBufferObject.mm; path = iGaiaCore/Classes/iGaiaIndexBufferObject.mm; sourceTree = "<group>"; };
 		A4BF9F0516197AFC00004F34 /* iGaiaMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaMesh.h; path = iGaiaCore/Classes/iGaiaMesh.h; sourceTree = "<group>"; };
-		A4BF9F0616197AFD00004F34 /* iGaiaMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaMesh.m; path = iGaiaCore/Classes/iGaiaMesh.m; sourceTree = "<group>"; };
+		A4BF9F0616197AFD00004F34 /* iGaiaMesh.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaMesh.mm; path = iGaiaCore/Classes/iGaiaMesh.mm; sourceTree = "<group>"; };
 		A4BF9F0816197BA200004F34 /* iGaiaShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaShader.h; path = iGaiaCore/Classes/iGaiaShader.h; sourceTree = "<group>"; };
-		A4BF9F0916197BA200004F34 /* iGaiaShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaShader.m; path = iGaiaCore/Classes/iGaiaShader.m; sourceTree = "<group>"; };
+		A4BF9F0916197BA200004F34 /* iGaiaShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaShader.mm; path = iGaiaCore/Classes/iGaiaShader.mm; sourceTree = "<group>"; };
 		A4BF9F0B16197BB500004F34 /* iGaiaMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaMaterial.h; path = iGaiaCore/Classes/iGaiaMaterial.h; sourceTree = "<group>"; };
 		A4BF9F0C16197BB500004F34 /* iGaiaMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaMaterial.m; path = iGaiaCore/Classes/iGaiaMaterial.m; sourceTree = "<group>"; };
 		A4BF9F0E16197C0900004F34 /* iGaiaResourceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaResourceMgr.h; path = iGaiaCore/Classes/iGaiaResourceMgr.h; sourceTree = "<group>"; };
-		A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = iGaiaResourceMgr.m; path = iGaiaCore/Classes/iGaiaResourceMgr.m; sourceTree = "<group>"; };
+		A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = iGaiaResourceMgr.mm; path = iGaiaCore/Classes/iGaiaResourceMgr.mm; sourceTree = "<group>"; };
 		A4BF9F1116197C3200004F34 /* iGaiaTextureMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaTextureMgr.h; path = iGaiaCore/Classes/iGaiaTextureMgr.h; sourceTree = "<group>"; };
-		A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaTextureMgr.m; path = iGaiaCore/Classes/iGaiaTextureMgr.m; sourceTree = "<group>"; };
+		A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaTextureMgr.mm; path = iGaiaCore/Classes/iGaiaTextureMgr.mm; sourceTree = "<group>"; };
 		A4BF9F1416197C4600004F34 /* iGaiaMeshMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaMeshMgr.h; path = iGaiaCore/Classes/iGaiaMeshMgr.h; sourceTree = "<group>"; };
-		A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaMeshMgr.m; path = iGaiaCore/Classes/iGaiaMeshMgr.m; sourceTree = "<group>"; };
+		A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaMeshMgr.mm; path = iGaiaCore/Classes/iGaiaMeshMgr.mm; sourceTree = "<group>"; };
 		A4BF9F1716197C6100004F34 /* iGaiaShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaShaderComposite.h; path = iGaiaCore/Classes/iGaiaShaderComposite.h; sourceTree = "<group>"; };
-		A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaShaderComposite.m; path = iGaiaCore/Classes/iGaiaShaderComposite.m; sourceTree = "<group>"; };
+		A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaShaderComposite.mm; path = iGaiaCore/Classes/iGaiaShaderComposite.mm; sourceTree = "<group>"; };
 		A4BF9F1D16197CD200004F34 /* iGaiaObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaObject3d.h; path = iGaiaCore/Classes/iGaiaObject3d.h; sourceTree = "<group>"; };
 		A4BF9F1E16197CD200004F34 /* iGaiaObject3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaObject3d.m; path = iGaiaCore/Classes/iGaiaObject3d.m; sourceTree = "<group>"; };
 		A4BF9F2016197CFC00004F34 /* iGaiaShape3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaShape3d.h; path = iGaiaCore/Classes/iGaiaShape3d.h; sourceTree = "<group>"; };
@@ -110,13 +150,13 @@
 		A4BF9F3B16197E1E00004F34 /* iGaiaSceneMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneMgr.h; path = iGaiaCore/Classes/iGaiaSceneMgr.h; sourceTree = "<group>"; };
 		A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSceneMgr.m; path = iGaiaCore/Classes/iGaiaSceneMgr.m; sourceTree = "<group>"; };
 		A4BF9F3F16197EC300004F34 /* iGaiaRenderOperationWorldSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationWorldSpace.h; path = iGaiaCore/Classes/iGaiaRenderOperationWorldSpace.h; sourceTree = "<group>"; };
-		A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaRenderOperationWorldSpace.m; path = iGaiaCore/Classes/iGaiaRenderOperationWorldSpace.m; sourceTree = "<group>"; };
+		A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderOperationWorldSpace.mm; path = iGaiaCore/Classes/iGaiaRenderOperationWorldSpace.mm; sourceTree = "<group>"; };
 		A4BF9F4216197EDB00004F34 /* iGaiaRenderOperationScreenSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationScreenSpace.h; path = iGaiaCore/Classes/iGaiaRenderOperationScreenSpace.h; sourceTree = "<group>"; };
-		A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaRenderOperationScreenSpace.m; path = iGaiaCore/Classes/iGaiaRenderOperationScreenSpace.m; sourceTree = "<group>"; };
+		A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderOperationScreenSpace.mm; path = iGaiaCore/Classes/iGaiaRenderOperationScreenSpace.mm; sourceTree = "<group>"; };
 		A4BF9F4516197F3800004F34 /* iGaiaRenderOperationOutlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationOutlet.h; path = iGaiaCore/Classes/iGaiaRenderOperationOutlet.h; sourceTree = "<group>"; };
-		A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaRenderOperationOutlet.m; path = iGaiaCore/Classes/iGaiaRenderOperationOutlet.m; sourceTree = "<group>"; };
+		A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderOperationOutlet.mm; path = iGaiaCore/Classes/iGaiaRenderOperationOutlet.mm; sourceTree = "<group>"; };
 		A4BFA0891619A59300004F34 /* iGaiaRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderMgr.h; path = iGaiaCore/Classes/iGaiaRenderMgr.h; sourceTree = "<group>"; };
-		A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaRenderMgr.m; path = iGaiaCore/Classes/iGaiaRenderMgr.m; sourceTree = "<group>"; };
+		A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderMgr.mm; path = iGaiaCore/Classes/iGaiaRenderMgr.mm; sourceTree = "<group>"; };
 		A4BFA1241619D39500004F34 /* _detail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _detail.hpp; sourceTree = "<group>"; };
 		A4BFA1251619D39500004F34 /* _fixes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _fixes.hpp; sourceTree = "<group>"; };
 		A4BFA1261619D39500004F34 /* _swizzle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _swizzle.hpp; sourceTree = "<group>"; };
@@ -359,10 +399,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A44664EF161AED220025601F /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				A44664F1161AED5C0025601F /* ShaderDecal.frag */,
+				A44664F2161AED5C0025601F /* ShaderDecal.vert */,
+				A44664F3161AED5C0025601F /* ShaderGrass.frag */,
+				A44664F4161AED5C0025601F /* ShaderGrass.vert */,
+				A44664F5161AED5C0025601F /* ShaderGrassND.frag */,
+				A44664F6161AED5C0025601F /* ShaderGrassND.vert */,
+				A44664F7161AED5C0025601F /* ShaderLandscape.frag */,
+				A44664F8161AED5C0025601F /* ShaderLandscape.vert */,
+				A44664F9161AED5C0025601F /* ShaderLandscapeEdges.frag */,
+				A44664FA161AED5C0025601F /* ShaderLandscapeEdges.vert */,
+				A44664FB161AED5C0025601F /* ShaderLandscapeND.frag */,
+				A44664FC161AED5C0025601F /* ShaderLandscapeND.vert */,
+				A44664FD161AED5C0025601F /* ShaderModel.frag */,
+				A44664FE161AED5C0025601F /* ShaderModel.vert */,
+				A44664FF161AED5C0025601F /* ShaderModelND.frag */,
+				A4466500161AED5C0025601F /* ShaderModelND.vert */,
+				A4466501161AED5C0025601F /* ShaderOcean.frag */,
+				A4466502161AED5C0025601F /* ShaderOcean.vert */,
+				A4466503161AED5C0025601F /* ShaderParticle.frag */,
+				A4466504161AED5C0025601F /* ShaderParticle.vert */,
+				A4466505161AED5C0025601F /* ShaderParticleND.frag */,
+				A4466506161AED5C0025601F /* ShaderParticleND.vert */,
+				A4466507161AED5C0025601F /* ShaderPostBloomCombine.frag */,
+				A4466508161AED5C0025601F /* ShaderPostBloomCombine.vert */,
+				A4466509161AED5C0025601F /* ShaderPostBloomExtract.frag */,
+				A446650A161AED5C0025601F /* ShaderPostBloomExtract.vert */,
+				A446650B161AED5C0025601F /* ShaderPostBlur.frag */,
+				A446650C161AED5C0025601F /* ShaderPostBlur.vert */,
+				A446650D161AED5C0025601F /* ShaderPostEdgeDetect.frag */,
+				A446650E161AED5C0025601F /* ShaderPostEdgeDetect.vert */,
+				A446650F161AED5C0025601F /* ShaderPostLandscapeDetail.frag */,
+				A4466510161AED5C0025601F /* ShaderPostLandscapeDetail.vert */,
+				A4466511161AED5C0025601F /* ShaderPostPlane.frag */,
+				A4466512161AED5C0025601F /* ShaderPostPlane.vert */,
+				A4466513161AED5C0025601F /* ShaderSkybox.frag */,
+				A4466514161AED5C0025601F /* ShaderSkybox.vert */,
+			);
+			name = Shaders;
+			path = iGaiaCore;
+			sourceTree = "<group>";
+		};
 		A45F60FE160327D1005B10A3 = {
 			isa = PBXGroup;
 			children = (
 				A45F610E160327D2005B10A3 /* iGaiaCore */,
+				A44664EF161AED220025601F /* Shaders */,
 				A4BFA1211619D39500004F34 /* Libs */,
 				A45F610B160327D2005B10A3 /* Frameworks */,
 				A45F610A160327D2005B10A3 /* Products */,
@@ -425,13 +510,13 @@
 				A4BF9EEF16197A0400004F34 /* Loaders */,
 				A4BF9EEE161979FA00004F34 /* Resources */,
 				A4BF9F0E16197C0900004F34 /* iGaiaResourceMgr.h */,
-				A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.m */,
+				A4BF9F0F16197C0900004F34 /* iGaiaResourceMgr.mm */,
 				A4BF9F1116197C3200004F34 /* iGaiaTextureMgr.h */,
-				A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.m */,
+				A4BF9F1216197C3200004F34 /* iGaiaTextureMgr.mm */,
 				A4BF9F1416197C4600004F34 /* iGaiaMeshMgr.h */,
-				A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.m */,
+				A4BF9F1516197C4700004F34 /* iGaiaMeshMgr.mm */,
 				A4BF9F1716197C6100004F34 /* iGaiaShaderComposite.h */,
-				A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.m */,
+				A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.mm */,
 			);
 			name = ResourceSystem;
 			sourceTree = "<group>";
@@ -448,9 +533,9 @@
 				A4BF9F0216197AE500004F34 /* iGaiaIndexBufferObject.h */,
 				A4BF9F0316197AE500004F34 /* iGaiaIndexBufferObject.mm */,
 				A4BF9F0516197AFC00004F34 /* iGaiaMesh.h */,
-				A4BF9F0616197AFD00004F34 /* iGaiaMesh.m */,
+				A4BF9F0616197AFD00004F34 /* iGaiaMesh.mm */,
 				A4BF9F0816197BA200004F34 /* iGaiaShader.h */,
-				A4BF9F0916197BA200004F34 /* iGaiaShader.m */,
+				A4BF9F0916197BA200004F34 /* iGaiaShader.mm */,
 				A4BF9F0B16197BB500004F34 /* iGaiaMaterial.h */,
 				A4BF9F0C16197BB500004F34 /* iGaiaMaterial.m */,
 			);
@@ -466,7 +551,7 @@
 				A4BF9EF616197A7C00004F34 /* iGaiaLoader_MDL.h */,
 				A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */,
 				A4BF9EF916197A9000004F34 /* iGaiaLoader_GLSL.h */,
-				A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.m */,
+				A4BF9EFA16197A9000004F34 /* iGaiaLoader_GLSL.mm */,
 			);
 			name = Loaders;
 			sourceTree = "<group>";
@@ -518,8 +603,11 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9F4816197F3C00004F34 /* Operations */,
+				A446654A161B1B920025601F /* iGaiaRenderListener.h */,
 				A4BFA0891619A59300004F34 /* iGaiaRenderMgr.h */,
-				A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.m */,
+				A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.mm */,
+				A4466547161B1A490025601F /* iGaiaGLView.h */,
+				A4466548161B1A490025601F /* iGaiaGLView.mm */,
 			);
 			name = RenderSystem;
 			sourceTree = "<group>";
@@ -528,11 +616,11 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9F3F16197EC300004F34 /* iGaiaRenderOperationWorldSpace.h */,
-				A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.m */,
+				A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm */,
 				A4BF9F4216197EDB00004F34 /* iGaiaRenderOperationScreenSpace.h */,
-				A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.m */,
+				A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm */,
 				A4BF9F4516197F3800004F34 /* iGaiaRenderOperationOutlet.h */,
-				A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.m */,
+				A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.mm */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -890,16 +978,16 @@
 				A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */,
 				A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */,
 				A4BF9EF816197A7C00004F34 /* iGaiaLoader_MDL.mm in Sources */,
-				A4BF9EFB16197A9000004F34 /* iGaiaLoader_GLSL.m in Sources */,
+				A4BF9EFB16197A9000004F34 /* iGaiaLoader_GLSL.mm in Sources */,
 				A4BF9EFE16197AB600004F34 /* iGaiaVertexBufferObject.mm in Sources */,
 				A4BF9F0416197AE500004F34 /* iGaiaIndexBufferObject.mm in Sources */,
-				A4BF9F0716197AFD00004F34 /* iGaiaMesh.m in Sources */,
-				A4BF9F0A16197BA200004F34 /* iGaiaShader.m in Sources */,
+				A4BF9F0716197AFD00004F34 /* iGaiaMesh.mm in Sources */,
+				A4BF9F0A16197BA200004F34 /* iGaiaShader.mm in Sources */,
 				A4BF9F0D16197BB500004F34 /* iGaiaMaterial.m in Sources */,
-				A4BF9F1016197C0900004F34 /* iGaiaResourceMgr.m in Sources */,
-				A4BF9F1316197C3200004F34 /* iGaiaTextureMgr.m in Sources */,
-				A4BF9F1616197C4700004F34 /* iGaiaMeshMgr.m in Sources */,
-				A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.m in Sources */,
+				A4BF9F1016197C0900004F34 /* iGaiaResourceMgr.mm in Sources */,
+				A4BF9F1316197C3200004F34 /* iGaiaTextureMgr.mm in Sources */,
+				A4BF9F1616197C4700004F34 /* iGaiaMeshMgr.mm in Sources */,
+				A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.mm in Sources */,
 				A4BF9F1F16197CD200004F34 /* iGaiaObject3d.m in Sources */,
 				A4BF9F2216197CFC00004F34 /* iGaiaShape3d.m in Sources */,
 				A4BF9F2516197D1500004F34 /* iGaiaBillboard.m in Sources */,
@@ -910,12 +998,13 @@
 				A4BF9F3716197DC300004F34 /* iGaiaLight.m in Sources */,
 				A4BF9F3A16197DDF00004F34 /* iGaiaBoundBox.m in Sources */,
 				A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.m in Sources */,
-				A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.m in Sources */,
-				A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.m in Sources */,
-				A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.m in Sources */,
-				A4BFA08B1619A59300004F34 /* iGaiaRenderMgr.m in Sources */,
+				A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm in Sources */,
+				A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm in Sources */,
+				A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.mm in Sources */,
+				A4BFA08B1619A59300004F34 /* iGaiaRenderMgr.mm in Sources */,
 				A4BFA2091619D3C600004F34 /* NSData+iGaiaExtension.mm in Sources */,
 				A4BFA20D1619D6D500004F34 /* iGaiaLogger.mm in Sources */,
+				A4466549161B1A490025601F /* iGaiaGLView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

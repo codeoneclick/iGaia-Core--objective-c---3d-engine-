@@ -8,7 +8,13 @@
 
 #import "FirstViewController.h"
 
-@interface FirstViewController ()<iGaiaCoreLoadDispatcherProtocol>
+#import "iGaiaResourceMgr.h"
+#import "iGaiaResourceLoadListener.h"
+#import "iGaiaTexture.h"
+#import "iGaiaMesh.h"
+#import "iGaiaRenderMgr.h"
+
+@interface FirstViewController ()<iGaiaResourceLoadListener>
 
 @end
 
@@ -23,10 +29,31 @@
     }
     return self;
 }
-							
+
+- (void)onResourceLoad:(id<iGaiaResource>)resource
+{
+    if(resource.m_resourceType == E_RESOURCE_TYPE_TEXTURE)
+    {
+        iGaiaTexture*  texture = resource;
+        NSLog(@"%@", texture.m_name);
+    }
+    if(resource.m_resourceType == E_RESOURCE_TYPE_MESH)
+    {
+        iGaiaMesh*  mesh = resource;
+        NSLog(@"%@", mesh.m_name);
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    iGaiaTexture* texture = [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:@"default.pvr" withListener:self];
+    iGaiaMesh* mesh = [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:@"building_01.mdl" withListener:self];
+    NSLog(@"%@", texture);
+    NSLog(@"%@", mesh);
+
+    UIView* glView = [[iGaiaRenderMgr sharedInstance] createViewWithFrame:self.view.frame];
+    [self.view addSubview:glView];
 }
 
 - (void)didReceiveMemoryWarning

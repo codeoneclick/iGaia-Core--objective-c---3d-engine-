@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "iGaiaShader.h"
+
 @interface iGaiaShaderComposite : NSObject
+
++ (iGaiaShaderComposite *)sharedInstance;
+
+- (iGaiaShader*)getShader:(E_SHADER)shader;
 
 @end

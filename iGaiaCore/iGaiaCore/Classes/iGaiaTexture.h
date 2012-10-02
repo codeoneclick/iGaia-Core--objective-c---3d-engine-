@@ -23,6 +23,6 @@ enum E_WRAP_MODE
 @property(nonatomic, readonly) NSUInteger m_height;
 @property(nonatomic, readonly) NSUInteger m_handle;
 
-- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(const std::string &)name withCreationMode:(E_CREATION_MODE)creationMode;
+- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
 
 @end

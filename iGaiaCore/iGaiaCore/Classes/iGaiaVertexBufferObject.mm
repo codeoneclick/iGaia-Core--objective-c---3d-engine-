@@ -7,11 +7,9 @@
 //
 
 #import "iGaiaVertexBufferObject.h"
+#import "iGaiaRenderMgr.h"
 
 @interface iGaiaVertexBufferObject()
-{
-    iGaiaShader* _m_shaderReferences[777];
-}
 
 @property(nonatomic, assign) NSUInteger m_handle;
 @property(nonatomic, assign) iGaiaVertex* m_data;
@@ -66,11 +64,6 @@
     _m_handle = NULL;
 }
 
-- (void)putShaderReference:(iGaiaShader*)shader withRenderMode:(NSUInteger)renderMode
-{
-    _m_shaderReferences[renderMode] = shader;
-}
-
 - (iGaiaVertex*)lock
 {
     return _m_data;
@@ -82,72 +75,72 @@
     glBufferData(GL_ARRAY_BUFFER, sizeof(iGaiaVertex) * _m_numVertexes, _m_data, _m_mode);
 }
 
-- (void)bindWithRenderMode:(NSUInteger)renderMode
+- (void)bind
 {
     glBindBuffer(GL_ARRAY_BUFFER, _m_handle);
-    iGaiaShader* shader = _m_shaderReferences[renderMode];
-    unsigned int bytesPerVertex = 0;
-    int slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_POSITION);
+    iGaiaShader* shader = [iGaiaRenderMgr sharedInstance].m_activeShader;
+    NSUInteger bytesPerVertex = 0;
+    NSInteger slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_POSITION];
     if(slot >= 0)
     {
         glEnableVertexAttribArray(slot);
-        glVertexAttribPointer(slot, 3, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid*)bytesPerVertex);
+        glVertexAttribPointer(slot, 3, GL_FLOAT, GL_FALSE, sizeof(iGaiaVertex), (GLvoid*)bytesPerVertex);
     }
     bytesPerVertex += sizeof(glm::vec3);
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_TEXCOORD);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_TEXCOORD];
     if(slot >= 0)
     {
         glEnableVertexAttribArray(slot);
-        glVertexAttribPointer(slot, 2, GL_FLOAT, GL_FALSE, sizeof(SVertex), (GLvoid*)bytesPerVertex);
+        glVertexAttribPointer(slot, 2, GL_FLOAT, GL_FALSE, sizeof(iGaiaVertex), (GLvoid*)bytesPerVertex);
     }
     bytesPerVertex += sizeof(glm::vec2);
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_NORMAL);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_NORMAL];
     if(slot >= 0)
     {
         glEnableVertexAttribArray(slot);
-        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(SVertex), (GLvoid*)bytesPerVertex);
+        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(iGaiaVertex), (GLvoid*)bytesPerVertex);
     }
     bytesPerVertex += sizeof(glm::u8vec4);
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_TANGENT);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_TANGENT];
     if(slot >= 0)
     {
         glEnableVertexAttribArray(slot);
-        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(SVertex), (GLvoid*)bytesPerVertex);
+        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(iGaiaVertex), (GLvoid*)bytesPerVertex);
     }
     bytesPerVertex += sizeof(glm::u8vec4);
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_COLOR);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_COLOR];
     if(slot >= 0)
     {
         glEnableVertexAttribArray(slot);
-        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(SVertex), (GLvoid*)bytesPerVertex);
+        glVertexAttribPointer(slot, 4, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(iGaiaVertex), (GLvoid*)bytesPerVertex);
     }
 }
 
-- (void)unbindWithRenderMode:(NSUInteger)renderMode
+- (void)unbind
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_handle);
-    CShader* shader = m_shaderReferences[_renderMode];
-    GLint slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, _m_handle);
+    iGaiaShader* shader = [iGaiaRenderMgr sharedInstance].m_activeShader;
+    GLint slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_POSITION];
     if(slot >= 0)
     {
         glDisableVertexAttribArray(slot);
     }
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_TEXCOORD);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_TEXCOORD];
     if(slot >= 0)
     {
         glDisableVertexAttribArray(slot);
     }
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_NORMAL);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_NORMAL];
     if(slot >= 0)
     {
         glDisableVertexAttribArray(slot);
     }
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_TANGENT);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_TANGENT];
     if(slot >= 0)
     {
         glDisableVertexAttribArray(slot);
     }
-    slot = shader->Get_VertexSlot(CShader::E_VERTEX_SLOT_COLOR);
+    slot = [shader getVertexSlotHandle:E_VERTEX_SLOT_COLOR];
     if(slot >= 0)
     {
         glDisableVertexAttribArray(slot);

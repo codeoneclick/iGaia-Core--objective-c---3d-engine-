@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "iGaiaResource.h"
+
+@protocol iGaiaResourceLoadListener;
 @interface iGaiaMeshMgr : NSObject
+
+- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener;
 
 @end

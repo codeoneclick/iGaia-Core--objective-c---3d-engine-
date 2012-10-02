@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <string>
-#import <stdlib.h>
-
 @protocol iGaiaResource, iGaiaResourceLoadListener;
 @protocol iGaiaLoader <NSObject>
 
@@ -23,11 +20,11 @@ enum E_LOAD_STATUS
 };
 
 @property(nonatomic, readonly) E_LOAD_STATUS m_status;
-@property(nonatomic, readonly) std::string m_name;
+@property(nonatomic, readonly) NSString* m_name;
 
 - (void)addEventListener:(id<iGaiaResourceLoadListener>)listener;
 - (void)removeEventListener:(id<iGaiaResourceLoadListener>)listener;
-- (void)parseFileWithName:(const std::string&)name;
+- (void)parseFileWithName:(NSString*)name;
 - (id<iGaiaResource>)commitToVRAM;
 
 @end

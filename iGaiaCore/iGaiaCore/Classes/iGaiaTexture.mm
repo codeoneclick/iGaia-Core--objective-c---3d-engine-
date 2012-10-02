@@ -27,7 +27,7 @@
 @synthesize m_creationMode = _m_creationMode;
 @synthesize m_settings = _m_settings;
 
-- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(const std::string &)name withCreationMode:(E_CREATION_MODE)creationMode;
+- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
 {
     self = [super init];
     if(self)
@@ -40,6 +40,11 @@
         _m_name = name;
     }
     return self;
+}
+
+- (void)unload
+{
+    glDeleteTextures(1, &_m_handle);
 }
 
 - (void)setM_settings:(NSDictionary *)m_settings
@@ -71,11 +76,6 @@
 - (void)decReferenceCount
 {
     _m_referencesCount--;
-}
-
-- (void)unload
-{
-     glDeleteTextures(1, &_m_handle);
 }
 
 @end

@@ -7,9 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "stdlib.h"
-#include <string>
 
+#import "iGaiaResource.h"
+
+@protocol iGaiaResourceLoadListener;
 @interface iGaiaResourceMgr : NSObject
+
++ (iGaiaResourceMgr *)sharedInstance;
+
+- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener;
 
 @end

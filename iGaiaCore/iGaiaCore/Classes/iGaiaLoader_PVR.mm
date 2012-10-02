@@ -16,6 +16,9 @@
 #import <glm/glm.hpp>
 #import <glm/gtc/type_precision.hpp>
 
+#import "stdlib.h"
+#import <string>
+
 #import "NSData+iGaiaExtension.h"
 #import "iGaiaResourceLoadListener.h"
 #import "iGaiaTexture.h"
@@ -25,7 +28,7 @@
 @interface iGaiaLoader_PVR()
 
 @property(nonatomic, readwrite) E_LOAD_STATUS m_status;
-@property(nonatomic, readwrite) std::string m_name;
+@property(nonatomic, readwrite) NSString* m_name;
 @property(nonatomic, strong) NSMutableSet* m_listeners;
 @property(nonatomic, assign) GLenum m_format;
 @property(nonatomic, assign) NSInteger m_bytesPerPixel;
@@ -54,6 +57,7 @@
     if(self)
     {
         _m_status = E_LOAD_STATUS_NONE;
+        _m_listeners = [NSMutableSet new];
     }
     return self;
 }
@@ -72,13 +76,13 @@
     });
 }
 
-- (void)parseFileWithName:(const std::string &)name
+- (void)parseFileWithName:(NSString*)name
 {
     _m_status = E_LOAD_STATUS_PROCESS;
     _m_name = name;
 
     NSString* path = [[NSBundle mainBundle] resourcePath];
-    path = [path stringByAppendingPathComponent:[NSString stringWithCString:name.c_str() encoding:NSUTF8StringEncoding]];
+    path = [path stringByAppendingPathComponent:_m_name];
 
     _m_data = [NSData dataWithContentsOfFile:path];
 
@@ -120,7 +124,7 @@
         _m_size.y = header->dwHeight;
         _m_compressed = YES;
         _m_headerSize = header->dwHeaderSize;
-        iGaiaLog(@"Parse Texture with old pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", [NSString stringWithCString:name.c_str() encoding:NSUTF8StringEncoding], _m_size.x, _m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
+        iGaiaLog(@"Parse Texture with old pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", _m_name, _m_size.x, _m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
         _m_status = E_LOAD_STATUS_DONE;
         return;
     }
@@ -161,7 +165,7 @@
         _m_size.y = header->u32Height;
         _m_compressed = YES;
         _m_headerSize = PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
-        iGaiaLog(@"Parse Texture with new pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", [NSString stringWithCString:name.c_str() encoding:NSUTF8StringEncoding], _m_size.x, _m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
+        iGaiaLog(@"Parse Texture with new pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", _m_name, _m_size.x, _m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
         _m_status = E_LOAD_STATUS_DONE;
     }
 }
