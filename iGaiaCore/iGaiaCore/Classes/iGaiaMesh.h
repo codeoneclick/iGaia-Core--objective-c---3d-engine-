@@ -19,7 +19,12 @@
 @property(nonatomic, readonly) iGaiaIndexBufferObject* m_indexBuffer;
 @property(nonatomic, readonly) glm::vec3 m_maxBound;
 @property(nonatomic, readonly) glm::vec3 m_minBound;
+@property(nonatomic, readonly) NSUInteger m_numVertexes;
+@property(nonatomic, readonly) NSUInteger m_numIndexes;
 
 - (id)initWithVertexBuffer:(iGaiaVertexBufferObject*)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject*)indexBuffer withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+
+- (void)bind;
+- (void)unbind;
 
 @end

@@ -11,6 +11,8 @@
 #import <glm/glm.hpp>
 #import <glm/gtc/type_precision.hpp>
 
+#import "iGaiaTexture.h"
+
 enum E_SHADER
 {
     E_SHADER_LANDSCAPE = 0,
@@ -89,7 +91,7 @@ enum E_TEXTURE_SLOT
 - (void)setVector4:(const glm::vec4&)vector forCustomAttribute:(NSString*)attribute;
 - (void)setFloat:(float)value forAttribute:(E_ATTRIBUTE)attribute;
 - (void)setFloat:(float)value forCustomAttribute:(NSString*)attribute;
-- (void)setTexture:(NSUInteger)handle forSlot:(E_TEXTURE_SLOT)slot;
+- (void)setTexture:(iGaiaTexture*)texture forSlot:(E_TEXTURE_SLOT)slot;
 
 - (void)bind;
 - (void)unbind;

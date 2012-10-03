@@ -13,16 +13,25 @@
 
 @interface iGaiaTexture : NSObject<iGaiaResource>
 
-enum E_WRAP_MODE
+extern const struct iGaiaTextureSettingKeys
 {
-    E_WRAP_MODE_REPEAT = 0,
-    E_WRAP_MODE_CLAMP
-};
+    NSString* wrap;
+
+} iGaiaTextureSettingKeys;
+
+extern const struct iGaiaTextureSettingValues
+{
+    NSString* clamp;
+    NSString* repeat;
+
+} iGaiaTextureSettingValues;
 
 @property(nonatomic, readonly) NSUInteger m_width;
 @property(nonatomic, readonly) NSUInteger m_height;
-@property(nonatomic, readonly) NSUInteger m_handle;
 
 - (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+
+- (void)bind;
+- (void)unbind;
 
 @end

@@ -11,7 +11,20 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+const struct iGaiaTextureSettingKeys iGaiaTextureSettingKeys =
+{
+    .wrap = @"texture.setting.key.wrap",
+};
+
+const struct iGaiaTextureSettingValues iGaiaTextureSettingValues =
+{
+    .clamp = @"texture.setting.value.clamp",
+    .repeat = @"texture.setting.value.repeat",
+};
+
 @interface iGaiaTexture()
+
+@property(nonatomic, assign) NSUInteger m_handle;
 
 @end
 
@@ -49,23 +62,38 @@
 
 - (void)setM_settings:(NSDictionary *)m_settings
 {
+    if(_m_settings == m_settings)
+    {
+        return;
+    }
     
+    _m_settings = m_settings;
+
+    if([_m_settings objectForKey:iGaiaTextureSettingKeys.wrap] != nil)
+    {
+        if([[_m_settings objectForKey:iGaiaTextureSettingKeys.wrap] isEqualToString:iGaiaTextureSettingValues.repeat])
+        {
+            [self bind];
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        }
+        else if([[_m_settings objectForKey:iGaiaTextureSettingKeys.wrap] isEqualToString:iGaiaTextureSettingValues.clamp])
+        {
+            [self bind];
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        }
+    }
 }
 
-- (void)setM_wrapMode:(E_WRAP_MODE)m_wrapMode
+- (void)bind
 {
     glBindTexture(GL_TEXTURE_2D, _m_handle);
-    if(m_wrapMode == E_WRAP_MODE_REPEAT)
-    {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
 
-    }
-    else if(m_wrapMode == E_WRAP_MODE_CLAMP)
-    {
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    }
+- (void)unbind
+{
+    glBindTexture(GL_TEXTURE_2D, NULL);
 }
 
 - (void)incReferenceCount

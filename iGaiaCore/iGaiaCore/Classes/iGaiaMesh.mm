@@ -75,6 +75,28 @@
     return self;
 }
 
+- (NSUInteger)m_numVertexes
+{
+    return _m_vertexBuffer.m_numVertexes;
+}
+
+- (NSUInteger)m_numIndexes
+{
+    return _m_indexBuffer.m_numIndexes;
+}
+
+- (void)bind
+{
+    [_m_vertexBuffer bind];
+    [_m_indexBuffer bind];
+}
+
+- (void)unbind
+{
+    [_m_vertexBuffer unbind];
+    [_m_indexBuffer unbind];
+}
+
 - (void)unload
 {
 
