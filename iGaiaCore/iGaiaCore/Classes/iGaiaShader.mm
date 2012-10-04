@@ -226,13 +226,11 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
 - (void)bind
 {
     glUseProgram(_m_handle);
-    [iGaiaRenderMgr sharedInstance].m_activeShader = self;
 }
 
 - (void)unbind
 {
     glUseProgram(NULL);
-    [iGaiaRenderMgr sharedInstance].m_activeShader = nil;
 }
 
 

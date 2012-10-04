@@ -16,7 +16,7 @@
 
 @interface iGaiaRenderOperationWorldSpace : NSObject
 
-@property(nonatomic, readonly) iGaiaTexture* m_texture;
+@property(nonatomic, readonly) iGaiaTexture* m_externalTexture;
 
 - (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)renderMode withName:(NSString*)name;
 

@@ -14,12 +14,13 @@
 #import "iGaiaLogger.h"
 #import "iGaiaShaderComposite.h"
 
+static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
+
 @interface iGaiaRenderOperationScreenSpace()
 
 @property(nonatomic, assign) GLuint m_frameBufferHandle;
 @property(nonatomic, assign) GLuint m_depthBufferHandle;
 @property(nonatomic, assign) glm::vec2 m_size;
-@property(nonatomic, strong) iGaiaShader* m_shader;
 @property(nonatomic, strong) iGaiaMesh* m_mesh;
 @property(nonatomic, assign) E_RENDER_MODE_SCREEN_SPACE m_renderMode;
 
@@ -29,11 +30,11 @@
 
 @synthesize m_frameBufferHandle = _m_frameBufferHandle;
 @synthesize m_depthBufferHandle = _m_depthBufferHandle;
-@synthesize m_texture = _m_texture;
+@synthesize m_externalTexture = _m_externalTexture;
 @synthesize m_size = _m_size;
-@synthesize m_shader = _m_shader;
 @synthesize m_mesh = _m_mesh;
 @synthesize m_renderMode = _m_renderMode;
+@synthesize m_material = _m_material;
 
 - (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader forRenderMode:(E_RENDER_MODE_SCREEN_SPACE)renderMode withName:(NSString*)name;
 {
@@ -64,7 +65,7 @@
             iGaiaLog(@"Failed init render state");
         }
 
-        _m_texture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
 
         iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
@@ -88,8 +89,8 @@
         indexData[5] = 3;
         [indexBuffer unlock];
 
-        _m_shader = [[iGaiaShaderComposite sharedInstance] getShader:shader];
-
+        _m_material = [iGaiaMaterial new];
+        [_m_material setShader:shader forState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
         _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
 
     }
@@ -103,7 +104,7 @@
     glViewport(0, 0, _m_size.x, _m_size.y);
     glClearColor(0, 0, 0, 1);
 
-    [_m_shader bind];
+    [_m_material bindWithState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
     [_m_mesh.m_vertexBuffer bind];
     [_m_mesh.m_indexBuffer bind];
 }
@@ -117,7 +118,7 @@
 {
     [_m_mesh.m_vertexBuffer unbind];
     [_m_mesh.m_indexBuffer unbind];
-    [_m_shader unbind];
+    [_m_material bindWithState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
 }
 
 @end

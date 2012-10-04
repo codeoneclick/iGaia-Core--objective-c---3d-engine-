@@ -26,7 +26,7 @@
 
 @synthesize m_frameBufferHandle = _m_frameBufferHandle;
 @synthesize m_depthBufferHandle = _m_depthBufferHandle;
-@synthesize m_texture = _m_texture;
+@synthesize m_externalTexture = _m_externalTexture;
 @synthesize m_size = _m_size;
 @synthesize m_listeners = _m_listeners;
 @synthesize m_renderMode = _m_renderMode;
@@ -60,7 +60,7 @@
             iGaiaLog(@"Failed init render state");
         }
 
-        _m_texture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
 
         _m_listeners = [NSMutableSet new];
     }

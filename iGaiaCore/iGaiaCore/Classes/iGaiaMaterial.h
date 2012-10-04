@@ -30,5 +30,16 @@ enum E_RENDER_STATE
 @property(nonatomic, assign) GLenum m_cullFaceMode;
 @property(nonatomic, assign) GLenum m_blendFunctionSource;
 @property(nonatomic, assign) GLenum m_blendFunctionDest;
+@property(nonatomic, readonly) iGaiaShader* m_shader;
+
+- (void)invalidateState:(E_RENDER_STATE)state withValue:(BOOL)value;
+
+- (void)setShader:(E_SHADER)shader forState:(NSUInteger)state;
+- (void)setTexture:(iGaiaTexture*)texture forSlot:(E_TEXTURE_SLOT)slot;
+- (void)setTextureWithName:(NSString*)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap;
+
+- (void)bindWithState:(NSUInteger)state;
+- (void)unbindWithState:(NSUInteger)state;
+
 
 @end

@@ -14,18 +14,24 @@
 
 #import "iGaiaShaderComposite.h"
 #import "iGaiaResourceMgr.h"
+#import "iGaiaRenderMgr.h"
+#import "iGaiaLogger.h"
 
 @interface iGaiaMaterial()<iGaiaResourceLoadListener>
 {
     iGaiaShader* _m_shaders[E_RENDER_MODE_WORLD_SPACE_MAX + E_RENDER_MODE_SCREEN_SPACE_MAX];
-    iGaiaTexture* _m_textures[E_TEXTURE_SLOT_MAX];
+    iGaiaTexture* _m_textures[k_TEXTURES_MAX_COUNT];
     BOOL _m_states[E_RENDER_STATE_MAX];
 }
 
 @end
 
-
 @implementation iGaiaMaterial
+
+@synthesize m_shader = _m_shader;
+@synthesize m_cullFaceMode = _m_cullFaceMode;
+@synthesize m_blendFunctionSource = _m_blendFunctionSource;
+@synthesize m_blendFunctionDest = _m_blendFunctionDest;
 
 - (id)init
 {
@@ -36,7 +42,7 @@
         {
             _m_shaders[i] = nil;
         }
-        for(NSUInteger i = 0; i < E_TEXTURE_SLOT_MAX; ++i)
+        for(NSUInteger i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
         {
             _m_textures[i] = nil;
         }
@@ -44,6 +50,10 @@
     return self;
 }
 
+- (iGaiaShader*)m_shader
+{
+    return [iGaiaRenderMgr sharedInstance].m_activeShader;
+}
 
 - (void)invalidateState:(E_RENDER_STATE)state withValue:(BOOL)value
 {
@@ -85,7 +95,67 @@
 
 - (void)bindWithState:(NSUInteger)state
 {
+    if(_m_shaders[state] == nil)
+    {
+        iGaiaLog(@"State : %i not setted for current material.", state);
+        return;
+    }
 
+    [iGaiaRenderMgr sharedInstance].m_activeShader =  _m_shaders[state];
+    [_m_shaders[state] bind];
+
+    for(NSInteger i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
+    {
+        if(_m_textures[i] != nil)
+        {
+            [_m_shaders[state] setTexture:_m_textures[i] forSlot:(E_TEXTURE_SLOT)i];
+        }
+    }
+
+    if(_m_states[E_RENDER_STATE_DEPTH_TEST])
+    {
+        glEnable(GL_DEPTH_TEST);
+    }
+    else
+    {
+        glDisable(GL_DEPTH_TEST);
+    }
+
+   
+    if(_m_states[E_RENDER_STATE_DEPTH_MASK])
+    {
+        glDepthMask(GL_TRUE);
+    }
+    else
+    {
+        glDepthMask(GL_FALSE);
+    }
+
+    if(_m_states[E_RENDER_STATE_CULL_MODE])
+    {
+        glEnable(GL_CULL_FACE);
+        glCullFace(_m_cullFaceMode);
+    }
+    else
+    {
+        glDisable(GL_CULL_FACE);
+    }
+
+    if(_m_states[E_RENDER_STATE_BLEND_MODE])
+    {
+        glEnable(GL_BLEND);
+        glBlendFunc(_m_blendFunctionSource, _m_blendFunctionDest);
+    }
+    else
+    {
+        glDisable(GL_BLEND);
+    }
+}
+
+- (void)unbindWithState:(NSUInteger)state
+{
+    [_m_shaders[state] unbind];
+    [[iGaiaRenderMgr sharedInstance] setM_activeShader:nil];
 }
 
 @end

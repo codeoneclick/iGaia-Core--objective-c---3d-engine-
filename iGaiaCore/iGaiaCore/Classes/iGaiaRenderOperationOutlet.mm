@@ -15,12 +15,13 @@
 
 #import "iGaiaLogger.h"
 
+static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
+
 @interface iGaiaRenderOperationOutlet()
 
 @property(nonatomic, assign) GLuint m_frameBufferHandle;
 @property(nonatomic, assign) GLuint m_renderBufferHandle;
 @property(nonatomic, assign) glm::vec2 m_size;
-@property(nonatomic, strong) iGaiaShader* m_shader;
 @property(nonatomic, strong) iGaiaMesh* m_mesh;
 
 @end
@@ -30,9 +31,8 @@
 @synthesize m_frameBufferHandle = _m_frameBufferHandle;
 @synthesize m_renderBufferHandle = _m_renderBufferHandle;
 @synthesize m_size = _m_size;
-@synthesize m_shader = _m_shader;
 @synthesize m_mesh = _m_mesh;
-@synthesize m_outletTexture = _m_outletTexture;
+@synthesize m_material = _m_material;
 
 - (id)initWithSize:(glm::vec2)size withShaderName:(E_SHADER)shader withFrameBufferHandle:(NSUInteger)frameBufferHandle withRenderBufferHandle:(NSUInteger)renderBufferHandle;
 {
@@ -65,7 +65,8 @@
         indexData[5] = 3;
         [indexBuffer unlock];
 
-        _m_shader = [[iGaiaShaderComposite sharedInstance] getShader:shader];
+        _m_material = [iGaiaMaterial new];
+        [_m_material setShader:shader forState:k_RENDER_OPERATION_OUTLET_MODE];
         _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"render.operation.outlet" withCreationMode:E_CREATION_MODE_CUSTOM];
     }
     return self;
@@ -79,8 +80,7 @@
     glClearColor(0, 0, 0, 1);
     glBindRenderbuffer(GL_RENDERBUFFER, _m_renderBufferHandle);
 
-    [_m_shader bind];
-    [_m_shader setTexture:_m_outletTexture.m_handle forSlot:E_TEXTURE_SLOT_01];
+    [_m_material bindWithState:k_RENDER_OPERATION_OUTLET_MODE];
     [_m_mesh.m_vertexBuffer bind];
     [_m_mesh.m_indexBuffer bind];
 }
@@ -94,13 +94,7 @@
 {
     [_m_mesh.m_vertexBuffer unbind];
     [_m_mesh.m_indexBuffer unbind];
-    [_m_shader unbind];
-
-    GLenum error = glGetError();
-    if (error != GL_NO_ERROR)
-    {
-        iGaiaLog(@"GL error -> %i", error);
-    }
+    [_m_material unbindWithState:k_RENDER_OPERATION_OUTLET_MODE];
 }
 
 @end

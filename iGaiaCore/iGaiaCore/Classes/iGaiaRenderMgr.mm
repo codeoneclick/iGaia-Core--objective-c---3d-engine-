@@ -15,6 +15,7 @@
 #import "iGaiaRenderOperationWorldSpace.h"
 #import "iGaiaRenderOperationScreenSpace.h"
 #import "iGaiaRenderOperationOutlet.h"
+#import "iGaiaLogger.h"
 
 @interface iGaiaRenderMgr()
 {
@@ -74,7 +75,7 @@
         [_m_worldSpaceOperations[i] bind];
         [_m_worldSpaceOperations[i] draw];
         [_m_worldSpaceOperations[i] unbind];
-        fakeTexture = _m_worldSpaceOperations[i].m_texture;
+        fakeTexture = _m_worldSpaceOperations[i].m_externalTexture;
     }
 
     for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
@@ -84,12 +85,18 @@
         [_m_screenSpaceOperations[i] unbind];
     }
 
-    _m_outletOperation.m_outletTexture = fakeTexture;
+    [_m_outletOperation.m_material setTexture:fakeTexture forSlot:E_TEXTURE_SLOT_01];
     [_m_outletOperation bind];
     [_m_outletOperation draw];
     [_m_outletOperation unbind];
 
     [_m_view.m_context presentRenderbuffer:GL_RENDERBUFFER];
+
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR)
+    {
+        iGaiaLog(@"GL error -> %i", error);
+    }
 }
 
 @end
