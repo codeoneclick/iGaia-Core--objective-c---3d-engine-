@@ -45,14 +45,14 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
 
         iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
-        vertexData[0].m_position = glm::vec3(-1.0f,-1.0f,0.0f);
-        vertexData[0].m_texcoord = glm::vec2(0.0f,0.0f);
-        vertexData[1].m_position = glm::vec3(-1.0f,1.0f,0.0f);
-        vertexData[1].m_texcoord = glm::vec2(0.0f,1.0f);
-        vertexData[2].m_position = glm::vec3(1.0f,-1.0f,0.0f);
-        vertexData[2].m_texcoord = glm::vec2(1.0f,0.0f);
-        vertexData[3].m_position = glm::vec3(1.0f,1.0f,0.0f);
-        vertexData[3].m_texcoord = glm::vec2(1.0f,1.0f);
+        vertexData[0].m_position = glm::vec3(-1.0f, -1.0f, 0.0f);
+        vertexData[0].m_texcoord = glm::vec2(0.0f, 0.0f);
+        vertexData[1].m_position = glm::vec3(-1.0f, 1.0f, 0.0f);
+        vertexData[1].m_texcoord = glm::vec2(0.0f, 1.0f);
+        vertexData[2].m_position = glm::vec3(1.0f, -1.0f, 0.0f);
+        vertexData[2].m_texcoord = glm::vec2(1.0f, 0.0f);
+        vertexData[3].m_position = glm::vec3(1.0f, 1.0f, 0.0f);
+        vertexData[3].m_texcoord = glm::vec2(1.0f, 1.0f);
         [vertexBuffer unlock];
 
         iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:6 withMode:GL_STATIC_DRAW];
@@ -66,7 +66,16 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
         [indexBuffer unlock];
 
         _m_material = [iGaiaMaterial new];
-        [_m_material setShader:shader forState:k_RENDER_OPERATION_OUTLET_MODE];
+        [_m_material setShader:shader forMode:k_RENDER_OPERATION_OUTLET_MODE];
+        
+        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
+        [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
+        [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:NO];
+        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:NO];
+        _m_material.m_cullFaceMode = GL_FRONT;
+        _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
+        _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
+        
         _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"render.operation.outlet" withCreationMode:E_CREATION_MODE_CUSTOM];
     }
     return self;
@@ -74,27 +83,27 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
 
 - (void)bind;
 {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
-    glViewport(0, 0, _m_size.x, _m_size.y);
-    glClearColor(0, 0, 0, 1);
     glBindRenderbuffer(GL_RENDERBUFFER, _m_renderBufferHandle);
+    glViewport(0, 0, _m_size.x, _m_size.y);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    [_m_material bindWithState:k_RENDER_OPERATION_OUTLET_MODE];
+    [_m_material bindWithMode:k_RENDER_OPERATION_OUTLET_MODE];
     [_m_mesh.m_vertexBuffer bind];
     [_m_mesh.m_indexBuffer bind];
 }
 
 - (void)draw;
 {
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_indexBuffer.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
+    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
 }
 
 - (void)unbind;
 {
     [_m_mesh.m_vertexBuffer unbind];
     [_m_mesh.m_indexBuffer unbind];
-    [_m_material unbindWithState:k_RENDER_OPERATION_OUTLET_MODE];
+    [_m_material unbindWithMode:k_RENDER_OPERATION_OUTLET_MODE];
 }
 
 @end

@@ -15,7 +15,7 @@
 #import <glm/gtc/type_precision.hpp>
 
 #import "NSData+iGaiaExtension.h"
-#import "iGaiaResourceLoadListener.h"
+#import "iGaiaLoadCallback.h"
 #import "iGaiaMesh.h"
 
 @interface iGaiaLoader_MDL()
@@ -47,14 +47,14 @@
     return self;
 }
 
-- (void)addEventListener:(id<iGaiaResourceLoadListener>)listener
+- (void)addEventListener:(id<iGaiaLoadCallback>)listener
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_m_listeners addObject:listener];
     });
 }
 
-- (void)removeEventListener:(id<iGaiaResourceLoadListener>)listener
+- (void)removeEventListener:(id<iGaiaLoadCallback>)listener
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_m_listeners removeObject:listener];
@@ -124,10 +124,10 @@
 
     iGaiaMesh* mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:_m_name withCreationMode:E_CREATION_MODE_NATIVE];
 
-    for(id<iGaiaResourceLoadListener> listener in _m_listeners)
+    for(id<iGaiaLoadCallback> listener in _m_listeners)
     {
         [mesh incReferenceCount];
-        [listener onResourceLoad:mesh];
+        [listener onLoad:mesh];
     }
     [_m_listeners removeAllObjects];
     return mesh;

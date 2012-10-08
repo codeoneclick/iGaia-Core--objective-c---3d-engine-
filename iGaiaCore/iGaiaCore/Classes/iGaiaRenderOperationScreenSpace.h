@@ -12,14 +12,14 @@
 #import <glm/gtc/type_precision.hpp>
 
 #import "iGaiaMaterial.h"
-#import "iGaiaRenderListener.h"
+#import "iGaiaRenderCallback.h"
 
 @interface iGaiaRenderOperationScreenSpace : NSObject
 
 @property(nonatomic, readonly) iGaiaTexture* m_externalTexture;
 @property(nonatomic, readonly) iGaiaMaterial* m_material;
 
-- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader forRenderMode:(E_RENDER_MODE_SCREEN_SPACE)renderMode withName:(NSString*)name;
+- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader withName:(NSString*)name;
 
 - (void)bind;
 - (void)unbind;

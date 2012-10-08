@@ -1,5 +1,5 @@
 //
-//  iGaiaResourceLoadListener.h
+//  iGaiaLoadCallback.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/1/12.
@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol iGaiaResource;
-@protocol iGaiaResourceLoadListener <NSObject>
+@protocol iGaiaLoadCallback <NSObject>
 
-- (void)onResourceLoad:(id<iGaiaResource>)resource;
+- (void)onLoad:(id<iGaiaResource>)resource;
 
 @end

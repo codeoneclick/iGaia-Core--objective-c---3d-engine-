@@ -12,7 +12,7 @@
 #import <glm/gtc/type_precision.hpp>
 
 #import "iGaiaMaterial.h"
-#import "iGaiaRenderListener.h"
+#import "iGaiaRenderCallback.h"
 
 @interface iGaiaRenderOperationOutlet : NSObject
 

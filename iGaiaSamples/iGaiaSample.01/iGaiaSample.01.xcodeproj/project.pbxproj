@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15AD3F0E1623497A004CB184 /* skydome.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F0D1623497A004CB184 /* skydome.pvr */; };
+		15AD3F1D16236879004CB184 /* building_02.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1816236879004CB184 /* building_02.mdl */; };
+		15AD3F1E16236879004CB184 /* building_03.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1916236879004CB184 /* building_03.mdl */; };
+		15AD3F1F16236879004CB184 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1A16236879004CB184 /* building_04.mdl */; };
+		15AD3F2016236879004CB184 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1B16236879004CB184 /* building_05.mdl */; };
+		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
 		A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF476160B6FE4000D6A0A /* Foundation.framework */; };
@@ -15,7 +21,7 @@
 		A4ADF481160B6FE4000D6A0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF480160B6FE4000D6A0A /* main.m */; };
 		A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4EB160B70E4000D6A0A /* libiGaiaCore.a */; };
 		A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */; };
-		A4D1F071160C43D7005307F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06A160C43D7005307F4 /* AppDelegate.m */; };
+		A4D1F071160C43D7005307F4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06A160C43D7005307F4 /* AppDelegate.mm */; };
 		A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06C160C43D7005307F4 /* FirstViewController.mm */; };
 		A4D1F073160C43D7005307F4 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F06D160C43D7005307F4 /* FirstViewController.xib */; };
 		A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06F160C43D7005307F4 /* SecondViewController.m */; };
@@ -49,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15AD3F0D1623497A004CB184 /* skydome.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = skydome.pvr; sourceTree = "<group>"; };
+		15AD3F1816236879004CB184 /* building_02.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_02.mdl; sourceTree = "<group>"; };
+		15AD3F1916236879004CB184 /* building_03.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_03.mdl; sourceTree = "<group>"; };
+		15AD3F1A16236879004CB184 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
+		15AD3F1B16236879004CB184 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
+		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ADF474160B6FE4000D6A0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -61,7 +73,7 @@
 		A4ADF4CC160B70E3000D6A0A /* iGaiaCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCore.xcodeproj; path = ../../iGaiaCore/iGaiaCore.xcodeproj; sourceTree = "<group>"; };
 		A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A4D1F069160C43D7005307F4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A4D1F06A160C43D7005307F4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A4D1F06A160C43D7005307F4 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A4D1F06B160C43D7005307F4 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		A4D1F06C160C43D7005307F4 /* FirstViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FirstViewController.mm; sourceTree = "<group>"; };
 		A4D1F06D160C43D7005307F4 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
@@ -159,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D1F069160C43D7005307F4 /* AppDelegate.h */,
-				A4D1F06A160C43D7005307F4 /* AppDelegate.m */,
+				A4D1F06A160C43D7005307F4 /* AppDelegate.mm */,
 				A4D1F06B160C43D7005307F4 /* FirstViewController.h */,
 				A4D1F06C160C43D7005307F4 /* FirstViewController.mm */,
 				A4D1F06D160C43D7005307F4 /* FirstViewController.xib */,
@@ -173,6 +185,12 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				15AD3F1816236879004CB184 /* building_02.mdl */,
+				15AD3F1916236879004CB184 /* building_03.mdl */,
+				15AD3F1A16236879004CB184 /* building_04.mdl */,
+				15AD3F1B16236879004CB184 /* building_05.mdl */,
+				15AD3F1C16236879004CB184 /* building_06.mdl */,
+				15AD3F0D1623497A004CB184 /* skydome.pvr */,
 				A4D1F0FA160C7231005307F4 /* building_01.mdl */,
 				A4D1F0F4160C6B8B005307F4 /* default.pvr */,
 				A4D1F077160C43FC005307F4 /* Default-568h@2x.png */,
@@ -267,6 +285,12 @@
 				A4D1F084160C43FC005307F4 /* second@2x.png in Resources */,
 				A4D1F0F5160C6B8B005307F4 /* default.pvr in Resources */,
 				A4D1F0FB160C7231005307F4 /* building_01.mdl in Resources */,
+				15AD3F0E1623497A004CB184 /* skydome.pvr in Resources */,
+				15AD3F1D16236879004CB184 /* building_02.mdl in Resources */,
+				15AD3F1E16236879004CB184 /* building_03.mdl in Resources */,
+				15AD3F1F16236879004CB184 /* building_04.mdl in Resources */,
+				15AD3F2016236879004CB184 /* building_05.mdl in Resources */,
+				15AD3F2116236879004CB184 /* building_06.mdl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4ADF481160B6FE4000D6A0A /* main.m in Sources */,
-				A4D1F071160C43D7005307F4 /* AppDelegate.m in Sources */,
+				A4D1F071160C43D7005307F4 /* AppDelegate.mm in Sources */,
 				A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */,
 				A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */,
 			);
@@ -358,6 +382,7 @@
 		A4ADF4A3160B6FE5000D6A0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
@@ -368,6 +393,7 @@
 					"-v",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,6 +401,8 @@
 		A4ADF4A4160B6FE5000D6A0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
@@ -385,6 +413,8 @@
 					"-v",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

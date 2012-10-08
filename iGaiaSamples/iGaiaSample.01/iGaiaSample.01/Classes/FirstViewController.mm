@@ -8,14 +8,14 @@
 
 #import "FirstViewController.h"
 
-#import "iGaiaResourceMgr.h"
-#import "iGaiaResourceLoadListener.h"
-#import "iGaiaTexture.h"
-#import "iGaiaMesh.h"
 #import "iGaiaRenderMgr.h"
+#import "iGaiaSceneMgr.h"
+#import "iGaiaLoop.h"
 
-@interface FirstViewController ()<iGaiaResourceLoadListener>
-
+@interface FirstViewController ()<iGaiaLoopCallback>
+{
+    iGaiaCamera* _m_camera;
+}
 @end
 
 @implementation FirstViewController
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (void)onResourceLoad:(id<iGaiaResource>)resource
+- (void)onLoad:(id<iGaiaResource>)resource
 {
     if(resource.m_resourceType == E_RESOURCE_TYPE_TEXTURE)
     {
@@ -47,13 +47,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    iGaiaTexture* texture = [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:@"default.pvr" withListener:self];
-    iGaiaMesh* mesh = [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:@"building_01.mdl" withListener:self];
-    NSLog(@"%@", texture);
-    NSLog(@"%@", mesh);
 
     UIView* glView = [[iGaiaRenderMgr sharedInstance] createViewWithFrame:self.view.frame];
     [self.view addSubview:glView];
+    
+    _m_camera = [[iGaiaSceneMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
+    _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
+    
+    iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(-10.0f, 0.0f, 0.0f);
+   
+    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_02.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(0.0f, 0.0f, -10.0f);
+    
+    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_03.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(-15.0f, 0.0f, -15.0f);
+    
+    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_04.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(10.0f, 0.0f, 0.0f);
+    
+    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_05.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(0.0f, 0.0f, 10.0f);
+    
+    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_06.mdl"];
+    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);
+    
+    iGaiaSkyDome* skydome = [[iGaiaSceneMgr sharedInstance] createSkyDome];
+    [skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
+    
+    [[iGaiaLoop sharedInstance] addEventListener:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +97,11 @@
     [super didReceiveMemoryWarning];
 }
 
-
+- (void)onUpdate
+{
+    static float angle = 0.0f;
+    angle += 0.01f;
+    _m_camera.m_rotation = angle;
+}
 
 @end

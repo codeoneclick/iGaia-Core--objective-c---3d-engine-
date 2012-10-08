@@ -27,8 +27,10 @@ enum E_RENDER_MODE_SCREEN_SPACE
     E_RENDER_MODE_SCREEN_SPACE_MAX
 };
 
-@protocol iGaiaRenderListener <NSObject>
+@protocol iGaiaRenderCallback <NSObject>
 
-- (void)onRenderWithWorldSpaceRenderMode:(E_RENDER_MODE_WORLD_SPACE)renderMode;
+@property(nonatomic, assign) NSUInteger m_priority;
+
+- (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
 
 @end

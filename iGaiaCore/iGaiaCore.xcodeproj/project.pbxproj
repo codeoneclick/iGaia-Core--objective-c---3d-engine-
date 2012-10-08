@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15835CB6162184800074FB90 /* iGaiaObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15835CB5162184800074FB90 /* iGaiaObject3d.mm */; };
+		15835CBE1621E5EB0074FB90 /* iGaiaLoop.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15835CBD1621E5EB0074FB90 /* iGaiaLoop.mm */; };
 		A4466549161B1A490025601F /* iGaiaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLView.mm */; };
 		A447CA581611FEA400F539C0 /* iGaiaCoreFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447CA571611FEA400F539C0 /* iGaiaCoreFacade.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
@@ -26,13 +28,13 @@
 		A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F1816197C6100004F34 /* iGaiaShaderComposite.mm */; };
 		A4BF9F2216197CFC00004F34 /* iGaiaShape3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2116197CFC00004F34 /* iGaiaShape3d.mm */; };
 		A4BF9F2516197D1500004F34 /* iGaiaBillboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2416197D1500004F34 /* iGaiaBillboard.m */; };
-		A4BF9F2816197D3A00004F34 /* iGaiaOcean.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2716197D3A00004F34 /* iGaiaOcean.m */; };
-		A4BF9F2B16197D6200004F34 /* iGaiaSkyDome.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.m */; };
-		A4BF9F3116197D9400004F34 /* iGaiaCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3016197D9400004F34 /* iGaiaCamera.m */; };
-		A4BF9F3416197DB100004F34 /* iGaiaFrustum.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3316197DB100004F34 /* iGaiaFrustum.m */; };
-		A4BF9F3716197DC300004F34 /* iGaiaLight.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3616197DC300004F34 /* iGaiaLight.m */; };
+		A4BF9F2816197D3A00004F34 /* iGaiaOcean.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2716197D3A00004F34 /* iGaiaOcean.mm */; };
+		A4BF9F2B16197D6200004F34 /* iGaiaSkyDome.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.mm */; };
+		A4BF9F3116197D9400004F34 /* iGaiaCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3016197D9400004F34 /* iGaiaCamera.mm */; };
+		A4BF9F3416197DB100004F34 /* iGaiaFrustum.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3316197DB100004F34 /* iGaiaFrustum.mm */; };
+		A4BF9F3716197DC300004F34 /* iGaiaLight.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3616197DC300004F34 /* iGaiaLight.mm */; };
 		A4BF9F3A16197DDF00004F34 /* iGaiaBoundBox.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3916197DDF00004F34 /* iGaiaBoundBox.m */; };
-		A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.m */; };
+		A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.mm */; };
 		A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm */; };
 		A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4316197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm */; };
 		A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9F4616197F3800004F34 /* iGaiaRenderOperationOutlet.mm */; };
@@ -54,6 +56,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15835CB5162184800074FB90 /* iGaiaObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaObject3d.mm; path = iGaiaCore/Classes/iGaiaObject3d.mm; sourceTree = "<group>"; };
+		15835CBC1621E5EB0074FB90 /* iGaiaLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLoop.h; path = iGaiaCore/Classes/iGaiaLoop.h; sourceTree = "<group>"; };
+		15835CBD1621E5EB0074FB90 /* iGaiaLoop.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoop.mm; path = iGaiaCore/Classes/iGaiaLoop.mm; sourceTree = "<group>"; };
+		15835CBF1621E6180074FB90 /* iGaiaLoopCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaLoopCallback.h; path = iGaiaCore/Classes/iGaiaLoopCallback.h; sourceTree = "<group>"; };
+		15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaUpdateCallback.h; path = iGaiaCore/Classes/iGaiaUpdateCallback.h; sourceTree = "<group>"; };
 		A44664F1161AED5C0025601F /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
 		A44664F2161AED5C0025601F /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.vert; path = Shaders/ShaderDecal.vert; sourceTree = "<group>"; };
 		A44664F3161AED5C0025601F /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.frag; path = Shaders/ShaderGrass.frag; sourceTree = "<group>"; };
@@ -92,7 +99,7 @@
 		A4466514161AED5C0025601F /* ShaderSkybox.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderSkybox.vert; path = Shaders/ShaderSkybox.vert; sourceTree = "<group>"; };
 		A4466547161B1A490025601F /* iGaiaGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGLView.h; path = iGaiaCore/Classes/iGaiaGLView.h; sourceTree = "<group>"; };
 		A4466548161B1A490025601F /* iGaiaGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGLView.mm; path = iGaiaCore/Classes/iGaiaGLView.mm; sourceTree = "<group>"; };
-		A446654A161B1B920025601F /* iGaiaRenderListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderListener.h; path = iGaiaCore/Classes/iGaiaRenderListener.h; sourceTree = "<group>"; };
+		A446654A161B1B920025601F /* iGaiaRenderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderCallback.h; path = iGaiaCore/Classes/iGaiaRenderCallback.h; sourceTree = "<group>"; };
 		A447CA561611FEA400F539C0 /* iGaiaCoreFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCoreFacade.h; path = iGaiaCore/Classes/iGaiaCoreFacade.h; sourceTree = "<group>"; };
 		A447CA571611FEA400F539C0 /* iGaiaCoreFacade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCoreFacade.mm; path = iGaiaCore/Classes/iGaiaCoreFacade.mm; sourceTree = "<group>"; };
 		A45F6109160327D2005B10A3 /* libiGaiaCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiGaiaCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,19 +141,19 @@
 		A4BF9F2316197D1500004F34 /* iGaiaBillboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaBillboard.h; path = iGaiaCore/Classes/iGaiaBillboard.h; sourceTree = "<group>"; };
 		A4BF9F2416197D1500004F34 /* iGaiaBillboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaBillboard.m; path = iGaiaCore/Classes/iGaiaBillboard.m; sourceTree = "<group>"; };
 		A4BF9F2616197D3A00004F34 /* iGaiaOcean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaOcean.h; path = iGaiaCore/Classes/iGaiaOcean.h; sourceTree = "<group>"; };
-		A4BF9F2716197D3A00004F34 /* iGaiaOcean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaOcean.m; path = iGaiaCore/Classes/iGaiaOcean.m; sourceTree = "<group>"; };
+		A4BF9F2716197D3A00004F34 /* iGaiaOcean.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaOcean.mm; path = iGaiaCore/Classes/iGaiaOcean.mm; sourceTree = "<group>"; };
 		A4BF9F2916197D6200004F34 /* iGaiaSkyDome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSkyDome.h; path = iGaiaCore/Classes/iGaiaSkyDome.h; sourceTree = "<group>"; };
-		A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSkyDome.m; path = iGaiaCore/Classes/iGaiaSkyDome.m; sourceTree = "<group>"; };
+		A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSkyDome.mm; path = iGaiaCore/Classes/iGaiaSkyDome.mm; sourceTree = "<group>"; };
 		A4BF9F2F16197D9400004F34 /* iGaiaCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCamera.h; path = iGaiaCore/Classes/iGaiaCamera.h; sourceTree = "<group>"; };
-		A4BF9F3016197D9400004F34 /* iGaiaCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaCamera.m; path = iGaiaCore/Classes/iGaiaCamera.m; sourceTree = "<group>"; };
+		A4BF9F3016197D9400004F34 /* iGaiaCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCamera.mm; path = iGaiaCore/Classes/iGaiaCamera.mm; sourceTree = "<group>"; };
 		A4BF9F3216197DB100004F34 /* iGaiaFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaFrustum.h; path = iGaiaCore/Classes/iGaiaFrustum.h; sourceTree = "<group>"; };
-		A4BF9F3316197DB100004F34 /* iGaiaFrustum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaFrustum.m; path = iGaiaCore/Classes/iGaiaFrustum.m; sourceTree = "<group>"; };
+		A4BF9F3316197DB100004F34 /* iGaiaFrustum.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaFrustum.mm; path = iGaiaCore/Classes/iGaiaFrustum.mm; sourceTree = "<group>"; };
 		A4BF9F3516197DC300004F34 /* iGaiaLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLight.h; path = iGaiaCore/Classes/iGaiaLight.h; sourceTree = "<group>"; };
-		A4BF9F3616197DC300004F34 /* iGaiaLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaLight.m; path = iGaiaCore/Classes/iGaiaLight.m; sourceTree = "<group>"; };
+		A4BF9F3616197DC300004F34 /* iGaiaLight.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLight.mm; path = iGaiaCore/Classes/iGaiaLight.mm; sourceTree = "<group>"; };
 		A4BF9F3816197DDF00004F34 /* iGaiaBoundBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaBoundBox.h; path = iGaiaCore/Classes/iGaiaBoundBox.h; sourceTree = "<group>"; };
 		A4BF9F3916197DDF00004F34 /* iGaiaBoundBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaBoundBox.m; path = iGaiaCore/Classes/iGaiaBoundBox.m; sourceTree = "<group>"; };
 		A4BF9F3B16197E1E00004F34 /* iGaiaSceneMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneMgr.h; path = iGaiaCore/Classes/iGaiaSceneMgr.h; sourceTree = "<group>"; };
-		A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSceneMgr.m; path = iGaiaCore/Classes/iGaiaSceneMgr.m; sourceTree = "<group>"; };
+		A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSceneMgr.mm; path = iGaiaCore/Classes/iGaiaSceneMgr.mm; sourceTree = "<group>"; };
 		A4BF9F3F16197EC300004F34 /* iGaiaRenderOperationWorldSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationWorldSpace.h; path = iGaiaCore/Classes/iGaiaRenderOperationWorldSpace.h; sourceTree = "<group>"; };
 		A4BF9F4016197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderOperationWorldSpace.mm; path = iGaiaCore/Classes/iGaiaRenderOperationWorldSpace.mm; sourceTree = "<group>"; };
 		A4BF9F4216197EDB00004F34 /* iGaiaRenderOperationScreenSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationScreenSpace.h; path = iGaiaCore/Classes/iGaiaRenderOperationScreenSpace.h; sourceTree = "<group>"; };
@@ -382,7 +389,7 @@
 		A4BFA2081619D3C600004F34 /* NSData+iGaiaExtension.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSData+iGaiaExtension.mm"; path = "iGaiaCore/Classes/NSData+iGaiaExtension.mm"; sourceTree = "<group>"; };
 		A4BFA20B1619D6D500004F34 /* iGaiaLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLogger.h; path = iGaiaCore/Classes/iGaiaLogger.h; sourceTree = "<group>"; };
 		A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLogger.mm; path = iGaiaCore/Classes/iGaiaLogger.mm; sourceTree = "<group>"; };
-		A4BFA2121619DB6E00004F34 /* iGaiaResourceLoadListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaResourceLoadListener.h; path = iGaiaCore/Classes/iGaiaResourceLoadListener.h; sourceTree = "<group>"; };
+		A4BFA2121619DB6E00004F34 /* iGaiaLoadCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaLoadCallback.h; path = iGaiaCore/Classes/iGaiaLoadCallback.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +404,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15835CC01621F11D0074FB90 /* Callbacks */ = {
+			isa = PBXGroup;
+			children = (
+				15835CBF1621E6180074FB90 /* iGaiaLoopCallback.h */,
+				A446654A161B1B920025601F /* iGaiaRenderCallback.h */,
+				A4BFA2121619DB6E00004F34 /* iGaiaLoadCallback.h */,
+				15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */,
+			);
+			name = Callbacks;
+			sourceTree = "<group>";
+		};
 		A44664EF161AED220025601F /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +506,7 @@
 		A45F611E16032860005B10A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				15835CC01621F11D0074FB90 /* Callbacks */,
 				A4BFA20A1619D6BC00004F34 /* Common */,
 				A4BF9F3E16197E2200004F34 /* RenderSystem */,
 				A4BF9F1A16197C8E00004F34 /* SceneSystem */,
@@ -523,7 +542,6 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9EE41619773D00004F34 /* iGaiaResource.h */,
-				A4BFA2121619DB6E00004F34 /* iGaiaResourceLoadListener.h */,
 				A4BF9EE5161978AF00004F34 /* iGaiaTexture.h */,
 				A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */,
 				A4BF9EFC16197AB600004F34 /* iGaiaVertexBufferObject.h */,
@@ -560,7 +578,7 @@
 				A4BF9F1C16197CA900004F34 /* Support */,
 				A4BF9F1B16197CA100004F34 /* Objects */,
 				A4BF9F3B16197E1E00004F34 /* iGaiaSceneMgr.h */,
-				A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.m */,
+				A4BF9F3C16197E1E00004F34 /* iGaiaSceneMgr.mm */,
 			);
 			name = SceneSystem;
 			sourceTree = "<group>";
@@ -569,14 +587,15 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9F1D16197CD200004F34 /* iGaiaObject3d.h */,
+				15835CB5162184800074FB90 /* iGaiaObject3d.mm */,
 				A4BF9F2016197CFC00004F34 /* iGaiaShape3d.h */,
 				A4BF9F2116197CFC00004F34 /* iGaiaShape3d.mm */,
 				A4BF9F2316197D1500004F34 /* iGaiaBillboard.h */,
 				A4BF9F2416197D1500004F34 /* iGaiaBillboard.m */,
 				A4BF9F2616197D3A00004F34 /* iGaiaOcean.h */,
-				A4BF9F2716197D3A00004F34 /* iGaiaOcean.m */,
+				A4BF9F2716197D3A00004F34 /* iGaiaOcean.mm */,
 				A4BF9F2916197D6200004F34 /* iGaiaSkyDome.h */,
-				A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.m */,
+				A4BF9F2A16197D6200004F34 /* iGaiaSkyDome.mm */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -585,11 +604,11 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9F2F16197D9400004F34 /* iGaiaCamera.h */,
-				A4BF9F3016197D9400004F34 /* iGaiaCamera.m */,
+				A4BF9F3016197D9400004F34 /* iGaiaCamera.mm */,
 				A4BF9F3216197DB100004F34 /* iGaiaFrustum.h */,
-				A4BF9F3316197DB100004F34 /* iGaiaFrustum.m */,
+				A4BF9F3316197DB100004F34 /* iGaiaFrustum.mm */,
 				A4BF9F3516197DC300004F34 /* iGaiaLight.h */,
-				A4BF9F3616197DC300004F34 /* iGaiaLight.m */,
+				A4BF9F3616197DC300004F34 /* iGaiaLight.mm */,
 				A4BF9F3816197DDF00004F34 /* iGaiaBoundBox.h */,
 				A4BF9F3916197DDF00004F34 /* iGaiaBoundBox.m */,
 			);
@@ -600,7 +619,6 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9F4816197F3C00004F34 /* Operations */,
-				A446654A161B1B920025601F /* iGaiaRenderListener.h */,
 				A4BFA0891619A59300004F34 /* iGaiaRenderMgr.h */,
 				A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.mm */,
 				A4466547161B1A490025601F /* iGaiaGLView.h */,
@@ -915,6 +933,8 @@
 			children = (
 				A4BFA20B1619D6D500004F34 /* iGaiaLogger.h */,
 				A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */,
+				15835CBC1621E5EB0074FB90 /* iGaiaLoop.h */,
+				15835CBD1621E5EB0074FB90 /* iGaiaLoop.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -987,13 +1007,13 @@
 				A4BF9F1916197C6100004F34 /* iGaiaShaderComposite.mm in Sources */,
 				A4BF9F2216197CFC00004F34 /* iGaiaShape3d.mm in Sources */,
 				A4BF9F2516197D1500004F34 /* iGaiaBillboard.m in Sources */,
-				A4BF9F2816197D3A00004F34 /* iGaiaOcean.m in Sources */,
-				A4BF9F2B16197D6200004F34 /* iGaiaSkyDome.m in Sources */,
-				A4BF9F3116197D9400004F34 /* iGaiaCamera.m in Sources */,
-				A4BF9F3416197DB100004F34 /* iGaiaFrustum.m in Sources */,
-				A4BF9F3716197DC300004F34 /* iGaiaLight.m in Sources */,
+				A4BF9F2816197D3A00004F34 /* iGaiaOcean.mm in Sources */,
+				A4BF9F2B16197D6200004F34 /* iGaiaSkyDome.mm in Sources */,
+				A4BF9F3116197D9400004F34 /* iGaiaCamera.mm in Sources */,
+				A4BF9F3416197DB100004F34 /* iGaiaFrustum.mm in Sources */,
+				A4BF9F3716197DC300004F34 /* iGaiaLight.mm in Sources */,
 				A4BF9F3A16197DDF00004F34 /* iGaiaBoundBox.m in Sources */,
-				A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.m in Sources */,
+				A4BF9F3D16197E1E00004F34 /* iGaiaSceneMgr.mm in Sources */,
 				A4BF9F4116197EC300004F34 /* iGaiaRenderOperationWorldSpace.mm in Sources */,
 				A4BF9F4416197EDB00004F34 /* iGaiaRenderOperationScreenSpace.mm in Sources */,
 				A4BF9F4716197F3800004F34 /* iGaiaRenderOperationOutlet.mm in Sources */,
@@ -1001,6 +1021,8 @@
 				A4BFA2091619D3C600004F34 /* NSData+iGaiaExtension.mm in Sources */,
 				A4BFA20D1619D6D500004F34 /* iGaiaLogger.mm in Sources */,
 				A4466549161B1A490025601F /* iGaiaGLView.mm in Sources */,
+				15835CB6162184800074FB90 /* iGaiaObject3d.mm in Sources */,
+				15835CBE1621E5EB0074FB90 /* iGaiaLoop.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

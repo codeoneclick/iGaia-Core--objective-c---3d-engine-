@@ -10,12 +10,12 @@
 
 #import "iGaiaResource.h"
 
-@protocol iGaiaResourceLoadListener;
+@protocol iGaiaLoadCallback;
 @interface iGaiaResourceMgr : NSObject
 
 + (iGaiaResourceMgr *)sharedInstance;
 
 - (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener;
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
 
 @end

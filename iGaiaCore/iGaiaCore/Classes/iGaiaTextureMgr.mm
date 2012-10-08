@@ -53,7 +53,7 @@
     return texture;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener
 {
     iGaiaTexture* texture = nil;
     if([_m_resources objectForKey:name] != nil)

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "iGaiaRenderListener.h"
+#import "iGaiaRenderCallback.h"
 #import "iGaiaShader.h"
 
 @interface iGaiaRenderMgr : NSObject
@@ -20,6 +20,6 @@
 
 - (UIView*)createViewWithFrame:(CGRect)frame;
 
-- (void)addEventListener:(id<iGaiaRenderListener>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)renderMode;
+- (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode;
 
 @end

@@ -10,6 +10,10 @@
 
 #import "iGaiaObject3d.h"
 
-@interface iGaiaShape3d : NSObject<iGaiaObject3d>
+@interface iGaiaShape3d : iGaiaObject3d
+
+- (id)initWithMeshFileName:(NSString*)name;
+- (void)setMeshWithFileName:(NSString*)name;
+- (void)setClipping:(glm::vec4)clipping;
 
 @end

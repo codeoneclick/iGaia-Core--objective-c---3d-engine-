@@ -12,6 +12,7 @@
 #import <OpenGLES/ES2/glext.h>
 
 #import "iGaiaRenderMgr.h"
+#import "iGaiaLogger.h"
 
 extern const struct iGaiaShaderVertexSlot
 {
@@ -108,7 +109,7 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
 
         m_attributes[E_ATTRIBUTE_MATRIX_WORLD] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_worldMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_MATRIX_VIEW] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_viewMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
-        m_attributes[E_ATTRIBUTE_MATRIX_PROJECTION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_viewMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
+        m_attributes[E_ATTRIBUTE_MATRIX_PROJECTION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_projectionMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_MATRIX_WVP] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_worldViewProjectionMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_VECTOR_CAMERA_POSITION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_cameraPosition cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_VECTOR_LIGHT_POSITION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_lightPosition cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -220,12 +221,22 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
 {
     glActiveTexture(GL_TEXTURE0 + slot);
     [texture bind];
-    glUniform1i(m_textureSlots[slot], slot);
+    glUniform1i(m_textureSlots[slot], 0);
 }
 
 - (void)bind
 {
     glUseProgram(_m_handle);
+    
+    /*glValidateProgram(_m_handle); // codeoneclick - uncoment only for debug mode
+    GLint success;
+    glGetProgramiv(_m_handle, GL_VALIDATE_STATUS, &success);
+    if (success == GL_FALSE)
+    {
+        GLchar message[256];
+        glGetProgramInfoLog(_m_handle, sizeof(message), 0, &message[0]);
+        iGaiaLog(@"%s", message);
+    }*/
 }
 
 - (void)unbind

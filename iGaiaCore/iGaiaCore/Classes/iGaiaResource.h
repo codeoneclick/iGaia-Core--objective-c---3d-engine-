@@ -27,7 +27,7 @@ enum E_RESOURCE_TYPE
 @property (nonatomic, readonly) NSString* m_name;
 @property (nonatomic, readonly) E_RESOURCE_TYPE m_resourceType;
 @property (nonatomic, readonly) E_CREATION_MODE m_creationMode;
-@property (nonatomic, assign) NSDictionary* m_settings;
+@property (nonatomic, strong) NSDictionary* m_settings;
 
 - (void)incReferenceCount;
 - (void)decReferenceCount;

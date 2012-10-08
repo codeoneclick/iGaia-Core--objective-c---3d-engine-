@@ -30,16 +30,17 @@ enum E_RENDER_STATE
 @property(nonatomic, assign) GLenum m_cullFaceMode;
 @property(nonatomic, assign) GLenum m_blendFunctionSource;
 @property(nonatomic, assign) GLenum m_blendFunctionDest;
+@property(nonatomic, assign) glm::vec4 m_clipping;
 @property(nonatomic, readonly) iGaiaShader* m_shader;
 
 - (void)invalidateState:(E_RENDER_STATE)state withValue:(BOOL)value;
 
-- (void)setShader:(E_SHADER)shader forState:(NSUInteger)state;
+- (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode;
 - (void)setTexture:(iGaiaTexture*)texture forSlot:(E_TEXTURE_SLOT)slot;
-- (void)setTextureWithName:(NSString*)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap;
+- (void)setTextureWithFileName:(NSString*)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap;
 
-- (void)bindWithState:(NSUInteger)state;
-- (void)unbindWithState:(NSUInteger)state;
+- (void)bindWithMode:(NSUInteger)mode;
+- (void)unbindWithMode:(NSUInteger)mode;
 
 
 @end

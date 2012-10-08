@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface iGaiaSkyDome : NSObject
+#import "iGaiaObject3d.h"
+
+@interface iGaiaSkyDome : iGaiaObject3d
 
 @end

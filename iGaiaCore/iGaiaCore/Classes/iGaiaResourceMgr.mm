@@ -73,7 +73,7 @@ const struct iGaiaResourceExtensions iGaiaResourceExtensions =
     return nil;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener;
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
 {
     NSRange range =[[name lowercaseString] rangeOfString:[iGaiaResourceExtensions.pvr lowercaseString]];
     if(range.location != NSNotFound)

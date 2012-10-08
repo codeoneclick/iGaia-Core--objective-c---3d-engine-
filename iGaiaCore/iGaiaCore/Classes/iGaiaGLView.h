@@ -15,7 +15,7 @@
 @property(nonatomic, readonly) NSUInteger m_frameBufferHandle;
 @property(nonatomic, readonly) NSUInteger m_renderBufferHandle;
 
-- (id)initWithFrame:(CGRect)frame withCallbackDrawOwner:(id)owner withCallbackDrawSelector:(SEL)selector;
+- (id)initWithFrame:(CGRect)frame;
 
 @end
 

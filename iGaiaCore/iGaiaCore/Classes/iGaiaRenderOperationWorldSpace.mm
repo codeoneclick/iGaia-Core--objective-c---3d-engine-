@@ -17,8 +17,9 @@
 @property(nonatomic, assign) GLuint m_frameBufferHandle;
 @property(nonatomic, assign) GLuint m_depthBufferHandle;
 @property(nonatomic, assign) glm::vec2 m_size;
-@property(nonatomic, strong) NSMutableSet* m_listeners;
-@property(nonatomic, assign) E_RENDER_MODE_WORLD_SPACE m_renderMode;
+@property(nonatomic, strong) NSMutableSet* m_unsortedListeners;
+@property(nonatomic, strong) NSArray* m_sortedListeners;
+@property(nonatomic, assign) E_RENDER_MODE_WORLD_SPACE m_mode;
 
 @end
 
@@ -28,16 +29,17 @@
 @synthesize m_depthBufferHandle = _m_depthBufferHandle;
 @synthesize m_externalTexture = _m_externalTexture;
 @synthesize m_size = _m_size;
-@synthesize m_listeners = _m_listeners;
-@synthesize m_renderMode = _m_renderMode;
+@synthesize m_unsortedListeners = _m_unsortedListeners;
+@synthesize m_sortedListeners = _m_sortedListeners;
+@synthesize m_mode = _m_mode;
 
-- (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)renderMode withName:(NSString*)name
+- (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode withName:(NSString*)name
 {
     self = [super init];
     if(self)
     {
         _m_size = size;
-        _m_renderMode = renderMode;
+        _m_mode = mode;
 
         NSUInteger textureHandle;
         glGenTextures(1, &textureHandle);
@@ -61,28 +63,56 @@
         }
 
         _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:iGaiaTextureSettingValues.clamp,iGaiaTextureSettingKeys.wrap, nil];
+        _m_externalTexture.m_settings = settings;
 
-        _m_listeners = [NSMutableSet new];
+        _m_unsortedListeners = [NSMutableSet new];
     }
     return self;
 }
 
-- (void)addEventListener:(id<iGaiaRenderListener>)listener;
+- (void)addEventListener:(id<iGaiaRenderCallback>)listener;
 {
-    [_m_listeners addObject:listener];
+    [_m_unsortedListeners addObject:listener];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO comparator:^NSComparisonResult(id<iGaiaRenderCallback> listener_01, id<iGaiaRenderCallback> listener_02) {
+        NSComparisonResult result = NSOrderedSame;
+        if(listener_01.m_priority < listener_02.m_priority)
+        {
+            result = NSOrderedDescending;
+        }
+        else if(listener_01.m_priority > listener_02.m_priority)
+        {
+            result = NSOrderedAscending;
+        }
+        return result;
+    }];
+    _m_sortedListeners = [_m_unsortedListeners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
 
-- (void)removeEventListener:(id<iGaiaRenderListener>)listener
+- (void)removeEventListener:(id<iGaiaRenderCallback>)listener
 {
-    [_m_listeners removeObject:listener];
+    [_m_unsortedListeners removeObject:listener];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO comparator:^NSComparisonResult(id<iGaiaRenderCallback> listener_01, id<iGaiaRenderCallback> listener_02) {
+        NSComparisonResult result = NSOrderedSame;
+        if(listener_01.m_priority < listener_02.m_priority)
+        {
+            result = NSOrderedDescending;
+        }
+        else if(listener_01.m_priority > listener_02.m_priority)
+        {
+            result = NSOrderedAscending;
+        }
+        return result;
+    }];
+    _m_sortedListeners = [_m_unsortedListeners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
 
 - (void)bind
 {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
     glViewport(0, 0, _m_size.x, _m_size.y);
-    glClearColor(0, 0, 0, 1);
+    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
 - (void)unbind
@@ -92,9 +122,9 @@
 
 - (void)draw
 {
-    for(id<iGaiaRenderListener> listener in _m_listeners)
+    for(id<iGaiaRenderCallback> listener in _m_sortedListeners)
     {
-        [listener onRenderWithWorldSpaceRenderMode:_m_renderMode];
+        [listener onDrawWithRenderMode:_m_mode];
     }
 }
 

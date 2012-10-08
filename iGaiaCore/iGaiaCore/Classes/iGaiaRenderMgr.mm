@@ -8,16 +8,18 @@
 
 #import <OpenGLES/ES2/gl.h>
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 
 #import "iGaiaRenderMgr.h"
-#import "iGaiaRenderListener.h"
+#import "iGaiaRenderCallback.h"
 #import "iGaiaGLView.h"
 #import "iGaiaRenderOperationWorldSpace.h"
 #import "iGaiaRenderOperationScreenSpace.h"
 #import "iGaiaRenderOperationOutlet.h"
 #import "iGaiaLogger.h"
+#import "iGaiaLoop.h"
 
-@interface iGaiaRenderMgr()
+@interface iGaiaRenderMgr()<iGaiaLoopCallback>
 {
     iGaiaRenderOperationWorldSpace* _m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_MAX];
     iGaiaRenderOperationScreenSpace* _m_screenSpaceOperations[E_RENDER_MODE_SCREEN_SPACE_MAX];
@@ -42,9 +44,19 @@
     return _shared;
 }
 
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        [[iGaiaLoop sharedInstance] addEventListener:self];
+    }
+    return self;
+}
+
 - (UIView*)createViewWithFrame:(CGRect)frame;
 {
-    _m_view = [[iGaiaGLView alloc] initWithFrame:frame withCallbackDrawOwner:self withCallbackDrawSelector:@selector(drawView:)];
+    _m_view = [[iGaiaGLView alloc] initWithFrame:frame];
 
     for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
     {
@@ -53,7 +65,7 @@
 
     for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
     {
-        _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShader:E_SHADER_SCREEN_PLANE forRenderMode:(E_RENDER_MODE_SCREEN_SPACE)i withName:@"render.mode.screenspace"];
+        _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShader:E_SHADER_SCREEN_PLANE withName:@"render.mode.screenspace"];
     }
 
     _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:_m_view.m_frameBufferHandle withRenderBufferHandle:_m_view.m_renderBufferHandle];
@@ -61,12 +73,12 @@
     return _m_view;
 }
 
-- (void)addEventListener:(id<iGaiaRenderListener>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)renderMode
+- (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
-    [_m_worldSpaceOperations[renderMode] addEventListener:listener];
+    [_m_worldSpaceOperations[mode] addEventListener:listener];
 }
 
-- (void)drawView:(CADisplayLink*)displayLink
+- (void)onUpdate
 {
     iGaiaTexture* fakeTexture = nil;
     
@@ -75,7 +87,10 @@
         [_m_worldSpaceOperations[i] bind];
         [_m_worldSpaceOperations[i] draw];
         [_m_worldSpaceOperations[i] unbind];
-        fakeTexture = _m_worldSpaceOperations[i].m_externalTexture;
+        if(i == E_RENDER_MODE_WORLD_SPACE_SIMPLE)
+        {
+            fakeTexture = _m_worldSpaceOperations[i].m_externalTexture;
+        }
     }
 
     for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)

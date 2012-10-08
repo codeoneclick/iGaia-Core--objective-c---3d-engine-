@@ -12,16 +12,16 @@
 #import <glm/gtc/type_precision.hpp>
 
 #import "iGaiaTexture.h"
-#import "iGaiaRenderListener.h"
+#import "iGaiaRenderCallback.h"
 
 @interface iGaiaRenderOperationWorldSpace : NSObject
 
 @property(nonatomic, readonly) iGaiaTexture* m_externalTexture;
 
-- (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)renderMode withName:(NSString*)name;
+- (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode withName:(NSString*)name;
 
-- (void)addEventListener:(id<iGaiaRenderListener>)listener;
-- (void)removeEventListener:(id<iGaiaRenderListener>)listener;
+- (void)addEventListener:(id<iGaiaRenderCallback>)listener;
+- (void)removeEventListener:(id<iGaiaRenderCallback>)listener;
 
 - (void)bind;
 - (void)unbind;

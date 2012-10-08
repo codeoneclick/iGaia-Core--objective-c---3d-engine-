@@ -20,7 +20,7 @@
 #import <string>
 
 #import "NSData+iGaiaExtension.h"
-#import "iGaiaResourceLoadListener.h"
+#import "iGaiaLoadCallback.h"
 #import "iGaiaTexture.h"
 
 #import "iGaiaLogger.h"
@@ -62,14 +62,14 @@
     return self;
 }
 
-- (void)addEventListener:(id<iGaiaResourceLoadListener>)listener
+- (void)addEventListener:(id<iGaiaLoadCallback>)listener
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_m_listeners addObject:listener];
     });
 }
 
-- (void)removeEventListener:(id<iGaiaResourceLoadListener>)listener
+- (void)removeEventListener:(id<iGaiaLoadCallback>)listener
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_m_listeners removeObject:listener];
@@ -181,6 +181,7 @@
     glBindTexture(GL_TEXTURE_2D, handle);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
     for (NSInteger level = 0; width > 0 && height > 0; ++level)
     {
         GLsizei size = std::max(32, width * height * _m_bytesPerPixel / 8);
@@ -191,10 +192,10 @@
 
     iGaiaTexture* texture = [[iGaiaTexture alloc] initWithHandle:handle withWidth:_m_size.x withHeight:_m_size.y withName:_m_name withCreationMode:E_CREATION_MODE_NATIVE];
 
-    for(id<iGaiaResourceLoadListener> listener in _m_listeners)
+    for(id<iGaiaLoadCallback> listener in _m_listeners)
     {
         [texture incReferenceCount];
-        [listener onResourceLoad:texture];
+        [listener onLoad:texture];
     }
     [_m_listeners removeAllObjects];
     return texture;

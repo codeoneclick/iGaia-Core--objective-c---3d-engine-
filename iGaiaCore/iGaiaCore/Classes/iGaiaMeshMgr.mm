@@ -53,7 +53,7 @@
     return mesh;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener
 {
     iGaiaMesh* mesh = nil;
     if([_m_resources objectForKey:name] != nil)

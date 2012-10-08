@@ -10,10 +10,10 @@
 
 #import "iGaiaResource.h"
 
-@protocol iGaiaResourceLoadListener;
+@protocol iGaiaLoadCallback;
 @interface iGaiaTextureMgr : NSObject
 
 - (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaResourceLoadListener>)listener;
+- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
 
 @end

@@ -10,6 +10,7 @@
 
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
+#import "iGaiaLogger.h"
 
 const struct iGaiaTextureSettingKeys iGaiaTextureSettingKeys =
 {

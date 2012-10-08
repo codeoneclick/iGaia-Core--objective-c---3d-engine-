@@ -11,6 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/ES2/gl.h>
 
+#import "iGaiaLoop.h"
+
 @interface iGaiaGLView()
 
 @property(nonatomic, strong) CAEAGLLayer* m_eaglLayer;
@@ -29,7 +31,7 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame withCallbackDrawOwner:(id)owner withCallbackDrawSelector:(SEL)selector;
+- (id)initWithFrame:(CGRect)frame;
 {
     if (self = [super initWithFrame:frame])
     {
@@ -56,7 +58,7 @@
         {
 
         }
-        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:owner selector:selector];
+        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:[iGaiaLoop sharedInstance] selector:[iGaiaLoop sharedInstance].m_callback];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;

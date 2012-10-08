@@ -22,7 +22,6 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 @property(nonatomic, assign) GLuint m_depthBufferHandle;
 @property(nonatomic, assign) glm::vec2 m_size;
 @property(nonatomic, strong) iGaiaMesh* m_mesh;
-@property(nonatomic, assign) E_RENDER_MODE_SCREEN_SPACE m_renderMode;
 
 @end
 
@@ -33,15 +32,13 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 @synthesize m_externalTexture = _m_externalTexture;
 @synthesize m_size = _m_size;
 @synthesize m_mesh = _m_mesh;
-@synthesize m_renderMode = _m_renderMode;
 @synthesize m_material = _m_material;
 
-- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader forRenderMode:(E_RENDER_MODE_SCREEN_SPACE)renderMode withName:(NSString*)name;
+- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader withName:(NSString*)name;
 {
     self = [super init];
     if(self)
     {
-        _m_renderMode = renderMode;
         _m_size = size;
 
         NSUInteger textureHandle;
@@ -66,6 +63,8 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
         }
 
         _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:iGaiaTextureSettingValues.clamp,iGaiaTextureSettingKeys.wrap, nil];
+        _m_externalTexture.m_settings = settings;
 
         iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
@@ -90,7 +89,16 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
         [indexBuffer unlock];
 
         _m_material = [iGaiaMaterial new];
-        [_m_material setShader:shader forState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
+        [_m_material setShader:shader forMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
+        
+        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
+        [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
+        [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:NO];
+        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:NO];
+        _m_material.m_cullFaceMode = GL_FRONT;
+        _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
+        _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
+        
         _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
 
     }
@@ -99,12 +107,12 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 
 - (void)bind
 {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
     glViewport(0, 0, _m_size.x, _m_size.y);
     glClearColor(0, 0, 0, 1);
-
-    [_m_material bindWithState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    
+    [_m_material bindWithMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
     [_m_mesh.m_vertexBuffer bind];
     [_m_mesh.m_indexBuffer bind];
 }
@@ -118,7 +126,7 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 {
     [_m_mesh.m_vertexBuffer unbind];
     [_m_mesh.m_indexBuffer unbind];
-    [_m_material bindWithState:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
+    [_m_material bindWithMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
 }
 
 @end

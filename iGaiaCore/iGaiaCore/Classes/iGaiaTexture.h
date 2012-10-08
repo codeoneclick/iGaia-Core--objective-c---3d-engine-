@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "iGaiaResource.h"
-#import "iGaiaResourceLoadListener.h"
+#import "iGaiaLoadCallback.h"
 
 @interface iGaiaTexture : NSObject<iGaiaResource>
 
