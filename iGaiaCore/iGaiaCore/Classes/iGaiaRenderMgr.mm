@@ -78,6 +78,16 @@
     [_m_worldSpaceOperations[mode] addEventListener:listener];
 }
 
+- (iGaiaTexture*)retriveTextureFromWorldSpaceRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    return _m_worldSpaceOperations[mode].m_externalTexture;
+}
+
+- (iGaiaTexture*)retriveTextureFromScreenSpaceRenderMode:(E_RENDER_MODE_SCREEN_SPACE)mode
+{
+    return _m_screenSpaceOperations[mode].m_externalTexture;
+}
+
 - (void)onUpdate
 {
     iGaiaTexture* fakeTexture = nil;

@@ -24,8 +24,7 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     if(self)
     {
         [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
-        _m_priority = k_IGAIA_SHAPE3D_RENDER_PRIORITY;
-        
+
         [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:YES];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:YES];
@@ -33,6 +32,9 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
         _m_material.m_cullFaceMode = GL_FRONT;
         _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
+
+        _m_priority = k_IGAIA_SHAPE3D_RENDER_PRIORITY;
+        _m_updateMode = E_UPDATE_MODE_ASYNC;
     }
     return self;
 }
@@ -103,10 +105,37 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
         {
+            if(_m_material.m_shader == nil)
+            {
+                iGaiaLog(@"Shader MODE_REFLECTION == nil");
+            }
+
+            [_m_material.m_shader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
+            [_m_material.m_shader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
+            [_m_material.m_shader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+
+            [_m_material.m_shader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
+            [_m_material.m_shader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            glm::vec4 clipping = _m_material.m_clipping;
+            [_m_material.m_shader setVector4:clipping forAttribute:E_ATTRIBUTE_VECTOR_CLIPPING];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
         {
+            if(_m_material.m_shader == nil)
+            {
+                iGaiaLog(@"Shader MODE_REFRACTION == nil");
+            }
+
+            [_m_material.m_shader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
+            [_m_material.m_shader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
+            [_m_material.m_shader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+
+            [_m_material.m_shader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
+            [_m_material.m_shader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            glm::vec4 clipping = _m_material.m_clipping;
+            clipping.y *= -1.0f;
+            [_m_material.m_shader setVector4:clipping forAttribute:E_ATTRIBUTE_VECTOR_CLIPPING];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_SCREEN_NORMAL_MAP:

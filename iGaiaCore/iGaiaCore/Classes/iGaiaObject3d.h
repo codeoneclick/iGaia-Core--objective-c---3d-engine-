@@ -25,6 +25,12 @@
 @interface iGaiaObject3d : NSObject<iGaiaUpdateCallback, iGaiaRenderCallback, iGaiaLoadCallback>
 {
 @protected
+    enum E_UPDATE_MODE
+    {
+        E_UPDATE_MODE_SYNC = 0,
+        E_UPDATE_MODE_ASYNC
+    };
+
     glm::mat4x4 _m_worldMatrix;
     
     iGaiaMaterial* _m_material;
@@ -41,6 +47,7 @@
     __unsafe_unretained iGaiaLight* _m_light;
     
     NSUInteger _m_priority;
+    E_UPDATE_MODE _m_updateMode;
 }
 
 @property(nonatomic, assign) glm::vec3 m_position;

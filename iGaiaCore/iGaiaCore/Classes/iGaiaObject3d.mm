@@ -47,6 +47,8 @@ static dispatch_queue_t g_onUpdateQueue;
         
         _m_material = [iGaiaMaterial new];
         _m_mesh = nil;
+
+        _m_updateMode = E_UPDATE_MODE_SYNC;
     }
     return self;
 }

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface iGaiaOcean : NSObject
+#import "iGaiaObject3d.h"
+
+@interface iGaiaOcean : iGaiaObject3d
 
 @end

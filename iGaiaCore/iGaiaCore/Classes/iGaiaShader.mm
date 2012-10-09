@@ -113,7 +113,7 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
         m_attributes[E_ATTRIBUTE_MATRIX_WVP] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_worldViewProjectionMatrix cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_VECTOR_CAMERA_POSITION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_cameraPosition cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_VECTOR_LIGHT_POSITION] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_lightPosition cStringUsingEncoding:NSUTF8StringEncoding]);
-        m_attributes[E_ATTRIBUTE_VECTOR_CLIP_PLANE] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_clipPlane cStringUsingEncoding:NSUTF8StringEncoding]);
+        m_attributes[E_ATTRIBUTE_VECTOR_CLIPPING] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_clipPlane cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_texcoordOffset cStringUsingEncoding:NSUTF8StringEncoding]);
         m_attributes[E_ATTRIBUTE_FLOAT_TIME] = glGetUniformLocation(_m_handle, [iGaiaShaderAttributes.m_time cStringUsingEncoding:NSUTF8StringEncoding]);
 
