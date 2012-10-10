@@ -79,7 +79,7 @@ static dispatch_queue_t g_onUpdateQueue;
     glm::vec3 position = _m_position;
     glm::vec3 rotation = _m_rotation;
     glm::vec3 scale = _m_scale;
-    dispatch_sync(g_onUpdateQueue, ^{
+    dispatch_async(g_onUpdateQueue, ^{
         glm::mat4x4 rotationMatrix, translationMatrix, scaleMatrix, worldMatrix;
         rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
         rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));

@@ -134,7 +134,7 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         
         _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"igaia.mesh.skydome" withCreationMode:E_CREATION_MODE_CUSTOM];
         
-        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:YES];
+        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:NO];
@@ -143,7 +143,7 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
         
         _m_priority = k_IGAIA_SKYDOME_RENDER_PRIORITY;
-        _m_updateMode = E_UPDATE_MODE_SYNC;
+        _m_updateMode = E_UPDATE_MODE_ASYNC;
     }
     return self;
 }

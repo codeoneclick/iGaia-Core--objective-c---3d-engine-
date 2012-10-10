@@ -15,11 +15,13 @@
 @interface iGaiaCamera : NSObject
 
 @property(nonatomic, readonly) glm::mat4x4 m_view;
+@property(nonatomic, readonly) glm::mat4x4 m_reflection;
 @property(nonatomic, readonly) glm::mat4x4 m_projection;
 
 @property(nonatomic, assign) glm::vec3 m_position;
 @property(nonatomic, assign) glm::vec3 m_look;
 @property(nonatomic, assign) float m_rotation;
+@property(nonatomic, assign) float m_altitude;
 
 - (id)initWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height;
 

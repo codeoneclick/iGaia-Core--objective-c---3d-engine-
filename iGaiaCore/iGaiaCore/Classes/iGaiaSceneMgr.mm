@@ -40,8 +40,16 @@
     {
         [[iGaiaLoop sharedInstance] addEventListener:self];
         _m_listeners = [NSMutableSet new];
+        [self bindSquirrel];
     }
     return self;
+}
+
+- (void)bindSquirrel
+{
+    [[iGaiaSquirrelMgr sharedInstance] registerTable:@"igaia"];
+    [[iGaiaSquirrelMgr sharedInstance] registerClass:@"Scene"];
+    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
 }
 
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
@@ -64,7 +72,20 @@
 
 - (iGaiaOcean*)createOceanWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude
 {
-    return nil;
+    for(id<iGaiaUpdateCallback> listener in _m_listeners)
+    {
+        if([listener isKindOfClass:[iGaiaShape3d class]])
+        {
+            iGaiaShape3d* shape3d = static_cast<iGaiaShape3d*>(listener);
+            [shape3d setClipping:glm::vec4(0.0f, 1.0f, 0.0f, altitude)];
+        }
+    }
+    _m_camera.m_altitude = altitude;
+    
+    iGaiaOcean* ocean = [[iGaiaOcean alloc] initWithWidth:witdh withHeight:height withAltitude:altitude];
+    ocean.m_camera = _m_camera;
+    [_m_listeners addObject:ocean];
+    return ocean;
 }
 
 - (iGaiaSkyDome*)createSkyDome
@@ -83,6 +104,35 @@
     {
         [listener onUpdate];
     }
+}
+
+SQInteger sq_createShape3d(HSQUIRRELVM vm)
+{
+    const SQChar* value_01;
+    SQInteger nargs = sq_gettop(vm);
+    SQObjectType type = sq_gettype(vm, 2);
+
+    if (nargs >= 2 && sq_gettype(vm, 2) == OT_STRING)
+    {
+        sq_tostring(vm, 2);
+        sq_getstring(vm, -1, &value_01);
+        sq_poptop(vm);
+    }
+    else if(nargs >= 2 && sq_gettype(vm, 2) == OT_USERPOINTER)
+    {
+        iGaiaShape3d* shape3d = nil;
+        SQUserPointer ptr;
+        sq_getuserpointer(vm, 2, &ptr);
+        shape3d = (__bridge iGaiaShape3d*)ptr;
+    }
+    else
+    {
+        return 0;
+    }
+	NSString* name = [[NSString alloc] initWithUTF8String:value_01];
+    iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:name];
+    sq_pushuserpointer(vm, (__bridge SQUserPointer)shape3d);
+    return 1;
 }
 
 @end

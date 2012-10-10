@@ -45,7 +45,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
         [indexBuffer unlock];
 
-        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"igaia.mesh.skydome" withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"igaia.mesh.ocean" withCreationMode:E_CREATION_MODE_CUSTOM];
 
         [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:YES];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
@@ -74,8 +74,8 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onUpdate
 {
-    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION] forSlot:E_TEXTURE_SLOT_07];
-    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION] forSlot:E_TEXTURE_SLOT_08];
+    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION] forSlot:E_TEXTURE_SLOT_01];
+    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION] forSlot:E_TEXTURE_SLOT_02];
     [super onUpdate];
 }
 

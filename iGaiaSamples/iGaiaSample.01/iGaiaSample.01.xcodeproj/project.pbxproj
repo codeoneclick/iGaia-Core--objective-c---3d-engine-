@@ -13,6 +13,7 @@
 		15AD3F1F16236879004CB184 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1A16236879004CB184 /* building_04.mdl */; };
 		15AD3F2016236879004CB184 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1B16236879004CB184 /* building_05.mdl */; };
 		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
+		A40C5A77162585FF00120D76 /* class.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* class.nut */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
 		A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF476160B6FE4000D6A0A /* Foundation.framework */; };
@@ -61,6 +62,7 @@
 		15AD3F1A16236879004CB184 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
 		15AD3F1B16236879004CB184 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
 		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
+		A40C5A76162585FF00120D76 /* class.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = class.nut; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ADF474160B6FE4000D6A0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -185,6 +187,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A40C5A76162585FF00120D76 /* class.nut */,
 				15AD3F1816236879004CB184 /* building_02.mdl */,
 				15AD3F1916236879004CB184 /* building_03.mdl */,
 				15AD3F1A16236879004CB184 /* building_04.mdl */,
@@ -291,6 +294,7 @@
 				15AD3F1F16236879004CB184 /* building_04.mdl in Resources */,
 				15AD3F2016236879004CB184 /* building_05.mdl in Resources */,
 				15AD3F2116236879004CB184 /* building_06.mdl in Resources */,
+				A40C5A77162585FF00120D76 /* class.nut in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

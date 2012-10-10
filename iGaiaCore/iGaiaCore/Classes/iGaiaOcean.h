@@ -12,4 +12,6 @@
 
 @interface iGaiaOcean : iGaiaObject3d
 
+- (id)initWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
+
 @end

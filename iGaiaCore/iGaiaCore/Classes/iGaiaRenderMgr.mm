@@ -90,17 +90,11 @@
 
 - (void)onUpdate
 {
-    iGaiaTexture* fakeTexture = nil;
-    
     for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
     {
         [_m_worldSpaceOperations[i] bind];
         [_m_worldSpaceOperations[i] draw];
         [_m_worldSpaceOperations[i] unbind];
-        if(i == E_RENDER_MODE_WORLD_SPACE_SIMPLE)
-        {
-            fakeTexture = _m_worldSpaceOperations[i].m_externalTexture;
-        }
     }
 
     for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
@@ -110,7 +104,7 @@
         [_m_screenSpaceOperations[i] unbind];
     }
 
-    [_m_outletOperation.m_material setTexture:fakeTexture forSlot:E_TEXTURE_SLOT_01];
+    [_m_outletOperation.m_material setTexture:_m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_SIMPLE].m_externalTexture forSlot:E_TEXTURE_SLOT_01];
     [_m_outletOperation bind];
     [_m_outletOperation draw];
     [_m_outletOperation unbind];

@@ -15,6 +15,8 @@
 #import "iGaiaOcean.h"
 #import "iGaiaSkyDome.h"
 
+#import "iGaiaSquirrelMgr.h"
+
 @interface iGaiaSceneMgr : NSObject
 
 + (iGaiaSceneMgr *)sharedInstance;
@@ -24,5 +26,7 @@
 - (iGaiaShape3d*)createShape3dWithFileName:(NSString*)name;
 - (iGaiaOcean*)createOceanWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
 - (iGaiaSkyDome*)createSkyDome;
+
+SQInteger sq_createShape3d(HSQUIRRELVM vm);
 
 @end
