@@ -1,5 +1,5 @@
 //
-//  iGaiaSquirrelMgr.h
+//  iGaiaScriptMgr.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/10/12.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <squirrel.h>
 
-@interface iGaiaSquirrelMgr : NSObject
+@interface iGaiaScriptMgr : NSObject
 
-+ (iGaiaSquirrelMgr *)sharedInstance;
++ (iGaiaScriptMgr *)sharedInstance;
 
 - (void)registerTable:(NSString*)t_name;
 - (void)registerClass:(NSString*)c_name;

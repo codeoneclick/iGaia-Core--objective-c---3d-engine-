@@ -9,8 +9,8 @@
 #import "FirstViewController.h"
 
 #import "iGaiaRenderMgr.h"
-#import "iGaiaSceneMgr.h"
-#import "iGaiaSquirrelMgr.h"
+#import "iGaiaStageMgr.h"
+#import "iGaiaScriptMgr.h"
 #import "iGaiaLoop.h"
 
 @interface FirstViewController ()<iGaiaLoopCallback>
@@ -52,11 +52,11 @@
     UIView* glView = [[iGaiaRenderMgr sharedInstance] createViewWithFrame:self.view.frame];
     [self.view addSubview:glView];
     
-    _m_camera = [[iGaiaSceneMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
+    _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    [[iGaiaSquirrelMgr sharedInstance]  loadScriptWithFileName:@"Scene_01.nut"];
+    [[iGaiaScriptMgr sharedInstance]  loadScriptWithFileName:@"Scene_01.nut"];
     
     /*iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
@@ -100,11 +100,11 @@
     [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
     shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);*/
     
-    iGaiaSkyDome* skydome = [[iGaiaSceneMgr sharedInstance] createSkyDome];
+    iGaiaSkyDome* skydome = [[iGaiaStageMgr sharedInstance] createSkyDome];
     [skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     [skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
 
-    iGaiaOcean* ocean = [[iGaiaSceneMgr sharedInstance] createOceanWithWidth:64.0f withHeight:64.0f withAltitude:0.1f];
+    iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:64.0f withHeight:64.0f withAltitude:0.1f];
     [ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     
     [[iGaiaLoop sharedInstance] addEventListener:self];

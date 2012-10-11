@@ -1,5 +1,5 @@
 //
-//  iGaiaSceneMgr.h
+//  iGaiaStageMgr.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/1/12.
@@ -15,11 +15,11 @@
 #import "iGaiaOcean.h"
 #import "iGaiaSkyDome.h"
 
-#import "iGaiaSquirrelMgr.h"
+#import "iGaiaScriptMgr.h"
 
-@interface iGaiaSceneMgr : NSObject
+@interface iGaiaStageMgr : NSObject
 
-+ (iGaiaSceneMgr *)sharedInstance;
++ (iGaiaStageMgr *)sharedInstance;
 
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height;
 - (iGaiaLight*)createLight;

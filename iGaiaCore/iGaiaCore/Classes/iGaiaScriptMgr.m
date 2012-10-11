@@ -1,12 +1,12 @@
 //
-//  iGaiaSquirrelMgr.m
+//  iGaiaScriptMgr.m
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/10/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaSquirrelMgr.h"
+#import "iGaiaScriptMgr.h"
 #import "iGaiaLogger.h"
 
 #if __cplusplus
@@ -29,18 +29,18 @@ extern "C" {
 #define k_SQUIRREL_VM_INITIAL_STACK_SIZE 1024
 #define k_SQUIRREL_NAMESPACE  "igaia"
 
-@interface iGaiaSquirrelMgr()
+@interface iGaiaScriptMgr()
 {
     HSQUIRRELVM _m_squireel_vm;
 }
 
 @end
 
-@implementation iGaiaSquirrelMgr
+@implementation iGaiaScriptMgr
 
-+ (iGaiaSquirrelMgr *)sharedInstance
++ (iGaiaScriptMgr *)sharedInstance
 {
-    static iGaiaSquirrelMgr *_shared = nil;
+    static iGaiaScriptMgr *_shared = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _shared = [[self alloc] init];

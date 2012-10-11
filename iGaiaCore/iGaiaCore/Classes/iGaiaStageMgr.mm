@@ -1,17 +1,17 @@
 //
-//  iGaiaSceneMgr.m
+//  iGaiaStageMgr.m
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaSceneMgr.h"
+#import "iGaiaStageMgr.h"
 #import "iGaiaLoop.h"
-#import "iGaiaSquirrelMgr.h"
+#import "iGaiaScriptMgr.h"
 #import "iGaiaSquirrelBindWrapper.h"
 
-@interface iGaiaSceneMgr()<iGaiaLoopCallback>
+@interface iGaiaStageMgr()<iGaiaLoopCallback>
 
 @property(nonatomic, strong) NSMutableSet* m_listeners;
 @property(nonatomic, strong) iGaiaCamera* m_camera;
@@ -20,16 +20,16 @@
 
 @end
 
-@implementation iGaiaSceneMgr
+@implementation iGaiaStageMgr
 
 @synthesize m_listeners = _m_listeners;
 @synthesize m_camera = _m_camera;
 @synthesize m_light = _m_light;
 @synthesize m_squirrel = _m_squirrel;
 
-+ (iGaiaSceneMgr *)sharedInstance
++ (iGaiaStageMgr *)sharedInstance
 {
-    static iGaiaSceneMgr *_shared = nil;
+    static iGaiaStageMgr *_shared = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _shared = [[self alloc] init];

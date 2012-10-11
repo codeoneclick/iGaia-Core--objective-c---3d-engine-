@@ -7,7 +7,7 @@
 //
 
 #import "iGaiaSquirrelBindWrapper.h"
-#import "iGaiaSceneMgr.h"
+#import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
 
 bool getAsFloat(HSQUIRRELVM vm, int index, const char *name, SQFloat* value);
@@ -38,18 +38,18 @@ SQInteger sq_import(HSQUIRRELVM vm);
 
 - (void)bindSquirrel
 {
-    [[iGaiaSquirrelMgr sharedInstance] registerTable:@"igaia"];
-    [[iGaiaSquirrelMgr sharedInstance] registerClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_setPositionObject3d withName:@"setPositionObject3d" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_getPositionObject3d withName:@"getPositionObject3d" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_setRotationObject3d withName:@"setRotationObject3d" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_getRotationObject3d withName:@"getRotationObject3d" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_setShaderObject3d withName:@"setShader" forClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_setTextureObject3d withName:@"setTexture" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerTable:@"igaia"];
+    [[iGaiaScriptMgr sharedInstance] registerClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_setPositionObject3d withName:@"setPositionObject3d" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_getPositionObject3d withName:@"getPositionObject3d" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_setRotationObject3d withName:@"setRotationObject3d" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_getRotationObject3d withName:@"getRotationObject3d" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_setShaderObject3d withName:@"setShader" forClass:@"Scene"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_setTextureObject3d withName:@"setTexture" forClass:@"Scene"];
 
-    [[iGaiaSquirrelMgr sharedInstance] registerClass:@"Runtime"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_import withName:@"import" forClass:@"Runtime"];
+    [[iGaiaScriptMgr sharedInstance] registerClass:@"Runtime"];
+    [[iGaiaScriptMgr sharedInstance] registerFunction:sq_import withName:@"import" forClass:@"Runtime"];
 }
 
 SQInteger sq_import(HSQUIRRELVM vm)
@@ -63,7 +63,7 @@ SQInteger sq_import(HSQUIRRELVM vm)
             sq_tostring(vm, n);
             sq_getstring(vm, -1, &f_name);
             sq_poptop(vm);
-            [[iGaiaSquirrelMgr sharedInstance]  loadScriptWithFileName:[NSString stringWithCString:f_name encoding:NSUTF8StringEncoding]];
+            [[iGaiaScriptMgr sharedInstance]  loadScriptWithFileName:[NSString stringWithCString:f_name encoding:NSUTF8StringEncoding]];
     	}
     }
 	return 0;
@@ -122,7 +122,7 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
             const SQChar* f_name;
             sq_tostring(vm, 2);
             sq_getstring(vm, 2, &f_name);
-            iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:[NSString stringWithCString:f_name encoding:NSUTF8StringEncoding]];
+            iGaiaShape3d* shape3d = [[iGaiaStageMgr sharedInstance] createShape3dWithFileName:[NSString stringWithCString:f_name encoding:NSUTF8StringEncoding]];
             sq_pushuserpointer(vm, (__bridge SQUserPointer)shape3d);
             return YES;
         }
@@ -329,7 +329,7 @@ SQInteger sq_setTextureObject3d(HSQUIRRELVM vm)
 
 - (void)sq_onUpdateWith:(float[])params withCount:(NSUInteger)count
 {
-    [[iGaiaSquirrelMgr sharedInstance] callFunctionWithName:@"onUpdate" withParams:params withCount:count];
+    [[iGaiaScriptMgr sharedInstance] callFunctionWithName:@"onUpdate" withParams:params withCount:count];
 }
 
 
