@@ -31,7 +31,7 @@ enum E_RENDER_STATE
 @property(nonatomic, assign) GLenum m_blendFunctionSource;
 @property(nonatomic, assign) GLenum m_blendFunctionDest;
 @property(nonatomic, assign) glm::vec4 m_clipping;
-@property(nonatomic, readonly) iGaiaShader* m_shader;
+@property(nonatomic, readonly) iGaiaShader* m_operatingShader;
 
 - (void)invalidateState:(E_RENDER_STATE)state withValue:(BOOL)value;
 

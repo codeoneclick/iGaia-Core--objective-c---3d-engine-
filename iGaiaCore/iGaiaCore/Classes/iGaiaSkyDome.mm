@@ -165,27 +165,35 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
     [super onUpdate];
 }
 
+- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [super onBindWithRenderMode:mode];
+}
+
+- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [super onUnbindWithRenderMode:mode];
+}
+
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
     [super onDrawWithRenderMode:mode];
-    
-    [_m_material bindWithMode:mode];
     
     switch (mode)
     {
         case E_RENDER_MODE_WORLD_SPACE_SIMPLE:
         {
-            if(_m_material.m_shader == nil)
+            if(_m_material.m_operatingShader == nil)
             {
                 iGaiaLog(@"Shader MODE_SIMPLE == nil");
             }
             
-            [_m_material.m_shader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
-            [_m_material.m_shader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
-            [_m_material.m_shader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
             
-            [_m_material.m_shader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
-            [_m_material.m_shader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
+            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
@@ -203,14 +211,8 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         default:
             break;
     }
-    
-    [_m_mesh bind];
-    
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
-    
-    [_m_mesh unbind];
-    
-    [_m_material unbindWithMode:mode];
+
+    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, NULL);
 }
 
 @end

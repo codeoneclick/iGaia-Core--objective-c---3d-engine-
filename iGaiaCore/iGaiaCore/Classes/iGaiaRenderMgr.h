@@ -15,7 +15,7 @@
 
 @interface iGaiaRenderMgr : NSObject
 
-@property(nonatomic, assign) iGaiaShader* m_activeShader;
+@property(nonatomic, readonly) UIView* m_glView;
 
 + (iGaiaRenderMgr *)sharedInstance;
 

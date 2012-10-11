@@ -8,17 +8,19 @@
 
 #import "iGaiaOcean.h"
 #import "iGaiaLogger.h"
-#import "iGaiaRenderMgr.h"
 
 static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 @implementation iGaiaOcean
 
+@synthesize m_reflectionTexture = _m_reflectionTexture;
+@synthesize m_refractionTexture = _m_refractionTexture;
+
 - (id)initWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
 {
     self = [super init];
     {
-        iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:24 withMode:GL_STATIC_DRAW];
+        iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
 
         vertexData[0].m_position = glm::vec3(0.0f,  altitude,  0.0f);
@@ -33,7 +35,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
         [vertexBuffer unlock];
 
-        iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:36 withMode:GL_STATIC_DRAW];
+        iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:6 withMode:GL_STATIC_DRAW];
         unsigned short* indexData = [indexBuffer lock];
 
         indexData[0] = 0;
@@ -61,6 +63,25 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
     return self;
 }
 
+- (void)setM_reflectionTexture:(iGaiaTexture *)m_reflectionTexture
+{
+    if(_m_reflectionTexture == m_reflectionTexture)
+    {
+        return;
+    }
+    _m_reflectionTexture = m_reflectionTexture;
+    [_m_material setTexture:_m_reflectionTexture forSlot:E_TEXTURE_SLOT_01];
+}
+
+- (void)setM_refractionTexture:(iGaiaTexture *)m_refractionTexture
+{
+    if(_m_refractionTexture == m_refractionTexture)
+    {
+        return;
+    }
+    _m_refractionTexture = m_refractionTexture;
+    [_m_material setTexture:_m_refractionTexture forSlot:E_TEXTURE_SLOT_02];
+}
 
 - (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode
 {
@@ -74,38 +95,38 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onUpdate
 {
-    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION] forSlot:E_TEXTURE_SLOT_01];
-    [_m_material setTexture:[[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION] forSlot:E_TEXTURE_SLOT_02];
     [super onUpdate];
+}
+
+- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [super onBindWithRenderMode:mode];
+}
+
+- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [super onUnbindWithRenderMode:mode];
 }
 
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
-    if(_m_mesh.m_numIndexes == 0)
-    {
-        iGaiaLog(@"Draw mesh with name %@ failure.Reason -> zero index data.",_m_mesh.m_name);
-        return;
-    }
-    
     [super onDrawWithRenderMode:mode];
-
-    [_m_material bindWithMode:mode];
 
     switch (mode)
     {
         case E_RENDER_MODE_WORLD_SPACE_SIMPLE:
         {
-            if(_m_material.m_shader == nil)
+            if(_m_material.m_operatingShader == nil)
             {
                 iGaiaLog(@"Shader MODE_SIMPLE == nil.");
             }
 
-            [_m_material.m_shader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
-            [_m_material.m_shader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
-            [_m_material.m_shader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
 
-            [_m_material.m_shader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
-            [_m_material.m_shader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
+            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
@@ -123,14 +144,8 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
         default:
             break;
     }
-
-    [_m_mesh bind];
-
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
-
-    [_m_mesh unbind];
     
-    [_m_material unbindWithMode:mode];
+    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, NULL);
 }
 
 

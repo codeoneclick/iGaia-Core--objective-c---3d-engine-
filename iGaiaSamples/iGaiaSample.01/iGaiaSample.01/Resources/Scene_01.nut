@@ -14,6 +14,5 @@ shape3d.setTexture("default.pvr",k_TEXTURE_SLOT_01);
 
 function igaia::onUpdate(...) 
 {
-    ::print(vargv[0]);
-    ::print(vargv[1]);
+
 }

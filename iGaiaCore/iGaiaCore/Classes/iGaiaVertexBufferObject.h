@@ -28,6 +28,7 @@ struct iGaiaVertex
 @interface iGaiaVertexBufferObject : NSObject
 
 @property(nonatomic, readonly) NSUInteger m_numVertexes;
+@property(nonatomic, assign) iGaiaShader* m_operatingShader;
 
 + (glm::u8vec4)compressVec3:(const glm::vec3&)uncopressed;
 + (glm::vec3)uncompressU8Vec4:(const glm::u8vec4&)compressed;

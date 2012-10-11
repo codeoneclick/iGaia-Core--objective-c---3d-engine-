@@ -12,6 +12,7 @@
 #import <OpenGLES/ES2/gl.h>
 
 #import "iGaiaLoop.h"
+#import "iGaiaLogger.h"
 
 @interface iGaiaGLView()
 

@@ -26,13 +26,13 @@
     iGaiaRenderOperationOutlet* _m_outletOperation;
 }
 
-@property(nonatomic, strong) iGaiaGLView* m_view;
+@property(nonatomic, readwrite) iGaiaGLView* m_glView;
 
 @end
 
 @implementation iGaiaRenderMgr
 
-@synthesize m_view = _m_view;
+@synthesize m_glView = _m_glView;
 
 + (iGaiaRenderMgr *)sharedInstance
 {
@@ -56,7 +56,7 @@
 
 - (UIView*)createViewWithFrame:(CGRect)frame;
 {
-    _m_view = [[iGaiaGLView alloc] initWithFrame:frame];
+    _m_glView = [[iGaiaGLView alloc] initWithFrame:frame];
 
     for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
     {
@@ -68,9 +68,9 @@
         _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShader:E_SHADER_SCREEN_PLANE withName:@"render.mode.screenspace"];
     }
 
-    _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:_m_view.m_frameBufferHandle withRenderBufferHandle:_m_view.m_renderBufferHandle];
+    _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2(frame.size.width, frame.size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:((iGaiaGLView*)_m_glView).m_frameBufferHandle withRenderBufferHandle:((iGaiaGLView*)_m_glView).m_renderBufferHandle];
 
-    return _m_view;
+    return _m_glView;
 }
 
 - (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode
@@ -109,7 +109,7 @@
     [_m_outletOperation draw];
     [_m_outletOperation unbind];
 
-    [_m_view.m_context presentRenderbuffer:GL_RENDERBUFFER];
+    [((iGaiaGLView*)_m_glView).m_context presentRenderbuffer:GL_RENDERBUFFER];
 
     GLenum error = glGetError();
     if (error != GL_NO_ERROR)

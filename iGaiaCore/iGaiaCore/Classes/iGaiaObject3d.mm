@@ -96,6 +96,19 @@ static dispatch_queue_t g_onUpdateQueue;
     });
 }
 
+- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [_m_material bindWithMode:mode];
+    _m_mesh.m_vertexBuffer.m_operatingShader = _m_material.m_operatingShader;
+    [_m_mesh bind];
+}
+
+- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+{
+    [_m_mesh unbind];
+    [_m_material unbindWithMode:mode];
+}
+
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
     

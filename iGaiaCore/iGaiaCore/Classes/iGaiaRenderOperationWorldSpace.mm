@@ -111,7 +111,7 @@
 {
     glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
     glViewport(0, 0, _m_size.x, _m_size.y);
-    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
@@ -124,7 +124,9 @@
 {
     for(id<iGaiaRenderCallback> listener in _m_sortedListeners)
     {
+        [listener onBindWithRenderMode:_m_mode];
         [listener onDrawWithRenderMode:_m_mode];
+        [listener onUnbindWithRenderMode:_m_mode];
     }
 }
 

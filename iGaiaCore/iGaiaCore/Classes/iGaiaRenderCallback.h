@@ -31,6 +31,9 @@ enum E_RENDER_MODE_SCREEN_SPACE
 
 @property(nonatomic, assign) NSUInteger m_priority;
 
+- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
+- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
+
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
 
 @end

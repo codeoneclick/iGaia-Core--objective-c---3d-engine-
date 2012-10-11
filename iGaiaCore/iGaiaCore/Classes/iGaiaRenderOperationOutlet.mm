@@ -90,8 +90,8 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     [_m_material bindWithMode:k_RENDER_OPERATION_OUTLET_MODE];
-    [_m_mesh.m_vertexBuffer bind];
-    [_m_mesh.m_indexBuffer bind];
+    _m_mesh.m_vertexBuffer.m_operatingShader = _m_material.m_operatingShader;
+    [_m_mesh bind];
 }
 
 - (void)draw;
@@ -101,8 +101,7 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
 
 - (void)unbind;
 {
-    [_m_mesh.m_vertexBuffer unbind];
-    [_m_mesh.m_indexBuffer unbind];
+    [_m_mesh unbind];
     [_m_material unbindWithMode:k_RENDER_OPERATION_OUTLET_MODE];
 }
 

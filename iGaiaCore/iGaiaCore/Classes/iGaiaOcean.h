@@ -12,6 +12,9 @@
 
 @interface iGaiaOcean : iGaiaObject3d
 
+@property(nonatomic, assign) iGaiaTexture* m_reflectionTexture;
+@property(nonatomic, assign) iGaiaTexture* m_refractionTexture;
+
 - (id)initWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
 
 @end

@@ -11,7 +11,6 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-#import "iGaiaRenderMgr.h"
 #import "iGaiaLogger.h"
 
 extern const struct iGaiaShaderVertexSlot

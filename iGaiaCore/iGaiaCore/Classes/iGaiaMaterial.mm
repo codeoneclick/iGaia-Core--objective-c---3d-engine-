@@ -14,7 +14,6 @@
 
 #import "iGaiaShaderComposite.h"
 #import "iGaiaResourceMgr.h"
-#import "iGaiaRenderMgr.h"
 #import "iGaiaLogger.h"
 
 @interface iGaiaMaterial()<iGaiaLoadCallback>
@@ -28,7 +27,7 @@
 
 @implementation iGaiaMaterial
 
-@synthesize m_shader = _m_shader;
+@synthesize m_operatingShader = _m_operatingShader;
 @synthesize m_cullFaceMode = _m_cullFaceMode;
 @synthesize m_blendFunctionSource = _m_blendFunctionSource;
 @synthesize m_blendFunctionDest = _m_blendFunctionDest;
@@ -52,11 +51,6 @@
         _m_states[E_RENDER_STATE_DEPTH_TEST] = YES;
     }
     return self;
-}
-
-- (iGaiaShader*)m_shader
-{
-    return _m_shader = [iGaiaRenderMgr sharedInstance].m_activeShader;
 }
 
 - (void)invalidateState:(E_RENDER_STATE)state withValue:(BOOL)value
@@ -99,20 +93,20 @@
 
 - (void)bindWithMode:(NSUInteger)mode
 {
-    if(_m_shaders[mode] == nil)
+    _m_operatingShader =  _m_shaders[mode];
+    if(_m_operatingShader == nil)
     {
         iGaiaLog(@"State : %i not setted for current material.", mode);
         return;
     }
 
-    [iGaiaRenderMgr sharedInstance].m_activeShader =  _m_shaders[mode];
-    [_m_shaders[mode] bind];
+    [_m_operatingShader bind];
 
     for(NSInteger i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
     {
         if(_m_textures[i] != nil)
         {
-            [_m_shaders[mode] setTexture:_m_textures[i] forSlot:(E_TEXTURE_SLOT)i];
+            [_m_operatingShader setTexture:_m_textures[i] forSlot:(E_TEXTURE_SLOT)i];
         }
     }
 
@@ -158,8 +152,7 @@
 
 - (void)unbindWithMode:(NSUInteger)mode
 {
-    [_m_shaders[mode] unbind];
-    [[iGaiaRenderMgr sharedInstance] setM_activeShader:nil];
+    [_m_operatingShader unbind];
 }
 
 @end
