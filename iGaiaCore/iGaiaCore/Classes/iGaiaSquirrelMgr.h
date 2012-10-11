@@ -19,4 +19,6 @@
 
 -(BOOL)loadScriptWithFileName:(NSString*)name;
 
+- (SQBool)callFunctionWithName:(NSString*)name withParams:(SQFloat[])params withCount:(NSUInteger)count;
+
 @end

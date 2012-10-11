@@ -56,14 +56,14 @@
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    [[iGaiaSquirrelMgr sharedInstance]  loadScriptWithFileName:@"class.nut"];
+    [[iGaiaSquirrelMgr sharedInstance]  loadScriptWithFileName:@"Scene_01.nut"];
     
     /*iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
     [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(-10.0f, 0.0f, 0.0f);*/
+    shape3d.m_position = glm::vec3(-10.0f, 0.0f, 0.0f);
    
     iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_02.mdl"];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
@@ -98,7 +98,7 @@
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
     [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);
+    shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);*/
     
     iGaiaSkyDome* skydome = [[iGaiaSceneMgr sharedInstance] createSkyDome];
     [skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];

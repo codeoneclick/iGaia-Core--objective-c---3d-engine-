@@ -30,7 +30,7 @@ void main(void)
     lowp vec4 vDeepColor = texture2D(EXT_TEXTURE_03, OUT_TexCoord);
     vRefractionColor = mix(vRefractionColor, vWaterColor, vDeepColor.r);
     lowp vec4 vColor = mix(vRefractionColor, vReflectionColor, 0.25);
-    vColor.a = vDeepColor.r;
-    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); //vColor;
+    vColor.a = 1.0; //vDeepColor.r;
+    gl_FragColor = vReflectionColor;
 }
 );

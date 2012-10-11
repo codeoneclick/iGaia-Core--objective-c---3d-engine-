@@ -10,4 +10,6 @@
 
 @interface iGaiaSquirrelBindWrapper : NSObject
 
+- (void)sq_onUpdateWith:(float[])params withCount:(NSUInteger)count;
+
 @end

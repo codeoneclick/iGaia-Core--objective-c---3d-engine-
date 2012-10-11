@@ -81,6 +81,12 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
+    if(_m_mesh.m_numIndexes == 0)
+    {
+        iGaiaLog(@"Draw mesh with name %@ failure.Reason -> zero index data.",_m_mesh.m_name);
+        return;
+    }
+    
     [super onDrawWithRenderMode:mode];
 
     [_m_material bindWithMode:mode];
@@ -91,7 +97,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
         {
             if(_m_material.m_shader == nil)
             {
-                iGaiaLog(@"Shader MODE_SIMPLE == nil");
+                iGaiaLog(@"Shader MODE_SIMPLE == nil.");
             }
 
             [_m_material.m_shader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];

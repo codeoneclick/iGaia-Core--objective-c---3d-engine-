@@ -27,6 +27,4 @@
 - (iGaiaOcean*)createOceanWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
 - (iGaiaSkyDome*)createSkyDome;
 
-SQInteger sq_createShape3d(HSQUIRRELVM vm);
-
 @end

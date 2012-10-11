@@ -137,7 +137,7 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:NO];
-        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:NO];
+        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:YES];
         _m_material.m_cullFaceMode = GL_FRONT;
         _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;

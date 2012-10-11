@@ -225,6 +225,32 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
 	return sq_compile_buffer(_m_squireel_vm, script, sourcename);
 }
 
+- (SQBool)callFunctionWithName:(NSString*)name withParams:(SQFloat[])params withCount:(NSUInteger)count
+{
+    SQBool result = NO;
+	SQInteger top = sq_gettop(_m_squireel_vm);
+	sq_pushroottable(_m_squireel_vm);
+	sq_pushstring(_m_squireel_vm, k_SQUIRREL_NAMESPACE, -1);
+	if (SQ_SUCCEEDED(sq_get(_m_squireel_vm, -2)))
+    {
+		sq_pushstring(_m_squireel_vm, [name UTF8String], -1);
+		if(SQ_SUCCEEDED(sq_get(_m_squireel_vm, -2)))
+        {
+			sq_pushroottable(_m_squireel_vm);
+			for (NSUInteger i = 0; i < count; i++)
+            {
+				sq_pushfloat(_m_squireel_vm, params[i]);
+			}
+			if (SQ_SUCCEEDED(sq_call(_m_squireel_vm, count + 1, SQTrue, SQTrue)))
+            {
+				sq_getbool(_m_squireel_vm, sq_gettop(_m_squireel_vm), &result);
+			}
+		}
+	}
+	sq_settop(_m_squireel_vm,top);
+	return result;
+}
+
 @end
 
 #if __cplusplus

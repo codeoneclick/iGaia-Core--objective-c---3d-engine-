@@ -13,7 +13,7 @@
 		15AD3F1F16236879004CB184 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1A16236879004CB184 /* building_04.mdl */; };
 		15AD3F2016236879004CB184 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1B16236879004CB184 /* building_05.mdl */; };
 		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
-		A40C5A77162585FF00120D76 /* class.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* class.nut */; };
+		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
 		A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF476160B6FE4000D6A0A /* Foundation.framework */; };
@@ -36,6 +36,9 @@
 		A4D1F084160C43FC005307F4 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07D160C43FC005307F4 /* second@2x.png */; };
 		A4D1F0F5160C6B8B005307F4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0F4160C6B8B005307F4 /* default.pvr */; };
 		A4D1F0FB160C7231005307F4 /* building_01.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0FA160C7231005307F4 /* building_01.mdl */; };
+		A4D4DE761626C85100B1959F /* Shape3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE741626C85100B1959F /* Shape3d.nut */; };
+		A4D4DE771626C85100B1959F /* Vector3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE751626C85100B1959F /* Vector3d.nut */; };
+		A4D4DE791626C98200B1959F /* Constants.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE781626C98200B1959F /* Constants.nut */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +65,7 @@
 		15AD3F1A16236879004CB184 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
 		15AD3F1B16236879004CB184 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
 		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
-		A40C5A76162585FF00120D76 /* class.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = class.nut; sourceTree = "<group>"; };
+		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ADF474160B6FE4000D6A0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,9 @@
 		A4D1F07D160C43FC005307F4 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		A4D1F0F4160C6B8B005307F4 /* default.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pvr; sourceTree = "<group>"; };
 		A4D1F0FA160C7231005307F4 /* building_01.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_01.mdl; sourceTree = "<group>"; };
+		A4D4DE741626C85100B1959F /* Shape3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shape3d.nut; sourceTree = "<group>"; };
+		A4D4DE751626C85100B1959F /* Vector3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vector3d.nut; sourceTree = "<group>"; };
+		A4D4DE781626C98200B1959F /* Constants.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Constants.nut; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +193,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A40C5A76162585FF00120D76 /* class.nut */,
+				A4D4DE731626C5F800B1959F /* Scripts */,
 				15AD3F1816236879004CB184 /* building_02.mdl */,
 				15AD3F1916236879004CB184 /* building_03.mdl */,
 				15AD3F1A16236879004CB184 /* building_04.mdl */,
@@ -206,6 +212,17 @@
 			);
 			name = Resources;
 			path = iGaiaSample.01/Resources;
+			sourceTree = "<group>";
+		};
+		A4D4DE731626C5F800B1959F /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4DE781626C98200B1959F /* Constants.nut */,
+				A4D4DE751626C85100B1959F /* Vector3d.nut */,
+				A4D4DE741626C85100B1959F /* Shape3d.nut */,
+				A40C5A76162585FF00120D76 /* Scene_01.nut */,
+			);
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +311,10 @@
 				15AD3F1F16236879004CB184 /* building_04.mdl in Resources */,
 				15AD3F2016236879004CB184 /* building_05.mdl in Resources */,
 				15AD3F2116236879004CB184 /* building_06.mdl in Resources */,
-				A40C5A77162585FF00120D76 /* class.nut in Resources */,
+				A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */,
+				A4D4DE761626C85100B1959F /* Shape3d.nut in Resources */,
+				A4D4DE771626C85100B1959F /* Vector3d.nut in Resources */,
+				A4D4DE791626C98200B1959F /* Constants.nut in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

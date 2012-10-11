@@ -8,12 +8,15 @@
 
 #import "iGaiaSceneMgr.h"
 #import "iGaiaLoop.h"
+#import "iGaiaSquirrelMgr.h"
+#import "iGaiaSquirrelBindWrapper.h"
 
 @interface iGaiaSceneMgr()<iGaiaLoopCallback>
 
 @property(nonatomic, strong) NSMutableSet* m_listeners;
 @property(nonatomic, strong) iGaiaCamera* m_camera;
 @property(nonatomic, strong) iGaiaLight* m_light;
+@property(nonatomic, strong) iGaiaSquirrelBindWrapper* m_squirrel;
 
 @end
 
@@ -22,6 +25,7 @@
 @synthesize m_listeners = _m_listeners;
 @synthesize m_camera = _m_camera;
 @synthesize m_light = _m_light;
+@synthesize m_squirrel = _m_squirrel;
 
 + (iGaiaSceneMgr *)sharedInstance
 {
@@ -40,16 +44,9 @@
     {
         [[iGaiaLoop sharedInstance] addEventListener:self];
         _m_listeners = [NSMutableSet new];
-        [self bindSquirrel];
+        _m_squirrel = [iGaiaSquirrelBindWrapper new];
     }
     return self;
-}
-
-- (void)bindSquirrel
-{
-    [[iGaiaSquirrelMgr sharedInstance] registerTable:@"igaia"];
-    [[iGaiaSquirrelMgr sharedInstance] registerClass:@"Scene"];
-    [[iGaiaSquirrelMgr sharedInstance] registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
 }
 
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
@@ -104,35 +101,10 @@
     {
         [listener onUpdate];
     }
-}
-
-SQInteger sq_createShape3d(HSQUIRRELVM vm)
-{
-    const SQChar* value_01;
-    SQInteger nargs = sq_gettop(vm);
-    SQObjectType type = sq_gettype(vm, 2);
-
-    if (nargs >= 2 && sq_gettype(vm, 2) == OT_STRING)
-    {
-        sq_tostring(vm, 2);
-        sq_getstring(vm, -1, &value_01);
-        sq_poptop(vm);
-    }
-    else if(nargs >= 2 && sq_gettype(vm, 2) == OT_USERPOINTER)
-    {
-        iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr;
-        sq_getuserpointer(vm, 2, &ptr);
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-    }
-    else
-    {
-        return 0;
-    }
-	NSString* name = [[NSString alloc] initWithUTF8String:value_01];
-    iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:name];
-    sq_pushuserpointer(vm, (__bridge SQUserPointer)shape3d);
-    return 1;
+    float params[2];
+    params[0] = 1.24f;
+    params[1] = 0.8f;
+    [_m_squirrel sq_onUpdateWith:params withCount:2];
 }
 
 @end

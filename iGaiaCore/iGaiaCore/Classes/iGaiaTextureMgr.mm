@@ -73,7 +73,7 @@
             iGaiaLoader_PVR* loader = [iGaiaLoader_PVR new];
             [_m_tasks setObject:loader forKey:name];
             [loader addEventListener:listener];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 [loader parseFileWithName:name];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if(loader.m_status == E_LOAD_STATUS_DONE)

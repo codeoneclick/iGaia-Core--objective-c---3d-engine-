@@ -56,9 +56,9 @@
     _m_view = glm::lookAt(_m_position, _m_look, glm::vec3(0.0f, 1.0f, 0.0f));
 
     glm::vec3 position = _m_position;
-    _m_position.y = -_m_position.y + _m_altitude * 2.0f;
+    position.y = -position.y + _m_altitude * 2.0f;
     glm::vec3 look = _m_look;
-    _m_look.y = -_m_look.y + _m_altitude * 2.0f;
+    look.y = -look.y + _m_altitude * 2.0f;
     _m_reflection = glm::lookAt(position, look, glm::vec3(0.0f, -1.0f, 0.0f));
 }
 
