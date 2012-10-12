@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "iGaiaSquirrelCommon.h"
 
 @interface iGaiaSquirrelScene : NSObject
+
+- (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
 
 @end

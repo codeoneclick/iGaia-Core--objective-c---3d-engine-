@@ -11,14 +11,6 @@
 
 @interface iGaiaScriptMgr : NSObject
 
-+ (iGaiaScriptMgr *)sharedInstance;
-
-- (void)registerTable:(NSString*)t_name;
-- (void)registerClass:(NSString*)c_name;
-- (void)registerFunction:(SQFUNCTION)function withName:(NSString*)f_name forClass:(NSString*)c_name;
-
--(BOOL)loadScriptWithFileName:(NSString*)name;
-
-- (SQBool)callFunctionWithName:(NSString*)name withParams:(SQFloat[])params withCount:(NSUInteger)count;
+- (BOOL)loadScriptWithFileName:(NSString*)name;
 
 @end

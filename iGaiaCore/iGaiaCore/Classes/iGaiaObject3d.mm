@@ -8,7 +8,7 @@
 
 #import "iGaiaObject3d.h"
 #import "iGaiaResourceMgr.h"
-#import "iGaiaRenderMgr.h"
+#import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
 
 static dispatch_queue_t g_onUpdateQueue;
@@ -56,7 +56,7 @@ static dispatch_queue_t g_onUpdateQueue;
 - (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode;
 {
     [_m_material setShader:shader forMode:mode];
-    [[iGaiaRenderMgr sharedInstance] addEventListener:self forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode];
+    [[iGaiaStageMgr sharedInstance].m_renderMgr addEventListener:self forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode];
 }
 
 - (void)setTextureWithFileName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap;
@@ -76,24 +76,40 @@ static dispatch_queue_t g_onUpdateQueue;
         g_onUpdateQueue = dispatch_queue_create("igaia.onupdate.queue", NULL);
     });
 
-    glm::vec3 position = _m_position;
-    glm::vec3 rotation = _m_rotation;
-    glm::vec3 scale = _m_scale;
-    dispatch_async(g_onUpdateQueue, ^{
-        glm::mat4x4 rotationMatrix, translationMatrix, scaleMatrix, worldMatrix;
-        rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
-        rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
-        rotationMatrix = glm::rotate(rotationMatrix, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+    if(_m_updateMode == E_UPDATE_MODE_ASYNC)
+    {
+        glm::vec3 position = _m_position;
+        glm::vec3 rotation = _m_rotation;
+        glm::vec3 scale = _m_scale;
+        dispatch_async(g_onUpdateQueue, ^{
+            glm::mat4x4 rotationMatrix, translationMatrix, scaleMatrix, worldMatrix;
+            rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+            rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+            rotationMatrix = glm::rotate(rotationMatrix, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
         
-        translationMatrix = glm::translate(glm::mat4(1.0f), position);
+            translationMatrix = glm::translate(glm::mat4(1.0f), position);
         
-        scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
+            scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
         
-        worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _m_worldMatrix = worldMatrix;
+            worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _m_worldMatrix = worldMatrix;
+            });
         });
-    });
+    }
+    else if(_m_updateMode == E_UPDATE_MODE_SYNC)
+    {
+        glm::mat4x4 rotationMatrix, translationMatrix, scaleMatrix, worldMatrix;
+        rotationMatrix = glm::rotate(glm::mat4(1.0f), _m_rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+        rotationMatrix = glm::rotate(rotationMatrix, _m_rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+        rotationMatrix = glm::rotate(rotationMatrix, _m_rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+
+        translationMatrix = glm::translate(glm::mat4(1.0f), _m_position);
+
+        scaleMatrix = glm::scale(glm::mat4(1.0f), _m_scale);
+
+        _m_worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
+    }
 }
 
 - (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode

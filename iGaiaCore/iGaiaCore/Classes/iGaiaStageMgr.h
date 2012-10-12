@@ -14,10 +14,16 @@
 #import "iGaiaBillboard.h"
 #import "iGaiaOcean.h"
 #import "iGaiaSkyDome.h"
-
 #import "iGaiaScriptMgr.h"
+#import "iGaiaInputMgr.h"
+#import "iGaiaRenderMgr.h"
 
 @interface iGaiaStageMgr : NSObject
+
+@property(nonatomic, readonly) iGaiaRenderMgr* m_renderMgr;
+@property(nonatomic, readonly) iGaiaScriptMgr* m_scriptMgr;
+@property(nonatomic, readonly) iGaiaInputMgr* m_inputMgr;
+
 
 + (iGaiaStageMgr *)sharedInstance;
 

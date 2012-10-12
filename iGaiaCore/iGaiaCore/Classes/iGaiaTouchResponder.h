@@ -10,6 +10,6 @@
 
 @interface iGaiaTouchResponder : UIView
 
-- (id)initWithView:(UIView*)view;
+@property(nonatomic, assign) UIView* m_operationView;
 
 @end

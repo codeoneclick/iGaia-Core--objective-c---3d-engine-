@@ -11,31 +11,40 @@
 
 @interface iGaiaTouchResponder() 
 
-@property(nonatomic, assign) UIView *m_glView;
-
 @end
 
 @implementation iGaiaTouchResponder
 
-@synthesize m_glView = _m_glView;
+@synthesize m_operationView = _m_operationView;
 
-- (id)initWithView:(UIView *)view
+- (id)init
 {
     self = [super init];
     if(self)
     {
-        _m_glView = view;
-        self.frame = _m_glView.frame;
-        [_m_glView addSubview:self];
+      
     }
     return self;
+}
+
+- (void)setM_operationView:(UIView *)m_operationView
+{
+    if(_m_operationView == m_operationView)
+    {
+        return;
+    }
+    
+    _m_operationView = m_operationView;
+    [self removeFromSuperview];
+    [self setFrame:_m_operationView.frame];
+    [_m_operationView addSubview:self];
 }
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:_m_glView];
+        CGPoint touchLocation = [touch locationInView:_m_operationView];
         iGaiaLog(@"Touch Began x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
@@ -43,7 +52,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:_m_glView];
+        CGPoint touchLocation = [touch locationInView:_m_operationView];
         iGaiaLog(@"Touch Moved x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
@@ -51,7 +60,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:_m_glView];
+        CGPoint touchLocation = [touch locationInView:_m_operationView];
         iGaiaLog(@"Touch Ended x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
@@ -59,7 +68,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:_m_glView];
+        CGPoint touchLocation = [touch locationInView:_m_operationView];
         iGaiaLog(@"Touch Cancelled x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }

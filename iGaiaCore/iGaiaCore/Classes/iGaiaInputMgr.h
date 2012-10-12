@@ -11,7 +11,6 @@
 
 @interface iGaiaInputMgr : NSObject
 
-+ (iGaiaInputMgr *)sharedInstance;
-- (void)setResponderForView:(UIView*)view;
+@property(nonatomic, assign) UIView* m_operationView;
 
 @end

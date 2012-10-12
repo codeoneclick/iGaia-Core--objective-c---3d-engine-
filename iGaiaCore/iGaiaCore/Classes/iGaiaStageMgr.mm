@@ -9,7 +9,6 @@
 #import "iGaiaStageMgr.h"
 #import "iGaiaLoop.h"
 #import "iGaiaScriptMgr.h"
-#import "iGaiaSquirrelBindWrapper.h"
 #import "iGaiaRenderMgr.h"
 #import "iGaiaInputMgr.h"
 
@@ -20,7 +19,9 @@
 @property(nonatomic, strong) iGaiaLight* m_light;
 @property(nonatomic, strong) iGaiaOcean* m_ocean;
 
-@property(nonatomic, strong) iGaiaSquirrelBindWrapper* m_squirrel;
+@property(nonatomic, readwrite) iGaiaRenderMgr* m_renderMgr;
+@property(nonatomic, readwrite) iGaiaScriptMgr* m_scriptMgr;
+@property(nonatomic, readwrite) iGaiaInputMgr* m_inputMgr;
 
 @end
 
@@ -30,7 +31,10 @@
 @synthesize m_camera = _m_camera;
 @synthesize m_light = _m_light;
 @synthesize m_ocean = _m_ocean;
-@synthesize m_squirrel = _m_squirrel;
+
+@synthesize m_renderMgr= _m_renderMgr;
+@synthesize m_scriptMgr = _m_scriptMgr;
+@synthesize m_inputMgr = _m_inputMgr;
 
 + (iGaiaStageMgr *)sharedInstance
 {
@@ -47,10 +51,14 @@
     self = [super init];
     if(self)
     {
-        [[iGaiaLoop sharedInstance] addEventListener:self];
-        [[iGaiaInputMgr sharedInstance] setResponderForView:[iGaiaRenderMgr sharedInstance].m_glView];
         _m_listeners = [NSMutableSet new];
-        _m_squirrel = [iGaiaSquirrelBindWrapper new];
+
+        [[iGaiaLoop sharedInstance] addEventListener:self];
+
+        _m_renderMgr = [iGaiaRenderMgr new];
+        _m_inputMgr = [iGaiaInputMgr new];
+        _m_inputMgr.m_operationView = _m_renderMgr.m_glView;
+        _m_scriptMgr = [iGaiaScriptMgr new];
     }
     return self;
 }
@@ -87,8 +95,8 @@
     
     _m_ocean = [[iGaiaOcean alloc] initWithWidth:witdh withHeight:height withAltitude:altitude];
     _m_ocean.m_camera = _m_camera;
-    _m_ocean.m_reflectionTexture = [[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    _m_ocean.m_refractionTexture = [[iGaiaRenderMgr sharedInstance] retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
+    _m_ocean.m_reflectionTexture = [_m_renderMgr retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
+    _m_ocean.m_refractionTexture = [_m_renderMgr retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
     [_m_listeners addObject:_m_ocean];
     return _m_ocean;
 }
@@ -109,11 +117,6 @@
     {
         [listener onUpdate];
     }
-    
-    float params[2];
-    params[0] = 1.24f;
-    params[1] = 0.8f;
-    [_m_squirrel sq_onUpdateWith:params withCount:2];
 }
 
 @end

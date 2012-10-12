@@ -12,9 +12,9 @@
 		158FD6E016272E1E00595AF9 /* iGaiaInputMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FD6DF16272E1E00595AF9 /* iGaiaInputMgr.m */; };
 		158FD6E716272FA700595AF9 /* iGaiaTouchResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FD6E616272FA700595AF9 /* iGaiaTouchResponder.m */; };
 		15A882F416275F5B00671CDC /* iGaiaSquirrelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F316275F5B00671CDC /* iGaiaSquirrelCommon.m */; };
-		15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.m */; };
-		15A882FB1627601100671CDC /* iGaiaSquirrelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FA1627601100671CDC /* iGaiaSquirrelScene.m */; };
-		15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.m */; };
+		15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.mm */; };
+		15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */; };
+		15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */; };
 		A40C5A551625791800120D76 /* sqstdaux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2E1625791800120D76 /* sqstdaux.cpp */; };
 		A40C5A561625791800120D76 /* sqstdblob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2F1625791800120D76 /* sqstdblob.cpp */; };
 		A40C5A571625791800120D76 /* sqstdio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A311625791800120D76 /* sqstdio.cpp */; };
@@ -67,7 +67,6 @@
 		A4BFA08B1619A59300004F34 /* iGaiaRenderMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA08A1619A59300004F34 /* iGaiaRenderMgr.mm */; };
 		A4BFA2091619D3C600004F34 /* NSData+iGaiaExtension.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA2081619D3C600004F34 /* NSData+iGaiaExtension.mm */; };
 		A4BFA20D1619D6D500004F34 /* iGaiaLogger.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */; };
-		A4D4DE361625CF5900B1959F /* iGaiaSquirrelBindWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D4DE351625CF5900B1959F /* iGaiaSquirrelBindWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,11 +94,11 @@
 		15A882F216275F5B00671CDC /* iGaiaSquirrelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelCommon.h; path = iGaiaCore/Classes/iGaiaSquirrelCommon.h; sourceTree = "<group>"; };
 		15A882F316275F5B00671CDC /* iGaiaSquirrelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSquirrelCommon.m; path = iGaiaCore/Classes/iGaiaSquirrelCommon.m; sourceTree = "<group>"; };
 		15A882F616275F8F00671CDC /* iGaiaSquirrelRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelRuntime.h; path = iGaiaCore/Classes/iGaiaSquirrelRuntime.h; sourceTree = "<group>"; };
-		15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSquirrelRuntime.m; path = iGaiaCore/Classes/iGaiaSquirrelRuntime.m; sourceTree = "<group>"; };
+		15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelRuntime.mm; path = iGaiaCore/Classes/iGaiaSquirrelRuntime.mm; sourceTree = "<group>"; };
 		15A882F91627601100671CDC /* iGaiaSquirrelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelScene.h; path = iGaiaCore/Classes/iGaiaSquirrelScene.h; sourceTree = "<group>"; };
-		15A882FA1627601100671CDC /* iGaiaSquirrelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSquirrelScene.m; path = iGaiaCore/Classes/iGaiaSquirrelScene.m; sourceTree = "<group>"; };
+		15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelScene.mm; path = iGaiaCore/Classes/iGaiaSquirrelScene.mm; sourceTree = "<group>"; };
 		15A882FC1627607600671CDC /* iGaiaSquirrelObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelObject3d.h; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.h; sourceTree = "<group>"; };
-		15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaSquirrelObject3d.m; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.m; sourceTree = "<group>"; };
+		15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelObject3d.mm; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.mm; sourceTree = "<group>"; };
 		A40C5A261625791800120D76 /* sqstdaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdaux.h; sourceTree = "<group>"; };
 		A40C5A271625791800120D76 /* sqstdblob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdblob.h; sourceTree = "<group>"; };
 		A40C5A281625791800120D76 /* sqstdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdio.h; sourceTree = "<group>"; };
@@ -474,8 +473,6 @@
 		A4BFA20B1619D6D500004F34 /* iGaiaLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLogger.h; path = iGaiaCore/Classes/iGaiaLogger.h; sourceTree = "<group>"; };
 		A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLogger.mm; path = iGaiaCore/Classes/iGaiaLogger.mm; sourceTree = "<group>"; };
 		A4BFA2121619DB6E00004F34 /* iGaiaLoadCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaLoadCallback.h; path = iGaiaCore/Classes/iGaiaLoadCallback.h; sourceTree = "<group>"; };
-		A4D4DE341625CF5800B1959F /* iGaiaSquirrelBindWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelBindWrapper.h; path = iGaiaCore/Classes/iGaiaSquirrelBindWrapper.h; sourceTree = "<group>"; };
-		A4D4DE351625CF5900B1959F /* iGaiaSquirrelBindWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelBindWrapper.mm; path = iGaiaCore/Classes/iGaiaSquirrelBindWrapper.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,18 +588,11 @@
 		A40C5A6A1625792D00120D76 /* ScriptEngine */ = {
 			isa = PBXGroup;
 			children = (
+				A4C8994B16280F65003AC188 /* SquirrelWrappers */,
 				A40C5A6B1625796900120D76 /* iGaiaScriptMgr.h */,
 				A40C5A6C1625796900120D76 /* iGaiaScriptMgr.m */,
-				A4D4DE341625CF5800B1959F /* iGaiaSquirrelBindWrapper.h */,
-				A4D4DE351625CF5900B1959F /* iGaiaSquirrelBindWrapper.mm */,
 				15A882F216275F5B00671CDC /* iGaiaSquirrelCommon.h */,
 				15A882F316275F5B00671CDC /* iGaiaSquirrelCommon.m */,
-				15A882F616275F8F00671CDC /* iGaiaSquirrelRuntime.h */,
-				15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.m */,
-				15A882F91627601100671CDC /* iGaiaSquirrelScene.h */,
-				15A882FA1627601100671CDC /* iGaiaSquirrelScene.m */,
-				15A882FC1627607600671CDC /* iGaiaSquirrelObject3d.h */,
-				15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.m */,
 			);
 			name = ScriptEngine;
 			sourceTree = "<group>";
@@ -1132,6 +1122,19 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		A4C8994B16280F65003AC188 /* SquirrelWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				15A882F616275F8F00671CDC /* iGaiaSquirrelRuntime.h */,
+				15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.mm */,
+				15A882F91627601100671CDC /* iGaiaSquirrelScene.h */,
+				15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */,
+				15A882FC1627607600671CDC /* iGaiaSquirrelObject3d.h */,
+				15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */,
+			);
+			name = SquirrelWrappers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1236,13 +1239,12 @@
 				A40C5A671625791800120D76 /* sqtable.cpp in Sources */,
 				A40C5A681625791800120D76 /* sqvm.cpp in Sources */,
 				A40C5A6D1625796900120D76 /* iGaiaScriptMgr.m in Sources */,
-				A4D4DE361625CF5900B1959F /* iGaiaSquirrelBindWrapper.mm in Sources */,
 				158FD6E016272E1E00595AF9 /* iGaiaInputMgr.m in Sources */,
 				158FD6E716272FA700595AF9 /* iGaiaTouchResponder.m in Sources */,
 				15A882F416275F5B00671CDC /* iGaiaSquirrelCommon.m in Sources */,
-				15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.m in Sources */,
-				15A882FB1627601100671CDC /* iGaiaSquirrelScene.m in Sources */,
-				15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.m in Sources */,
+				15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.mm in Sources */,
+				15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */,
+				15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

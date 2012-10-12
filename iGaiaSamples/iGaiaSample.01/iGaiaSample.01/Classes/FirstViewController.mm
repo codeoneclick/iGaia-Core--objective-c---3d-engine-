@@ -31,32 +31,17 @@
     return self;
 }
 
-- (void)onLoad:(id<iGaiaResource>)resource
-{
-    if(resource.m_resourceType == E_RESOURCE_TYPE_TEXTURE)
-    {
-        iGaiaTexture*  texture = resource;
-        NSLog(@"%@", texture.m_name);
-    }
-    if(resource.m_resourceType == E_RESOURCE_TYPE_MESH)
-    {
-        iGaiaMesh*  mesh = resource;
-        NSLog(@"%@", mesh.m_name);
-    }
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    UIView* glView = [[iGaiaRenderMgr sharedInstance] createViewWithFrame:self.view.frame];
-    [self.view addSubview:glView];
+    [self.view addSubview:[iGaiaStageMgr sharedInstance].m_renderMgr.m_glView];
     
     _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    [[iGaiaScriptMgr sharedInstance]  loadScriptWithFileName:@"Scene_01.nut"];
+    [[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
     
     /*iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];

@@ -17,10 +17,6 @@
 
 @property(nonatomic, readonly) UIView* m_glView;
 
-+ (iGaiaRenderMgr *)sharedInstance;
-
-- (UIView*)createViewWithFrame:(CGRect)frame;
-
 - (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode;
 
 - (iGaiaTexture*)retriveTextureFromWorldSpaceRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
