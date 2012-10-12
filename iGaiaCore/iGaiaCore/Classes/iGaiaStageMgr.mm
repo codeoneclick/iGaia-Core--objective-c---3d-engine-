@@ -8,9 +8,6 @@
 
 #import "iGaiaStageMgr.h"
 #import "iGaiaLoop.h"
-#import "iGaiaScriptMgr.h"
-#import "iGaiaRenderMgr.h"
-#import "iGaiaInputMgr.h"
 
 @interface iGaiaStageMgr()<iGaiaLoopCallback>
 
@@ -21,7 +18,7 @@
 
 @property(nonatomic, readwrite) iGaiaRenderMgr* m_renderMgr;
 @property(nonatomic, readwrite) iGaiaScriptMgr* m_scriptMgr;
-@property(nonatomic, readwrite) iGaiaInputMgr* m_inputMgr;
+@property(nonatomic, readwrite) iGaiaTouchMgr* m_touchMgr;
 
 @end
 
@@ -34,7 +31,7 @@
 
 @synthesize m_renderMgr= _m_renderMgr;
 @synthesize m_scriptMgr = _m_scriptMgr;
-@synthesize m_inputMgr = _m_inputMgr;
+@synthesize m_touchMgr = _m_touchMgr;
 
 + (iGaiaStageMgr *)sharedInstance
 {
@@ -56,8 +53,8 @@
         [[iGaiaLoop sharedInstance] addEventListener:self];
 
         _m_renderMgr = [iGaiaRenderMgr new];
-        _m_inputMgr = [iGaiaInputMgr new];
-        _m_inputMgr.m_operationView = _m_renderMgr.m_glView;
+        _m_touchMgr = [iGaiaTouchMgr new];
+        _m_touchMgr.m_operationView = _m_renderMgr.m_glView;
         _m_scriptMgr = [iGaiaScriptMgr new];
     }
     return self;
@@ -65,7 +62,9 @@
 
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
 {
-    return _m_camera = [[iGaiaCamera alloc] initWithFov:fov withNear:near withFar:far forScreenWidth:width forScreenHeight:height];
+    _m_camera = [[iGaiaCamera alloc] initWithFov:fov withNear:near withFar:far forScreenWidth:width forScreenHeight:height];
+    _m_touchMgr.m_crosser.m_camera = _m_camera;
+    return _m_camera;
 }
 
 - (iGaiaLight*)createLight
@@ -78,6 +77,7 @@
     iGaiaShape3d* shape3d = [[iGaiaShape3d alloc] initWithMeshFileName:name];
     shape3d.m_camera = _m_camera;
     [_m_listeners addObject:shape3d];
+    [_m_touchMgr.m_crosser addEventListener:shape3d];
     return shape3d;
 }
 

@@ -24,4 +24,9 @@
 - (void)popVector3dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z forIndex:(NSInteger)index;
 - (void)pushVector3dX:(SQFloat)x Y:(SQFloat)y Z:(SQFloat)z;
 
+- (SQFloat)retriveFloatValueWithIndex:(NSInteger)index;
+- (const SQChar*)retriveStringValueWithIndex:(NSInteger)index;
+- (SQInteger)retriveIntegerValueWithIndex:(NSInteger)index;
+- (SQUserPointer)retriveDataPtrValueWithIndex:(NSInteger)index;
+
 @end

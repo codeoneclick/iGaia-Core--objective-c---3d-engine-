@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iGaiaTouchCallback.h"
 
 @interface iGaiaTouchResponder : UIView
 
 @property(nonatomic, assign) UIView* m_operationView;
+
+- (void)addEventListener:(id<iGaiaTouchCallback>)listener;
+- (void)removeEventListener:(id<iGaiaTouchCallback>)listener;
 
 @end

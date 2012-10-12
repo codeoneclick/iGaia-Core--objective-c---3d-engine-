@@ -9,7 +9,9 @@
 #import "iGaiaTouchResponder.h"
 #import "iGaiaLogger.h"
 
-@interface iGaiaTouchResponder() 
+@interface iGaiaTouchResponder()
+
+@property(nonatomic, strong) NSMutableSet* m_listeners;
 
 @end
 
@@ -22,7 +24,7 @@
     self = [super init];
     if(self)
     {
-      
+        _m_listeners = [NSMutableSet new];
     }
     return self;
 }
@@ -38,6 +40,16 @@
     [self removeFromSuperview];
     [self setFrame:_m_operationView.frame];
     [_m_operationView addSubview:self];
+}
+
+- (void)addEventListener:(id<iGaiaTouchCallback>)listener
+{
+    [_m_listeners addObject:listener];
+}
+
+- (void)removeEventListener:(id<iGaiaTouchCallback>)listener
+{
+    [_m_listeners removeObject:listener];
 }
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
@@ -62,6 +74,11 @@
     {
         CGPoint touchLocation = [touch locationInView:_m_operationView];
         iGaiaLog(@"Touch Ended x : %f , y : %f", touchLocation.x, touchLocation.y);
+
+        for(id<iGaiaTouchCallback> listener in _m_listeners)
+        {
+            [listener onTouchX:touchLocation.x Y:touchLocation.y];
+        }
     }
 }
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event

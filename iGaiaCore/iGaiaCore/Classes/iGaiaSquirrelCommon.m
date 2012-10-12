@@ -291,4 +291,53 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
 	sq_arrayappend(_m_squireel_vm, -2);
 }
 
+- (SQFloat)retriveFloatValueWithIndex:(NSInteger)index
+{
+    SQFloat value = 0.0f;
+    if(sq_gettype(_m_squireel_vm, index) == OT_FLOAT)
+    {
+        sq_getfloat(_m_squireel_vm, -1, &value);
+        return value;
+    }
+    iGaiaLog(@"Script arg index :%i incorrect.", index);
+    return value;
+}
+
+- (const SQChar*)retriveStringValueWithIndex:(NSInteger)index
+{
+    const SQChar* value = "";
+    if(sq_gettype(_m_squireel_vm, index) == OT_STRING)
+    {
+        sq_tostring(_m_squireel_vm, index);
+        sq_getstring(_m_squireel_vm, index, &value);
+        return value;
+    }
+    iGaiaLog(@"Script arg index :%i incorrect.", index);
+    return value;
+}
+
+- (SQInteger)retriveIntegerValueWithIndex:(NSInteger)index
+{
+    SQInteger value = 0;
+    if(sq_gettype(_m_squireel_vm, index) == OT_INTEGER)
+    {
+        sq_getinteger(_m_squireel_vm, index, &value);
+        return value;
+    }
+    iGaiaLog(@"Script arg index :%i incorrect.", index);
+    return value;
+}
+
+- (SQUserPointer)retriveDataPtrValueWithIndex:(NSInteger)index
+{
+    SQUserPointer value = NULL;
+    if(sq_gettype(_m_squireel_vm, index) == OT_USERPOINTER)
+    {
+        sq_getuserpointer(_m_squireel_vm, index, &value);
+        return value;
+    }
+    iGaiaLog(@"Script arg index :%i incorrect.", index);
+    return value;
+}
+
 @end

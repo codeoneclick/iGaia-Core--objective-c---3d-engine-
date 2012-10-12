@@ -14,9 +14,15 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 
 @interface iGaiaShape3d()
 
+@property(nonatomic, readwrite) iGaiaVertexBufferObject* m_crossOperationVertexBuffer;
+@property(nonatomic, readwrite) iGaiaIndexBufferObject* m_crossOperationIndexBuffer;
+
 @end
 
 @implementation iGaiaShape3d
+
+@synthesize m_crossOperationVertexBuffer = _m_crossOperationVertexBuffer;
+@synthesize m_crossOperationIndexBuffer = _m_crossOperationIndexBuffer;
 
 - (id)initWithMeshFileName:(NSString *)name
 {
@@ -72,7 +78,14 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     {
         iGaiaMesh* mesh = resource;
         _m_mesh = mesh;
+        _m_crossOperationVertexBuffer = _m_mesh.m_vertexBuffer;
+        _m_crossOperationIndexBuffer = _m_mesh.m_indexBuffer;
     }
+}
+
+- (void)onCross
+{
+    
 }
 
 - (void)onUpdate

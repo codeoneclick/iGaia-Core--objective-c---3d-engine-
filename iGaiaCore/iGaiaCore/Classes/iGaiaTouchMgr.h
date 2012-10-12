@@ -1,5 +1,5 @@
 //
-//  iGaiaInputMgr.h
+//  iGaiaTouchMgr.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/11/12.
@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface iGaiaInputMgr : NSObject
+#import "iGaiaTouchResponder.h"
+#import "iGaiaTouchCrosser.h"
+
+@interface iGaiaTouchMgr : NSObject
 
 @property(nonatomic, assign) UIView* m_operationView;
+
+@property(nonatomic, readonly) iGaiaTouchResponder* m_responder;
+@property(nonatomic, readonly) iGaiaTouchCrosser* m_crosser;
 
 @end

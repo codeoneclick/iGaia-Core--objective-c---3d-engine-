@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "iGaiaObject3d.h"
+#import "iGaiaCrossCallback.h"
 
-@interface iGaiaShape3d : iGaiaObject3d
+@interface iGaiaShape3d : iGaiaObject3d<iGaiaCrossCallback>
 
 - (id)initWithMeshFileName:(NSString*)name;
 - (void)setMeshWithFileName:(NSString*)name;

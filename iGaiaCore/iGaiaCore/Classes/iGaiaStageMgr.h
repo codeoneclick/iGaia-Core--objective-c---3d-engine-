@@ -15,14 +15,14 @@
 #import "iGaiaOcean.h"
 #import "iGaiaSkyDome.h"
 #import "iGaiaScriptMgr.h"
-#import "iGaiaInputMgr.h"
+#import "iGaiaTouchMgr.h"
 #import "iGaiaRenderMgr.h"
 
 @interface iGaiaStageMgr : NSObject
 
 @property(nonatomic, readonly) iGaiaRenderMgr* m_renderMgr;
 @property(nonatomic, readonly) iGaiaScriptMgr* m_scriptMgr;
-@property(nonatomic, readonly) iGaiaInputMgr* m_inputMgr;
+@property(nonatomic, readonly) iGaiaTouchMgr* m_touchMgr;
 
 
 + (iGaiaStageMgr *)sharedInstance;
