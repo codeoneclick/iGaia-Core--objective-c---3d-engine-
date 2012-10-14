@@ -39,7 +39,7 @@
     
     _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
-    _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
+    _m_camera.m_look = glm::vec3(13.0f, 0.0f, 26.0f);
 
     [[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
     
@@ -89,7 +89,7 @@
     [skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     [skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
 
-    iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:64.0f withHeight:64.0f withAltitude:0.1f];
+    iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
     [ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     
     [[iGaiaLoop sharedInstance] addEventListener:self];

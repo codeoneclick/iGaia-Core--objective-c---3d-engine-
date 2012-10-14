@@ -11,15 +11,28 @@
 
 static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
+@interface iGaiaOcean()
+
+@property(nonatomic, assign) float m_width;
+@property(nonatomic, assign) float m_height;
+
+@end
+
 @implementation iGaiaOcean
 
 @synthesize m_reflectionTexture = _m_reflectionTexture;
 @synthesize m_refractionTexture = _m_refractionTexture;
 
+@synthesize m_width = _m_width;
+@synthesize m_height = _m_height;
+
 - (id)initWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
 {
     self = [super init];
     {
+        _m_width = witdh;
+        _m_height = height;
+        
         iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
 
@@ -95,6 +108,8 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onUpdate
 {
+    _m_position.x = _m_camera.m_look.x - _m_width / 2.0f;
+    _m_position.z = _m_camera.m_look.z - _m_height / 2.0f;
     [super onUpdate];
 }
 
@@ -127,6 +142,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
             [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
             [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            [_m_material.m_operatingShader setVector3:glm::vec3(_m_position.x + _m_width / 2.0f, 0.0f, _m_position.z + _m_height / 2.0f) forCustomAttribute:@"EXT_Center"];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:

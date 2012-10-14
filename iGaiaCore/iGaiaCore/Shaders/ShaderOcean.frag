@@ -1,7 +1,9 @@
 const char* ShaderOceanF = STRINGIFY(
                                                    varying highp vec4   OUT_TexCoordProj;
                                                    varying highp vec2   OUT_TexCoord;
+                                                   varying highp vec3   OUT_Position;
                                                    uniform highp float  EXT_Timer;
+                                                   uniform highp vec3   EXT_Center;
                                                    uniform sampler2D EXT_TEXTURE_01;
                                                    uniform sampler2D EXT_TEXTURE_02;
                                                    uniform sampler2D EXT_TEXTURE_03;
@@ -14,7 +16,7 @@ void main(void)
 	vTexCoordProj = clamp(vTexCoordProj, 0.001, 0.999);
     lowp vec4 vReflectionColor = texture2D(EXT_TEXTURE_01, vTexCoordProj);
     
-    vTexCoordProj = OUT_TexCoordProj.xy;
+    /*vTexCoordProj = OUT_TexCoordProj.xy;
     vTexCoordProj.x = 0.5 + 0.5 * vTexCoordProj.x / OUT_TexCoordProj.w;
     vTexCoordProj.y = 0.5 + 0.5 * vTexCoordProj.y / OUT_TexCoordProj.w;
     vTexCoordProj = clamp(vTexCoordProj, 0.001, 0.999);
@@ -29,8 +31,8 @@ void main(void)
     lowp vec4 vWaterColor = texture2D(EXT_TEXTURE_04, vTexCoord_01) + texture2D(EXT_TEXTURE_04, vTexCoord_02);
     lowp vec4 vDeepColor = texture2D(EXT_TEXTURE_03, OUT_TexCoord);
     vRefractionColor = mix(vRefractionColor, vWaterColor, vDeepColor.r);
-    lowp vec4 vColor = mix(vRefractionColor, vReflectionColor, 0.25);
-    vColor.a = 1.0; //vDeepColor.r;
+    lowp vec4 vColor = mix(vRefractionColor, vReflectionColor, 0.25);*/
+    vReflectionColor.a = 1.0 - clamp((length(OUT_Position - EXT_Center) - 32.0) / 64.0, 0.0, 1.0);  //1.0; //vDeepColor.r;
     gl_FragColor = vReflectionColor;
 }
 );

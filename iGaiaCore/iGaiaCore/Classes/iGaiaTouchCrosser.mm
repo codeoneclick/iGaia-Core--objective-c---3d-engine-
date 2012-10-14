@@ -43,7 +43,7 @@
     glm::mat4x4 projection = _m_camera.m_projection;
     CGRect viewport = [[UIScreen mainScreen] bounds];
     float screenX =  -((( 2.0f * vector.x ) / viewport.size.width) - 1.0f ) / projection[0][0];
-    float screenY =  -((( 2.0f * vector.y ) / viewport.size.height) - 1.0f ) / projection[1][1];
+    float screenY =  -((( 2.0f * (viewport.size.height - vector.y) ) / viewport.size.height) - 1.0f ) / projection[1][1];
     glm::mat4x4 inverseView = glm::inverse(_m_camera.m_view);
 
     _m_rayDirection.x  = (screenX * inverseView[0][0] + screenY * inverseView[1][0] + inverseView[2][0]);
@@ -54,11 +54,9 @@
     _m_rayOrigin.z = inverseView[3][2];
 }
 
-- (BOOL)isCrossWithVertexBufferObject:(iGaiaVertexBufferObject*)vertexBuffer withIndexBufferObject:(iGaiaIndexBufferObject*)indexBuffer;
+- (BOOL)isCrossWithVertexData:(iGaiaVertex*)vertexData withIndexData:(unsigned short*)indexData withNumIndexes:(NSUInteger)numIndexes;
 {
-    iGaiaVertex* vertexData = [vertexBuffer lock];
-    unsigned short* indexData = [indexBuffer lock];
-    for(NSUInteger i = 0; i < indexBuffer.m_numIndexes; i += 3)
+    for(NSUInteger i = 0; i < numIndexes; i += 3)
     {
         glm::vec3 point_01 = vertexData[indexData[i + 0]].m_position;
         glm::vec3 point_02 = vertexData[indexData[i + 1]].m_position;
@@ -113,7 +111,7 @@
 
     for(id<iGaiaCrossCallback> listener in _m_listeners)
     {
-        if([self isCrossWithVertexBufferObject:listener.m_crossOperationVertexBuffer withIndexBufferObject:listener.m_crossOperationIndexBuffer]);
+        if([self isCrossWithVertexData:listener.m_crossOperationVertexData withIndexData:listener.m_crossOperationIndexData withNumIndexes:listener.m_crossOperationNumIndexes]);
         {
             [listener onCross];
         }

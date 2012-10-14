@@ -143,7 +143,7 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
         
         _m_priority = k_IGAIA_SKYDOME_RENDER_PRIORITY;
-        _m_updateMode = E_UPDATE_MODE_ASYNC;
+        _m_updateMode = E_UPDATE_MODE_SYNC;
     }
     return self;
 }

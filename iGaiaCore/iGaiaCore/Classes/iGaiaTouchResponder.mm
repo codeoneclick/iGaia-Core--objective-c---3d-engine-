@@ -57,7 +57,7 @@
     for (UITouch*touch in touches)
     {
         CGPoint touchLocation = [touch locationInView:_m_operationView];
-        iGaiaLog(@"Touch Began x : %f , y : %f", touchLocation.x, touchLocation.y);
+        //iGaiaLog(@"Touch Began x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
@@ -65,7 +65,7 @@
     for (UITouch*touch in touches)
     {
         CGPoint touchLocation = [touch locationInView:_m_operationView];
-        iGaiaLog(@"Touch Moved x : %f , y : %f", touchLocation.x, touchLocation.y);
+        //iGaiaLog(@"Touch Moved x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
@@ -73,7 +73,7 @@
     for (UITouch*touch in touches)
     {
         CGPoint touchLocation = [touch locationInView:_m_operationView];
-        iGaiaLog(@"Touch Ended x : %f , y : %f", touchLocation.x, touchLocation.y);
+        //iGaiaLog(@"Touch Ended x : %f , y : %f", touchLocation.x, touchLocation.y);
 
         for(id<iGaiaTouchCallback> listener in _m_listeners)
         {
@@ -86,7 +86,7 @@
     for (UITouch*touch in touches)
     {
         CGPoint touchLocation = [touch locationInView:_m_operationView];
-        iGaiaLog(@"Touch Cancelled x : %f , y : %f", touchLocation.x, touchLocation.y);
+        //iGaiaLog(@"Touch Cancelled x : %f , y : %f", touchLocation.x, touchLocation.y);
     }
 }
 

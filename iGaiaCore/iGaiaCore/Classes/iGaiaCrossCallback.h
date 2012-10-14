@@ -12,8 +12,9 @@
 
 @protocol iGaiaCrossCallback <NSObject>
 
-@property(nonatomic, readonly) iGaiaVertexBufferObject* m_crossOperationVertexBuffer;
-@property(nonatomic, readonly) iGaiaIndexBufferObject* m_crossOperationIndexBuffer;
+@property(nonatomic, readonly) iGaiaVertex* m_crossOperationVertexData;
+@property(nonatomic, readonly) unsigned short* m_crossOperationIndexData;
+@property(nonatomic, readonly) NSUInteger m_crossOperationNumIndexes;
 
 - (void)onCross;
 

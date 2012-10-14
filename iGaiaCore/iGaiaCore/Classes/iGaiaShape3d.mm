@@ -14,15 +14,17 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 
 @interface iGaiaShape3d()
 
-@property(nonatomic, readwrite) iGaiaVertexBufferObject* m_crossOperationVertexBuffer;
-@property(nonatomic, readwrite) iGaiaIndexBufferObject* m_crossOperationIndexBuffer;
+@property(nonatomic, readwrite) iGaiaVertex* m_crossOperationVertexData;
+@property(nonatomic, readwrite) unsigned short* m_crossOperationIndexData;
+@property(nonatomic, readwrite) NSUInteger m_crossOperationNumIndexes;
 
 @end
 
 @implementation iGaiaShape3d
 
-@synthesize m_crossOperationVertexBuffer = _m_crossOperationVertexBuffer;
-@synthesize m_crossOperationIndexBuffer = _m_crossOperationIndexBuffer;
+@synthesize m_crossOperationVertexData = _m_crossOperationVertexData;
+@synthesize m_crossOperationIndexData = _m_crossOperationIndexData;
+@synthesize m_crossOperationNumIndexes = _m_crossOperationNumIndexes;
 
 - (id)initWithMeshFileName:(NSString *)name
 {
@@ -72,14 +74,40 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     _m_material.m_clipping = clipping;
 }
 
+- (iGaiaVertex*)m_crossOperationVertexData
+{
+    if(_m_crossOperationVertexData == nil)
+    {
+        return nil;
+    }
+    
+    iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
+    for(NSUInteger i = 0; i < _m_mesh.m_numVertexes; ++i)
+    {
+        glm::vec4 position = glm::vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
+        position = _m_worldMatrix * position;
+        _m_crossOperationVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
+    }
+    return _m_crossOperationVertexData;
+}
+
+- (unsigned short*)m_crossOperationIndexData
+{
+    return [_m_mesh.m_indexBuffer lock];
+}
+
+- (NSUInteger)m_crossOperationNumIndexes
+{
+    return _m_mesh.m_numIndexes;
+}
+
 - (void)onLoad:(id<iGaiaResource>)resource
 {
     if(resource.m_resourceType == E_RESOURCE_TYPE_MESH)
     {
         iGaiaMesh* mesh = resource;
         _m_mesh = mesh;
-        _m_crossOperationVertexBuffer = _m_mesh.m_vertexBuffer;
-        _m_crossOperationIndexBuffer = _m_mesh.m_indexBuffer;
+        _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
     }
 }
 
