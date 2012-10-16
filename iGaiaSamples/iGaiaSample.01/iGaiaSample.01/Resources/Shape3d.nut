@@ -1,4 +1,6 @@
-class Shape3d 
+igaia.Runtime.import("Vector3d.nut");
+
+class Shape3d
 {
     self = null;
     object3d = igaia.Object3d();

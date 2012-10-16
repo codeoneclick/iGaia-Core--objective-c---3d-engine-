@@ -7,17 +7,13 @@
 //
 
 #import "iGaiaScriptMgr.h"
-#import "iGaiaSquirrelCommon.h"
-#import "iGaiaSquirrelRuntime.h"
-#import "iGaiaSquirrelScene.h"
-#import "iGaiaSquirrelObject3d.h"
 
 @interface iGaiaScriptMgr()
 
-@property(nonatomic, strong) iGaiaSquirrelCommon* m_commonWrapper;
-@property(nonatomic, strong) iGaiaSquirrelRuntime* m_runtimeWrapper;
-@property(nonatomic, strong) iGaiaSquirrelScene* m_sceneWrapper;
-@property(nonatomic, strong) iGaiaSquirrelObject3d* m_object3dWrapper;
+@property(nonatomic, readwrite) iGaiaSquirrelCommon* m_commonWrapper;
+@property(nonatomic, readwrite) iGaiaSquirrelRuntime* m_runtimeWrapper;
+@property(nonatomic, readwrite) iGaiaSquirrelScene* m_sceneWrapper;
+@property(nonatomic, readwrite) iGaiaSquirrelObject3d* m_object3dWrapper;
 
 @end
 

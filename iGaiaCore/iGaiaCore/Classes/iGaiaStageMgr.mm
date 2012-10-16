@@ -19,6 +19,8 @@
 @property(nonatomic, readwrite) iGaiaRenderMgr* m_renderMgr;
 @property(nonatomic, readwrite) iGaiaScriptMgr* m_scriptMgr;
 @property(nonatomic, readwrite) iGaiaTouchMgr* m_touchMgr;
+@property(nonatomic, readwrite) iGaiaParticleMgr* m_particleMgr;
+
 
 @end
 
@@ -32,6 +34,7 @@
 @synthesize m_renderMgr= _m_renderMgr;
 @synthesize m_scriptMgr = _m_scriptMgr;
 @synthesize m_touchMgr = _m_touchMgr;
+@synthesize m_particleMgr = _m_particleMgr;
 
 + (iGaiaStageMgr *)sharedInstance
 {
@@ -56,6 +59,7 @@
         _m_touchMgr = [iGaiaTouchMgr new];
         _m_touchMgr.m_operationView = _m_renderMgr.m_glView;
         _m_scriptMgr = [iGaiaScriptMgr new];
+        _m_particleMgr = [iGaiaParticleMgr new];
     }
     return self;
 }
@@ -63,6 +67,14 @@
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
 {
     _m_camera = [[iGaiaCamera alloc] initWithFov:fov withNear:near withFar:far forScreenWidth:width forScreenHeight:height];
+    
+    for(iGaiaObject3d* object3d in _m_listeners)
+    {
+        object3d.m_camera = _m_camera;
+    }
+    
+    _m_particleMgr.m_camera = _m_camera;
+    
     _m_touchMgr.m_crosser.m_camera = _m_camera;
     return _m_camera;
 }
@@ -118,6 +130,10 @@
     {
         [listener onUpdate];
     }
+    
+    [_m_particleMgr onUpdate];
+    
+    [_m_scriptMgr.m_runtimeWrapper sq_onUpdate];
 }
 
 @end

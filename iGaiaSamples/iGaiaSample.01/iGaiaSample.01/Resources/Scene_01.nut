@@ -1,8 +1,11 @@
 igaia.Runtime.import("Vector3d.nut");
 igaia.Runtime.import("Shape3d.nut");
 igaia.Runtime.import("Constants.nut");
+igaia.Runtime.import("ParticleMgr.nut");
+igaia.Runtime.import("FireParticleEmitter.nut");
 
 local scene = igaia.Scene();
+local particleMgr = ParticleMgr();
     
 local shape3d = Shape3d(scene.createShape3d("building_01.mdl"));
 shape3d.setShader(k_SHADER_MODEL, k_RENDER_MODE_WORLD_SPACE_SIMPLE);
@@ -12,7 +15,9 @@ shape3d.setPosition(Vector3d(16.0, 0.0, 32.0));
 shape3d.setRotation(Vector3d(0.0, 45.0, 0.0));
 shape3d.setTexture("default.pvr",k_TEXTURE_SLOT_01);
 
+local fireParticleEmitter = particleMgr.createFireParticleEmitter();
+
 function igaia::onUpdate(...) 
 {
-
+    particleMgr.onUpdate();
 }

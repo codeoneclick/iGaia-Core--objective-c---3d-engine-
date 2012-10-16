@@ -17,12 +17,14 @@
 #import "iGaiaScriptMgr.h"
 #import "iGaiaTouchMgr.h"
 #import "iGaiaRenderMgr.h"
+#import "iGaiaParticleMgr.h"
 
 @interface iGaiaStageMgr : NSObject
 
 @property(nonatomic, readonly) iGaiaRenderMgr* m_renderMgr;
 @property(nonatomic, readonly) iGaiaScriptMgr* m_scriptMgr;
 @property(nonatomic, readonly) iGaiaTouchMgr* m_touchMgr;
+@property(nonatomic, readonly) iGaiaParticleMgr* m_particleMgr;
 
 
 + (iGaiaStageMgr *)sharedInstance;

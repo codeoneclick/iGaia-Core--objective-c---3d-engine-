@@ -1,5 +1,5 @@
 //
-//  iGaiaParticleEmmiter.m
+//  iGaiaParticleEmitter.m
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/12/12.
@@ -8,18 +8,22 @@
 
 static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 
-#import "iGaiaParticleEmmiter.h"
+#import "iGaiaParticleEmitter.h"
 
 #import "iGaiaLogger.h"
 
-@interface iGaiaParticleEmmiter()
+@interface iGaiaParticleEmitter()
 
 @property(nonatomic, assign) NSUInteger m_numParticles;
 @property(nonatomic, assign) iGaiaParticle* m_particles;
 
+@property(nonatomic, assign) float m_lifetime;
+@property(nonatomic, assign) glm::vec3 m_startSize;
+@property(nonatomic, assign) glm::vec3 m_endSize;
+
 @end
 
-@implementation iGaiaParticleEmmiter
+@implementation iGaiaParticleEmitter
 
 @synthesize m_numParticles = _m_numParticles;
 @synthesize m_particles = _m_particles;
@@ -94,7 +98,6 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
     return self;
 }
 
-
 - (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode
 {
     [super setShader:shader forMode:mode];
@@ -108,37 +111,34 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 - (void)onUpdate
 {
     [super onUpdate];
-
     iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
-
 
     for(NSUInteger i = 0; i < _m_numParticles; ++i)
     {
+        glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position + _m_position]; 
 
-        glm::mat4x4 mWorld = pCamera->Get_BillboardSphericalMatrix(m_pParticles[index].m_vPosition + vPositionCached);
+        glm::vec4 position = glm::vec4(-_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
+        position = matrixSpherical * position;
+        vertexData[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
 
-        glm::vec4 vTransform = glm::vec4(-m_pParticles[index].m_vSize.x, -m_pParticles[index].m_vSize.y, 0.0f, 1.0f);
-        vTransform = mWorld * vTransform;
-        pVertexBufferData[index * 4 + 0].m_vPosition = glm::vec3(vTransform.x, vTransform.y, vTransform.z);
+        position = glm::vec4(_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
+        position = matrixSpherical * position;
+        vertexData[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
 
-        vTransform = glm::vec4(m_pParticles[index].m_vSize.x, -m_pParticles[index].m_vSize.y, 0.0f, 1.0f);
-        vTransform = mWorld * vTransform;
-        pVertexBufferData[index * 4 + 1].m_vPosition = glm::vec3(vTransform.x, vTransform.y, vTransform.z);
+        position = glm::vec4(_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
+        position = matrixSpherical * position;
+        vertexData[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
 
-        vTransform = glm::vec4(m_pParticles[index].m_vSize.x, m_pParticles[index].m_vSize.y, 0.0f, 1.0f);
-        vTransform = mWorld * vTransform;
-        pVertexBufferData[index * 4 + 2].m_vPosition = glm::vec3(vTransform.x, vTransform.y, vTransform.z);
+        position = glm::vec4(-_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
+        position = matrixSpherical * position;
+        vertexData[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
 
-        vTransform = glm::vec4(-m_pParticles[index].m_vSize.x, m_pParticles[index].m_vSize.y, 0.0f, 1.0f);
-        vTransform = mWorld * vTransform;
-        pVertexBufferData[index * 4 + 3].m_vPosition = glm::vec3(vTransform.x, vTransform.y, vTransform.z);
-
-        pVertexBufferData[index * 4 + 0].m_vColor = m_pParticles[index].m_vColor;
-        pVertexBufferData[index * 4 + 1].m_vColor = m_pParticles[index].m_vColor;
-        pVertexBufferData[index * 4 + 2].m_vColor = m_pParticles[index].m_vColor;
-        pVertexBufferData[index * 4 + 3].m_vColor = m_pParticles[index].m_vColor;
+        vertexData[i * 4 + 0].m_color = _m_particles[i].m_color;
+        vertexData[i * 4 + 1].m_color = _m_particles[i].m_color;
+        vertexData[i * 4 + 2].m_color = _m_particles[i].m_color;
+        vertexData[i * 4 + 3].m_color = _m_particles[i].m_color;
     }
-    m_pMesh->Get_VertexBufferRef()->Commit();
+    [_m_mesh.m_vertexBuffer unlock];
 }
 
 - (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode

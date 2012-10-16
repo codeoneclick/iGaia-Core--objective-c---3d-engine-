@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "iGaiaParticleEmitter.h"
+
 @interface iGaiaParticleMgr : NSObject
+
+@property(nonatomic, assign) iGaiaCamera* m_camera;
+
+- (iGaiaParticleEmitter*)createParticleEmitterWithNumParticles:(NSUInteger)numParticles;
+- (void)removeParticleEmitter:(iGaiaParticleEmitter*)emitter;
+
+- (void)onUpdate;
 
 @end

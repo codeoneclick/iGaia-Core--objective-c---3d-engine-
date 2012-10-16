@@ -15,6 +15,7 @@
 		15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.mm */; };
 		15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */; };
 		15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */; };
+		15A8834F162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */; };
 		A40C5A551625791800120D76 /* sqstdaux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2E1625791800120D76 /* sqstdaux.cpp */; };
 		A40C5A561625791800120D76 /* sqstdblob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2F1625791800120D76 /* sqstdblob.cpp */; };
 		A40C5A571625791800120D76 /* sqstdio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A311625791800120D76 /* sqstdio.cpp */; };
@@ -68,9 +69,8 @@
 		A4BFA2091619D3C600004F34 /* NSData+iGaiaExtension.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA2081619D3C600004F34 /* NSData+iGaiaExtension.mm */; };
 		A4BFA20D1619D6D500004F34 /* iGaiaLogger.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BFA20C1619D6D500004F34 /* iGaiaLogger.mm */; };
 		A4C8995216281CE2003AC188 /* iGaiaTouchCrosser.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C8995116281CE2003AC188 /* iGaiaTouchCrosser.mm */; };
-		A4C899EC162857A1003AC188 /* iGaiaParticleMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C899EB162857A1003AC188 /* iGaiaParticleMgr.m */; };
-		A4C899F316285816003AC188 /* iGaiaParticle.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C899F216285816003AC188 /* iGaiaParticle.mm */; };
-		A4C899F61628582C003AC188 /* iGaiaParticleEmmiter.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C899F51628582C003AC188 /* iGaiaParticleEmmiter.mm */; };
+		A4C899EC162857A1003AC188 /* iGaiaParticleMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C899EB162857A1003AC188 /* iGaiaParticleMgr.mm */; };
+		A4C899F61628582C003AC188 /* iGaiaParticleEmitter.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C899F51628582C003AC188 /* iGaiaParticleEmitter.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +103,8 @@
 		15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelScene.mm; path = iGaiaCore/Classes/iGaiaSquirrelScene.mm; sourceTree = "<group>"; };
 		15A882FC1627607600671CDC /* iGaiaSquirrelObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelObject3d.h; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.h; sourceTree = "<group>"; };
 		15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelObject3d.mm; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.mm; sourceTree = "<group>"; };
+		15A8834D162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelParticleMgr.h; path = iGaiaCore/Classes/iGaiaSquirrelParticleMgr.h; sourceTree = "<group>"; };
+		15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelParticleMgr.mm; path = iGaiaCore/Classes/iGaiaSquirrelParticleMgr.mm; sourceTree = "<group>"; };
 		A40C5A261625791800120D76 /* sqstdaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdaux.h; sourceTree = "<group>"; };
 		A40C5A271625791800120D76 /* sqstdblob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdblob.h; sourceTree = "<group>"; };
 		A40C5A281625791800120D76 /* sqstdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdio.h; sourceTree = "<group>"; };
@@ -482,11 +484,9 @@
 		A4C8995C16281E78003AC188 /* iGaiaCrossCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaCrossCallback.h; path = iGaiaCore/Classes/iGaiaCrossCallback.h; sourceTree = "<group>"; };
 		A4C899671628281C003AC188 /* iGaiaTouchCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchCallback.h; path = iGaiaCore/Classes/iGaiaTouchCallback.h; sourceTree = "<group>"; };
 		A4C899EA162857A1003AC188 /* iGaiaParticleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParticleMgr.h; path = iGaiaCore/Classes/iGaiaParticleMgr.h; sourceTree = "<group>"; };
-		A4C899EB162857A1003AC188 /* iGaiaParticleMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaParticleMgr.m; path = iGaiaCore/Classes/iGaiaParticleMgr.m; sourceTree = "<group>"; };
-		A4C899F116285816003AC188 /* iGaiaParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParticle.h; path = iGaiaCore/Classes/iGaiaParticle.h; sourceTree = "<group>"; };
-		A4C899F216285816003AC188 /* iGaiaParticle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParticle.mm; path = iGaiaCore/Classes/iGaiaParticle.mm; sourceTree = "<group>"; };
-		A4C899F41628582C003AC188 /* iGaiaParticleEmmiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParticleEmmiter.h; path = iGaiaCore/Classes/iGaiaParticleEmmiter.h; sourceTree = "<group>"; };
-		A4C899F51628582C003AC188 /* iGaiaParticleEmmiter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParticleEmmiter.mm; path = iGaiaCore/Classes/iGaiaParticleEmmiter.mm; sourceTree = "<group>"; };
+		A4C899EB162857A1003AC188 /* iGaiaParticleMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParticleMgr.mm; path = iGaiaCore/Classes/iGaiaParticleMgr.mm; sourceTree = "<group>"; };
+		A4C899F41628582C003AC188 /* iGaiaParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParticleEmitter.h; path = iGaiaCore/Classes/iGaiaParticleEmitter.h; sourceTree = "<group>"; };
+		A4C899F51628582C003AC188 /* iGaiaParticleEmitter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParticleEmitter.mm; path = iGaiaCore/Classes/iGaiaParticleEmitter.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1150,6 +1150,8 @@
 				15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */,
 				15A882FC1627607600671CDC /* iGaiaSquirrelObject3d.h */,
 				15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */,
+				15A8834D162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.h */,
+				15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */,
 			);
 			name = SquirrelWrappers;
 			sourceTree = "<group>";
@@ -1158,11 +1160,9 @@
 			isa = PBXGroup;
 			children = (
 				A4C899EA162857A1003AC188 /* iGaiaParticleMgr.h */,
-				A4C899EB162857A1003AC188 /* iGaiaParticleMgr.m */,
-				A4C899F116285816003AC188 /* iGaiaParticle.h */,
-				A4C899F216285816003AC188 /* iGaiaParticle.mm */,
-				A4C899F41628582C003AC188 /* iGaiaParticleEmmiter.h */,
-				A4C899F51628582C003AC188 /* iGaiaParticleEmmiter.mm */,
+				A4C899EB162857A1003AC188 /* iGaiaParticleMgr.mm */,
+				A4C899F41628582C003AC188 /* iGaiaParticleEmitter.h */,
+				A4C899F51628582C003AC188 /* iGaiaParticleEmitter.mm */,
 			);
 			name = ParticleEngine;
 			sourceTree = "<group>";
@@ -1278,9 +1278,9 @@
 				15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */,
 				15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.mm in Sources */,
 				A4C8995216281CE2003AC188 /* iGaiaTouchCrosser.mm in Sources */,
-				A4C899EC162857A1003AC188 /* iGaiaParticleMgr.m in Sources */,
-				A4C899F316285816003AC188 /* iGaiaParticle.mm in Sources */,
-				A4C899F61628582C003AC188 /* iGaiaParticleEmmiter.mm in Sources */,
+				A4C899EC162857A1003AC188 /* iGaiaParticleMgr.mm in Sources */,
+				A4C899F61628582C003AC188 /* iGaiaParticleEmitter.mm in Sources */,
+				15A8834F162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

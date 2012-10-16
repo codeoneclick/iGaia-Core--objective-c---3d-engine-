@@ -1,17 +1,17 @@
 //
-//  iGaiaSquirrelRuntime.h
+//  iGaiaSquirrelParticleMgr.h
 //  iGaiaCore
 //
-//  Created by Sergey Sergeev on 10/11/12.
+//  Created by Sergey Sergeev on 10/16/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
 #import "iGaiaSquirrelCommon.h"
 
-@interface iGaiaSquirrelRuntime : NSObject
+@interface iGaiaSquirrelParticleMgr : NSObject
 
 - (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
-- (void)sq_onUpdate;
 
 @end

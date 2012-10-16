@@ -54,9 +54,9 @@ SQInteger sq_import(HSQUIRRELVM vm)
 	return 0;
 }
 
-- (void)sq_onUpdateWith:(float[])params withCount:(NSUInteger)count
+- (void)sq_onUpdate
 {
-    //[[iGaiaScriptMgr sharedInstance] callFunctionWithName:@"onUpdate" withParams:params withCount:count];
+    [[iGaiaSquirrelCommon sharedInstance] callFunctionWithName:@"onUpdate" withParams:nil withCount:0];
 }
 
 @end

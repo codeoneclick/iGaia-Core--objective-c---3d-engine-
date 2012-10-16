@@ -1,5 +1,5 @@
 //
-//  iGaiaParticleEmmiter.h
+//  iGaiaParticleEmitter.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/12/12.
@@ -19,6 +19,8 @@ struct iGaiaParticle
     float m_lifetime;
 };
 
-@interface iGaiaParticleEmmiter : iGaiaObject3d
+@interface iGaiaParticleEmitter : iGaiaObject3d
+
+- (id)initWithNumParticles:(NSUInteger)numParticles withSize:(const glm::vec2&)size withLifetime:(float)lifetime;
 
 @end
