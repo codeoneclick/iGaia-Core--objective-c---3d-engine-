@@ -112,6 +112,7 @@
 - (void)onUpdate
 {
     [_m_camera onUpdate];
+    [_m_camera.m_frustum onUpdate];
     
     for(id<iGaiaUpdateCallback> listener in _m_listeners)
     {

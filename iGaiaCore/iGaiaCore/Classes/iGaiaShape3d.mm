@@ -65,7 +65,7 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     }
     else
     {
-        iGaiaLog(@"Mesh is not nil");
+        iGaiaLog(@"Mesh is not nil.");
     }
 }
 
@@ -107,7 +107,14 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     {
         iGaiaMesh* mesh = resource;
         _m_mesh = mesh;
-        _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
+        if(_m_crossOperationVertexData == nil)
+        {
+            _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
+        }
+        else
+        {
+            iGaiaLog(@"Current cross operation vertex data not nil.");
+        }
     }
 }
 
