@@ -1,5 +1,5 @@
 
-class Vector3d
+class vector3d
 {
     x = null;
     y = null;
@@ -25,12 +25,12 @@ class Vector3d
         {
             return null;
         }
-        return Vector3d(arg[0], arg[1], arg[2]);
+        return vector3d(arg[0], arg[1], arg[2]);
     }
     
     function distance(vector) 
     {
-        local result = Vector3d(x - vector.x, y - vector.y, z - vector.z);
+        local result = vector3d(x - vector.x, y - vector.y, z - vector.z);
         return result.length();
     }
     
@@ -41,11 +41,11 @@ class Vector3d
     
     function _add(vector) 
     {
-        return Vector3d(x + vector.x, y + vector.y, z + vector.z);
+        return vector3d(x + vector.x, y + vector.y, z + vector.z);
     }
     
     function _sub(vector) 
     {
-        return Vector3d(x - vector.x, y - vector.y, z - vector.z);
+        return vector3d(x - vector.x, y - vector.y, z - vector.z);
     }
 }

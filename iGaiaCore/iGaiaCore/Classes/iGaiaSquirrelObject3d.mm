@@ -32,13 +32,13 @@
 
 - (void)bind
 {
-    [_m_commonWrapper registerClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_setPositionObject3d withName:@"setPositionObject3d" forClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_getPositionObject3d withName:@"getPositionObject3d" forClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_setRotationObject3d withName:@"setRotationObject3d" forClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_getRotationObject3d withName:@"getRotationObject3d" forClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_setShaderObject3d withName:@"setShader" forClass:@"Object3d"];
-    [_m_commonWrapper registerFunction:sq_setTextureObject3d withName:@"setTexture" forClass:@"Object3d"];
+    [_m_commonWrapper registerClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_setPositionObject3d withName:@"setPositionObject3d" forClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_getPositionObject3d withName:@"getPositionObject3d" forClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_setRotationObject3d withName:@"setRotationObject3d" forClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_getRotationObject3d withName:@"getRotationObject3d" forClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_setShaderObject3d withName:@"setShader" forClass:@"Object3dWrapper"];
+    [_m_commonWrapper registerFunction:sq_setTextureObject3d withName:@"setTexture" forClass:@"Object3dWrapper"];
 }
 
 SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)

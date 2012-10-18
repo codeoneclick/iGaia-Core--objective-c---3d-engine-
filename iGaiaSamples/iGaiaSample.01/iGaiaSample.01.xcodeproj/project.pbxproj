@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15A8835A162DF25D00671CDC /* FireParticleEmitter.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88359162DF25D00671CDC /* FireParticleEmitter.nut */; };
-		15A8835E162DF8BA00671CDC /* Particle.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A8835D162DF8B900671CDC /* Particle.nut */; };
-		15A88363162DFC9F00671CDC /* ParticleMgr.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88362162DFC9F00671CDC /* ParticleMgr.nut */; };
+		15A8835A162DF25D00671CDC /* fire_visual_effect.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88359162DF25D00671CDC /* fire_visual_effect.nut */; };
+		15A88367163074F400671CDC /* common.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88364163074F400671CDC /* common.nut */; };
+		15A88368163074F400671CDC /* vector2d.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88365163074F400671CDC /* vector2d.nut */; };
+		15A88369163074F400671CDC /* vector4d.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A88366163074F400671CDC /* vector4d.nut */; };
+		15A8837516307A7100671CDC /* particle_mgr.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A8837416307A7100671CDC /* particle_mgr.nut */; };
+		15A8837716307AF700671CDC /* particle_emitter.nut in Resources */ = {isa = PBXBuildFile; fileRef = 15A8837616307AF700671CDC /* particle_emitter.nut */; };
 		15AD3F0E1623497A004CB184 /* skydome.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F0D1623497A004CB184 /* skydome.pvr */; };
 		15AD3F1D16236879004CB184 /* building_02.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1816236879004CB184 /* building_02.mdl */; };
 		15AD3F1E16236879004CB184 /* building_03.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1916236879004CB184 /* building_03.mdl */; };
@@ -39,9 +42,9 @@
 		A4D1F084160C43FC005307F4 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F07D160C43FC005307F4 /* second@2x.png */; };
 		A4D1F0F5160C6B8B005307F4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0F4160C6B8B005307F4 /* default.pvr */; };
 		A4D1F0FB160C7231005307F4 /* building_01.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F0FA160C7231005307F4 /* building_01.mdl */; };
-		A4D4DE761626C85100B1959F /* Shape3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE741626C85100B1959F /* Shape3d.nut */; };
-		A4D4DE771626C85100B1959F /* Vector3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE751626C85100B1959F /* Vector3d.nut */; };
-		A4D4DE791626C98200B1959F /* Constants.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE781626C98200B1959F /* Constants.nut */; };
+		A4D4DE761626C85100B1959F /* shape3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE741626C85100B1959F /* shape3d.nut */; };
+		A4D4DE771626C85100B1959F /* vector3d.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE751626C85100B1959F /* vector3d.nut */; };
+		A4D4DE791626C98200B1959F /* constants.nut in Resources */ = {isa = PBXBuildFile; fileRef = A4D4DE781626C98200B1959F /* constants.nut */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,9 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15A88359162DF25D00671CDC /* FireParticleEmitter.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FireParticleEmitter.nut; sourceTree = "<group>"; };
-		15A8835D162DF8B900671CDC /* Particle.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Particle.nut; sourceTree = "<group>"; };
-		15A88362162DFC9F00671CDC /* ParticleMgr.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ParticleMgr.nut; sourceTree = "<group>"; };
+		15A88359162DF25D00671CDC /* fire_visual_effect.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fire_visual_effect.nut; sourceTree = "<group>"; };
+		15A88364163074F400671CDC /* common.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = common.nut; sourceTree = "<group>"; };
+		15A88365163074F400671CDC /* vector2d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vector2d.nut; sourceTree = "<group>"; };
+		15A88366163074F400671CDC /* vector4d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vector4d.nut; sourceTree = "<group>"; };
+		15A8837416307A7100671CDC /* particle_mgr.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particle_mgr.nut; sourceTree = "<group>"; };
+		15A8837616307AF700671CDC /* particle_emitter.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = particle_emitter.nut; sourceTree = "<group>"; };
 		15AD3F0D1623497A004CB184 /* skydome.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = skydome.pvr; sourceTree = "<group>"; };
 		15AD3F1816236879004CB184 /* building_02.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_02.mdl; sourceTree = "<group>"; };
 		15AD3F1916236879004CB184 /* building_03.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_03.mdl; sourceTree = "<group>"; };
@@ -100,9 +106,9 @@
 		A4D1F07D160C43FC005307F4 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		A4D1F0F4160C6B8B005307F4 /* default.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.pvr; sourceTree = "<group>"; };
 		A4D1F0FA160C7231005307F4 /* building_01.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_01.mdl; sourceTree = "<group>"; };
-		A4D4DE741626C85100B1959F /* Shape3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shape3d.nut; sourceTree = "<group>"; };
-		A4D4DE751626C85100B1959F /* Vector3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vector3d.nut; sourceTree = "<group>"; };
-		A4D4DE781626C98200B1959F /* Constants.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Constants.nut; sourceTree = "<group>"; };
+		A4D4DE741626C85100B1959F /* shape3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shape3d.nut; sourceTree = "<group>"; };
+		A4D4DE751626C85100B1959F /* vector3d.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vector3d.nut; sourceTree = "<group>"; };
+		A4D4DE781626C98200B1959F /* constants.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = constants.nut; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +131,11 @@
 		15A8835F162DFBDA00671CDC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A4D4DE781626C98200B1959F /* Constants.nut */,
-				A4D4DE751626C85100B1959F /* Vector3d.nut */,
+				15A88364163074F400671CDC /* common.nut */,
+				A4D4DE781626C98200B1959F /* constants.nut */,
+				15A88365163074F400671CDC /* vector2d.nut */,
+				A4D4DE751626C85100B1959F /* vector3d.nut */,
+				15A88366163074F400671CDC /* vector4d.nut */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -134,7 +143,7 @@
 		15A88360162DFBE200671CDC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				A4D4DE741626C85100B1959F /* Shape3d.nut */,
+				A4D4DE741626C85100B1959F /* shape3d.nut */,
 				A40C5A76162585FF00120D76 /* Scene_01.nut */,
 			);
 			name = Scene;
@@ -143,11 +152,19 @@
 		15A88361162DFBEC00671CDC /* ParticleEngine */ = {
 			isa = PBXGroup;
 			children = (
-				15A8835D162DF8B900671CDC /* Particle.nut */,
-				15A88359162DF25D00671CDC /* FireParticleEmitter.nut */,
-				15A88362162DFC9F00671CDC /* ParticleMgr.nut */,
+				15A8836A16307A3600671CDC /* visual_effects */,
+				15A8837616307AF700671CDC /* particle_emitter.nut */,
+				15A8837416307A7100671CDC /* particle_mgr.nut */,
 			);
 			name = ParticleEngine;
+			sourceTree = "<group>";
+		};
+		15A8836A16307A3600671CDC /* visual_effects */ = {
+			isa = PBXGroup;
+			children = (
+				15A88359162DF25D00671CDC /* fire_visual_effect.nut */,
+			);
+			name = visual_effects;
 			sourceTree = "<group>";
 		};
 		A4ADF465160B6FE4000D6A0A = {
@@ -345,12 +362,15 @@
 				15AD3F2016236879004CB184 /* building_05.mdl in Resources */,
 				15AD3F2116236879004CB184 /* building_06.mdl in Resources */,
 				A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */,
-				A4D4DE761626C85100B1959F /* Shape3d.nut in Resources */,
-				A4D4DE771626C85100B1959F /* Vector3d.nut in Resources */,
-				A4D4DE791626C98200B1959F /* Constants.nut in Resources */,
-				15A8835A162DF25D00671CDC /* FireParticleEmitter.nut in Resources */,
-				15A8835E162DF8BA00671CDC /* Particle.nut in Resources */,
-				15A88363162DFC9F00671CDC /* ParticleMgr.nut in Resources */,
+				A4D4DE761626C85100B1959F /* shape3d.nut in Resources */,
+				A4D4DE771626C85100B1959F /* vector3d.nut in Resources */,
+				A4D4DE791626C98200B1959F /* constants.nut in Resources */,
+				15A8835A162DF25D00671CDC /* fire_visual_effect.nut in Resources */,
+				15A88367163074F400671CDC /* common.nut in Resources */,
+				15A88368163074F400671CDC /* vector2d.nut in Resources */,
+				15A88369163074F400671CDC /* vector4d.nut in Resources */,
+				15A8837516307A7100671CDC /* particle_mgr.nut in Resources */,
+				15A8837716307AF700671CDC /* particle_emitter.nut in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

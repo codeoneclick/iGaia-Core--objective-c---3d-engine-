@@ -1,7 +1,8 @@
-igaia.Runtime.import("FireParticleEmitter.nut");
+igaia.Runtime.import("fire_visual_effect.nut");
 
-class ParticleMgr
+class particle_mgr
 {
+    m_particle_mgr_wrapper = igaia.ParticleMgrWrapper();
     m_emitters = null;
     
     function constructor() 
@@ -9,15 +10,14 @@ class ParticleMgr
         m_emitters = [];
     }
     
-    function createFireParticleEmitter()
+    function create_fire_visual_effect()
     {
-        local emitter = FireParticleEmitter(null, 128);
-        emitter.m_index = m_emitters.len();
+        local emitter = fire_visual_effect(null, m_emitters.len(), 128);
         m_emitters.append(emitter);
         return emitter;
     }
     
-    function removeFireParticleEmitter(emitter)
+    function remove_visual_effect(emitter)
     {
         m_emitters.remove(emitter.m_index);
     }

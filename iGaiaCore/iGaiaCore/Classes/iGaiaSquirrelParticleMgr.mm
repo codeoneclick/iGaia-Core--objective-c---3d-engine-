@@ -33,7 +33,7 @@ SQInteger sq_createParticleEmmiter(HSQUIRRELVM vm);
 
 - (void)bind
 {
-    [_m_commonWrapper registerClass:@"ParticleMgr"];
+    [_m_commonWrapper registerClass:@"ParticleMgrWrapper"];
     //[_m_commonWrapper registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
     //[_m_commonWrapper registerFunction:sq_createCamera withName:@"createCamera" forClass:@"Scene"];
 }

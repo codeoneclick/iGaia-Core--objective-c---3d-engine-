@@ -39,9 +39,9 @@ SQInteger sq_createOcean(HSQUIRRELVM vm);
 
 - (void)bind
 {
-    [_m_commonWrapper registerClass:@"Scene"];
-    [_m_commonWrapper registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"Scene"];
-    [_m_commonWrapper registerFunction:sq_createCamera withName:@"createCamera" forClass:@"Scene"];
+    [_m_commonWrapper registerClass:@"SceneWrapper"];
+    [_m_commonWrapper registerFunction:sq_createShape3d withName:@"createShape3d" forClass:@"SceneWrapper"];
+    [_m_commonWrapper registerFunction:sq_createCamera withName:@"createCamera" forClass:@"SceneWrapper"];
 }
 
 SQInteger sq_createCamera(HSQUIRRELVM vm)
