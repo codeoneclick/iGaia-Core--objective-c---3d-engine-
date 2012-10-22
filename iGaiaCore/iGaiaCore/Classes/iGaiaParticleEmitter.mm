@@ -17,9 +17,32 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 @property(nonatomic, assign) NSUInteger m_numParticles;
 @property(nonatomic, assign) iGaiaParticle* m_particles;
 
+@property(nonatomic, strong) NSString* m_textureName;
+
+@property(nonatomic, assign) NSUInteger m_duration;
+@property(nonatomic, assign) float m_durationRendomness;
+
+@property(nonatomic, assign) float m_minHorizontalVelocity;
+@property(nonatomic, assign) float m_maxHorizontalVelocity;
+
+@property(nonatomic, assign) float m_minVerticalVelocity;
+@property(nonatomic, assign) float m_maxVerticalVelocity;
+
+@property(nonatomic, assign) glm::vec3 m_gravity;
+
+@property(nonatomic, assign) glm::u8vec4 m_startColor;
+@property(nonatomic, assign) glm::u8vec4 m_endColor;
+
+@property(nonatomic, assign) float m_minStartSize;
+@property(nonatomic, assign) float m_maxStartSize;
+
+@property(nonatomic, assign) float m_minEndSize;
+@property(nonatomic, assign) float m_maxEndSize;
+
 @property(nonatomic, assign) float m_lifetime;
-@property(nonatomic, assign) glm::vec3 m_startSize;
-@property(nonatomic, assign) glm::vec3 m_endSize;
+@property(nonatomic, assign) glm::vec2 m_startSize;
+@property(nonatomic, assign) glm::vec2 m_endSize;
+@property(nonatomic, assign) float m_endVelocity;
 
 @end
 
@@ -108,13 +131,44 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
     [super setTextureWithFileName:name forSlot:slot withWrap:wrap];
 }
 
+- (glm::vec3)computeParticlePosition:(const glm::vec3)position withVelocity:(const glm::vec3)velocity withTime:(float)time withClampTime:(float)clampTime;
+{
+    glm::vec3 result = position;
+    float startVelocity = glm::length(velocity);
+    float endVelocity = _m_endVelocity * startVelocity;
+    float velocityIntegral = startVelocity * clampTime + (endVelocity - startVelocity) * clampTime * clampTime / 2.0f;
+    //result += glm::normalize(velocity) * velocityIntegral * _m_duration;
+    result += _m_gravity * time * clampTime;
+    return result;
+}
+
+- (float)computeParticleSize:(float)randomValue withClampTime:(float)clampTime
+{
+    float result = 0.0f;
+    float startSize = glm::mix(_m_startSize.x, _m_startSize.y, randomValue);
+    float endSize = glm::mix(_m_endSize.x, _m_endSize.y, randomValue);
+    result = glm::mix(startSize, endSize, clampTime);
+    return result;
+}
+
+- (glm::u8vec4)computeParticleColor:(float)randomValue withClampTime:(float)clampTime
+{
+    glm::u8vec4 result = glm::u8vec4(255, 255, 255, 255);
+    result = glm::mix(_m_startColor, _m_endColor, randomValue);
+    result.a *= clampTime * (1 - clampTime) * (1 - clampTime) * 6.7 * 255;
+    return result;
+}
+
 - (void)onUpdate
 {
     [super onUpdate];
     iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
 
+    
     for(NSUInteger i = 0; i < _m_numParticles; ++i)
     {
+        _m_particles[i].m_position = [self computeParticlePosition:_m_particles[i].m_position withVelocity:_m_particles[i].m_velocity withTime:0 withClampTime:0];
+        
         glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position + _m_position]; 
 
         glm::vec4 position = glm::vec4(-_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
