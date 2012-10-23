@@ -9,6 +9,7 @@
 #import "iGaiaStageMgr.h"
 #import "iGaiaLoop.h"
 #import "iGaiaLogger.h"
+#import "iGaiaCommon.h"
 
 @interface iGaiaStageMgr()<iGaiaLoopCallback>
 
@@ -122,12 +123,6 @@
     return skydome;
 }
 
-- (float)retriveRandomValueWithMinBound:(float)minBound withMaxBound:(float)maxBound
-{
-    float random = (((float)arc4random()/0x100000000)*(maxBound - minBound) + minBound);
-    return random;
-}
-
 - (void)onUpdate
 {
     [_m_camera onUpdate];
@@ -140,7 +135,7 @@
     
     [_m_particleMgr onUpdate];
     
-    iGaiaLog(@"Random : %f", [self retriveRandomValueWithMinBound:-2.75 withMaxBound:4.25]);
+    iGaiaLog(@"Random : %f", (float)[iGaiaCommon retriveTickCount]);
     //[_m_scriptMgr.m_runtimeWrapper sq_onUpdate];
 }
 

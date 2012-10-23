@@ -16,7 +16,7 @@ struct iGaiaParticle
     glm::vec3 m_velocity;
     glm::vec2 m_size;
     glm::u8vec4 m_color;
-    float m_lifetime;
+    float m_timestamp;
 };
 
 @interface iGaiaParticleEmitter : iGaiaObject3d

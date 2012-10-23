@@ -39,7 +39,7 @@
     
     _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
-    _m_camera.m_look = glm::vec3(13.0f, 0.0f, 26.0f);
+    _m_camera.m_look = glm::vec3(0.0f, 0.0f, 0.0f);
 
     [[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
     
@@ -91,6 +91,10 @@
 
     iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
     [ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+
+    iGaiaParticleEmitter* emitter = [[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithNumParticles:64];
+    [emitter setShader:E_SHADER_PARTICLE forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    [emitter setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
     
     [[iGaiaLoop sharedInstance] addEventListener:self];
 }

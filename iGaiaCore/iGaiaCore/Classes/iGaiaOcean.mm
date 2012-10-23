@@ -125,6 +125,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
+    return;
     [super onDrawWithRenderMode:mode];
 
     switch (mode)
