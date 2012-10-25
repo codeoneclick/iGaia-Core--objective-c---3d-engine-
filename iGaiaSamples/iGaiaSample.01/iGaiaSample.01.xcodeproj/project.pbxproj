@@ -19,6 +19,8 @@
 		15AD3F1F16236879004CB184 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1A16236879004CB184 /* building_04.mdl */; };
 		15AD3F2016236879004CB184 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1B16236879004CB184 /* building_05.mdl */; };
 		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
+		2155D7C5163863BC0012D346 /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7C4163863BC0012D346 /* fire.pvr */; };
+		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
@@ -77,6 +79,8 @@
 		15AD3F1A16236879004CB184 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
 		15AD3F1B16236879004CB184 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
 		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
+		2155D7C4163863BC0012D346 /* fire.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = fire.pvr; sourceTree = "<group>"; };
+		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +257,8 @@
 				15AD3F0D1623497A004CB184 /* skydome.pvr */,
 				A4D1F0FA160C7231005307F4 /* building_01.mdl */,
 				A4D1F0F4160C6B8B005307F4 /* default.pvr */,
+				2155D7C4163863BC0012D346 /* fire.pvr */,
+				2155D7CA163867BC0012D346 /* ocean_riple.pvr */,
 				A4D1F077160C43FC005307F4 /* Default-568h@2x.png */,
 				A4D1F078160C43FC005307F4 /* Default.png */,
 				A4D1F079160C43FC005307F4 /* Default@2x.png */,
@@ -371,6 +377,8 @@
 				15A88369163074F400671CDC /* vector4d.nut in Resources */,
 				15A8837516307A7100671CDC /* particle_mgr.nut in Resources */,
 				15A8837716307AF700671CDC /* particle_emitter.nut in Resources */,
+				2155D7C5163863BC0012D346 /* fire.pvr in Resources */,
+				2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

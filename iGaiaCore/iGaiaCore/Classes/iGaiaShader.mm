@@ -220,7 +220,7 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
 {
     glActiveTexture(GL_TEXTURE0 + slot);
     [texture bind];
-    glUniform1i(m_textureSlots[slot], 0);
+    glUniform1i(m_textureSlots[slot], slot);
 }
 
 - (void)bind

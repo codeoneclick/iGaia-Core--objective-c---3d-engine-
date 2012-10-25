@@ -101,7 +101,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
     [super setShader:shader forMode:mode];
 }
 
-- (void)setTextureWithFaleName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
+- (void)setTextureWithFileName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
 {
     [super setTextureWithFileName:name forSlot:slot withWrap:wrap];
 }
@@ -125,7 +125,6 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
-    return;
     [super onDrawWithRenderMode:mode];
 
     switch (mode)
@@ -136,7 +135,10 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
             {
                 iGaiaLog(@"Shader MODE_SIMPLE == nil.");
             }
-
+            
+            static float time = 0.0f;
+            time += 0.005f;
+            
             [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
             [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
             [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
@@ -144,6 +146,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
             [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
             [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
             [_m_material.m_operatingShader setVector3:glm::vec3(_m_position.x + _m_width / 2.0f, 0.0f, _m_position.z + _m_height / 2.0f) forCustomAttribute:@"EXT_Center"];
+            [_m_material.m_operatingShader setFloat:time forCustomAttribute:@"EXT_Timer"];
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
