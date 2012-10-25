@@ -73,7 +73,7 @@ static dispatch_queue_t g_onUpdateQueue;
 {
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        g_onUpdateQueue = dispatch_queue_create("igaia.onupdate.queue", NULL);
+        g_onUpdateQueue = dispatch_queue_create("igaia.onupdate.queue", DISPATCH_QUEUE_SERIAL);
     });
 
     if(_m_updateMode == E_UPDATE_MODE_ASYNC)

@@ -109,6 +109,11 @@
 
 - (void)bind
 {
+    glDepthMask(GL_TRUE);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_BLEND);
+
     glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
     glViewport(0, 0, _m_size.x, _m_size.y);
     glClearColor(1.0, 1.0, 1.0, 1.0);
