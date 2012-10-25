@@ -101,7 +101,7 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
     [super setShader:shader forMode:mode];
 }
 
-- (void)setTextureWithFaleName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
+- (void)setTextureWithFileName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
 {
     [super setTextureWithFileName:name forSlot:slot withWrap:wrap];
 }
@@ -125,7 +125,6 @@ static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
 
 - (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
 {
-    return;
     [super onDrawWithRenderMode:mode];
 
     switch (mode)

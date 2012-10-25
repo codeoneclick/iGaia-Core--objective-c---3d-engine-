@@ -134,9 +134,6 @@
     }
     
     [_m_particleMgr onUpdate];
-    
-    iGaiaLog(@"Random : %f", (float)[iGaiaCommon retriveTickCount]);
-    //[_m_scriptMgr.m_runtimeWrapper sq_onUpdate];
 }
 
 @end

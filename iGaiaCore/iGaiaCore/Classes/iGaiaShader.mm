@@ -220,22 +220,12 @@ const struct iGaiaShaderTextureSlot iGaiaShaderTextureSlot =
 {
     glActiveTexture(GL_TEXTURE0 + slot);
     [texture bind];
-    glUniform1i(m_textureSlots[slot], 0);
+    glUniform1i(m_textureSlots[slot], slot);
 }
 
 - (void)bind
 {
     glUseProgram(_m_handle);
-    
-    /*glValidateProgram(_m_handle); // codeoneclick - uncoment only for debug mode
-    GLint success;
-    glGetProgramiv(_m_handle, GL_VALIDATE_STATUS, &success);
-    if (success == GL_FALSE)
-    {
-        GLchar message[256];
-        glGetProgramInfoLog(_m_handle, sizeof(message), 0, &message[0]);
-        iGaiaLog(@"%s", message);
-    }*/
 }
 
 - (void)unbind

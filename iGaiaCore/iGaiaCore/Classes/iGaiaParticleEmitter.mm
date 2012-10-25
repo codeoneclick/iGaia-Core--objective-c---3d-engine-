@@ -6,81 +6,48 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
+static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 5;
 
 #import "iGaiaParticleEmitter.h"
 #import "iGaiaLogger.h"
 #import "iGaiaCommon.h"
 
+static dispatch_queue_t g_onUpdateEmitterQueue;
+
+struct iGaiaParticle
+{
+    glm::vec3 m_position;
+    glm::vec3 m_velocity;
+    glm::vec2 m_size;
+    glm::u8vec4 m_color;
+    float m_timestamp;
+};
+
 @interface iGaiaParticleEmitter()
 
-@property(nonatomic, assign) NSUInteger m_numParticles;
+@property(nonatomic, strong) id<iGaiaParticleEmitterSettings> m_settings;
 @property(nonatomic, assign) iGaiaParticle* m_particles;
-
-@property(nonatomic, strong) NSString* m_textureName;
-
-@property(nonatomic, assign) float m_duration;
-@property(nonatomic, assign) float m_durationRandomness;
-
-@property(nonatomic, assign) float m_velocitySensitivity;
-
-@property(nonatomic, assign) float m_minHorizontalVelocity;
-@property(nonatomic, assign) float m_maxHorizontalVelocity;
-
-@property(nonatomic, assign) float m_minVerticalVelocity;
-@property(nonatomic, assign) float m_maxVerticalVelocity;
-
-@property(nonatomic, assign) float m_endVelocity;
-
-@property(nonatomic, assign) glm::vec3 m_gravity;
-
-@property(nonatomic, assign) glm::u8vec4 m_startColor;
-@property(nonatomic, assign) glm::u8vec4 m_endColor;
-
-@property(nonatomic, assign) glm::vec2 m_startSize;
-@property(nonatomic, assign) glm::vec2 m_endSize;
-
-@property(nonatomic, assign) float m_minParticleEmittInterval;
-@property(nonatomic, assign) float m_maxParticleEmittInterval;
+@property(nonatomic, assign) float m_lastEmittTimestamp;
 
 @end
 
 @implementation iGaiaParticleEmitter
 
-@synthesize m_numParticles = _m_numParticles;
-@synthesize m_particles = _m_particles;
 
-- (id)initWithNumParticles:(NSUInteger)numParticles withSize:(const glm::vec2&)size withLifetime:(float)lifetime;
+- (id)initWithSettings:(id<iGaiaParticleEmitterSettings>)settings;
 {
     self = [super init];
     {
-        _m_numParticles = numParticles;
-        
-        _m_particles = new iGaiaParticle[_m_numParticles];
+        _m_settings = settings;
+        _m_particles = new iGaiaParticle[_m_settings.m_numParticles];
 
-        _m_startSize = glm::vec2(1.0f, 1.0f);
-        _m_endSize = glm::vec2(2.0f, 2.0f);
-
-        _m_velocitySensitivity = 1.0f;
-        _m_endVelocity = 1.0f;
-
-        _m_duration = 2000.0f;
-        _m_durationRandomness = 1.0f;
-
-        _m_minHorizontalVelocity = 0.0f;
-        _m_maxHorizontalVelocity = 0.0015f;
-
-        _m_minVerticalVelocity = -0.001f;
-        _m_maxVerticalVelocity = 0.001f;
-
-        _m_gravity = glm::vec3(0.0f, 0.0015f, 0.0f);
-        
-        iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:_m_numParticles * 4 withMode:GL_STREAM_DRAW];
+        iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:_m_settings.m_numParticles * 4 withMode:GL_STREAM_DRAW];
         iGaiaVertex* vertexData = [vertexBuffer lock];
 
-        for(NSUInteger i = 0; i < _m_numParticles; ++i)
+        for(NSUInteger i = 0; i < _m_settings.m_numParticles; ++i)
         {
-            [self createParticleWithIndex:i];
+            _m_particles[i].m_size = glm::vec2(0.0f, 0.0f);
+            _m_particles[i].m_color = glm::u8vec4(0, 0, 0, 0);
             
             vertexData[i * 4 + 0].m_texcoord = glm::vec2( 0.0f,  0.0f);
             vertexData[i * 4 + 1].m_texcoord = glm::vec2( 1.0f,  0.0f);
@@ -90,10 +57,10 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 
         [vertexBuffer unlock];
 
-        iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:_m_numParticles * 6 withMode:GL_STREAM_DRAW];
+        iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:_m_settings.m_numParticles * 6 withMode:GL_STREAM_DRAW];
         unsigned short* indexData = [indexBuffer lock];
 
-        for(unsigned int i = 0; i < _m_numParticles; ++i)
+        for(unsigned int i = 0; i < _m_settings.m_numParticles; ++i)
         {
             indexData[i * 6 + 0] = static_cast<unsigned short>(i * 4 + 0);
             indexData[i * 6 + 1] = static_cast<unsigned short>(i * 4 + 1);
@@ -118,6 +85,7 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 
         _m_priority = k_IGAIA_PARTICLE_RENDER_PRIORITY;
         _m_updateMode = E_UPDATE_MODE_ASYNC;
+        _m_lastEmittTimestamp = 0;
     }
     return self;
 }
@@ -126,19 +94,19 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 {
     _m_particles[index].m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     _m_particles[index].m_velocity = glm::vec3(0.0f, 0.0f, 0.0f);
-    _m_particles[index].m_size = _m_startSize;
-    _m_particles[index].m_color = glm::u8vec4(255, 255, 255, 255);
+    _m_particles[index].m_size = _m_settings.m_startSize;
+    _m_particles[index].m_color = _m_settings.m_startColor;
     _m_particles[index].m_timestamp = [iGaiaCommon retriveTickCount];
 
-    float horizontalVelocity = glm::mix(_m_minHorizontalVelocity, _m_maxHorizontalVelocity, [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0f]);
+    float horizontalVelocity = glm::mix(_m_settings.m_minHorizontalVelocity, _m_settings.m_maxHorizontalVelocity, [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0f]);
 
     float horizontalAngle = [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0f] * M_PI * 2.0f;
 
     _m_particles[index].m_velocity.x += horizontalVelocity * cosf(horizontalAngle);
     _m_particles[index].m_velocity.z += horizontalVelocity * sinf(horizontalAngle);
 
-    _m_particles[index].m_velocity.y += glm::mix(_m_minVerticalVelocity, _m_maxVerticalVelocity, [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0f]);
-    _m_particles[index].m_velocity *= _m_velocitySensitivity;
+    _m_particles[index].m_velocity.y += glm::mix(_m_settings.m_minVerticalVelocity, _m_settings.m_maxVerticalVelocity, [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0f]);
+    _m_particles[index].m_velocity *= _m_settings.m_velocitySensitivity;
 }
 
 - (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode
@@ -154,60 +122,79 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
 - (void)onUpdate
 {
     [super onUpdate];
-    iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
 
-    float currentTime = [iGaiaCommon retriveTickCount];
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        g_onUpdateEmitterQueue = dispatch_queue_create("igaia.onupdate.emitter.queue", DISPATCH_QUEUE_SERIAL);
+    });
 
-    for(NSUInteger i = 0; i < _m_numParticles; ++i)
-    {
-        float particleAge = currentTime - _m_particles[i].m_timestamp;
+    dispatch_async(g_onUpdateEmitterQueue, ^{
 
-        if(particleAge > _m_duration)
+        iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
+        float currentTime = [iGaiaCommon retriveTickCount];
+
+        for(NSUInteger i = 0; i < _m_settings.m_numParticles; ++i)
         {
-            [self createParticleWithIndex:i];
-            continue;
+            float particleAge = currentTime - _m_particles[i].m_timestamp;
+
+            if(particleAge > _m_settings.m_duration)
+            {
+                if((currentTime - _m_lastEmittTimestamp) > [iGaiaCommon retriveRandomValueWithMinBound:_m_settings.m_minParticleEmittInterval withMaxBound:_m_settings.m_maxParticleEmittInterval])
+                {
+                    _m_lastEmittTimestamp = currentTime;
+                    [self createParticleWithIndex:i];
+                }
+                else
+                {
+                    _m_particles[i].m_size = glm::vec2(0.0f, 0.0f);
+                    _m_particles[i].m_color = glm::u8vec4(0, 0, 0, 0);
+                }
+            }
+
+            float particleClampAge = glm::clamp( particleAge / _m_settings.m_duration, 0.0f, 1.0f);
+
+            float startVelocity = glm::length(_m_particles[i].m_velocity);
+            float endVelocity = _m_settings.m_endVelocity * startVelocity;
+            float velocityIntegral = startVelocity * particleClampAge + (endVelocity - startVelocity) * particleClampAge * particleClampAge / 2.0f;
+            _m_particles[i].m_position += glm::normalize(_m_particles[i].m_velocity) * velocityIntegral * _m_settings.m_duration;
+            _m_particles[i].m_position += _m_settings.m_gravity * particleAge * particleClampAge;
+
+            float randomValue = [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0];
+            float startSize = glm::mix(_m_settings.m_startSize.x, _m_settings.m_startSize.y, randomValue);
+            float endSize = glm::mix(_m_settings.m_endSize.x, _m_settings.m_endSize.y, randomValue);
+            _m_particles[i].m_size = glm::vec2(glm::mix(startSize, endSize, particleClampAge));
+
+            _m_particles[i].m_color = glm::mix(_m_settings.m_startColor, _m_settings.m_endColor, particleClampAge);
+            _m_particles[i].m_color.a = glm::mix(_m_settings.m_startColor.a, _m_settings.m_endColor.a, particleClampAge);
+
+            glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position + _m_position];
+
+            glm::vec4 position = glm::vec4(-_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
+            position = matrixSpherical * position;
+            vertexData[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
+
+            position = glm::vec4(_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
+            position = matrixSpherical * position;
+            vertexData[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
+
+            position = glm::vec4(_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
+            position = matrixSpherical * position;
+            vertexData[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
+
+            position = glm::vec4(-_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
+            position = matrixSpherical * position;
+            vertexData[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
+
+            vertexData[i * 4 + 0].m_color = _m_particles[i].m_color;
+            vertexData[i * 4 + 1].m_color = _m_particles[i].m_color;
+            vertexData[i * 4 + 2].m_color = _m_particles[i].m_color;
+            vertexData[i * 4 + 3].m_color = _m_particles[i].m_color;
         }
-        
-        float particleClampAge = glm::clamp( particleAge / _m_duration, 0.0f, 1.0f);
-
-        float startVelocity = glm::length(_m_particles[i].m_velocity);
-        float endVelocity = _m_endVelocity * startVelocity;
-        float velocityIntegral = startVelocity * particleClampAge + (endVelocity - startVelocity) * particleClampAge * particleClampAge / 2.0f;
-        _m_particles[i].m_position += glm::normalize(_m_particles[i].m_velocity) * velocityIntegral * _m_duration;
-        _m_particles[i].m_position += _m_gravity * particleAge * particleClampAge;
-
-        float randomValue = [iGaiaCommon retriveRandomValueWithMinBound:0.0f withMaxBound:1.0];
-        float startSize = glm::mix(_m_startSize.x, _m_startSize.y, randomValue);
-        float endSize = glm::mix(_m_endSize.x, _m_endSize.y, randomValue);
-        _m_particles[i].m_size = glm::vec2(glm::mix(startSize, endSize, particleClampAge));
-    }
-    
-    for(NSUInteger i = 0; i < _m_numParticles; ++i)
-    {
-        glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position + _m_position]; 
-
-        glm::vec4 position = glm::vec4(-_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
-        position = matrixSpherical * position;
-        vertexData[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
-
-        position = glm::vec4(_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
-        position = matrixSpherical * position;
-        vertexData[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
-
-        position = glm::vec4(_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
-        position = matrixSpherical * position;
-        vertexData[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
-
-        position = glm::vec4(-_m_particles[i].m_size.x, _m_particles[i].m_size.y, 0.0f, 1.0f);
-        position = matrixSpherical * position;
-        vertexData[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
-
-        vertexData[i * 4 + 0].m_color = _m_particles[i].m_color;
-        vertexData[i * 4 + 1].m_color = _m_particles[i].m_color;
-        vertexData[i * 4 + 2].m_color = _m_particles[i].m_color;
-        vertexData[i * 4 + 3].m_color = _m_particles[i].m_color;
-    }
-    [_m_mesh.m_vertexBuffer unlock];
+       
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_m_mesh.m_vertexBuffer unlock];
+        });
+    });
 }
 
 - (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
@@ -259,7 +246,5 @@ static NSInteger k_IGAIA_PARTICLE_RENDER_PRIORITY = 7;
     
     glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, NULL);
 }
-
-
 
 @end
