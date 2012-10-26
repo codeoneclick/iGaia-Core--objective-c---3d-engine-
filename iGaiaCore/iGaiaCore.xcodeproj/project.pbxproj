@@ -42,6 +42,7 @@
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = A45F612016032871005B10A3 /* iGaiaCore.mm */; };
 		A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */; };
+		A494C0CE163A89A100E8BCF6 /* iGaiaSoundMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FB158716397F07002B59D6 /* iGaiaSoundMgr.m */; };
 		A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */; };
 		A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF116197A4B00004F34 /* iGaiaLoader_PVR.mm */; };
 		A4BF9EF816197A7C00004F34 /* iGaiaLoader_MDL.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */; };
@@ -1242,6 +1243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A494C0CE163A89A100E8BCF6 /* iGaiaSoundMgr.m in Sources */,
 				A45F612116032871005B10A3 /* iGaiaCore.mm in Sources */,
 				A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */,
 				A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */,

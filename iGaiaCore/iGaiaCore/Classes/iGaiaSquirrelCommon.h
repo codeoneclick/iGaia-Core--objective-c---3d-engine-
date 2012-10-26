@@ -21,7 +21,10 @@
 
 - (SQBool)callFunctionWithName:(NSString*)name withParams:(SQFloat[])params withCount:(NSUInteger)count;
 
+- (void)popVector2dX:(SQFloat*)x Y:(SQFloat*)y forIndex:(NSInteger)index;
 - (void)popVector3dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z forIndex:(NSInteger)index;
+- (void)popVector4dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z  W:(SQFloat*)w forIndex:(NSInteger)index;
+
 - (void)pushVector3dX:(SQFloat)x Y:(SQFloat)y Z:(SQFloat)z;
 
 - (SQFloat)retriveFloatValueWithIndex:(NSInteger)index;

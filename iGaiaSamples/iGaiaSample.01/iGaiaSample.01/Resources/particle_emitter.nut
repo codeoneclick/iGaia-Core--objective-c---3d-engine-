@@ -3,52 +3,34 @@ igaia.Runtime.import("vector2d.nut");
 igaia.Runtime.import("vector3d.nut");
 igaia.Runtime.import("vector4d.nut");
 
-class particle_object
-{
-    m_particle_emitter_wrapper = igaia.ParticleEmitterWrapper();
-    m_position = null;
-    m_velocity = null;
-    m_size = null;
-    m_color = null;
-    m_lifetime = null;
-    m_visual_effect = null;
-    m_index = null;
-    
-    function constructor(visual_effect, index) 
-    {
-        m_position = vector3d(0.0, 0.0, 0.0);
-        m_velocity = vector3d(0.0, 0.0, 0.0);
-        m_size = vector2d(0.0, 0.0);
-        m_color = vector4d(255, 255, 255, 255);
-        m_lifetime = 0.0;
-        m_visual_effect = visual_effect;
-        m_index = index;
-    }
-    
-    function onUpdate()
-    {
-        return;
-        m_particle_emitter_wrapper.onUpdate(m_visual_effect, m_index, m_position, m_size, m_color);
-    }
-}
+local g_particle_emitter_wrapper = igaia.ParticleEmitterWrapper();
 
-class particle_emitter
-{
-    m_self = null;
-    m_particles = null;
-    m_num_particles = 0;
-    m_index = 0;
-    
-    function constructor(self, index, num_particles) 
-    {
-        m_self = self;
-        m_num_particles = num_particles;
-        m_particles = [];
-        m_index = index;
- 
-        for (local i = 0; i < m_num_particles; i++)
-        {
-            m_particles.append(particle_object(m_self,i));
-        }
-    }
-}
+local m_num_particles = 64.0;
+
+local m_texture_name = "fire.pvr";
+
+local m_duration = 2000.0;
+local m_duration_randomness = 1.0;
+
+local m_velocitySensitivity = 1.0;
+
+local m_minHorizontalVelocity = 0.0;
+local m_maxHorizontalVelocity = 0.0001;
+
+local m_minVerticalVelocity = 0.0001;
+local m_maxVerticalVelocity = 0.0003;
+
+local m_endVelocity = 1.0;
+
+local m_gravity = vector3d(0.0, 0.0001, 0.0);
+
+local m_startColor = vector4d(0.0, 0.0, 255.0, 255.0);
+local m_endColor = vector4d(255.0, 0.0, 0.0, 0.0);
+
+local m_startSize = vector2d(0.1, 0.1);
+local m_endSize = vector2d(2.0, 2.0);
+
+local m_minParticleEmittInterval = 66.0;
+local m_maxParticleEmittInterval = 133.0;
+
+g_particle_emitter_wrapper.createParticleEmitterSettings(m_num_particles, m_texture_name, m_duration, m_duration_randomness, m_velocitySensitivity, m_minHorizontalVelocity, m_maxHorizontalVelocity, m_minVerticalVelocity, m_maxVerticalVelocity, m_endVelocity, m_gravity, m_startColor, m_endColor, m_startSize, m_endSize, m_minParticleEmittInterval, m_maxParticleEmittInterval);

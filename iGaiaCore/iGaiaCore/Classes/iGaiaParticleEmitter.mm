@@ -95,7 +95,7 @@ struct iGaiaParticle
 
 - (void)createParticleWithIndex:(NSUInteger)index
 {
-    _m_particles[index].m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    _m_particles[index].m_position = _m_position;
     _m_particles[index].m_velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 
     _m_particles[index].m_size = _m_settings.m_startSize;
@@ -172,7 +172,7 @@ struct iGaiaParticle
             _m_particles[i].m_color = glm::mix(_m_settings.m_startColor, _m_settings.m_endColor, particleClampAge);
             _m_particles[i].m_color.a = glm::mix(_m_settings.m_startColor.a, _m_settings.m_endColor.a, particleClampAge);
 
-            glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position + _m_position];
+            glm::mat4x4 matrixSpherical = [_m_camera retriveSphericalMatrixForPosition:_m_particles[i].m_position];
 
             glm::vec4 position = glm::vec4(-_m_particles[i].m_size.x, -_m_particles[i].m_size.y, 0.0f, 1.0f);
             position = matrixSpherical * position;

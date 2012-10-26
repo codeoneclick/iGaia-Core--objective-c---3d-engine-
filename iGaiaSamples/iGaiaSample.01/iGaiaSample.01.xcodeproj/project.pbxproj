@@ -23,6 +23,13 @@
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
+		A494C0DC163AA63700E8BCF6 /* laser.caf in Resources */ = {isa = PBXBuildFile; fileRef = A494C0D9163AA63700E8BCF6 /* laser.caf */; };
+		A494C0DD163AA63700E8BCF6 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A494C0DA163AA63700E8BCF6 /* music.mp3 */; };
+		A494C0DE163AA63700E8BCF6 /* photon.caf in Resources */ = {isa = PBXBuildFile; fileRef = A494C0DB163AA63700E8BCF6 /* photon.caf */; };
+		A494C0E0163AA73C00E8BCF6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A494C0DF163AA73C00E8BCF6 /* AVFoundation.framework */; };
+		A494C0E2163AA74300E8BCF6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A494C0E1163AA74300E8BCF6 /* CoreAudio.framework */; };
+		A494C0E4163AA74900E8BCF6 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A494C0E3163AA74900E8BCF6 /* OpenAL.framework */; };
+		A494C0E6163AA7F000E8BCF6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A494C0E5163AA7F000E8BCF6 /* AudioToolbox.framework */; };
 		A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF474160B6FE4000D6A0A /* UIKit.framework */; };
 		A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF476160B6FE4000D6A0A /* Foundation.framework */; };
 		A4ADF479160B6FE4000D6A0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF478160B6FE4000D6A0A /* CoreGraphics.framework */; };
@@ -83,6 +90,13 @@
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A494C0D9163AA63700E8BCF6 /* laser.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laser.caf; sourceTree = "<group>"; };
+		A494C0DA163AA63700E8BCF6 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		A494C0DB163AA63700E8BCF6 /* photon.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = photon.caf; sourceTree = "<group>"; };
+		A494C0DF163AA73C00E8BCF6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A494C0E1163AA74300E8BCF6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		A494C0E3163AA74900E8BCF6 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		A494C0E5163AA7F000E8BCF6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A4ADF470160B6FE4000D6A0A /* iGaiaSample.01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGaiaSample.01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ADF474160B6FE4000D6A0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A4ADF476160B6FE4000D6A0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A494C0E6163AA7F000E8BCF6 /* AudioToolbox.framework in Frameworks */,
+				A494C0E4163AA74900E8BCF6 /* OpenAL.framework in Frameworks */,
+				A494C0E2163AA74300E8BCF6 /* CoreAudio.framework in Frameworks */,
+				A494C0E0163AA73C00E8BCF6 /* AVFoundation.framework in Frameworks */,
 				A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */,
 				A4ADF475160B6FE4000D6A0A /* UIKit.framework in Frameworks */,
 				A4ADF477160B6FE4000D6A0A /* Foundation.framework in Frameworks */,
@@ -171,6 +189,16 @@
 			name = visual_effects;
 			sourceTree = "<group>";
 		};
+		A494C0D8163AA62B00E8BCF6 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A494C0D9163AA63700E8BCF6 /* laser.caf */,
+				A494C0DA163AA63700E8BCF6 /* music.mp3 */,
+				A494C0DB163AA63700E8BCF6 /* photon.caf */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		A4ADF465160B6FE4000D6A0A = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +221,10 @@
 		A4ADF473160B6FE4000D6A0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A494C0E5163AA7F000E8BCF6 /* AudioToolbox.framework */,
+				A494C0E3163AA74900E8BCF6 /* OpenAL.framework */,
+				A494C0E1163AA74300E8BCF6 /* CoreAudio.framework */,
+				A494C0DF163AA73C00E8BCF6 /* AVFoundation.framework */,
 				A42F81E6160CC1D300453D28 /* QuartzCore.framework */,
 				A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */,
 				A4ADF474160B6FE4000D6A0A /* UIKit.framework */,
@@ -248,6 +280,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A494C0D8163AA62B00E8BCF6 /* Sounds */,
 				A4D4DE731626C5F800B1959F /* Scripts */,
 				15AD3F1816236879004CB184 /* building_02.mdl */,
 				15AD3F1916236879004CB184 /* building_03.mdl */,
@@ -379,6 +412,9 @@
 				15A8837716307AF700671CDC /* particle_emitter.nut in Resources */,
 				2155D7C5163863BC0012D346 /* fire.pvr in Resources */,
 				2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */,
+				A494C0DC163AA63700E8BCF6 /* laser.caf in Resources */,
+				A494C0DD163AA63700E8BCF6 /* music.mp3 in Resources */,
+				A494C0DE163AA63700E8BCF6 /* photon.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

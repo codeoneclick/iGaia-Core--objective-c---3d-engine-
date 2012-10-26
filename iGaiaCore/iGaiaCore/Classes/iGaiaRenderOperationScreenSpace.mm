@@ -120,7 +120,7 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 
 - (void)draw;
 {
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_indexBuffer.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
+    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
 }
 
 - (void)unbind;

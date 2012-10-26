@@ -14,7 +14,9 @@
 
 @property(nonatomic, assign) iGaiaCamera* m_camera;
 
-- (iGaiaParticleEmitter*)createParticleEmitterFromFile:(NSString*)name;
+- (void)loadParticleEmitterFromFile:(NSString*)name;
+- (iGaiaParticleEmitter*)createParticleEmitterWithName:(NSString*)name;
+- (void)createParticleEmitterSettings:(id<iGaiaParticleEmitterSettings>)settings forKey:(NSString*)key;
 - (void)removeParticleEmitter:(iGaiaParticleEmitter*)emitter;
 
 - (void)onUpdate;

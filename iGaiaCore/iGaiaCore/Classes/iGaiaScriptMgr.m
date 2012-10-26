@@ -37,7 +37,6 @@
         _m_runtimeWrapper = [[iGaiaSquirrelRuntime alloc] initWithCommonWrapper:_m_commonWrapper];
         _m_sceneWrapper = [[iGaiaSquirrelScene alloc] initWithCommonWrapper:_m_commonWrapper];
         _m_object3dWrapper = [[iGaiaSquirrelObject3d alloc] initWithCommonWrapper:_m_commonWrapper];
-        _m_particleMgrWrapper = [[iGaiaSquirrelParticleMgr alloc] initWithCommonWrapper:_m_commonWrapper];
         _m_particleEmitterWrapper = [[iGaiaSquirrelParticleEmitter alloc] initWithCommonWrapper:_m_commonWrapper];
     }
     return self;

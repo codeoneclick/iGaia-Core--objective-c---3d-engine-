@@ -18,6 +18,7 @@
 #import "iGaiaTouchMgr.h"
 #import "iGaiaRenderMgr.h"
 #import "iGaiaParticleMgr.h"
+#import "iGaiaSoundMgr.h"
 
 @interface iGaiaStageMgr : NSObject
 
@@ -25,6 +26,7 @@
 @property(nonatomic, readonly) iGaiaScriptMgr* m_scriptMgr;
 @property(nonatomic, readonly) iGaiaTouchMgr* m_touchMgr;
 @property(nonatomic, readonly) iGaiaParticleMgr* m_particleMgr;
+@property(nonatomic, readonly) iGaiaSoundMgr* m_soundMgr;
 
 
 + (iGaiaStageMgr *)sharedInstance;

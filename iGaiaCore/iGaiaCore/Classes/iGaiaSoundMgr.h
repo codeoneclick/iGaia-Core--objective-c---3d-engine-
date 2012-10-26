@@ -16,14 +16,11 @@
 
 @interface iGaiaSoundMgr : NSObject
 
-+ (SingletonSoundManager *)sharedSoundManager;
+- (void)createSoundFromFile:(NSString*)name withExtension:(NSString*)extension withKey:(NSString*)key withFrequency:(NSUInteger)frequency;
+- (void)createBackgroundMusicFromFile:(NSString*)name withExtension:(NSString*)extension withKey:(NSString*)key;
 
-- (id)init;
-- (NSUInteger) playSoundWithKey:(NSString*)theSoundKey gain:(ALfloat)theGain pitch:(ALfloat)thePitch location:(Vector2f)theLocation shouldLoop:(BOOL)theShouldLoop;
-- (void) loadSoundWithKey:(NSString*)theSoundKey fileName:(NSString*)theFileName fileExt:(NSString*)theFileExt frequency:(NSUInteger)theFrequency;
-- (void) playMusicWithKey:(NSString*)theMusicKey timesToRepeat:(NSUInteger)theTimesToRepeat;
-- (void) loadBackgroundMusicWithKey:(NSString*)theMusicKey fileName:(NSString*)theFileName fileExt:(NSString*)theFileExt;
-- (void) setBackgroundMusicVolume:(ALfloat)theVolume;
-- (void) shutdownSoundManager;
+- (NSUInteger)playSoundWithKey:(NSString*)key withGain:(ALfloat)gain withPitch:(ALfloat)pitch shouldLoop:(BOOL)loop;
+- (void)playMusicWithKey:(NSString*)key timesToRepeat:(NSUInteger)timesToRepeat;
+- (void)stopPlayingMusic;
 
 @end

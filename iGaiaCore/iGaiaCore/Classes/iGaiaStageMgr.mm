@@ -62,6 +62,7 @@
         _m_touchMgr.m_operationView = _m_renderMgr.m_glView;
         _m_scriptMgr = [iGaiaScriptMgr new];
         _m_particleMgr = [iGaiaParticleMgr new];
+        _m_soundMgr = [iGaiaSoundMgr new];
     }
     return self;
 }

@@ -270,11 +270,25 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
 	return true;
 }
 
+- (void)popVector2dX:(SQFloat*)x Y:(SQFloat*)y forIndex:(NSInteger)index
+{
+    [self retriveAsFloat:x withName:@"x" forIndex:index];
+    [self retriveAsFloat:y withName:@"y" forIndex:index];
+}
+
 - (void)popVector3dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z forIndex:(NSInteger)index
 {
     [self retriveAsFloat:x withName:@"x" forIndex:index];
     [self retriveAsFloat:y withName:@"y" forIndex:index];
     [self retriveAsFloat:z withName:@"z" forIndex:index];
+}
+
+- (void)popVector4dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z  W:(SQFloat*)w forIndex:(NSInteger)index
+{
+    [self retriveAsFloat:x withName:@"x" forIndex:index];
+    [self retriveAsFloat:y withName:@"y" forIndex:index];
+    [self retriveAsFloat:z withName:@"z" forIndex:index];
+    [self retriveAsFloat:w withName:@"w" forIndex:index];
 }
 
 - (void)pushVector3dX:(SQFloat)x Y:(SQFloat)y Z:(SQFloat)z
@@ -296,7 +310,7 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
     SQFloat value = 0.0f;
     if(sq_gettype(_m_squireel_vm, index) == OT_FLOAT)
     {
-        sq_getfloat(_m_squireel_vm, -1, &value);
+        sq_getfloat(_m_squireel_vm, index, &value);
         return value;
     }
     iGaiaLog(@"Script arg index :%i incorrect.", index);
