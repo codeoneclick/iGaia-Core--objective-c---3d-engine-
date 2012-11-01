@@ -9,6 +9,7 @@
 #import "iGaiaSquirrelScene.h"
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
+#import "iGaiaSettings.h"
 
 SQInteger sq_createCamera(HSQUIRRELVM vm);
 SQInteger sq_createShape3d(HSQUIRRELVM vm);
@@ -53,7 +54,7 @@ SQInteger sq_createCamera(HSQUIRRELVM vm)
         SQFloat near = [[iGaiaSquirrelCommon sharedInstance] retriveFloatValueWithIndex:3];
         SQFloat far = [[iGaiaSquirrelCommon sharedInstance] retriveFloatValueWithIndex:4];
 
-        CGRect viewport = [[UIScreen mainScreen] bounds];
+        CGRect viewport = [iGaiaSettings retriveFrameRect];
         iGaiaCamera* camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:fov withNear:near withFar:far forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
         sq_pushuserpointer(vm, (__bridge SQUserPointer)camera);
         return YES;

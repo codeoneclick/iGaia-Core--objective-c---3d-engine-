@@ -12,6 +12,7 @@
 #import <glm/gtc/type_precision.hpp>
 #import <glm/gtc/matrix_transform.hpp>
 #import "iGaiaLogger.h"
+#import "iGaiaSettings.h"
 
 @interface iGaiaTouchCrosser()
 
@@ -41,7 +42,7 @@
 - (void)unproject:(const glm::vec2&)vector
 {
     glm::mat4x4 projection = _m_camera.m_projection;
-    CGRect viewport = [[UIScreen mainScreen] bounds];
+    CGRect viewport = [iGaiaSettings retriveFrameRect];
     float screenX =  -((( 2.0f * vector.x ) / viewport.size.width) - 1.0f ) / projection[0][0];
     float screenY =  -((( 2.0f * (viewport.size.height - vector.y) ) / viewport.size.height) - 1.0f ) / projection[1][1];
     glm::mat4x4 inverseView = glm::inverse(_m_camera.m_view);

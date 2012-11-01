@@ -18,6 +18,7 @@
 #import "iGaiaRenderOperationOutlet.h"
 #import "iGaiaLogger.h"
 #import "iGaiaLoop.h"
+#import "iGaiaSettings.h"
 
 @interface iGaiaRenderMgr()<iGaiaLoopCallback>
 {
@@ -41,7 +42,7 @@
     {
         [[iGaiaLoop sharedInstance] addEventListener:self];
 
-        _m_glView = [[iGaiaGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _m_glView = [[iGaiaGLView alloc] initWithFrame:[iGaiaSettings retriveFrameRect]];
 
         for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
         {
