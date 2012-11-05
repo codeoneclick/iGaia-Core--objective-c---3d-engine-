@@ -17,6 +17,7 @@
 		15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FA1627601100671CDC /* iGaiaSquirrelScene.mm */; };
 		15A882FE1627607600671CDC /* iGaiaSquirrelObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */; };
 		15A8834F162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */; };
+		210B3E5B164846A7005278F3 /* iGaiaResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210B3E5A164846A6005278F3 /* iGaiaResource.cpp */; };
 		A40C5A551625791800120D76 /* sqstdaux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2E1625791800120D76 /* sqstdaux.cpp */; };
 		A40C5A561625791800120D76 /* sqstdblob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2F1625791800120D76 /* sqstdblob.cpp */; };
 		A40C5A571625791800120D76 /* sqstdio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A311625791800120D76 /* sqstdio.cpp */; };
@@ -110,6 +111,7 @@
 		15A882FD1627607600671CDC /* iGaiaSquirrelObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelObject3d.mm; path = iGaiaCore/Classes/iGaiaSquirrelObject3d.mm; sourceTree = "<group>"; };
 		15A8834D162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelParticleMgr.h; path = iGaiaCore/Classes/iGaiaSquirrelParticleMgr.h; sourceTree = "<group>"; };
 		15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelParticleMgr.mm; path = iGaiaCore/Classes/iGaiaSquirrelParticleMgr.mm; sourceTree = "<group>"; };
+		210B3E5A164846A6005278F3 /* iGaiaResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = iGaiaResource.cpp; path = iGaiaCore/Classes/iGaiaResource.cpp; sourceTree = "<group>"; };
 		A40C5A261625791800120D76 /* sqstdaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdaux.h; sourceTree = "<group>"; };
 		A40C5A271625791800120D76 /* sqstdblob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdblob.h; sourceTree = "<group>"; };
 		A40C5A281625791800120D76 /* sqstdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdio.h; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9EE41619773D00004F34 /* iGaiaResource.h */,
+				210B3E5A164846A6005278F3 /* iGaiaResource.cpp */,
 				A4BF9EE5161978AF00004F34 /* iGaiaTexture.h */,
 				A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */,
 				A4BF9EFC16197AB600004F34 /* iGaiaVertexBufferObject.h */,
@@ -1317,6 +1320,7 @@
 				15A5B2E616308F5000229239 /* iGaiaSquirrelParticleEmitter.mm in Sources */,
 				A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */,
 				A4D1B2D11642C8CD00FA3BE5 /* iGaiaSettings.m in Sources */,
+				210B3E5B164846A7005278F3 /* iGaiaResource.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,16 @@
 #import "iGaiaStageMgr.h"
 #import "iGaiaScriptMgr.h"
 #import "iGaiaLoop.h"
+#import "iGaiaSettings.h"
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <future>
+#include <vector>
+#include <mutex>
+#include <thread>
 
 @interface FirstViewController ()<iGaiaLoopCallback>
 {
@@ -31,13 +41,74 @@
     return self;
 }
 
+std::mutex mutex_01;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    std::cout << "Main thread id: " << std::this_thread::get_id()
+    << std::endl;
+    std::vector<std::future<void>> futures;
+    for (int i = 0; i < 10; ++i)
+    {
+        auto fut = std::async(std::launch::async,[=](int index)
+                              {
+                                  std::this_thread::sleep_for(std::chrono::seconds(10 - index));
+                                  mutex_01.lock();
+                                  std::cout << "thread id: " << std::this_thread::get_id()
+                                  << std::endl;
+                                  std::cout<<index<<std::endl;
+                                  mutex_01.unlock();
+                              }, i);
+        futures.push_back(std::move(fut));
+    }
+    /*std::for_each(futures.begin(), futures.end(), [](std::future<void>& fut)
+                  {
+                      fut.wait();
+                  });
+    std::cout << std::endl;*/
+    
+    /*std::vector<std::thread> threadVec;
+    
+    for (int i = 0; i < 20; ++i) {
+        
+        auto thread = std::thread([=]() {
+            
+            try {
+                
+                //std::lock_guard<std::mutex> lock(mutex);
+                mutex_01.lock();
+                std::cout<<std::this_thread::get_id() << std::endl;
+                std::cout<<i<<std::endl;
+                mutex_01.unlock();
+                //std::cout << "thread done id: " << std::this_thread::get_id() << std::endl;
+                
+            } catch(std::exception& exc) {
+                std::cout << "Thread Exception: " << exc.what() << std::endl;
+            } catch(...) {
+                std::cout << "Thread Uknwon Exception: " << std::endl;
+            }
+        });
+        
+        threadVec.push_back(std::move(thread));
+    }
+    
+    std::for_each(threadVec.begin(), threadVec.end(), [&](std::thread& thread) {
+        try {
+            std::cout << "join start" << std::endl;
+            thread.join();
+            std::cout << "join done" << std::endl;
+        } catch(std::exception& exc) {
+            std::cout << "Async Exception: " << exc.what() << std::endl;
+        }
+        
+    });*/
 
     [self.view addSubview:[iGaiaStageMgr sharedInstance].m_renderMgr.m_glView];
     
-    _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:self.view.frame.size.width forScreenHeight:self.view.frame.size.height];
+    CGRect viewport = [iGaiaSettings retriveFrameRect];
+    _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
     _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     _m_camera.m_look = glm::vec3(16.0f, 0.0f, 32.0f);
 
