@@ -6,94 +6,100 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-
 #import "iGaiaTexture.h"
 
-enum E_SHADER
+class iGaiaShader
 {
-    E_SHADER_LANDSCAPE = 0,
-    E_SHADER_LANDSCAPE_ND,
-    E_SHADER_MODEL,
-    E_SHADER_MODEL_ND,
-    E_SHADER_GRASS,
-    E_SHADER_GRASS_ND,
-    E_SHADER_OCEAN,
-    E_SHADER_DECAL,
-    E_SHADER_PARTICLE,
-    E_SHADER_PARTICLE_ND,
-    E_SHADER_SKYBOX,
-    E_SHADER_LANDSCAPE_EDGES,
-    E_SHADER_SCREEN_PLANE,
-    E_SHADER_SCREEN_PLANE_BLOOM_EXTRACT,
-    E_SHADER_SCREEN_PLANE_BLOOM_COMBINE,
-    E_SHADER_SCREEN_PLANE_BLUR,
-    E_SHADER_SCREEN_PLANE_EDGE_DETECT,
-    E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL,
-    E_SHADER_MAX
+public :
+
+enum iGaia_E_Shader
+{
+    iGaia_E_ShaderLandscape = 0,
+    iGaia_E_ShaderLandscapeND,
+    iGaia_E_ShaderShape3d,
+    iGaia_E_ShaderShapeND,
+    iGaia_E_ShaderGrass,
+    iGaia_E_ShaderGrassND,
+    iGaia_E_ShaderOcean,
+    iGaia_E_ShaderDecal,
+    iGaia_E_ShaderParticle,
+    iGaia_E_ShaderParticleND,
+    iGaia_E_ShaderSkybox,
+    iGaia_E_ShaderLandscapeEdge,
+    iGaia_E_ShaderScreenQuadSimple,
+    iGaia_E_ShaderScreenQuadBloomExtract,
+    iGaia_E_ShaderScreenQuadBloomCombine,
+    iGaia_E_ShaderScreenQuadBlur,
+    iGaia_E_ShaderScreenQuadEdgeDetect,
+    iGaia_E_ShaderScreenQuadLandscapeSplatting,
+    iGaia_E_ShaderMaxValue
 };
 
-enum E_VERTEX_SLOT
+enum iGaia_E_ShaderVertexSlot
 {
-    E_VERTEX_SLOT_POSITION = 0,
-    E_VERTEX_SLOT_TEXCOORD,
-    E_VERTEX_SLOT_NORMAL,
-    E_VERTEX_SLOT_TANGENT,
-    E_VERTEX_SLOT_COLOR,
-    E_VERTEX_SLOT_MAX
+    iGaia_E_ShaderVertexSlotPosition = 0,
+    iGaia_E_ShaderVertexSlotTexcoord,
+    iGaia_E_ShaderVertexSlotNormal,
+    iGaia_E_ShaderVertexSlotTangent,
+    iGaia_E_ShaderVertexSlotColor,
+    iGaia_E_ShaderVertexSlotMaxValue
 };
 
-enum E_ATTRIBUTE
+enum iGaia_E_ShaderAttribute
 {
-    E_ATTRIBUTE_MATRIX_WORLD = 0,
-    E_ATTRIBUTE_MATRIX_VIEW,
-    E_ATTRIBUTE_MATRIX_PROJECTION,
-    E_ATTRIBUTE_MATRIX_WVP,
-    E_ATTRIBUTE_VECTOR_CAMERA_POSITION,
-    E_ATTRIBUTE_VECTOR_LIGHT_POSITION,
-    E_ATTRIBUTE_VECTOR_CLIPPING,
-    E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET,
-    E_ATTRIBUTE_FLOAT_TIME,
-    E_ATTRIBUTE_MAX
+    iGaia_E_ShaderAttributeMatrixWorld = 0,
+    iGaia_E_ShaderAttributeMatrixView,
+    iGaia_E_ShaderAttributeMatrixProjection,
+    iGaia_E_ShaderAttributeMatrixWVP,
+    iGaia_E_ShaderAttributeVectorEyePosition,
+    iGaia_E_ShaderAttributeVectorLightPosition,
+    iGaia_E_ShaderAttributePlaneClipping,
+    iGaia_E_ShaderAttributeVectorTexcoordDisplace,
+    iGaia_E_ShaderAttributeFloatTime,
+    iGaia_E_ShaderAttributeMaxValue
 };
 
-enum E_TEXTURE_SLOT
+enum iGaia_E_ShaderTextureSlot
 {
-    E_TEXTURE_SLOT_01 = 0,
-    E_TEXTURE_SLOT_02,
-    E_TEXTURE_SLOT_03,
-    E_TEXTURE_SLOT_04,
-    E_TEXTURE_SLOT_05,
-    E_TEXTURE_SLOT_06,
-    E_TEXTURE_SLOT_07,
-    E_TEXTURE_SLOT_08,
-    E_TEXTURE_SLOT_MAX
+    iGaia_E_ShaderTextureSlot_01 = 0,
+    iGaia_E_ShaderTextureSlot_02,
+    iGaia_E_ShaderTextureSlot_03,
+    iGaia_E_ShaderTextureSlot_04,
+    iGaia_E_ShaderTextureSlot_05,
+    iGaia_E_ShaderTextureSlot_06,
+    iGaia_E_ShaderTextureSlot_07,
+    iGaia_E_ShaderTextureSlot_08,
+    iGaia_E_ShaderTextureSlotMaxValue
 };
 
-@interface iGaiaShader : NSObject
+private:
+    i32 m_attributes[iGaia_E_ShaderAttributeMaxValue];
+    i32 m_vertexSlots[iGaia_E_ShaderVertexSlotMaxValue];
+    i32 m_textureSlots[iGaia_E_ShaderTextureSlotMaxValue];
+    ui32 m_handle;
+protected:
+    
+public:
+    iGaiaShader(ui32 _hanlde);
+    ~iGaiaShader(void);
 
-- (id)initWithHandle:(NSUInteger)handle;
+    i32 Get_VertexSlotHandle(iGaia_E_ShaderVertexSlot _slot);
 
-- (NSInteger)getVertexSlotHandle:(E_VERTEX_SLOT)slot;
+    void Set_Matrix3x3(const mat3x3& _matrix, iGaia_E_ShaderAttribute _attribute);
+    void Set_Matrix3x3Custom(const mat3x3& _matrix, const string& _attribute);
+    void Set_Matrix4x4(const mat4x4& _matrix, iGaia_E_ShaderAttribute _attribute);
+    void Set_Matrix4x4Custom(const mat4x4& _matrix, const string& _attribute);
+    void Set_Vector2(const vec2& _vector, iGaia_E_ShaderAttribute _attribute);
+    void Set_Vector2Custom(const vec2& _vector, const string& _attribute);
+    void Set_Vector3(const vec3& _vector, iGaia_E_ShaderAttribute _attribute);
+    void Set_Vector3Custom(const vec3& _vector, const string& _attribute);
+    void Set_Vector4(const vec4& _vector, iGaia_E_ShaderAttribute _attribute);
+    void Set_Vector4Custom(const vec4& _vector, const string& _attribute);
+    void Set_Float(f32 _value, iGaia_E_ShaderAttribute _attribute);
+    void Set_FloatCustom(f32 _value, const string& _attribute);
+    void Set_Texture(iGaiaTexture* _texture, iGaia_E_ShaderTextureSlot _slot);
 
-- (void)setMatrix4x4:(const glm::mat4x4&)matrix forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setMatrix4x4:(const glm::mat4x4&)matrix forCustomAttribute:(NSString*)attribute;
-- (void)setMatrix3x3:(const glm::mat3x3&)matrix forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setMatrix3x3:(const glm::mat3x3&)matrix forCustomAttribute:(NSString*)attribute;
-- (void)setVector2:(const glm::vec2&)vector forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setVector2:(const glm::vec2&)vector forCustomAttribute:(NSString*)attribute;
-- (void)setVector3:(const glm::vec3&)vector forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setVector3:(const glm::vec3&)vector forCustomAttribute:(NSString*)attribute;
-- (void)setVector4:(const glm::vec4&)vector forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setVector4:(const glm::vec4&)vector forCustomAttribute:(NSString*)attribute;
-- (void)setFloat:(float)value forAttribute:(E_ATTRIBUTE)attribute;
-- (void)setFloat:(float)value forCustomAttribute:(NSString*)attribute;
-- (void)setTexture:(iGaiaTexture*)texture forSlot:(E_TEXTURE_SLOT)slot;
+    void Bind(void);
+    void Unbind(void);
+};
 
-- (void)bind;
-- (void)unbind;
-
-@end
