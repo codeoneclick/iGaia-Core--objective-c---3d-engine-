@@ -6,10 +6,19 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "iGaiaResource.h"
 
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
+class iGaiaIndexBufferObject
+{
+private:
+    ui32 m_handle;
+    ui16* m_data;
+    GLenum m_mode;
+protected:
+    
+public:
+    iGaiaIndexBufferObject(
+};
 
 @interface iGaiaIndexBufferObject : NSObject
 

@@ -8,38 +8,37 @@
 
 #import <Foundation/Foundation.h>
 
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-
 #import "iGaiaShader.h"
 
-struct iGaiaVertex
+class iGaiaVertexBufferObject
 {
-    glm::vec3 m_position;
-    glm::vec2 m_texcoord;
-    glm::u8vec4 m_normal;
-    glm::u8vec4 m_tangent;
-    glm::u8vec4 m_color;
+public:
+    struct iGaiaVertex
+    {
+        vec3 m_position;
+        vec2 m_texcoord;
+        u8vec4 m_normal;
+        u8vec4 m_tangent;
+        u8vec4 m_color;
+    };
+private:
+    ui32 m_numVertexes;
+    iGaiaShader* m_operatingShader;
+    ui32 m_handle;
+    iGaiaVertex* m_data;
+    GLenum m_mode;
+protected:
+    
+public:
+    iGaiaVertexBufferObject(ui32 _numVertexes, GLenum _mode);
+    ~iGaiaVertexBufferObject(void);
+
+    static u8vec4 CompressVec3(const vec3& _uncompressed);
+    static vec3 UncompressU8Vec4(const u8vec4& _compressed);
+
+    iGaiaVertex* Lock(void);
+    void Unlock(void);
+
+    void Bind(void);
+    void Unbind(void);
 };
-
-@interface iGaiaVertexBufferObject : NSObject
-
-@property(nonatomic, readonly) NSUInteger m_numVertexes;
-@property(nonatomic, assign) iGaiaShader* m_operatingShader;
-
-+ (glm::u8vec4)compressVec3:(const glm::vec3&)uncopressed;
-+ (glm::vec3)uncompressU8Vec4:(const glm::u8vec4&)compressed;
-
-- (id)initWithNumVertexes:(NSUInteger)numVertexes withMode:(GLenum)mode;
-- (void)unload;
-
-- (iGaiaVertex*)lock;
-- (void)unlock;
-
-- (void)bind;
-- (void)unbind;
-
-@end

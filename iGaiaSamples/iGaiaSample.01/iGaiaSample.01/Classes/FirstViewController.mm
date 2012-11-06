@@ -45,6 +45,12 @@ std::mutex mutex_01;
 
 - (void)viewDidLoad
 {
+
+    double *Tmvl;
+    Nvl = 2;
+    n = Nvl * 2;
+    Tmvl = new double [n+1];
+
     [super viewDidLoad];
     
     std::cout << "Main thread id: " << std::this_thread::get_id()
