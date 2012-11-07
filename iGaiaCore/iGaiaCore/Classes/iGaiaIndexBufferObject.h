@@ -14,24 +14,19 @@ private:
     ui32 m_handle;
     ui16* m_data;
     GLenum m_mode;
+    ui32 m_numIndexes;
 protected:
     
 public:
-    iGaiaIndexBufferObject(
+    iGaiaIndexBufferObject(ui32 _numIndexes, GLenum _mode);
+    ~iGaiaIndexBufferObject(void);
+
+    ui32 Get_NumIndexes(void);
+
+    ui16* Lock(void);
+    void Unlock(void);
+
+    void Bind(void);
+    void Unbind(void);
 };
 
-@interface iGaiaIndexBufferObject : NSObject
-
-@property(nonatomic, readonly) NSUInteger m_numIndexes;
-
-- (id)initWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode;
-
-- (void)unload;
-
-- (unsigned short*)lock;
-- (void)unlock;
-
-- (void)bind;
-- (void)unbind;
-
-@end

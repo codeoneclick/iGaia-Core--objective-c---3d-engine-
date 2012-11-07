@@ -6,199 +6,147 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaLoader_PVR.h"
+#include "iGaiaLoader_PVR.h"
+#include "iGaiaLogger.h"
+#include "PVRTTexture.h"
 
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-
-#import "PVRTTexture.h"
-
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-
-#import "stdlib.h"
-#import <string>
-
-#import "NSData+iGaiaExtension.h"
-#import "iGaiaLoadCallback.h"
-#import "iGaiaTexture.h"
-
-#import "iGaiaLogger.h"
-
-@interface iGaiaLoader_PVR()
-
-@property(nonatomic, readwrite) E_LOAD_STATUS m_status;
-@property(nonatomic, readwrite) NSString* m_name;
-@property(nonatomic, strong) NSMutableSet* m_listeners;
-@property(nonatomic, assign) GLenum m_format;
-@property(nonatomic, assign) NSInteger m_bytesPerPixel;
-@property(nonatomic, assign) glm::vec2 m_size;
-@property(nonatomic, assign) BOOL m_compressed;
-@property(nonatomic, strong) NSData* m_data;
-@property(nonatomic, assign) NSInteger m_headerSize;
-
-@end
-
-@implementation iGaiaLoader_PVR
-
-@synthesize m_status = _m_status;
-@synthesize m_name = _m_name;
-@synthesize m_listeners = _m_listeners;
-@synthesize m_format = _m_format;
-@synthesize m_bytesPerPixel = _m_bytesPerPixel;
-@synthesize m_size = _m_size;
-@synthesize m_compressed = _m_compressed;
-@synthesize m_data = _m_data;
-@synthesize m_headerSize = _m_headerSize;
-
-- (id)init
+iGaiaLoader_PVR::iGaiaLoader_PVR(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_status = E_LOAD_STATUS_NONE;
-        _m_listeners = [NSMutableSet new];
-    }
-    return self;
+    m_status = iGaia_E_LoadStatusNone;
 }
 
-- (void)addEventListener:(id<iGaiaLoadCallback>)listener
+
+void iGaiaLoader_PVR::ParseFileWithName(const string &_name)
 {
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [_m_listeners addObject:listener];
-    });
-}
+    m_status = iGaia_E_LoadStatusProcess;
+    m_name = _name;
 
-- (void)removeEventListener:(id<iGaiaLoadCallback>)listener
-{
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [_m_listeners removeObject:listener];
-    });
-}
+    string path([[[NSBundle mainBundle] resourcePath] UTF8String]);
+    path.append(m_name);
 
-- (void)parseFileWithName:(NSString*)name
-{
-    _m_status = E_LOAD_STATUS_PROCESS;
-    _m_name = name;
+    std::ifstream stream;
+    stream.open(path.c_str(), ios::binary);
+    stream.seekg(0, std::ios::end);
+    i32 lenght = stream.tellg();
+    stream.seekg(0, std::ios::beg);
+    m_data = new i8[lenght];
+    stream.read((char*)m_data, lenght);
+    stream.close();
 
-    NSString* path = [[NSBundle mainBundle] resourcePath];
-    path = [path stringByAppendingPathComponent:_m_name];
-
-    _m_data = [NSData dataWithContentsOfFile:path];
-
-    if(*(PVRTuint32*)_m_data.bytes != PVRTEX3_IDENT)
+    if(*(PVRTuint32*)m_data != PVRTEX3_IDENT)
 	{
         PVR_Texture_Header* header;
-        header = (PVR_Texture_Header*)_m_data.bytes;
+        header = (PVR_Texture_Header*)m_data;
         switch (header->dwpfFlags & PVRTEX_PIXELTYPE)
         {
             case OGL_PVRTC2:
                 if(header->dwAlphaBitMask)
                 {
-                    _m_bytesPerPixel = 2;
-                    _m_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
+                    m_bytesPerPixel = 2;
+                    m_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
                 }
                 else
                 {
-                    _m_bytesPerPixel = 2;
-                    _m_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
+                    m_bytesPerPixel = 2;
+                    m_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
                 }
                 break;
             case OGL_PVRTC4:
                 if(header->dwAlphaBitMask)
                 {
-                    _m_bytesPerPixel = 4;
-                    _m_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
+                    m_bytesPerPixel = 4;
+                    m_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
                 }
                 else
                 {
-                    _m_bytesPerPixel = 4;
-                    _m_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
+                    m_bytesPerPixel = 4;
+                    m_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
                 }
                 break;
             default:
-                _m_status = E_LOAD_STATUS_ERROR;
+                m_status = iGaia_E_LoadStatusError;
                 return;
         }
-        _m_size.x = header->dwWidth;
-        _m_size.y = header->dwHeight;
-        _m_compressed = YES;
-        _m_headerSize = header->dwHeaderSize;
-        iGaiaLog(@"Parse Texture with old pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", _m_name, _m_size.x, _m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
-        _m_status = E_LOAD_STATUS_DONE;
+        m_size.x = header->dwWidth;
+        m_size.y = header->dwHeight;
+        m_compressed = YES;
+        m_headerSize = header->dwHeaderSize;
+        iGaiaLog(@"Parse Texture with old pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
+        m_status = iGaia_E_LoadStatusDone;
         return;
     }
     else
     {
-        PVRTextureHeaderV3* header = (PVRTextureHeaderV3*)_m_data.bytes;
+        PVRTextureHeaderV3* header = (PVRTextureHeaderV3*)m_data;
         PVRTuint64 pixelFormat = header->u64PixelFormat;
         switch (pixelFormat)
 		{
             case 0:
             {
-                _m_bytesPerPixel = 2;
-                _m_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
+                m_bytesPerPixel = 2;
+                m_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
             }
                 break;
             case 1:
             {
-                _m_bytesPerPixel = 2;
-                _m_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
+                m_bytesPerPixel = 2;
+                m_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
             }
                 break;
             case 2:
             {
-                _m_bytesPerPixel = 4;
-                _m_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
+                m_bytesPerPixel = 4;
+                m_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
             }
             case 3:
             {
-                _m_bytesPerPixel = 4;
-                _m_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
+                m_bytesPerPixel = 4;
+                m_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
             }
                 break;
             default:
-                _m_status = E_LOAD_STATUS_ERROR;
+                m_status = iGaia_E_LoadStatusError;
                 return;
         }
-        _m_size.x = header->u32Width;
-        _m_size.y = header->u32Height;
-        _m_compressed = YES;
-        _m_headerSize = PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
-        iGaiaLog(@"Parse Texture with new pvr format -> : %@, with width : %f,  with height : %f, with mips : %d", _m_name, _m_size.x, _m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
-        _m_status = E_LOAD_STATUS_DONE;
+        m_size.x = header->u32Width;
+        m_size.y = header->u32Height;
+        m_compressed = YES;
+        m_headerSize = PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
+        iGaiaLog(@"Parse Texture with new pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
+        m_status = iGaia_E_LoadStatusDone;
     }
 }
 
-- (id<iGaiaResource>)commitToVRAM
+iGaiaResource* iGaiaLoader_PVR::CommitToVRAM(void)
 {
-    NSInteger width  = _m_size.x;
-    NSInteger height = _m_size.y;
-    char* data = (char*)_m_data.bytes + _m_headerSize;
+    i32 width  = m_size.x;
+    i32 height = m_size.y;
+    i8* data = m_data + m_headerSize;
 
-    NSUInteger handle = 0;
+    ui32 handle = 0;
     glGenTextures(1, &handle);
     glBindTexture(GL_TEXTURE_2D, handle);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
+
     for (NSInteger level = 0; width > 0 && height > 0; ++level)
     {
-        GLsizei size = std::max(32, width * height * _m_bytesPerPixel / 8);
-        glCompressedTexImage2D(GL_TEXTURE_2D, level, _m_format, width, height, 0, size, data);
+        GLsizei size = std::max(32, width * height * m_bytesPerPixel / 8);
+        glCompressedTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, size, data);
         data += size;
         width >>= 1; height >>= 1;
     }
 
-    iGaiaTexture* texture = [[iGaiaTexture alloc] initWithHandle:handle withWidth:_m_size.x withHeight:_m_size.y withName:_m_name withCreationMode:E_CREATION_MODE_NATIVE];
+    iGaiaTexture* texture = new iGaiaTexture(handle, m_size.x, m_size.y, m_name, iGaiaResource::iGaia_E_CreationModeNative);
 
-    for(id<iGaiaLoadCallback> listener in _m_listeners)
+    for(iGaiaLoadCallback* listener : m_listeners)
     {
-        [texture incReferenceCount];
-        [listener onLoad:texture];
+        texture->IncReferenceCount();
+        listener->OnLoad(texture);
     }
-    [_m_listeners removeAllObjects];
+    
+    m_listeners.clear();
+    
     return texture;
 }
 
-@end

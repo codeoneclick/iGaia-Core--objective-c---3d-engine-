@@ -39,6 +39,7 @@
 		A40C5A671625791800120D76 /* sqtable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A4F1625791800120D76 /* sqtable.cpp */; };
 		A40C5A681625791800120D76 /* sqvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A531625791800120D76 /* sqvm.cpp */; };
 		A40C5A6D1625796900120D76 /* iGaiaScriptMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A6C1625796900120D76 /* iGaiaScriptMgr.m */; };
+		A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */; };
 		A4466549161B1A490025601F /* iGaiaGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLView.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */; };
@@ -159,6 +160,7 @@
 		A40C5A541625791800120D76 /* sqvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqvm.h; sourceTree = "<group>"; };
 		A40C5A6B1625796900120D76 /* iGaiaScriptMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaScriptMgr.h; path = iGaiaCore/Classes/iGaiaScriptMgr.h; sourceTree = "<group>"; };
 		A40C5A6C1625796900120D76 /* iGaiaScriptMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaScriptMgr.m; path = iGaiaCore/Classes/iGaiaScriptMgr.m; sourceTree = "<group>"; };
+		A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoader.mm; path = iGaiaCore/Classes/iGaiaLoader.mm; sourceTree = "<group>"; };
 		A44664F1161AED5C0025601F /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
 		A44664F2161AED5C0025601F /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.vert; path = Shaders/ShaderDecal.vert; sourceTree = "<group>"; };
 		A44664F3161AED5C0025601F /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.frag; path = Shaders/ShaderGrass.frag; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 			isa = PBXGroup;
 			children = (
 				A4BF9EEC161979E600004F34 /* iGaiaLoader.h */,
+				A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */,
 				A4BF9EF016197A4B00004F34 /* iGaiaLoader_PVR.h */,
 				A4BF9EF116197A4B00004F34 /* iGaiaLoader_PVR.mm */,
 				A4BF9EF616197A7C00004F34 /* iGaiaLoader_MDL.h */,
@@ -1321,6 +1324,7 @@
 				A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */,
 				A4D1B2D11642C8CD00FA3BE5 /* iGaiaSettings.m in Sources */,
 				210B3E5B164846A7005278F3 /* iGaiaResource.cpp in Sources */,
+				A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

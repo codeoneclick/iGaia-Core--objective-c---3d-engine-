@@ -44,12 +44,17 @@ vec3 iGaiaVertexBufferObject::UncompressU8Vec4(const u8vec4 &_compressed)
     return uncompressed;
 }
 
-iGaiaVertexBufferObject::iGaiaVertex* iGaiaVertexBufferObject::Lock(void)
+inline ui32 iGaiaVertexBufferObject::Get_NumVertexes(void)
+{
+    return m_numVertexes;
+}
+
+inline iGaiaVertexBufferObject::iGaiaVertex* iGaiaVertexBufferObject::Lock(void)
 {
     return m_data;
 }
 
-void iGaiaVertexBufferObject::Unlock(void)
+inline void iGaiaVertexBufferObject::Unlock(void)
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_handle);
     glBufferData(GL_ARRAY_BUFFER, sizeof(iGaiaVertex) * m_numVertexes, m_data, m_mode);

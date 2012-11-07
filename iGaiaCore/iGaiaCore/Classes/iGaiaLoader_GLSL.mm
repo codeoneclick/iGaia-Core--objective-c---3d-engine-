@@ -7,21 +7,16 @@
 //
 
 #import "iGaiaLoader_GLSL.h"
-
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-
 #import "iGaiaLogger.h"
 
-@implementation iGaiaLoader_GLSL
-
-+ (NSUInteger)compileShaderData:(const char*)data forShader:(GLenum)shader
+ui32 iGaiaLoader_GLSL::CompileShaderData(const i8* _data, GLenum _shader)
 {
-    NSUInteger handle = glCreateShader(shader);
+    ui32 handle = glCreateShader(_shader);
+    const char* data = (char*)_data;
     glShaderSource(handle, 1, &data, 0);
     glCompileShader(handle);
 
-    int success;
+    i32 success;
     glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
     if (success == GL_FALSE)
     {
@@ -33,17 +28,17 @@
     return handle;
 }
 
-+ (iGaiaShader*)loadWithVertexShaderData:(const char*)vertexShaderData withFragmentShaderData:(const char*)fragmentShaderData
+iGaiaShader* iGaiaLoader_GLSL::LoadShader(const i8 *_vertexShaderData, const i8 *_fragmentShaderData)
 {
-    NSUInteger handleVertexShader = [iGaiaLoader_GLSL compileShaderData:vertexShaderData forShader:GL_VERTEX_SHADER]; 
-    NSUInteger handleFragmentShader = [iGaiaLoader_GLSL compileShaderData:fragmentShaderData forShader:GL_FRAGMENT_SHADER];
-    
-    NSUInteger handle = glCreateProgram();
+    ui32 handleVertexShader = iGaiaLoader_GLSL::CompileShaderData(_vertexShaderData, GL_VERTEX_SHADER);
+    ui32 handleFragmentShader = iGaiaLoader_GLSL::CompileShaderData(_fragmentShaderData GL_FRAGMENT_SHADER);
+
+    ui32 handle = glCreateProgram();
     glAttachShader(handle, handleVertexShader);
     glAttachShader(handle, handleFragmentShader);
     glLinkProgram(handle);
 
-    NSInteger success;
+    i32 success;
     glGetProgramiv(handle, GL_LINK_STATUS, &success);
     if (success == GL_FALSE)
     {
@@ -51,10 +46,8 @@
         glGetProgramInfoLog(handle, sizeof(message), 0, &message[0]);
         iGaiaLog(@"Shader error -> %s", message);
     }
-
-    iGaiaShader* shader = [[iGaiaShader alloc] initWithHandle:handle];
+    iGaiaShader* shader = new iGaiaShader(handle);
     return shader;
 }
 
-@end
 

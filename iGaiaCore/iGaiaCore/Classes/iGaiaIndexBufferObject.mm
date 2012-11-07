@@ -8,64 +8,38 @@
 
 #import "iGaiaIndexBufferObject.h"
 
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-
-@interface iGaiaIndexBufferObject()
-
-@property(nonatomic, assign) NSUInteger m_handle;
-@property(nonatomic, assign) unsigned short* m_data;
-@property(nonatomic, assign) GLenum m_mode;
-
-@end
-
-@implementation iGaiaIndexBufferObject
-
-@synthesize m_handle = _m_handle;
-@synthesize m_data = _m_data;
-@synthesize m_numIndexes = _m_numIndexes;
-@synthesize m_mode = _m_mode;
-
-- (id)initWithNumIndexes:(NSUInteger)numIndexes withMode:(GLenum)mode
+iGaiaIndexBufferObject::iGaiaIndexBufferObject(ui32 _numIndexes, GLenum _mode)
 {
-    self = [super init];
-    if(self)
-    {
-        glGenBuffers(1, &_m_handle);
-        _m_numIndexes = numIndexes;
-        _m_data = new unsigned short[_m_numIndexes];
-        _m_mode = mode;
-    }
-    return self;
+    m_numIndexes = _numIndexes;
+    m_data = new u16[m_numIndexes];
+    m_mode = _mode;
+    glGenBuffers(1, &m_handle);
 }
 
-- (void)unload
+iGaiaIndexBufferObject::~iGaiaIndexBufferObject(void)
 {
-    delete [] _m_data;
-    glDeleteBuffers(1, &_m_handle);
-    _m_handle = NULL;
+    delete [] m_data;
+    glDeleteBuffers(1, &m_handle);
+    m_handle = NULL;
 }
 
-- (unsigned short*)lock
+inline u16* iGaiaIndexBufferObject::Lock(void)
 {
-    return _m_data;
+    return m_data;
 }
 
-- (void)unlock
+inline void iGaiaIndexBufferObject::Unlock(void)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _m_handle);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * _m_numIndexes, _m_data, _m_mode);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handle);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(u16) * m_numIndexes, m_data, m_mode);
 }
 
-- (void)bind
+inline void iGaiaIndexBufferObject::Bind(void)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _m_handle);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handle);
 }
 
-- (void)unbind
+inline void iGaiaIndexBufferObject::Unbind(void)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
+     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 }
-
-
-@end

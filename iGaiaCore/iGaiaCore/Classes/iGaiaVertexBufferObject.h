@@ -33,6 +33,8 @@ public:
     iGaiaVertexBufferObject(ui32 _numVertexes, GLenum _mode);
     ~iGaiaVertexBufferObject(void);
 
+    ui32 Get_NumVertexes(void);
+
     static u8vec4 CompressVec3(const vec3& _uncompressed);
     static vec3 UncompressU8Vec4(const u8vec4& _compressed);
 

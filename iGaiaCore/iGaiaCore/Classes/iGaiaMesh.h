@@ -6,25 +6,32 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "iGaiaResource.h"
-
 #import "iGaiaVertexBufferObject.h"
 #import "iGaiaIndexBufferObject.h"
 
-@interface iGaiaMesh : NSObject<iGaiaResource>
+class iGaiaMesh : public iGaiaResource
+{
+private:
+    iGaiaVertexBufferObject* m_vertexBuffer;
+    iGaiaIndexBufferObject* m_indexBuffer;
+    vec3 m_maxBound;
+    vec3 m_minBound;
+protected:
 
-@property(nonatomic, readonly) iGaiaVertexBufferObject* m_vertexBuffer;
-@property(nonatomic, readonly) iGaiaIndexBufferObject* m_indexBuffer;
-@property(nonatomic, readonly) glm::vec3 m_maxBound;
-@property(nonatomic, readonly) glm::vec3 m_minBound;
-@property(nonatomic, readonly) NSUInteger m_numVertexes;
-@property(nonatomic, readonly) NSUInteger m_numIndexes;
+public:
+    iGaiaMesh(iGaiaVertexBufferObject* _vertexBuffer, iGaiaIndexBufferObject* _indexBuffer, const string& _name, iGaiaResource::iGaia_E_CreationMode _mode);
+    ~iGaiaMesh(void);
 
-- (id)initWithVertexBuffer:(iGaiaVertexBufferObject*)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject*)indexBuffer withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+    iGaiaVertexBufferObject* Get_VertexBuffer(void);
+    iGaiaIndexBufferObject* Get_IndexBuffer(void);
 
-- (void)bind;
-- (void)unbind;
+    ui32 Get_NumVertexes(void);
+    ui32 Get_NumIndexes(void);
 
-@end
+    vec3 Get_MaxBound(void);
+    vec3 Get_MinBound(void);
+
+    void Bind(void);
+    void Unbind(void);
+};
+

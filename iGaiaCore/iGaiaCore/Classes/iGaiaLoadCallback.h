@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol iGaiaResource;
-@protocol iGaiaLoadCallback <NSObject>
+class iGaiaResource;
 
-- (void)onLoad:(id<iGaiaResource>)resource;
+class iGaiaLoadCallback
+{
+private:
 
-@end
+protected:
+
+public:
+    iGaiaLoadCallback(void) = default;
+    ~iGaiaLoadCallback(void) = default;
+    void OnLoad(const iGaiaResource* _resource);
+};
+

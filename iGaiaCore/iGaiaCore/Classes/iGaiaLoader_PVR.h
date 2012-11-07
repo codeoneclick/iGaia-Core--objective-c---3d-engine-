@@ -6,10 +6,24 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaLoader.h"
+#include "iGaiaTexture.h"
 
-#import "iGaiaLoader.h"
+class iGaiaLoader_PVR : public iGaiaLoader
+{
+private:
+    GLenum m_format;
+    i32 m_bytesPerPixel;
+    vec2 m_size;
+    bool m_compressed;
+    i8* m_data;
+    ui32 m_headerSize;
+protected:
 
-@interface iGaiaLoader_PVR : NSObject<iGaiaLoader>
+public:
+    iGaiaLoader_PVR(void);
+    ~iGaiaLoader_PVR(void);
 
-@end
+    void ParseFileWithName(const string& _name);
+    iGaiaResource* CommitToVRAM(void);
+};

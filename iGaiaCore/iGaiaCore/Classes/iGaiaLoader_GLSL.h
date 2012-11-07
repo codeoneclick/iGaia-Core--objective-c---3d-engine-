@@ -6,14 +6,19 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaShader.h"
 
-#import "iGaiaShader.h"
+class iGaiaLoader_GLSL
+{
+private:
+    static ui32 CompileShaderData(const i8* _data, GLenum _shader);
+protected:
 
-@interface iGaiaLoader_GLSL : NSObject
+public:
+    iGaiaLoader_GLSL(void) = default;
+    ~iGaiaLoader_GLSL(void) = default;
+    static iGaiaShader* LoadShader(const i8* _vertexShaderData, const i8* _fragmentShaderData);
+};
 
-+ (iGaiaShader*)loadWithVertexShaderData:(const char*)vertexShaderData withFragmentShaderData:(const char*)fragmentShaderData;
-
-@end
 
 

@@ -6,25 +6,36 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaResource.h"
+#include "iGaiaLoadCallback.h"
 
-@protocol iGaiaResource, iGaiaLoadCallback;
-@protocol iGaiaLoader <NSObject>
-
-enum E_LOAD_STATUS
+class iGaiaLoader
 {
-    E_LOAD_STATUS_NONE = 0,
-    E_LOAD_STATUS_PROCESS,
-    E_LOAD_STATUS_DONE,
-    E_LOAD_STATUS_ERROR
+public :
+    enum iGaia_E_LoadStatus
+    {
+        iGaia_E_LoadStatusNone = 0,
+        iGaia_E_LoadStatusProcess,
+        iGaia_E_LoadStatusDone,
+        iGaia_E_LoadStatusError
+    };
+private:
+
+protected:
+    iGaia_E_LoadStatus m_status;
+    string m_name;
+    set<iGaiaLoadCallback*> m_listeners;
+public:
+    iGaiaLoader(void) = default;
+    virtual ~iGaiaLoader(void) = default;
+
+    iGaia_E_LoadStatus Get_Status(void);
+    string Get_Name(void);
+
+    void AddEventListener(iGaiaLoadCallback* _listener);
+    void RemoveEventListener(iGaiaLoadCallback* _listener);
+
+    virtual void ParseFileWithName(const string& _name) = 0;
+    virtual iGaiaResource* CommitToVRAM(void) = 0;
 };
 
-@property(nonatomic, readonly) E_LOAD_STATUS m_status;
-@property(nonatomic, readonly) NSString* m_name;
-
-- (void)addEventListener:(id<iGaiaLoadCallback>)listener;
-- (void)removeEventListener:(id<iGaiaLoadCallback>)listener;
-- (void)parseFileWithName:(NSString*)name;
-- (id<iGaiaResource>)commitToVRAM;
-
-@end

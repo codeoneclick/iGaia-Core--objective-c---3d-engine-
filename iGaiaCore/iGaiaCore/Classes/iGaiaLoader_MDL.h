@@ -6,10 +6,22 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaLoader.h"
+#include "iGaiaMesh.h"
 
-#import "iGaiaLoader.h"
+class iGaiaLoader_MDL : public iGaiaLoader
+{
+private:
+    iGaiaVertexBufferObject::iGaiaVertex* m_vertexData;
+    ui16* m_indexData;
+    ui32 m_numVertexes;
+    ui32 m_numIndexes;
+protected:
 
-@interface iGaiaLoader_MDL : NSObject<iGaiaLoader>
+public:
+    iGaiaLoader_MDL(void);
+    ~iGaiaLoader_MDL(void);
 
-@end
+    void ParseFileWithName(const string& _name);
+    iGaiaResource* CommitToVRAM(void);
+};

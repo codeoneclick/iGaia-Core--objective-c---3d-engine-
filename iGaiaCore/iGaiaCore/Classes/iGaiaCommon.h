@@ -17,6 +17,9 @@
 #include <future>
 #include <mutex>
 #include <thread>
+#include <set>
+#include <fstream>
+#include <strstream>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_precision.hpp>
@@ -28,11 +31,11 @@
 using namespace std;
 using namespace glm;
 
-typedef char i8;
+typedef signed char i8;
 typedef unsigned char ui8;
-typedef short i16;
+typedef signed short i16;
 typedef unsigned short ui16;
-typedef int i32;
+typedef signed int i32;
 typedef unsigned int ui32;
 typedef float f32;
 
