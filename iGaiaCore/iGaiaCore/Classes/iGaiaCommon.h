@@ -39,9 +39,9 @@ typedef signed int i32;
 typedef unsigned int ui32;
 typedef float f32;
 
-@interface iGaiaCommon : NSObject
+/*@interface iGaiaCommon : NSObject
 
 + (float)retriveRandomValueWithMinBound:(float)minBound withMaxBound:(float)maxBound;
 + (unsigned long long)retriveTickCount;
 
-@end
+@end*/

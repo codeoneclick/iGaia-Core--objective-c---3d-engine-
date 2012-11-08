@@ -6,80 +6,68 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaTextureMgr.h"
-#import "iGaiaLoader_PVR.h"
-#import "iGaiaTexture.h"
+#include "iGaiaTextureMgr.h"
 
-@interface iGaiaTextureMgr()
-
-@property(nonatomic, strong) NSMutableDictionary* m_tasks;
-@property(nonatomic, strong) NSMutableDictionary* m_resources;
-
-@end
-
-@implementation iGaiaTextureMgr
-
-@synthesize m_tasks = _m_tasks;
-@synthesize m_resources = _m_resources;
-
-- (id)init
+iGaiaTextureMgr::iGaiaTextureMgr(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_tasks = [NSMutableDictionary new];
-        _m_resources = [NSMutableDictionary new];
-    }
-    return self;
+
 }
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name
+iGaiaTextureMgr::~iGaiaTextureMgr(void)
 {
-    iGaiaTexture* texture = nil;
-    if([_m_resources objectForKey:name] != nil)
+    
+}
+
+iGaiaResource* iGaiaTextureMgr::LoadResourceSync(const string &_name)
+{
+    iGaiaTexture* texture = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        texture = [_m_resources objectForKey:name];
+        texture = m_resources.find(_name)->second;
     }
     else
     {
-        iGaiaLoader_PVR* loader = [iGaiaLoader_PVR new];
-        [loader parseFileWithName:name];
-        if(loader.m_status == E_LOAD_STATUS_DONE)
+        iGaiaLoader_PVR* loader = new iGaiaLoader_PVR();
+        loader->ParseFileWithName(_name);
+        if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
         {
-            texture = [loader commitToVRAM];
-            [texture incReferenceCount];
+            texture = static_cast<iGaiaTexture*>(loader->CommitToVRAM());
+            texture->IncReferenceCount();
+            m_resources[_name] = texture;
         }
     }
     return texture;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener
+iGaiaResource* iGaiaTextureMgr::LoadResourceAsync(const string &_name, iGaiaLoadCallback *_listener)
 {
-    iGaiaTexture* texture = nil;
-    if([_m_resources objectForKey:name] != nil)
+    iGaiaTexture* texture = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        texture = [_m_resources objectForKey:name];
+       texture = m_resources.find(_name)->second;
     }
     else
     {
-        texture = [[iGaiaTexture alloc] initWithHandle:0 withWidth:0 withHeight:0 withName:name withCreationMode:E_CREATION_MODE_NATIVE];
-        if([_m_tasks objectForKey:name] != nil)
+        texture = new  iGaiaTexture(0, 0, 0, _name, iGaiaResource::iGaia_E_CreationModeNative);
+        if(m_tasks.find(_name) != m_tasks.end())
         {
-            iGaiaLoader_PVR* loader = [_m_tasks objectForKey:name];
-            [loader addEventListener:listener];
+            iGaiaLoader_PVR* loader = m_tasks.find(_name)->second;
+            loader->AddEventListener(_listener);
         }
         else
         {
-            iGaiaLoader_PVR* loader = [iGaiaLoader_PVR new];
-            [_m_tasks setObject:loader forKey:name];
-            [loader addEventListener:listener];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [loader parseFileWithName:name];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(loader.m_status == E_LOAD_STATUS_DONE)
+            iGaiaLoader_PVR* loader = new iGaiaLoader_PVR();
+            m_tasks[_name] = loader;
+            loader->AddEventListener(_listener);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                loader->ParseFileWithName(_name);
+                dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
                     {
-                        iGaiaTexture* texture = [loader commitToVRAM];
-                        [_m_resources setObject:texture forKey:name];
+                        iGaiaTexture* texture = static_cast<iGaiaTexture*>(loader->CommitToVRAM());
+                        m_resources[_name] = texture;
                     }
                 });
             });
@@ -87,8 +75,5 @@
     }
     return texture;
 }
-
-@end
-
 
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaShaderComposite.h"
+#include "iGaiaShaderComposite.h"
 
-#import "iGaiaLoader_GLSL.h"
+#include "iGaiaLoader_GLSL.h"
 
 #define STRINGIFY(A)  #A
 
@@ -66,90 +66,81 @@
 #include "../Shaders/ShaderLandscapeEdges.frag"
 #include "../Shaders/ShaderLandscapeEdges.vert"
 
-@interface iGaiaShaderComposite()
+iGaiaShaderComposite::iGaiaShaderComposite(void)
 {
-    iGaiaShader* _m_shaders[E_SHADER_MAX];
+    iGaiaShader* shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderModelV, (i8*)ShaderModelF); 
+    m_shaders[iGaiaShader::iGaia_E_ShaderShape3d] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderModelNDV, (i8*)ShaderModelNDF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderShapeND] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderLandscapeV, (i8*)ShaderLandscapeF); 
+    m_shaders[iGaiaShader::iGaia_E_ShaderLandscape] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderLandscapeNDV , (i8*)ShaderLandscapeNDF); 
+    m_shaders[iGaiaShader::iGaia_E_ShaderLandscapeND] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderOceanV , (i8*)ShaderOceanF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderOcean] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderSkyboxV , (i8*)ShaderSkyboxF); 
+    m_shaders[iGaiaShader::iGaia_E_ShaderSkydome] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderGrassV , (i8*)ShaderGrassF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderGrass] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderGrassNDV , (i8*)ShaderGrassNDF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderGrassND] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderDecalV , (i8*)ShaderDecalF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderDecal] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderParticleV , (i8*)ShaderParticleF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderParticle] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderParticleNDV , (i8*)ShaderParticleNDF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderParticleND] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostPlaneV , (i8*)ShaderPostPlaneF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadSimple] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostBloomExtractV , (i8*)ShaderPostBloomExtractF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadBloomExtract] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostBloomCombineV , (i8*)ShaderPostBloomCombineF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadBloomCombine] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostBlurV , (i8*)ShaderPostBlurF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadBlur] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostEdgeDetectV , (i8*)ShaderPostEdgeDetectF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadEdgeDetect] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderPostLandscapeDetailV , (i8*)ShaderPostLandscapeDetailF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderScreenQuadLandscapeSplatting] = shader;
+
+    shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderLandscapeEdgesV , (i8*)ShaderLandscapeEdgesF);
+    m_shaders[iGaiaShader::iGaia_E_ShaderLandscapeEdge] = shader;
 }
 
-@end
-
-@implementation iGaiaShaderComposite
-
-+ (iGaiaShaderComposite *)sharedInstance
+iGaiaShaderComposite::~iGaiaShaderComposite(void)
 {
-    static iGaiaShaderComposite *_shared = nil;
+
+}
+
+iGaiaShaderComposite* iGaiaShaderComposite::SharedInstance(void)
+{
+    static iGaiaShaderComposite *instance = nil;
     static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        _shared = [[self alloc] init];
-    });
-    return _shared;
-}
-
-- (id)init
-{
-    self = [super init];
-    if(self)
+    dispatch_once(&oncePredicate, ^
     {
-        iGaiaShader* shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderModelV withFragmentShaderData:ShaderModelF];
-        _m_shaders[E_SHADER_MODEL] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderModelNDV withFragmentShaderData:ShaderModelNDF]; 
-        _m_shaders[E_SHADER_MODEL_ND] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderLandscapeV withFragmentShaderData:ShaderLandscapeF];
-        _m_shaders[E_SHADER_LANDSCAPE] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderLandscapeNDV withFragmentShaderData:ShaderLandscapeNDF]; 
-        _m_shaders[E_SHADER_LANDSCAPE_ND] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderOceanV withFragmentShaderData:ShaderOceanF];
-        _m_shaders[E_SHADER_OCEAN] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderSkyboxV withFragmentShaderData:ShaderSkyboxF]; 
-        _m_shaders[E_SHADER_SKYBOX] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderGrassV withFragmentShaderData:ShaderGrassF]; 
-        _m_shaders[E_SHADER_GRASS] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderGrassNDV withFragmentShaderData:ShaderGrassNDF]; 
-        _m_shaders[E_SHADER_GRASS_ND] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderDecalV withFragmentShaderData:ShaderDecalF]; 
-        _m_shaders[E_SHADER_DECAL] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderParticleV withFragmentShaderData:ShaderParticleF]; 
-        _m_shaders[E_SHADER_PARTICLE] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderParticleNDV withFragmentShaderData:ShaderParticleNDF];
-        _m_shaders[E_SHADER_PARTICLE_ND] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostPlaneV withFragmentShaderData:ShaderPostPlaneF]; 
-        _m_shaders[E_SHADER_SCREEN_PLANE] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostBloomExtractV withFragmentShaderData:ShaderPostBloomExtractF]; 
-        _m_shaders[E_SHADER_SCREEN_PLANE_BLOOM_EXTRACT] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostBloomCombineV withFragmentShaderData:ShaderPostBloomCombineF]; 
-        _m_shaders[E_SHADER_SCREEN_PLANE_BLOOM_COMBINE] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostBlurV withFragmentShaderData:ShaderPostBlurF];
-        _m_shaders[E_SHADER_SCREEN_PLANE_BLUR] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostEdgeDetectV withFragmentShaderData:ShaderPostEdgeDetectF];
-        _m_shaders[E_SHADER_SCREEN_PLANE_EDGE_DETECT] = shader;
-
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderPostLandscapeDetailV withFragmentShaderData:ShaderPostLandscapeDetailF]; 
-        _m_shaders[E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL] = shader;
-        
-        shader = [iGaiaLoader_GLSL loadWithVertexShaderData:ShaderLandscapeEdgesV withFragmentShaderData:ShaderLandscapeEdgesF]; 
-        _m_shaders[E_SHADER_LANDSCAPE_EDGES] = shader;
-    }
-    return self;
+        instance = new iGaiaShaderComposite();
+    });
+    return instance;
 }
 
-- (iGaiaShader*)getShader:(E_SHADER)shader
+iGaiaShader* iGaiaShaderComposite::Get_Shader(iGaiaShader::iGaia_E_Shader _shader)
 {
-    return _m_shaders[shader];
+    return m_shaders[_shader];
 }
 
-@end

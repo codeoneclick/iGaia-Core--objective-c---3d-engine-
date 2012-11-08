@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaLoadCallbackClass
+#define iGaiaLoadCallbackClass
 
 class iGaiaResource;
 
@@ -19,6 +20,7 @@ protected:
 public:
     iGaiaLoadCallback(void) = default;
     ~iGaiaLoadCallback(void) = default;
-    void OnLoad(const iGaiaResource* _resource);
+    virtual void OnLoad(iGaiaResource* _resource) = 0;
 };
 
+#endif

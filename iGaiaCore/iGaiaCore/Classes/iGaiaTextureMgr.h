@@ -6,14 +6,27 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaTextureMgrClass
+#define iGaiaTextureMgrClass
 
-#import "iGaiaResource.h"
+#include "iGaiaResource.h"
+#include "iGaiaLoadCallback.h"
+#include "iGaiaLoader_PVR.h"
+#include "iGaiaTexture.h"
 
-@protocol iGaiaLoadCallback;
-@interface iGaiaTextureMgr : NSObject
+class iGaiaTextureMgr
+{
+private:
+    map<string, iGaiaLoader_PVR*> m_tasks;
+    map<string, iGaiaTexture*> m_resources;
+protected:
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
+public:
+    iGaiaTextureMgr(void);
+    ~iGaiaTextureMgr(void);
 
-@end
+    iGaiaResource* LoadResourceSync(const string& _name);
+    iGaiaResource* LoadResourceAsync(const string& _name, iGaiaLoadCallback* _listener);
+};
+
+#endif

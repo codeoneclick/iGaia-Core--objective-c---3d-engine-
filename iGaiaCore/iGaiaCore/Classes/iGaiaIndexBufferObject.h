@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaIndexBufferObjectClass
+#define iGaiaIndexBufferObjectClass
+
 #import "iGaiaResource.h"
 
 class iGaiaIndexBufferObject
@@ -29,4 +32,6 @@ public:
     void Bind(void);
     void Unbind(void);
 };
+
+#endif
 

@@ -13,82 +13,68 @@
 
 extern const struct iGaiaResourceExtensions
 {
-    NSString* pvr;
-    NSString* mdl;
+    string pvr;
+    string mdl;
     
 } iGaiaResourceExtensions;
 
 const struct iGaiaResourceExtensions iGaiaResourceExtensions =
 {
-    .pvr = @".pvr",
-    .mdl = @".mdl",
+    .pvr = ".pvr",
+    .mdl = ".mdl",
 };
 
-@interface iGaiaResourceMgr()
-
-@property(nonatomic, strong) iGaiaTextureMgr* m_textureMgr;
-@property(nonatomic, strong) iGaiaMeshMgr* m_meshMgr;
-
-@end
-
-@implementation iGaiaResourceMgr
-
-@synthesize m_textureMgr = _m_textureMgr;
-@synthesize m_meshMgr = _m_meshMgr;
-
-
-+ (iGaiaResourceMgr *)sharedInstance
+iGaiaResourceMgr::iGaiaResourceMgr(void)
 {
-    static iGaiaResourceMgr *_shared = nil;
+    m_textureMgr = new iGaiaTextureMgr();
+    m_meshMgr = new iGaiaMeshMgr();
+}
+
+iGaiaResourceMgr::~iGaiaResourceMgr(void)
+{
+
+}
+
+iGaiaResourceMgr* iGaiaResourceMgr::SharedInstance(void)
+{
+    static iGaiaResourceMgr *instance = nullptr;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        _shared = [[self alloc] init];
+        instance = new iGaiaResourceMgr();
     });
-    return _shared;
+    return instance;
 }
 
-- (id)init
+iGaiaResource* iGaiaResourceMgr::LoadResourceSync(const string &_name)
 {
-    self = [super init];
-    if(self)
+    size_t found = _name.find(iGaiaResourceExtensions.pvr);
+    if(found != string::npos)
     {
-        _m_textureMgr = [[iGaiaTextureMgr alloc] init];
-        _m_meshMgr = [[iGaiaMeshMgr alloc] init];
+        return m_textureMgr->LoadResourceSync(_name);
     }
-    return self;
+
+    found = _name.find(iGaiaResourceExtensions.mdl);
+    if(found != string::npos)
+    {
+        return m_meshMgr->LoadResourceSync(_name);
+    }
+    return nullptr;
 }
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
+iGaiaResource* iGaiaResourceMgr::LoadResourceAsync(const string &_name, iGaiaLoadCallback *_listener)
 {
-    NSRange range =[[name lowercaseString] rangeOfString:[iGaiaResourceExtensions.pvr lowercaseString]];
-    if(range.location != NSNotFound)
+    size_t found = _name.find(iGaiaResourceExtensions.pvr);
+    if(found != string::npos)
     {
-        return [_m_textureMgr loadResourceSyncWithName:name];
+        return m_textureMgr->LoadResourceAsync(_name, _listener);
     }
-    range =[[name lowercaseString] rangeOfString:[iGaiaResourceExtensions.mdl lowercaseString]];
-    if(range.location != NSNotFound)
+
+    found = _name.find(iGaiaResourceExtensions.mdl);
+    if(found != string::npos)
     {
-        return [_m_meshMgr loadResourceSyncWithName:name];
+        return m_meshMgr->LoadResourceAsync(_name, _listener);
     }
-    return nil;
+    return nullptr;
 }
-
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
-{
-    NSRange range =[[name lowercaseString] rangeOfString:[iGaiaResourceExtensions.pvr lowercaseString]];
-    if(range.location != NSNotFound)
-    {
-        return [_m_textureMgr loadResourceAsyncWithName:name withListener:listener];
-
-    }
-    range =[[name lowercaseString] rangeOfString:[iGaiaResourceExtensions.mdl lowercaseString]];
-    if(range.location != NSNotFound)
-    {
-         return [_m_meshMgr loadResourceAsyncWithName:name withListener:listener];
-    }
-    return nil;
-}
-
-@end
 
 

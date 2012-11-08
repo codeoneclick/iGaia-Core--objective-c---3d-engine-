@@ -23,6 +23,11 @@ iGaiaTexture::~iGaiaTexture(void)
     glDeleteTextures(1, &m_handle);
 }
 
+inline map<ui32, ui32> iGaiaTexture::Get_Settings(void)
+{
+    return m_settings;
+}
+
 void iGaiaTexture::Set_Settings(const map<ui32, ui32>& _settings)
 {
     if(m_settings == _settings)

@@ -31,7 +31,7 @@ ui32 iGaiaLoader_GLSL::CompileShaderData(const i8* _data, GLenum _shader)
 iGaiaShader* iGaiaLoader_GLSL::LoadShader(const i8 *_vertexShaderData, const i8 *_fragmentShaderData)
 {
     ui32 handleVertexShader = iGaiaLoader_GLSL::CompileShaderData(_vertexShaderData, GL_VERTEX_SHADER);
-    ui32 handleFragmentShader = iGaiaLoader_GLSL::CompileShaderData(_fragmentShaderData GL_FRAGMENT_SHADER);
+    ui32 handleFragmentShader = iGaiaLoader_GLSL::CompileShaderData(_fragmentShaderData, GL_FRAGMENT_SHADER);
 
     ui32 handle = glCreateProgram();
     glAttachShader(handle, handleVertexShader);

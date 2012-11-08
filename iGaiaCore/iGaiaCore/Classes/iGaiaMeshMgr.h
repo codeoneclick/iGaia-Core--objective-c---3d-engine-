@@ -6,14 +6,27 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaMeshMgrClass
+#define iGaiaMeshMgrClass
 
-#import "iGaiaResource.h"
+#include "iGaiaResource.h"
+#include "iGaiaLoadCallback.h"
+#include "iGaiaLoader_MDL.h"
+#include "iGaiaMesh.h"
 
-@protocol iGaiaLoadCallback;
-@interface iGaiaMeshMgr : NSObject
+class iGaiaMeshMgr
+{
+private:
+    map<string, iGaiaLoader_MDL*> m_tasks;
+    map<string, iGaiaMesh*> m_resources;
+protected:
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
+public:
+    iGaiaMeshMgr(void);
+    ~iGaiaMeshMgr(void);
 
-@end
+    iGaiaResource* LoadResourceSync(const string& _name);
+    iGaiaResource* LoadResourceAsync(const string& _name, iGaiaLoadCallback* _listener);
+};
+
+#endif

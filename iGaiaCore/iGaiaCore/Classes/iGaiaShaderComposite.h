@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaShaderCompositeClass
+#define iGaiaShaderCompositeClass
+
 #import "iGaiaShader.h"
 
 class iGaiaShaderComposite
@@ -20,10 +23,4 @@ public:
     iGaiaShader* Get_Shader(iGaiaShader::iGaia_E_Shader _shader);
 };
 
-@interface iGaiaShaderComposite : NSObject
-
-+ (iGaiaShaderComposite *)sharedInstance;
-
-- (iGaiaShader*)getShader:(E_SHADER)shader;
-
-@end
+#endif

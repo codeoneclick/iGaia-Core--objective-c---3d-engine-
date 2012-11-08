@@ -7,79 +7,67 @@
 //
 
 #import "iGaiaMeshMgr.h"
-#import "iGaiaLoader_MDL.h"
-#import "iGaiaMesh.h"
 
-@interface iGaiaMeshMgr()
-
-@property(nonatomic, strong) NSMutableDictionary* m_tasks;
-@property(nonatomic, strong) NSMutableDictionary* m_resources;
-
-@end
-
-@implementation iGaiaMeshMgr
-
-@synthesize m_tasks = _m_tasks;
-@synthesize m_resources = _m_resources;
-
-- (id)init
+iGaiaMeshMgr::iGaiaMeshMgr(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_tasks = [NSMutableDictionary new];
-        _m_resources = [NSMutableDictionary new];
-    }
-    return self;
+
 }
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name
+iGaiaMeshMgr::~iGaiaMeshMgr(void)
 {
-    iGaiaMesh* mesh = nil;
-    if([_m_resources objectForKey:name] != nil)
+
+}
+
+iGaiaResource* iGaiaMeshMgr::LoadResourceSync(const string &_name)
+{
+    iGaiaMesh* mesh = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        mesh = [_m_resources objectForKey:name];
+        mesh = m_resources.find(_name)->second;
     }
     else
     {
-        iGaiaLoader_MDL* loader = [iGaiaLoader_MDL new];
-        [loader parseFileWithName:name];
-        if(loader.m_status == E_LOAD_STATUS_DONE)
+        iGaiaLoader_MDL* loader = new iGaiaLoader_MDL();
+        loader->ParseFileWithName(_name);
+        if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
         {
-            mesh = [loader commitToVRAM];
-            [mesh incReferenceCount];
+            mesh = static_cast<iGaiaMesh*>(loader->CommitToVRAM());
+            mesh->IncReferenceCount();
+            m_resources[_name] = mesh;
         }
     }
     return mesh;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener
+iGaiaResource* iGaiaMeshMgr::LoadResourceAsync(const string &_name, iGaiaLoadCallback *_listener)
 {
-    iGaiaMesh* mesh = nil;
-    if([_m_resources objectForKey:name] != nil)
+    iGaiaMesh* mesh = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        mesh = [_m_resources objectForKey:name];
+        mesh = m_resources.find(_name)->second;
     }
     else
     {
-        mesh = [[iGaiaMesh alloc] initWithVertexBuffer:nil withIndexBuffer:nil withName:name withCreationMode:E_CREATION_MODE_NATIVE];
-        if([_m_tasks objectForKey:name] != nil)
+        mesh = new iGaiaMesh(nil, nil, _name, iGaiaResource::iGaia_E_CreationModeNative);
+        if(m_tasks.find(_name) != m_tasks.end())
         {
-            iGaiaLoader_MDL* loader = [_m_tasks objectForKey:name];
-            [loader addEventListener:listener];
+            iGaiaLoader_MDL* loader = m_tasks.find(_name)->second;
+            loader->AddEventListener(_listener);
         }
         else
         {
-            iGaiaLoader_MDL* loader = [iGaiaLoader_MDL new];
-            [_m_tasks setObject:loader forKey:name];
-            [loader addEventListener:listener];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [loader parseFileWithName:name];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(loader.m_status == E_LOAD_STATUS_DONE)
+            iGaiaLoader_MDL* loader = new iGaiaLoader_MDL();
+            m_tasks[_name] = loader;
+            loader->AddEventListener(_listener);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            {
+                loader->ParseFileWithName(_name);
+                dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
                     {
-                        iGaiaMesh* mesh = [loader commitToVRAM];
-                        [_m_resources setObject:mesh forKey:name];
+                        iGaiaMesh* mesh = static_cast<iGaiaMesh*>(loader->CommitToVRAM());
+                        m_resources[_name] = mesh;
                     }
                 });
             });
@@ -88,4 +76,3 @@
     return mesh;
 }
 
-@end

@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaMeshClass
+#define iGaiaMeshClass
+
 #import "iGaiaVertexBufferObject.h"
 #import "iGaiaIndexBufferObject.h"
 
@@ -35,3 +38,4 @@ public:
     void Unbind(void);
 };
 
+#endif

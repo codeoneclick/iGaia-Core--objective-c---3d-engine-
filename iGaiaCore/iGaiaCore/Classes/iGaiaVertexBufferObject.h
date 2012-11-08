@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaVertexBufferObjectClass
+#define iGaiaVertexBufferObjectClass
 
 #import "iGaiaShader.h"
 
@@ -44,3 +45,5 @@ public:
     void Bind(void);
     void Unbind(void);
 };
+
+#endif

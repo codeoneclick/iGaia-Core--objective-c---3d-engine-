@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaLoader_GLSLClass
+#define iGaiaLoader_GLSLClass
+
 #include "iGaiaShader.h"
 
 class iGaiaLoader_GLSL
@@ -20,5 +23,5 @@ public:
     static iGaiaShader* LoadShader(const i8* _vertexShaderData, const i8* _fragmentShaderData);
 };
 
-
+#endif
 

@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaShaderClass
+#define iGaiaShaderClass
+
 #import "iGaiaTexture.h"
 
 class iGaiaShader
@@ -24,7 +27,7 @@ enum iGaia_E_Shader
     iGaia_E_ShaderDecal,
     iGaia_E_ShaderParticle,
     iGaia_E_ShaderParticleND,
-    iGaia_E_ShaderSkybox,
+    iGaia_E_ShaderSkydome,
     iGaia_E_ShaderLandscapeEdge,
     iGaia_E_ShaderScreenQuadSimple,
     iGaia_E_ShaderScreenQuadBloomExtract,
@@ -102,4 +105,6 @@ public:
     void Bind(void);
     void Unbind(void);
 };
+
+#endif
 

@@ -6,7 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaResourceClass
+#define iGaiaResourceClass
+
 #include "iGaiaCommon.h"
 
 class iGaiaResource
@@ -45,3 +47,5 @@ public:
 
     virtual void Set_Settings(const map<ui32, ui32>& _settings);
 };
+
+#endif

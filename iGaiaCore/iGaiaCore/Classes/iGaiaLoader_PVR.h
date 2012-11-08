@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaLoader_PVRClass
+#define iGaiaLoader_PVRClass
+
 #include "iGaiaLoader.h"
 #include "iGaiaTexture.h"
 
@@ -27,3 +30,5 @@ public:
     void ParseFileWithName(const string& _name);
     iGaiaResource* CommitToVRAM(void);
 };
+
+#endif

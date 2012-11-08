@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaLoader_MDLClass
+#define iGaiaLoader_MDLClass
+
 #include "iGaiaLoader.h"
 #include "iGaiaMesh.h"
 
@@ -25,3 +28,5 @@ public:
     void ParseFileWithName(const string& _name);
     iGaiaResource* CommitToVRAM(void);
 };
+
+#endif

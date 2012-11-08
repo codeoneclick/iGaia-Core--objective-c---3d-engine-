@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaLoaderClass
+#define iGaiaLoaderClass
+
 #include "iGaiaResource.h"
 #include "iGaiaLoadCallback.h"
 
@@ -39,3 +42,4 @@ public:
     virtual iGaiaResource* CommitToVRAM(void) = 0;
 };
 
+#endif
