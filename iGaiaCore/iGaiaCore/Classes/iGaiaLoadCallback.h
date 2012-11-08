@@ -19,7 +19,7 @@ protected:
 
 public:
     iGaiaLoadCallback(void) = default;
-    ~iGaiaLoadCallback(void) = default;
+    virtual ~iGaiaLoadCallback(void) = default;
     virtual void OnLoad(iGaiaResource* _resource) = 0;
 };
 

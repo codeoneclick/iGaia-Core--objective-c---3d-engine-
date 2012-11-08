@@ -6,26 +6,32 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaTexture.h"
+#include "iGaiaRenderCallback.h"
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
+class iGaiaRenderOperationWorldSpace
+{
+private:
+    iGaiaTexture* m_operatingTexture;
+    GLuint m_frameBufferHandle;
+    GLuint m_depthBufferHandle;
+    vec2 m_frameSize;
+    map<ui32, set<iGaiaRenderCallback*>> m_listeners;
+    iGaiaMaterial::iGaia_E_RenderModeWorldSpace m_mode;
+protected:
 
-#import "iGaiaTexture.h"
-#import "iGaiaRenderCallback.h"
+public:
+    iGaiaRenderOperationWorldSpace(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode, vec2 _frameSize, const string& _name);
+    ~iGaiaRenderOperationWorldSpace(void);
 
-@interface iGaiaRenderOperationWorldSpace : NSObject
+    iGaiaTexture* Get_OperatingTexture(void);
 
-@property(nonatomic, readonly) iGaiaTexture* m_externalTexture;
+    void AddEventListener(iGaiaRenderCallback* _listener);
+    void RemoveEventListener(iGaiaRenderCallback* _listener);
 
-- (id)initWithSize:(glm::vec2)size forRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode withName:(NSString*)name;
+    void Bind(void);
+    void Unbind(void);
 
-- (void)addEventListener:(id<iGaiaRenderCallback>)listener;
-- (void)removeEventListener:(id<iGaiaRenderCallback>)listener;
+    void Draw(void);
+};
 
-- (void)bind;
-- (void)unbind;
-
-- (void)draw;
-
-@end

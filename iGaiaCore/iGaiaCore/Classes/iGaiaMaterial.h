@@ -24,23 +24,23 @@ public:
         iGaia_E_RenderStateDepthMask,
         iGaia_E_RenderStateValueMax
     };
-    enum iGaiaRenderModeWorldSpace
+    enum iGaia_E_RenderModeWorldSpace
     {
-        iGaiaRenderModeWorldSpaceSimple = 0,
-        iGaiaRenderModeWorldSpaceReflection,
-        iGaiaRenderModeWorldSpaceRefraction,
-        iGaiaRenderModeWorldSpaceScreenNormalMap,
-        iGaiaRenderModeWorldSpaceMaxValue
+        iGaia_E_RenderModeWorldSpaceSimple = 0,
+        iGaia_E_RenderModeWorldSpaceReflection,
+        iGaia_E_RenderModeWorldSpaceRefraction,
+        iGaia_E_RenderModeWorldSpaceScreenNormalMap,
+        iGaia_E_RenderModeWorldSpaceMaxValue
     };
 
-    enum iGaiaRenderModeScreenSpace
+    enum iGaia_E_RenderModeScreenSpace
     {
-        iGaiaRenderModeScreenSpaceSimple = 0,
-        iGaiaRenderModeScreenSpaceBloomExtract,
-        iGaiaRenderModeScreenSpaceBloomCombine,
-        iGaiaRenderModeScreenSpaceBlur,
-        iGaiaRenderModeScreenSpaceEdgeDetect,
-        iGaiaRenderModeScreenSpaceMaxValue
+        iGaia_E_RenderModeScreenSpaceSimple = 0,
+        iGaia_E_RenderModeScreenSpaceBloomExtract,
+        iGaia_E_RenderModeScreenSpaceBloomCombine,
+        iGaia_E_RenderModeScreenSpaceBlur,
+        iGaia_E_RenderModeScreenSpaceEdgeDetect,
+        iGaia_E_RenderModeScreenSpaceMaxValue
     };
 private:
     GLenum m_cullFaceMode;
@@ -48,7 +48,7 @@ private:
     GLenum m_blendFunctionDest;
     vec4 m_clipping;
     iGaiaShader* m_operatingShader;
-    iGaiaShader* m_shaders[iGaiaRenderModeWorldSpaceMaxValue + iGaiaRenderModeScreenSpaceMaxValue];
+    iGaiaShader* m_shaders[iGaia_E_RenderModeWorldSpaceMaxValue + iGaia_E_RenderModeScreenSpaceMaxValue];
     iGaiaTexture* m_textures[iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue];
     bool m_states[iGaia_E_RenderStateValueMax];
 protected:

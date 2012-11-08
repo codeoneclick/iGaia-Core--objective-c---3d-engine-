@@ -6,34 +6,27 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaRenderCallbackClass
+#define iGaiaRenderCallbackClass
 
-enum E_RENDER_MODE_WORLD_SPACE
+#include "iGaiaMaterial.h"
+
+class iGaiaRenderCallback
 {
-    E_RENDER_MODE_WORLD_SPACE_SIMPLE = 0,
-    E_RENDER_MODE_WORLD_SPACE_REFLECTION,
-    E_RENDER_MODE_WORLD_SPACE_REFRACTION,
-    E_RENDER_MODE_WORLD_SPACE_SCREEN_NORMAL_MAP,
-    E_RENDER_MODE_WORLD_SPACE_MAX
+private:
+    
+protected:
+
+public:
+    iGaiaRenderCallback(void) = default;
+    virtual ~iGaiaRenderCallback(void) = default;
+
+    virtual ui32 Get_Priority(void) = 0;
+
+    virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode) = 0;
+    virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode) = 0;
+
+    virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode) = 0;
 };
 
-enum E_RENDER_MODE_SCREEN_SPACE
-{
-    E_RENDER_MODE_SCREEN_SPACE_SIMPLE = 0,
-    E_RENDER_MODE_SCREEN_SPACE_BLOOM_EXTRACT,
-    E_RENDER_MODE_SCREEN_SPACE_BLOOM_COMBINE,
-    E_RENDER_MODE_SCREEN_SPACE_BLUR,
-    E_RENDER_MODE_SCREEN_SPACE_EDGE_DETECT,
-    E_RENDER_MODE_SCREEN_SPACE_MAX
-};
-
-@protocol iGaiaRenderCallback <NSObject>
-
-@property(nonatomic, assign) NSUInteger m_priority;
-
-- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
-- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
-
-- (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
-
-@end
+#endif
