@@ -6,11 +6,6 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-#import <glm/gtc/matrix_transform.hpp>
 
 #import "iGaiaMaterial.h"
 #import "iGaiaMesh.h"

@@ -59,6 +59,8 @@ public:
 
     void InvalidateState(iGaia_E_RenderState _state, bool _value);
 
+    iGaiaShader* Get_OperatingShader(void);
+
     void Set_CullFaceMode(GLenum _mode);
     void Set_BlendFunctionSource(GLenum _blendFunction);
     void Set_BlendFunctionDest(GLenum _blendFunction);

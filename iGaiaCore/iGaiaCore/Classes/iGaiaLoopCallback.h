@@ -6,10 +6,15 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+class iGaiaLoopCallback
+{
+private:
 
-@protocol iGaiaLoopCallback <NSObject>
+protected:
 
-- (void)onUpdate;
+public:
+    iGaiaLoopCallback(void) = default;
+    virtual ~iGaiaLoopCallback(void) = default;
 
-@end
+    virtual void OnUpdate(void) = 0;
+};

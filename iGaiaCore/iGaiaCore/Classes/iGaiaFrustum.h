@@ -6,25 +6,58 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCommon.h"
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-#import <glm/gtc/matrix_transform.hpp>
+class iGaiaCamera;
 
-enum E_FRUSTUM_RESULT
+class iGaiaFrustum
 {
-    E_FRUSTUM_RESULT_OUTSIDE = 0,
-    E_FRUSTUM_RESULT_INTERSECT,
-    E_FRUSTUM_RESULT_INSIDE
+public:
+    enum iGaia_E_FrustumResult
+    {
+        iGaia_E_FrustumResultOutside = 0,
+        iGaia_E_FrustumResultIntersect,
+        iGaia_E_FrustumResultInside
+    };
+private:
+    class iGaiaPlane
+    {
+    protected:
+        vec3 m_normal;
+        f32 m_offset;
+    public:
+        iGaiaPlane(void) = default;
+        ~iGaiaPlane(void) = default;
+        void Update(const vec3& _point_01, const vec3& _point_02, const vec3& _point_03);
+        f32 Distance(const vec3& _point);
+        vec3 Normal(void);
+        f32 Offset(void);
+    };
+
+    enum iGaia_E_FrustumPlane
+    {
+        iGaia_E_FrustumPlaneTop = 0,
+        iGaia_E_FrustumPlaneBottom,
+        iGaia_E_FrustumPlaneLeft,
+        iGaia_E_FrustumPlaneRight,
+        iGaia_E_FrustumPlaneNear,
+        iGaia_E_FrustumPlaneFar,
+        iGaia_E_FrustumPlaneMaxValue
+    };
+
+     iGaiaPlane m_planes[iGaia_E_FrustumPlaneMaxValue];
+     iGaiaCamera* m_cameraReference;
+    
+protected:
+
+public:
+    iGaiaFrustum(iGaiaCamera* _camera);
+    ~iGaiaFrustum(void);
+
+    void OnUpdate(void);
+
+    iGaia_E_FrustumResult IsPointInFrustum(const vec3& _point);
+    iGaia_E_FrustumResult IsSphereInFrumstum(const vec3& _center, f32 _radius);
+    iGaia_E_FrustumResult IsBoundBoxInFrustum(const vec3& _maxBound, const vec3& _minBound);
 };
 
-@interface iGaiaFrustum : NSObject
-
-- (id)initWithCamera:(id)camera;
-- (void)onUpdate;
-- (int)isPointInFrustum:(const glm::vec3 &)point;
-- (int)isSphereInFrustum:(const glm::vec3&)position withRadius:(float)radius;
-- (int)isBoundBoxInFrustumWithMaxBound:(const glm::vec3&)maxBound withMinBound:(const glm::vec3&)minBound;
-
-@end

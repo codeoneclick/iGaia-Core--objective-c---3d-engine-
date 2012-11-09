@@ -54,6 +54,11 @@ inline iGaiaVertexBufferObject::iGaiaVertex* iGaiaVertexBufferObject::Lock(void)
     return m_data;
 }
 
+inline void iGaiaVertexBufferObject::Set_OperatingShader(iGaiaShader *_shader)
+{
+    m_operatingShader = _shader;
+}
+
 inline void iGaiaVertexBufferObject::Unlock(void)
 {
     glBindBuffer(GL_ARRAY_BUFFER, m_handle);

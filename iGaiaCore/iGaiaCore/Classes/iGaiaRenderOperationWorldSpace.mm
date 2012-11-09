@@ -9,6 +9,8 @@
 #import "iGaiaRenderOperationWorldSpace.h"
 #import "iGaiaLogger.h"
 
+#define kMaxRenderPriority 8
+
 iGaiaRenderOperationWorldSpace::iGaiaRenderOperationWorldSpace(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode, vec2 _frameSize, const string& _name)
 {
     m_frameSize = _frameSize;
@@ -60,83 +62,53 @@ void iGaiaRenderOperationWorldSpace::AddEventListener(iGaiaRenderCallback *_list
     }
     else
     {
-        m_listeners[_listener->Get_Priority()]
+        m_listeners[_listener->Get_Priority()].insert(_listener);
     }
 }
 
 void iGaiaRenderOperationWorldSpace::RemoveEventListener(iGaiaRenderCallback *_listener)
 {
-    
+    if(m_listeners.find(_listener->Get_Priority()) != m_listeners.end())
+    {
+        m_listeners.find(_listener->Get_Priority())->second.erase(_listener);
+    }
+    else
+    {
+        m_listeners[_listener->Get_Priority()].erase(_listener);
+    }
 }
 
-
-- (void)addEventListener:(id<iGaiaRenderCallback>)listener;
-{
-    [_m_unsortedListeners addObject:listener];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO comparator:^NSComparisonResult(id<iGaiaRenderCallback> listener_01, id<iGaiaRenderCallback> listener_02) {
-        NSComparisonResult result = NSOrderedSame;
-        if(listener_01.m_priority < listener_02.m_priority)
-        {
-            result = NSOrderedDescending;
-        }
-        else if(listener_01.m_priority > listener_02.m_priority)
-        {
-            result = NSOrderedAscending;
-        }
-        return result;
-    }];
-    _m_sortedListeners = [_m_unsortedListeners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
-}
-
-- (void)removeEventListener:(id<iGaiaRenderCallback>)listener
-{
-    [_m_unsortedListeners removeObject:listener];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO comparator:^NSComparisonResult(id<iGaiaRenderCallback> listener_01, id<iGaiaRenderCallback> listener_02) {
-        NSComparisonResult result = NSOrderedSame;
-        if(listener_01.m_priority < listener_02.m_priority)
-        {
-            result = NSOrderedDescending;
-        }
-        else if(listener_01.m_priority > listener_02.m_priority)
-        {
-            result = NSOrderedAscending;
-        }
-        return result;
-    }];
-    _m_sortedListeners = [_m_unsortedListeners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
-}
-
-- (void)bind
+void iGaiaRenderOperationWorldSpace::Bind(void)
 {
     glDepthMask(GL_TRUE);
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glDisable(GL_BLEND);
 
-    glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
-    glViewport(0, 0, _m_size.x, _m_size.y);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
+    glViewport(0, 0, m_frameSize.x, m_frameSize.y);
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
-- (void)unbind
+void iGaiaRenderOperationWorldSpace::Unbind(void)
 {
     
 }
 
-- (void)draw
+void iGaiaRenderOperationWorldSpace::Draw(void)
 {
-    for(id<iGaiaRenderCallback> listener in _m_sortedListeners)
+    for(ui32 i = 0; i < kMaxRenderPriority; ++i)
     {
-        [listener onBindWithRenderMode:_m_mode];
-        [listener onDrawWithRenderMode:_m_mode];
-        [listener onUnbindWithRenderMode:_m_mode];
+        if(m_listeners.find(i) != m_listeners.end())
+        {
+            for(iGaiaRenderCallback* listener : m_listeners[i])
+            {
+                listener->OnBind(m_mode);
+                listener->OnDraw(m_mode);
+                listener->OnUnbind(m_mode);
+            }
+        }
     }
 }
-
-@end
-
-
-
-
 

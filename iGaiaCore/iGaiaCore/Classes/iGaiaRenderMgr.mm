@@ -6,96 +6,72 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <OpenGLES/ES2/gl.h>
-#import <QuartzCore/QuartzCore.h>
-#import <objc/runtime.h>
+#include "iGaiaRenderMgr.h"
+#include "iGaiaLogger.h"
+#include "iGaiaiOSGLView.h"
+#include "iGaiaiOSGameLoop.h"
 
-#import "iGaiaRenderMgr.h"
-#import "iGaiaRenderCallback.h"
-#import "iGaiaGLView.h"
-#import "iGaiaRenderOperationWorldSpace.h"
-#import "iGaiaRenderOperationScreenSpace.h"
-#import "iGaiaRenderOperationOutlet.h"
-#import "iGaiaLogger.h"
-#import "iGaiaLoop.h"
-#import "iGaiaSettings.h"
-
-@interface iGaiaRenderMgr()<iGaiaLoopCallback>
+iGaiaRenderMgr::iGaiaRenderMgr(void)
 {
-    iGaiaRenderOperationWorldSpace* _m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_MAX];
-    iGaiaRenderOperationScreenSpace* _m_screenSpaceOperations[E_RENDER_MODE_SCREEN_SPACE_MAX];
-    iGaiaRenderOperationOutlet* _m_outletOperation;
-}
+    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:this];
 
-@property(nonatomic, readwrite) iGaiaGLView* m_glView;
+    m_glView = [[iGaiaiOSGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 
-@end
-
-@implementation iGaiaRenderMgr
-
-@synthesize m_glView = _m_glView;
-
-- (id)init
-{
-    self = [super init];
-    if(self)
+    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
     {
-        [[iGaiaLoop sharedInstance] addEventListener:self];
-
-        _m_glView = [[iGaiaGLView alloc] initWithFrame:[iGaiaSettings retriveFrameRect]];
-
-        for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
-        {
-            _m_worldSpaceOperations[i] = [[iGaiaRenderOperationWorldSpace alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) forRenderMode:(E_RENDER_MODE_WORLD_SPACE)i withName:@"render.mode.worldspace"];
-        }
-
-        for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
-        {
-            _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) withShader:E_SHADER_SCREEN_PLANE withName:@"render.mode.screenspace"];
-        }
-
-        _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:((iGaiaGLView*)_m_glView).m_frameBufferHandle withRenderBufferHandle:((iGaiaGLView*)_m_glView).m_renderBufferHandle];
-    }
-    return self;
-}
-
-- (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode
-{
-    [_m_worldSpaceOperations[mode] addEventListener:listener];
-}
-
-- (iGaiaTexture*)retriveTextureFromWorldSpaceRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
-{
-    return _m_worldSpaceOperations[mode].m_externalTexture;
-}
-
-- (iGaiaTexture*)retriveTextureFromScreenSpaceRenderMode:(E_RENDER_MODE_SCREEN_SPACE)mode
-{
-    return _m_screenSpaceOperations[mode].m_externalTexture;
-}
-
-- (void)onUpdate
-{
-    for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
-    {
-        [_m_worldSpaceOperations[i] bind];
-        [_m_worldSpaceOperations[i] draw];
-        [_m_worldSpaceOperations[i] unbind];
+        m_worldSpaceOperations[i] = new iGaiaRenderOperationWorldSpace(static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(i), vec2(m_glView.frame.size.width, m_glView.frame.size.height), "render.mode.worldspace"); 
     }
 
-    for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
+    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
     {
-        [_m_screenSpaceOperations[i] bind];
-        [_m_screenSpaceOperations[i] draw];
-        [_m_screenSpaceOperations[i] unbind];
+        m_screenSpaceOperations[i] = new iGaiaRenderOperationScreenSpace(vec2(m_glView.frame.size.width, m_glView.frame.size.height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, "render.mode.screenspace");
     }
 
-    [_m_outletOperation.m_material setTexture:_m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_SIMPLE].m_externalTexture forSlot:E_TEXTURE_SLOT_01];
-    [_m_outletOperation bind];
-    [_m_outletOperation draw];
-    [_m_outletOperation unbind];
+    m_outletOperation = new iGaiaRenderOperationOutlet(vec2(m_glView.frame.size.width, m_glView.frame.size.height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, ((iGaiaiOSGLView*)m_glView).m_frameBufferHandle, ((iGaiaiOSGLView*)m_glView).m_renderBufferHandle); 
+}
 
-    [((iGaiaGLView*)_m_glView).m_context presentRenderbuffer:GL_RENDERBUFFER];
+void iGaiaRenderMgr::AddEventListener(iGaiaRenderCallback *_listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    m_worldSpaceOperations[_mode]->AddEventListener(_listener);
+}
+
+void iGaiaRenderMgr::RemoveEventListener(iGaiaRenderCallback *_listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
+}
+
+inline iGaiaTexture* iGaiaRenderMgr::Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    return m_worldSpaceOperations[_mode]->Get_OperatingTexture();
+}
+
+inline iGaiaTexture* iGaiaRenderMgr::Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeScreenSpace _mode)
+{
+    return m_screenSpaceOperations[_mode]->Get_OperatingTexture();
+}
+
+void iGaiaRenderMgr::OnUpdate(void)
+{
+    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
+    {
+        m_worldSpaceOperations[i]->Bind();
+        m_worldSpaceOperations[i]->Draw();
+        m_worldSpaceOperations[i]->Unbind();
+    }
+
+    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
+    {
+        m_screenSpaceOperations[i]->Bind();
+        m_screenSpaceOperations[i]->Draw();
+        m_screenSpaceOperations[i]->Unbind();
+    }
+
+    m_outletOperation->Get_OperatingMaterial()->Set_Texture(m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple]->Get_OperatingTexture(), iGaiaShader::iGaia_E_ShaderTextureSlot_01);
+    m_outletOperation->Bind();
+    m_outletOperation->Draw();
+    m_outletOperation->Unbind();
+
+    [((iGaiaiOSGLView*)m_glView).m_context presentRenderbuffer:GL_RENDERBUFFER];
 
     GLenum error = glGetError();
     if (error != GL_NO_ERROR)
@@ -104,4 +80,3 @@
     }
 }
 
-@end

@@ -14,7 +14,7 @@
 
 iGaiaMaterial::iGaiaMaterial(void)
 {
-    for(ui32 i = 0; i < iGaiaRenderModeWorldSpaceMaxValue + iGaiaRenderModeScreenSpaceMaxValue; ++i)
+    for(ui32 i = 0; i < iGaia_E_RenderModeWorldSpaceMaxValue + iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
     {
         m_shaders[i] = nullptr;
     }
@@ -55,6 +55,11 @@ inline void iGaiaMaterial::Set_Clipping(const vec4& _clipping)
 inline void iGaiaMaterial::Set_OperatingShader(iGaiaShader* _shader)
 {
     m_operatingShader = _shader;
+}
+
+inline iGaiaShader* iGaiaMaterial::Get_OperatingShader(void)
+{
+    return m_operatingShader;
 }
 
 inline void iGaiaMaterial::InvalidateState(iGaiaMaterial::iGaia_E_RenderState _state, bool _value)

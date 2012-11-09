@@ -9,64 +9,39 @@
 #import "iGaiaFrustum.h"
 #import "iGaiaCamera.h"
 
-class iGaiaPlane
+vec3 iGaiaFrustum::iGaiaPlane::Normal(void)
 {
-protected:
-    glm::vec3 m_normal;
-    float m_offset;
-public:
-    iGaiaPlane(void);
-    ~iGaiaPlane(void);
-    void Update(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03);
-    float Distance(const glm::vec3& point);
-    inline glm::vec3 Normal(void) { return m_normal; }
-    inline float Offset(void) { return m_offset; }
-};
-
-iGaiaPlane::iGaiaPlane(void)
-{
-
+    return m_normal;
 }
 
-iGaiaPlane::~iGaiaPlane(void)
+f32 iGaiaFrustum::iGaiaPlane::Offset(void)
 {
-
+    return m_offset;
 }
 
-float iGaiaPlane::Distance(const glm::vec3 &point)
+f32 iGaiaFrustum::iGaiaPlane::Distance(const vec3 &_point)
 {
-    return (m_offset + glm::dot(m_normal, point)) * -1.0f;
+     return (m_offset + dot(m_normal, _point)) * -1.0f;
 }
 
-void iGaiaPlane::Update(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03)
+void iGaiaFrustum::iGaiaPlane::Update(const vec3 &_point_01, const vec3 &_point_02, const vec3 &_point_03)
 {
-    glm::vec3 edge_01, edge_02;
-	edge_01 = point_01 - point_02;
-	edge_02 = point_03 - point_02;
-	m_normal = glm::normalize(glm::cross(edge_01, edge_02));
-	m_offset = -glm::dot(m_normal, point_02);
+    vec3 edge_01, edge_02;
+	edge_01 = _point_01 - _point_02;
+	edge_02 = _point_03 - _point_02;
+	m_normal = normalize(cross(edge_01, edge_02));
+	m_offset = -dot(m_normal, _point_02);
 }
 
-enum E_FRUSTUM_PLANE
+iGaiaFrustum::iGaiaFrustum(iGaiaCamera* _camera)
 {
-    E_FRUSTUM_PLANE_TOP = 0,
-    E_FRUSTUM_PLANE_BOTTOM,
-    E_FRUSTUM_PLANE_LEFT,
-    E_FRUSTUM_PLANE_RIGHT,
-    E_FRUSTUM_PLANE_NEAR,
-    E_FRUSTUM_PLANE_FAR,
-    E_FRUSTUM_PLANE_MAX
-};
-
-@interface iGaiaFrustum()
-{
-    iGaiaPlane m_planes[E_FRUSTUM_PLANE_MAX];
+    m_cameraReference = _camera;
 }
 
-@property(nonatomic, assign) iGaiaCamera* m_camera;
-
-@end
-
+iGaiaFrustum::~iGaiaFrustum(void)
+{
+    m_cameraReference = nullptr;
+}
 
 @implementation iGaiaFrustum
 

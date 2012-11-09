@@ -6,24 +6,32 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-
 #import "iGaiaMaterial.h"
+#import "iGaiaMesh.h"
 #import "iGaiaRenderCallback.h"
 
-@interface iGaiaRenderOperationScreenSpace : NSObject
+class iGaiaRenderOperationScreenSpace
+{
+private:
+    iGaiaTexture* m_operatingTexture;
+    iGaiaMaterial* m_operatingMaterial;
+    GLuint m_frameBufferHandle;
+    GLuint m_depthBufferHandle;
+    glm::vec2 m_frameSize;
+    iGaiaMesh* m_mesh;
+protected:
+    
+public:
+    iGaiaRenderOperationScreenSpace(vec2 _frameSize, iGaiaShader::iGaia_E_Shader _shader,const string& _name);
+    ~iGaiaRenderOperationScreenSpace(void);
 
-@property(nonatomic, readonly) iGaiaTexture* m_externalTexture;
-@property(nonatomic, readonly) iGaiaMaterial* m_material;
+    iGaiaMaterial* Get_OperatingMaterial(void);
+    iGaiaTexture* Get_OperatingTexture(void);
 
-- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader withName:(NSString*)name;
+    void Bind(void);
+    void Unbind(void);
 
-- (void)bind;
-- (void)unbind;
+    void Draw(void);
+};
 
-- (void)draw;
 
-@end

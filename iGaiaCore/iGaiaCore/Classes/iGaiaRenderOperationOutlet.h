@@ -6,23 +6,28 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaMaterial.h"
+#include "iGaiaRenderCallback.h"
+#include "iGaiaMesh.h"
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
+class iGaiaRenderOperationOutlet
+{
+private:
+    iGaiaMaterial* m_operatingMaterial;
+    GLuint m_frameBufferHandle;
+    GLuint m_renderBufferHandle;
+    vec2 m_frameSize;
+    iGaiaMesh* m_mesh;
+protected:
 
-#import "iGaiaMaterial.h"
-#import "iGaiaRenderCallback.h"
+public:
+    iGaiaRenderOperationOutlet(vec2 _frameSize, iGaiaShader::iGaia_E_Shader _shader, ui32 _frameBufferHandle, ui32 _renderBufferHandle);
+    ~iGaiaRenderOperationOutlet(void);
 
-@interface iGaiaRenderOperationOutlet : NSObject
+    iGaiaMaterial* Get_OperatingMaterial(void);
 
-@property(nonatomic, readonly) iGaiaMaterial* m_material;
+    void Bind(void);
+    void Unbind(void);
 
-- (id)initWithSize:(glm::vec2)size withShaderName:(E_SHADER)shader withFrameBufferHandle:(NSUInteger)frameBufferHandle withRenderBufferHandle:(NSUInteger)renderBufferHandle;
-
-- (void)bind;
-- (void)unbind;
-
-- (void)draw;
-
-@end
+    void Draw(void);
+};

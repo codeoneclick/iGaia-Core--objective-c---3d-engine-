@@ -7,128 +7,115 @@
 //
 
 #import "iGaiaRenderOperationScreenSpace.h"
-
-#import <OpenGLES/ES2/gl.h>
-
-#import "iGaiaMesh.h"
 #import "iGaiaLogger.h"
 #import "iGaiaShaderComposite.h"
 
-static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
+static ui32 k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 
-@interface iGaiaRenderOperationScreenSpace()
-
-@property(nonatomic, assign) GLuint m_frameBufferHandle;
-@property(nonatomic, assign) GLuint m_depthBufferHandle;
-@property(nonatomic, assign) glm::vec2 m_size;
-@property(nonatomic, strong) iGaiaMesh* m_mesh;
-
-@end
-
-@implementation iGaiaRenderOperationScreenSpace
-
-@synthesize m_frameBufferHandle = _m_frameBufferHandle;
-@synthesize m_depthBufferHandle = _m_depthBufferHandle;
-@synthesize m_externalTexture = _m_externalTexture;
-@synthesize m_size = _m_size;
-@synthesize m_mesh = _m_mesh;
-@synthesize m_material = _m_material;
-
-- (id)initWithSize:(glm::vec2)size withShader:(E_SHADER)shader withName:(NSString*)name;
+iGaiaRenderOperationScreenSpace::iGaiaRenderOperationScreenSpace(vec2 _frameSize, iGaiaShader::iGaia_E_Shader _shader,const string& _name)
 {
-    self = [super init];
-    if(self)
+    m_frameSize = _frameSize;
+
+    ui32 textureHandle;
+    glGenTextures(1, &textureHandle);
+    glGenFramebuffers(1, &m_frameBufferHandle);
+    glGenRenderbuffers(1, &m_depthBufferHandle);
+    glBindTexture(GL_TEXTURE_2D, textureHandle);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_frameSize.x, m_frameSize.y, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureHandle, 0);
+    glBindRenderbuffer(GL_RENDERBUFFER, m_depthBufferHandle);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_frameSize.x, m_frameSize.y);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBufferHandle);
+
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
     {
-        _m_size = size;
-
-        NSUInteger textureHandle;
-        glGenTextures(1, &textureHandle);
-        glGenFramebuffers(1, &_m_frameBufferHandle);
-        glGenRenderbuffers(1, &_m_depthBufferHandle);
-        glBindTexture(GL_TEXTURE_2D, textureHandle);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _m_size.x, _m_size.y, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
-        glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureHandle, 0);
-        glBindRenderbuffer(GL_RENDERBUFFER, _m_depthBufferHandle);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, _m_size.x, _m_size.y);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _m_depthBufferHandle);
-
-        if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        {
-            iGaiaLog(@"Failed init render state");
-        }
-
-        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
-        NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:iGaiaTextureSettingValues.clamp,iGaiaTextureSettingKeys.wrap, nil];
-        _m_externalTexture.m_settings = settings;
-
-        iGaiaVertexBufferObject* vertexBuffer = [[iGaiaVertexBufferObject alloc] initWithNumVertexes:4 withMode:GL_STATIC_DRAW];
-        iGaiaVertex* vertexData = [vertexBuffer lock];
-        vertexData[0].m_position = glm::vec3(-1.0f,-1.0f,0.0f);
-        vertexData[0].m_texcoord = glm::vec2(0.0f,0.0f);
-        vertexData[1].m_position = glm::vec3(-1.0f,1.0f,0.0f);
-        vertexData[1].m_texcoord = glm::vec2(0.0f,1.0f);
-        vertexData[2].m_position = glm::vec3(1.0f,-1.0f,0.0f);
-        vertexData[2].m_texcoord = glm::vec2(1.0f,0.0f);
-        vertexData[3].m_position = glm::vec3(1.0f,1.0f,0.0f);
-        vertexData[3].m_texcoord = glm::vec2(1.0f,1.0f);
-        [vertexBuffer unlock];
-
-        iGaiaIndexBufferObject* indexBuffer = [[iGaiaIndexBufferObject alloc] initWithNumIndexes:6 withMode:GL_STATIC_DRAW];
-        unsigned short* indexData = [indexBuffer lock];
-        indexData[0] = 0;
-        indexData[1] = 1;
-        indexData[2] = 2;
-        indexData[3] = 1;
-        indexData[4] = 2;
-        indexData[5] = 3;
-        [indexBuffer unlock];
-
-        _m_material = [iGaiaMaterial new];
-        [_m_material setShader:shader forMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
-        
-        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
-        [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
-        [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:NO];
-        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:NO];
-        _m_material.m_cullFaceMode = GL_FRONT;
-        _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
-        _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
-        
-        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
-
+        iGaiaLog(@"Failed init render state");
     }
-    return self;
+
+    m_operatingTexture = new iGaiaTexture(textureHandle, m_frameSize.x, m_frameSize.y, _name, iGaiaResource::iGaia_E_CreationModeCustom);
+    map<ui32, ui32> settings;
+    settings[iGaiaTexture::iGaia_E_TextureSettingsKeyWrapMode] = iGaiaTexture::iGaia_E_TextureSettingsValueClamp;
+    m_operatingTexture->Set_Settings(settings);
+
+
+    iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(4, GL_STATIC_DRAW);
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
+    vertexData[0].m_position = glm::vec3(-1.0f,-1.0f,0.0f);
+    vertexData[0].m_texcoord = glm::vec2(0.0f,0.0f);
+    vertexData[1].m_position = glm::vec3(-1.0f,1.0f,0.0f);
+    vertexData[1].m_texcoord = glm::vec2(0.0f,1.0f);
+    vertexData[2].m_position = glm::vec3(1.0f,-1.0f,0.0f);
+    vertexData[2].m_texcoord = glm::vec2(1.0f,0.0f);
+    vertexData[3].m_position = glm::vec3(1.0f,1.0f,0.0f);
+    vertexData[3].m_texcoord = glm::vec2(1.0f,1.0f);
+    vertexBuffer->Unlock();
+
+    iGaiaIndexBufferObject* indexBuffer = new iGaiaIndexBufferObject(6, GL_STATIC_DRAW); 
+    ui16* indexData = indexBuffer->Lock(); 
+    indexData[0] = 0;
+    indexData[1] = 1;
+    indexData[2] = 2;
+    indexData[3] = 1;
+    indexData[4] = 2;
+    indexData[5] = 3;
+    indexBuffer->Lock();
+
+    m_operatingMaterial = new iGaiaMaterial();
+    m_operatingMaterial->Set_Shader(_shader, k_RENDER_OPERATION_SCREEN_SPACE_MODE);
+
+    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, false);
+    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
+    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, false);
+    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, false);
+
+    m_operatingMaterial->Set_CullFaceMode(GL_FRONT);
+    m_operatingMaterial->Set_BlendFunctionSource(GL_SRC_ALPHA);
+    m_operatingMaterial->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+
+    m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, _name, iGaiaResource::iGaia_E_CreationModeCustom);
 }
 
-- (void)bind
+iGaiaRenderOperationScreenSpace::~iGaiaRenderOperationScreenSpace(void)
 {
-    glBindFramebuffer(GL_FRAMEBUFFER, _m_frameBufferHandle);
-    glViewport(0, 0, _m_size.x, _m_size.y);
+
+}
+
+inline iGaiaTexture* iGaiaRenderOperationScreenSpace::Get_OperatingTexture(void)
+{
+    return m_operatingTexture;
+}
+
+inline iGaiaMaterial* iGaiaRenderOperationScreenSpace::Get_OperatingMaterial(void)
+{
+    return m_operatingMaterial;
+}
+
+void iGaiaRenderOperationScreenSpace::Bind(void)
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
+    glViewport(0, 0, m_frameSize.x, m_frameSize.y);
     glClearColor(0, 0, 0, 1);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    
-    [_m_material bindWithMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
-    _m_mesh.m_vertexBuffer.m_operatingShader = _m_material.m_operatingShader;
-    [_m_mesh.m_vertexBuffer bind];
-    [_m_mesh.m_indexBuffer bind];
+
+    m_operatingMaterial->Bind(k_RENDER_OPERATION_SCREEN_SPACE_MODE);
+    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_operatingMaterial->Get_OperatingShader());
+    m_mesh->Bind();
 }
 
-- (void)draw;
+void iGaiaRenderOperationScreenSpace::Unbind(void)
 {
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, (void*)NULL);
+    m_mesh->Get_VertexBuffer()->Unbind();
+    m_mesh->Get_IndexBuffer()->Unbind();
+    m_operatingMaterial->Unbind(k_RENDER_OPERATION_SCREEN_SPACE_MODE);
 }
 
-- (void)unbind;
+void iGaiaRenderOperationScreenSpace::Draw(void)
 {
-    [_m_mesh.m_vertexBuffer unbind];
-    [_m_mesh.m_indexBuffer unbind];
-    [_m_material bindWithMode:k_RENDER_OPERATION_SCREEN_SPACE_MODE];
+    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)NULL);
 }
-
-@end
 

@@ -6,20 +6,35 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#include "iGaiaRenderCallback.h"
+#include "iGaiaLoopCallback.h"
+#include "iGaiaShader.h"
+#include "iGaiaTexture.h"
 
-#import "iGaiaRenderCallback.h"
-#import "iGaiaShader.h"
-#import "iGaiaTexture.h"
+#include "iGaiaRenderOperationWorldSpace.h"
+#include "iGaiaRenderOperationScreenSpace.h"
+#include "iGaiaRenderOperationOutlet.h"
 
-@interface iGaiaRenderMgr : NSObject
+class iGaiaRenderMgr : public iGaiaLoopCallback
+{
+private:
+    UIView* m_glView;
 
-@property(nonatomic, readonly) UIView* m_glView;
+    iGaiaRenderOperationWorldSpace* m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue];
+    iGaiaRenderOperationScreenSpace* m_screenSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue];
+    iGaiaRenderOperationOutlet* m_outletOperation;
+protected:
 
-- (void)addEventListener:(id<iGaiaRenderCallback>)listener forRendeMode:(E_RENDER_MODE_WORLD_SPACE)mode;
+public:
+    iGaiaRenderMgr(void);
+    ~iGaiaRenderMgr(void);
 
-- (iGaiaTexture*)retriveTextureFromWorldSpaceRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode;
-- (iGaiaTexture*)retriveTextureFromScreenSpaceRenderMode:(E_RENDER_MODE_SCREEN_SPACE)mode;
+    UIView* Get_GLView(void);
 
-@end
+    void AddEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void RemoveEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    iGaiaTexture* Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    iGaiaTexture* Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeScreenSpace _mode);
+    
+    void OnUpdate(void);
+};

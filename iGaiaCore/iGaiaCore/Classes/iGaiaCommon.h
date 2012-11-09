@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
 
 #include <iostream>
 #include <algorithm>
@@ -27,6 +28,7 @@
 
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#include <QuartzCore/QuartzCore.h>
 
 using namespace std;
 using namespace glm;
