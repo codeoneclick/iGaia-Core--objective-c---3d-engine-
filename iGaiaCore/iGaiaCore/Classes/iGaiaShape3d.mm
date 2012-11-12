@@ -10,68 +10,46 @@
 #import "iGaiaLogger.h"
 #import "iGaiaResourceMgr.h"
 
-static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
+static ui32 k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 
-@interface iGaiaShape3d()
-
-@property(nonatomic, readwrite) iGaiaVertex* m_crossOperationVertexData;
-@property(nonatomic, readwrite) unsigned short* m_crossOperationIndexData;
-@property(nonatomic, readwrite) NSUInteger m_crossOperationNumIndexes;
-
-@end
-
-@implementation iGaiaShape3d
-
-@synthesize m_crossOperationVertexData = _m_crossOperationVertexData;
-@synthesize m_crossOperationIndexData = _m_crossOperationIndexData;
-@synthesize m_crossOperationNumIndexes = _m_crossOperationNumIndexes;
-
-- (id)initWithMeshFileName:(NSString *)name
+iGaiaShape3d::iGaiaShape3d(const string& _name)
 {
-    self = [super init];
-    if(self)
-    {
-        [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
-
-        [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:YES];
-        [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
-        [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:YES];
-        [_m_material invalidateState:E_RENDER_STATE_BLEND_MODE withValue:YES];
-        _m_material.m_cullFaceMode = GL_FRONT;
-        _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
-        _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
-
-        _m_priority = k_IGAIA_SHAPE3D_RENDER_PRIORITY;
-        _m_updateMode = E_UPDATE_MODE_ASYNC;
-    }
-    return self;
+    iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this);
+    
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
+    m_material->Set_CullFaceMode(GL_FRONT);
+    m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
+    m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_updateMode = iGaia_E_UpdateModeAsync;
 }
 
-- (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode
+void iGaiaShape3d::Set_Mesh(const string &_name)
 {
-    [super setShader:shader forMode:mode];
-}
-
-- (void)setTextureWithFaleName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
-{
-    [super setTextureWithFileName:name forSlot:slot withWrap:wrap];
-}
-
-- (void)setMeshWithFileName:(NSString *)name;
-{
-    if(_m_mesh == nil)
+    if(m_mesh == nullptr)
     {
-        [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
-    }
-    else
-    {
-        iGaiaLog(@"Mesh is not nil.");
+        iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this);
     }
 }
 
-- (void)setClipping:(glm::vec4)clipping
+void iGaiaShape3d::Set_Clipping(const glm::vec4& _clipping)
 {
-    _m_material.m_clipping = clipping;
+    m_material->Set_Clipping(_clipping);
+}
+
+iGaiaVertexBufferObject::iGaiaVertex* iGaiaShape3d::Get_CrossOperationVertexData(void)
+{
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
+    for(ui32 i = 0; i < m_mesh->Get_NumVertexes(); ++i)
+    {
+        vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
+        position = m_worldMatrix * position;
+        _m_crossOperationVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
+    }
+
 }
 
 - (iGaiaVertex*)m_crossOperationVertexData

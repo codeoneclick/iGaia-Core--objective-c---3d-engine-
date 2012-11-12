@@ -9,7 +9,6 @@
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
 
-#include <iostream>
 #include <algorithm>
 #include <string>
 #include <vector>

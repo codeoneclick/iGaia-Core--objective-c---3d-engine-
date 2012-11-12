@@ -68,6 +68,7 @@ public:
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
     virtual void OnUpdate(void);
+    
     virtual void OnLoad(iGaiaResource* _resource);
 
     virtual ui32 Get_Priority(void);
