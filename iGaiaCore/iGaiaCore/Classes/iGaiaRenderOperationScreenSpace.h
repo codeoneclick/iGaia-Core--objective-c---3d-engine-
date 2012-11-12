@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaRenderOperationScreenSpaceClass
+#define iGaiaRenderOperationScreenSpaceClass
+
 #import "iGaiaMaterial.h"
 #import "iGaiaMesh.h"
 #import "iGaiaRenderCallback.h"
@@ -34,4 +37,4 @@ public:
     void Draw(void);
 };
 
-
+#endif

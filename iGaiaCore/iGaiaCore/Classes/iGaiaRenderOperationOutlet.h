@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaRenderOperationOutletClass
+#define iGaiaRenderOperationOutletClass
+
 #include "iGaiaMaterial.h"
 #include "iGaiaRenderCallback.h"
 #include "iGaiaMesh.h"
@@ -31,3 +34,5 @@ public:
 
     void Draw(void);
 };
+
+#endif

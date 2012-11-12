@@ -6,18 +6,37 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#ifndef iGaiaTouchCrosserClass
+#define iGaiaTouchCrosserClass
 
-#import "iGaiaCrossCallback.h"
-#import "iGaiaTouchCallback.h"
-#import "iGaiaCamera.h"
+#include "iGaiaCrossCallback.h"
+#include "iGaiaTouchCallback.h"
+#include "iGaiaCamera.h"
 
-@interface iGaiaTouchCrosser : NSObject<iGaiaTouchCallback>
+class iGaiaTouchCrosser : public iGaiaTouchCallback
+{
+private:
+    struct iGaiaRay
+    {
+        vec3 m_origin;
+        vec3 m_direction;
+    };
 
-@property(nonatomic, assign) iGaiaCamera* m_camera;
+    iGaiaCamera* m_cameraReference;
+    set<iGaiaCrossCallback*> m_listeners;
 
-- (void)addEventListener:(id<iGaiaCrossCallback>)listener;
-- (void)removeEventListener:(id<iGaiaCrossCallback>)listener;
+    iGaiaRay Unproject(const vec2& _point);
+    bool IsCross(iGaiaCrossCallback* _listener, const iGaiaRay& _ray);
+protected:
 
-@end
+public:
+    iGaiaTouchCrosser(void);
+    ~iGaiaTouchCrosser(void);
+
+    void Set_Camera(iGaiaCamera* _camera);
+
+    void AddEventListener(iGaiaCrossCallback* _listener);
+    void RemoveEventListener(iGaiaCrossCallback* _listener);
+
+    void OnTouch(f32 _x, f32 _y);
+};

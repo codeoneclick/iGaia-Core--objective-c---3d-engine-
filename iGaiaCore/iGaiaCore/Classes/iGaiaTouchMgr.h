@@ -6,11 +6,18 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#include "iGaiaiOSTouchResponder.h"
+#include "iGaiaTouchCrosser.h"
 
-#import "iGaiaTouchResponder.h"
-#import "iGaiaTouchCrosser.h"
+class iGaiaTouchMgr
+{
+private:
+
+protected:
+
+public:
+    
+};
 
 @interface iGaiaTouchMgr : NSObject
 

@@ -6,16 +6,26 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "iGaiaVertexBufferObject.h"
-#import "iGaiaIndexBufferObject.h"
+#include "iGaiaVertexBufferObject.h"
+#include "iGaiaIndexBufferObject.h"
 
-@protocol iGaiaCrossCallback <NSObject>
+class iGaiaCrossCallback
+{
+private:
 
-@property(nonatomic, readonly) iGaiaVertex* m_crossOperationVertexData;
-@property(nonatomic, readonly) unsigned short* m_crossOperationIndexData;
-@property(nonatomic, readonly) NSUInteger m_crossOperationNumIndexes;
+protected:
+    iGaiaVertexBufferObject::iGaiaVertex* m_crossOperationVertexData;
+    ui16* m_crossOperationIndexData;
+    ui32 m_crossOperationNumVertexes;
+    ui32 m_crossOperationNumIndexes;
+public:
+    iGaiaCrossCallback(void) = default;
+    virtual ~iGaiaCrossCallback(void) = default;
 
-- (void)onCross;
+    virtual iGaiaVertexBufferObject::iGaiaVertex* Get_CrossOperationVertexData(void) = 0;
+    virtual ui16* Get_CrossOperationIndexData(void) = 0;
+    virtual ui32 Get_CrossOperationNumVertexes(void) = 0;
+    virtual ui32 Get_CrossOperationNumIndexes(void) = 0;
 
-@end
+    virtual void OnCross(void);
+};

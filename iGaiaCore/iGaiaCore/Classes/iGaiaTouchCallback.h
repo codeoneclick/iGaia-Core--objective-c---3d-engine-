@@ -6,10 +6,17 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCommon.h"
 
-@protocol iGaiaTouchCallback <NSObject>
+class iGaiaTouchCallback
+{
+private:
 
-- (void)onTouchX:(float)x Y:(float)y;
+protected:
 
-@end
+public:
+    iGaiaTouchCallback(void) = default;
+    virtual ~iGaiaTouchCallback(void) = default;
+
+    virtual void OnTouch(f32 _x, f32 _y) = 0;
+};

@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaiOSGLViewClass
+#define iGaiaiOSGLViewClass
+
 #include "iGaiaCommon.h"
 
 @interface iGaiaiOSGLView : UIView
@@ -17,6 +20,8 @@
 - (id)initWithFrame:(CGRect)frame;
 
 @end
+
+#endif
 
 
 

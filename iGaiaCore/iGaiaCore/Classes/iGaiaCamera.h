@@ -6,38 +6,68 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef iGaiaCameraClass
+#define iGaiaCameraClass
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-#import <glm/gtc/matrix_transform.hpp>
+#include "iGaiaFrustum.h"
 
-#import "iGaiaFrustum.h"
+class iGaiaCamera
+{
+private:
+    mat4x4 m_view;
+    mat4x4 m_reflection;
+    mat4x4 m_projection;
 
-@interface iGaiaCamera : NSObject
+    vec3 m_position;
+    vec3 m_look;
+    vec3 m_up;
+    f32 m_rotation;
+    f32 m_altitude;
+    f32 m_distance;
+    f32 m_fov;
+    f32 m_aspect;
 
-@property(nonatomic, readonly) glm::mat4x4 m_view;
-@property(nonatomic, readonly) glm::mat4x4 m_reflection;
-@property(nonatomic, readonly) glm::mat4x4 m_projection;
+    f32 m_near;
+    f32 m_far;
+    
+    iGaiaFrustum* m_frustum;
+protected:
 
-@property(nonatomic, assign) glm::vec3 m_position;
-@property(nonatomic, assign) glm::vec3 m_look;
-@property(nonatomic, readonly) glm::vec3 m_up;
-@property(nonatomic, assign) float m_rotation;
-@property(nonatomic, assign) float m_altitude;
-@property(nonatomic, readonly) float m_fov;
-@property(nonatomic, readonly) float m_aspect;
+public:
+    iGaiaCamera(f32 _fov, f32 _near, f32 _far, ui32 _width,  ui32 _height);
+    ~iGaiaCamera(void);
 
-@property(nonatomic, readonly) float m_near;
-@property(nonatomic, readonly) float m_far;
+    mat4x4 Get_ViewMatrix(void);
+    mat4x4 Get_ProjectionMatrix(void);
+    mat4x4 Get_ViewReflectionMatrix(void);
 
-@property(nonatomic, readonly) iGaiaFrustum* m_frustum;
+    void Set_Position(const vec3& _position);
+    vec3 Get_Position(void);
 
-- (id)initWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height;
+    void Set_LookAt(const vec3& _look);
+    vec3 Get_LookAt(void);
 
-- (void)onUpdate;
+    vec3 Get_Up(void);
 
-- (glm::mat4x4)retriveSphericalMatrixForPosition:(const glm::vec3&)position;
-- (glm::mat4x4)retriveCylindricalMatrixForPosition:(const glm::vec3&)position;
+    void Set_Rotation(f32 _rotation);
+    f32 Get_Rotation(void);
 
-@end
+    void Set_Altitude(f32 _altitude);
+    f32 Get_Altitude(void);
+
+    void Set_Distance(f32 _distance);
+    f32 Get_Distance(void);
+
+    f32 Get_Fov(void);
+    f32 Get_Aspect(void);
+
+    f32 Get_Near(void);
+    f32 Get_Far(void);
+
+    void OnUpdate(void);
+
+    mat4x4 Get_SphericalMatrixForPosition(const vec3& _position);
+    mat4x4 Get_CylindricalMatrixForPosition(const vec3& _position);
+};
+
+#endif

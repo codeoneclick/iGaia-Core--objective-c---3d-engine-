@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaRenderOperationWorldSpaceClass
+#define iGaiaRenderOperationWorldSpaceClass
+
 #include "iGaiaTexture.h"
 #include "iGaiaRenderCallback.h"
 
@@ -35,3 +38,4 @@ public:
     void Draw(void);
 };
 
+#endif

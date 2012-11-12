@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaRenderMgrClass
+#define iGaiaRenderMgrClass
+
 #include "iGaiaRenderCallback.h"
 #include "iGaiaLoopCallback.h"
 #include "iGaiaShader.h"
@@ -38,3 +41,5 @@ public:
     
     void OnUpdate(void);
 };
+
+#endif

@@ -43,129 +43,115 @@ iGaiaFrustum::~iGaiaFrustum(void)
     m_cameraReference = nullptr;
 }
 
-@implementation iGaiaFrustum
-
-- (id)initWithCamera:(iGaiaCamera *)camera
+void iGaiaFrustum::OnUpdate(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_camera = camera;
-    }
-    return self;
+    f32 tan = tanf(radians(m_cameraReference->Get_Fov()) * 0.5f);
+	f32 nearHeight = m_cameraReference->Get_Near() * tan;
+	f32 nearWidth = nearHeight * m_cameraReference->Get_Aspect();
+	f32 farHeight = m_cameraReference->Get_Far()  * tan;
+	f32 farWidth = farHeight * m_cameraReference->Get_Aspect();
+
+	vec3 basis_Z = normalize(m_cameraReference->Get_Position() - m_cameraReference->Get_LookAt());
+	vec3 basis_X = normalize(cross(m_cameraReference->Get_Up(), basis_Z));
+	vec3 basis_Y = cross(basis_Z, basis_X);
+
+	vec3 nearOffset = m_cameraReference->Get_Position() - basis_Z * m_cameraReference->Get_Near();
+	vec3 farOffset = m_cameraReference->Get_Position() - basis_Z * m_cameraReference->Get_Far();
+
+	vec3 nearTopLeftPoint = nearOffset + basis_Y * nearHeight - basis_X * nearWidth;
+	vec3 nearTopRightPoint = nearOffset + basis_Y * nearHeight + basis_X * nearWidth;
+	vec3 nearBottomLeftPoint = nearOffset - basis_Y * nearHeight - basis_X * nearWidth;
+	vec3 nearBottomRightPoint = nearOffset - basis_Y * nearHeight + basis_X * nearWidth;
+
+	vec3 farTopLeftPoint = farOffset + basis_Y * farHeight - basis_X * farWidth;
+	vec3 farTopRightPoint = farOffset + basis_Y * farHeight + basis_X * farWidth;
+	vec3 farBottomLeftPoint = farOffset - basis_Y * farHeight - basis_X * farWidth;
+	vec3 farBottomRightPoint = farOffset - basis_Y * farHeight + basis_X * farWidth;
+
+	m_planes[iGaia_E_FrustumPlaneTop].Update(nearTopRightPoint, nearTopLeftPoint, farTopLeftPoint);
+	m_planes[iGaia_E_FrustumPlaneBottom].Update(nearBottomLeftPoint, nearBottomRightPoint, farBottomRightPoint);
+	m_planes[iGaia_E_FrustumPlaneLeft].Update(nearTopLeftPoint, nearBottomLeftPoint, farBottomLeftPoint);
+	m_planes[iGaia_E_FrustumPlaneRight].Update(nearBottomRightPoint, nearTopRightPoint, farBottomRightPoint);
+	m_planes[iGaia_E_FrustumPlaneNear].Update(nearTopLeftPoint, nearTopRightPoint, nearBottomRightPoint);
+	m_planes[iGaia_E_FrustumPlaneFar].Update(farTopRightPoint, farTopLeftPoint, farBottomLeftPoint);
 }
 
-- (void)onUpdate;
+iGaiaFrustum::iGaia_E_FrustumResult iGaiaFrustum::IsPointInFrustum(const vec3& _point)
 {
-	float tan = tanf(glm::radians(_m_camera.m_fov) * 0.5f);
-	float nearHeight = _m_camera.m_near * tan;
-	float nearWidth = nearHeight * _m_camera.m_aspect;
-	float farHeight = _m_camera.m_far  * tan;
-	float farWidth = farHeight * _m_camera.m_aspect;
-
-	glm::vec3 basis_Z = glm::normalize(_m_camera.m_position - _m_camera.m_look);
-	glm::vec3 basis_X = glm::normalize(glm::cross(_m_camera.m_up, basis_Z));
-	glm::vec3 basis_Y = glm::cross(basis_Z, basis_X);
-
-	glm::vec3 nearOffset = _m_camera.m_position - basis_Z * _m_camera.m_near;
-	glm::vec3 farOffset = _m_camera.m_position - basis_Z * _m_camera.m_far;
-
-	glm::vec3 nearTopLeftPoint = nearOffset + basis_Y * nearHeight - basis_X * nearWidth;
-	glm::vec3 nearTopRightPoint = nearOffset + basis_Y * nearHeight + basis_X * nearWidth;
-	glm::vec3 nearBottomLeftPoint = nearOffset - basis_Y * nearHeight - basis_X * nearWidth;
-	glm::vec3 nearBottomRightPoint = nearOffset - basis_Y * nearHeight + basis_X * nearWidth;
-
-	glm::vec3 farTopLeftPoint = farOffset + basis_Y * farHeight - basis_X * farWidth;
-	glm::vec3 farTopRightPoint = farOffset + basis_Y * farHeight + basis_X * farWidth;
-	glm::vec3 farBottomLeftPoint = farOffset - basis_Y * farHeight - basis_X * farWidth;
-	glm::vec3 farBottomRightPoint = farOffset - basis_Y * farHeight + basis_X * farWidth;
-
-	m_planes[E_FRUSTUM_PLANE_TOP].Update(nearTopRightPoint, nearTopLeftPoint, farTopLeftPoint);
-	m_planes[E_FRUSTUM_PLANE_BOTTOM].Update(nearBottomLeftPoint, nearBottomRightPoint, farBottomRightPoint);
-	m_planes[E_FRUSTUM_PLANE_LEFT].Update(nearTopLeftPoint, nearBottomLeftPoint, farBottomLeftPoint);
-	m_planes[E_FRUSTUM_PLANE_RIGHT].Update(nearBottomRightPoint, nearTopRightPoint, farBottomRightPoint);
-	m_planes[E_FRUSTUM_PLANE_NEAR].Update(nearTopLeftPoint, nearTopRightPoint, nearBottomRightPoint);
-	m_planes[E_FRUSTUM_PLANE_FAR].Update(farTopRightPoint, farTopLeftPoint, farBottomLeftPoint);
-}
-
-- (int)isPointInFrustum:(const glm::vec3 &)point
-{
-	for(NSUInteger i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
+    for(ui32 i = 0; i < iGaia_E_FrustumPlaneMaxValue; ++i)
     {
-		if (m_planes[i].Distance(point) < 0.0f)
+		if (m_planes[i].Distance(_point) < 0.0f)
         {
-			return E_FRUSTUM_RESULT_OUTSIDE;
+			return iGaia_E_FrustumResultOutside;
         }
 	}
-	return E_FRUSTUM_RESULT_INSIDE;
+	return iGaia_E_FrustumResultInside;
 }
 
-- (int)isSphereInFrustum:(const glm::vec3&)position withRadius:(float)radius
+iGaiaFrustum::iGaia_E_FrustumResult iGaiaFrustum::IsSphereInFrumstum(const vec3& _center, f32 _radius)
 {
-    int result = E_FRUSTUM_RESULT_INSIDE;
-	for(int i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
+    i32 result = iGaia_E_FrustumResultInside;
+	for(ui32 i = 0; i < iGaia_E_FrustumPlaneMaxValue; ++i)
     {
-		float distance = m_planes[i].Distance(position);
-		if (distance < -radius)
+		f32 distance = m_planes[i].Distance(_center);
+		if (distance < -_radius)
         {
-			return E_FRUSTUM_RESULT_OUTSIDE;
+			return iGaia_E_FrustumResultOutside;
         }
-		else if (distance < radius)
+		else if (distance < _radius)
         {
-			result =  E_FRUSTUM_RESULT_INTERSECT;
+			result =  iGaia_E_FrustumResultIntersect;
         }
 	}
-	return result;
+	return static_cast<iGaia_E_FrustumResult>(result);
 }
 
-- (int)isBoundBoxInFrustumWithMaxBound:(const glm::vec3&)maxBound withMinBound:(const glm::vec3&)minBound
+iGaiaFrustum::iGaia_E_FrustumResult iGaiaFrustum::IsBoundBoxInFrustum(const vec3& _maxBound, const vec3& _minBound)
 {
-    int result = E_FRUSTUM_RESULT_INSIDE;
+    i32 result = iGaia_E_FrustumResultInside;
     glm::vec3 operatingMaxBound, operatingMinBound;
 
-    for(int i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
+    for(int i = 0; i < iGaia_E_FrustumPlaneMaxValue; ++i)
     {
         glm::vec3 normal = m_planes[i].Normal();
         if(normal.x > 0)
         {
-            operatingMinBound.x = minBound.x;
-            operatingMaxBound.x = maxBound.x;
+            operatingMinBound.x = _minBound.x;
+            operatingMaxBound.x = _maxBound.x;
         }
         else
         {
-            operatingMinBound.x = maxBound.x;
-            operatingMaxBound.x = minBound.x;
+            operatingMinBound.x = _maxBound.x;
+            operatingMaxBound.x = _minBound.x;
         }
         if(normal.y > 0)
         {
-            operatingMinBound.y = minBound.y;
-            operatingMaxBound.y = maxBound.y;
+            operatingMinBound.y = _minBound.y;
+            operatingMaxBound.y = _maxBound.y;
         }
         else
         {
-            operatingMinBound.y = maxBound.y;
-            operatingMaxBound.y = minBound.y;
+            operatingMinBound.y = _maxBound.y;
+            operatingMaxBound.y = _minBound.y;
         }
         if(normal.z > 0)
         {
-            operatingMinBound.z = minBound.z;
-            operatingMaxBound.z = maxBound.z;
+            operatingMinBound.z = _minBound.z;
+            operatingMaxBound.z = _maxBound.z;
         }
         else
         {
-            operatingMinBound.z = maxBound.z;
-            operatingMaxBound.z = minBound.z;
+            operatingMinBound.z = _maxBound.z;
+            operatingMaxBound.z = _minBound.z;
         }
         if(glm::dot(normal, operatingMinBound) + m_planes[i].Offset() > 0)
         {
-            return E_FRUSTUM_RESULT_OUTSIDE;
+            return iGaia_E_FrustumResultOutside;
         }
         if(glm::dot(normal, operatingMaxBound) + m_planes[i].Offset() >= 0)
         {
-            result = E_FRUSTUM_RESULT_INTERSECT;
+            result = iGaia_E_FrustumResultIntersect;
         }
     }
-    return result;
+    return static_cast<iGaia_E_FrustumResult>(result);
 }
-
-@end

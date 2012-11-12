@@ -6,104 +6,141 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaCamera.h"
+#include "iGaiaCamera.h"
 
-@interface iGaiaCamera()
-
-@end
-
-@implementation iGaiaCamera
-
-@synthesize m_view = _m_view;
-@synthesize m_reflection = _m_reflection;
-@synthesize m_projection = _m_projection;
-
-@synthesize m_fov = _m_fov;
-@synthesize m_aspect = _m_aspect;
-@synthesize m_near = _m_near;
-@synthesize m_far = _m_far;
-
-@synthesize m_position = _m_position;
-@synthesize m_rotation = _m_rotation;
-@synthesize m_look = _m_look;
-@synthesize m_up = _m_up;
-@synthesize m_altitude = _m_altitude;
-@synthesize m_frustum = _m_frustum;
-
-- (id)initWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
+iGaiaCamera::iGaiaCamera(f32 _fov, f32 _near, f32 _far, ui32 _width,  ui32 _height)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_fov = fov;
-        _m_aspect = static_cast<float>(width) / static_cast<float>(height);
-        _m_near = near;
-        _m_far = far;
-        _m_projection = glm::perspective(_m_fov, _m_aspect, _m_near, _m_far);
-        _m_altitude = 0;
-        _m_up = glm::vec3(0.0f, 1.0f, 0.0f);
-        _m_frustum = [[iGaiaFrustum alloc] initWithCamera:self];
-    }
-    return self;
+    m_fov = _fov;
+    m_aspect = static_cast<f32>(_width) / static_cast<f32>(_height);
+    m_near = _near;
+    m_far = _far;
+    m_projection = perspective(m_fov, m_aspect, m_near, m_far);
+    m_altitude = 0;
+    m_up = vec3(0.0f, 1.0f, 0.0f);
+    m_frustum = new iGaiaFrustum(this);
 }
 
-- (void)onUpdate
+iGaiaCamera::~iGaiaCamera(void)
 {
-    _m_position.y = 20.0f;
-    _m_position.x = _m_look.x + cos(-_m_rotation) * -60.0f;
-    _m_position.z = _m_look.z + sin(-_m_rotation) * -60.0f;
-    _m_view = glm::lookAt(_m_position, _m_look, _m_up);
-
-    glm::vec3 position = _m_position;
-    position.y = -position.y + _m_altitude * 2.0f;
-    glm::vec3 look = _m_look;
-    look.y = -look.y + _m_altitude * 2.0f;
-    _m_reflection = glm::lookAt(position, look, _m_up * -1.0f);
+    
 }
 
-- (glm::mat4x4)retriveSphericalMatrixForPosition:(const glm::vec3&)position;
+inline mat4x4 iGaiaCamera::Get_ViewMatrix(void)
 {
-    glm::vec3 look = _m_position - position;
-    look = glm::normalize(look);
-    glm::vec3 up = glm::vec3(_m_view[1][0], _m_view[1][1], _m_view[1][2]);
-
-    glm::vec3 right = glm::cross(look, up);
-    right = glm::normalize(right);
-    up = glm::cross(right, look);
-
-    glm::mat4x4 sphericalMatrix;
-    sphericalMatrix[0][0] = right.x;
-    sphericalMatrix[0][1] = right.y;
-    sphericalMatrix[0][2] = right.z;
-    sphericalMatrix[0][3] = 0.0f;
-    sphericalMatrix[1][0] = up.x;
-    sphericalMatrix[1][1] = up.y;
-    sphericalMatrix[1][2] = up.z;
-    sphericalMatrix[1][3] = 0.0f;
-    sphericalMatrix[2][0] = look.x;
-    sphericalMatrix[2][1] = look.y;
-    sphericalMatrix[2][2] = look.z;
-    sphericalMatrix[2][3] = 0.0f;
-
-    sphericalMatrix[3][0] = position.x;
-    sphericalMatrix[3][1] = position.y;
-    sphericalMatrix[3][2] = position.z;
-    sphericalMatrix[3][3] = 1.0f;
-
-    return sphericalMatrix;
+    return m_view;
 }
 
-- (glm::mat4x4)retriveCylindricalMatrixForPosition:(const glm::vec3&)position;
+inline mat4x4 iGaiaCamera::Get_ProjectionMatrix(void)
 {
-    glm::vec3 look = _m_position - position;
-    look = glm::normalize(look);
+    return m_projection;
+}
 
-    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-    glm::vec3 right = glm::cross(look, up);
-    right = glm::normalize(right);
-    look = glm::cross(right, look);
+inline mat4x4 iGaiaCamera::Get_ViewReflectionMatrix(void)
+{
+    return m_reflection;
+}
 
-    glm::mat4x4 cylindricalMatrix;
+inline void iGaiaCamera::Set_Position(const vec3& _position)
+{
+    m_position = _position;
+}
+
+inline vec3 iGaiaCamera::Get_Position(void)
+{
+    return m_position;
+}
+
+inline void iGaiaCamera::Set_LookAt(const vec3& _look)
+{
+    m_look = _look;
+}
+
+inline vec3 iGaiaCamera::Get_LookAt(void)
+{
+    return m_look;
+}
+
+inline vec3 iGaiaCamera::Get_Up(void)
+{
+    return m_up;
+}
+
+inline void iGaiaCamera::Set_Rotation(f32 _rotation)
+{
+    m_rotation = _rotation;
+}
+
+inline f32 iGaiaCamera::Get_Rotation(void)
+{
+    return m_rotation;
+}
+
+inline void iGaiaCamera::Set_Altitude(f32 _altitude)
+{
+    m_altitude = _altitude;
+}
+
+inline f32 iGaiaCamera::Get_Altitude(void)
+{
+    return m_altitude;
+}
+
+inline void iGaiaCamera::Set_Distance(f32 _distance)
+{
+    m_distance = _distance;
+}
+
+inline f32 iGaiaCamera::Get_Distance(void)
+{
+    return m_distance;
+}
+
+inline f32 iGaiaCamera::Get_Fov(void)
+{
+    return m_fov;
+}
+
+inline f32 iGaiaCamera::Get_Aspect(void)
+{
+    return m_aspect;
+}
+
+inline f32 iGaiaCamera::Get_Near(void)
+{
+    return m_near;
+}
+
+inline f32 iGaiaCamera::Get_Far(void)
+{
+    return m_far;
+}
+
+void iGaiaCamera::OnUpdate(void)
+{
+    m_position.x = m_look.x + cosf(-m_rotation) * -m_distance;
+    m_position.z = m_look.z + sinf(-m_rotation) * -m_distance;
+    m_view = lookAt(m_position, m_look, m_up);
+
+    vec3 position = m_position;
+    position.y = -position.y + m_altitude * 2.0f;
+    vec3 look = m_look;
+    look.y = -look.y + m_altitude * 2.0f;
+    m_reflection = lookAt(position, look, m_up * -1.0f);
+
+    m_frustum->OnUpdate();
+}
+
+mat4x4 iGaiaCamera::Get_CylindricalMatrixForPosition(const vec3 &_position)
+{
+    vec3 direction = m_position - _position;
+    direction = normalize(direction);
+
+    vec3 up = vec3(0.0f, 1.0f, 0.0f);
+    vec3 right = cross(direction, up);
+    right = normalize(right);
+    direction = cross(right, direction);
+
+    mat4x4 cylindricalMatrix;
     cylindricalMatrix[0][0] = right.x;
     cylindricalMatrix[0][1] = right.y;
     cylindricalMatrix[0][2] = right.z;
@@ -112,18 +149,47 @@
     cylindricalMatrix[1][1] = up.y;
     cylindricalMatrix[1][2] = up.z;
     cylindricalMatrix[1][3] = 0.0f;
-    cylindricalMatrix[2][0] = look.x;
-    cylindricalMatrix[2][1] = look.y;
-    cylindricalMatrix[2][2] = look.z;
+    cylindricalMatrix[2][0] = direction.x;
+    cylindricalMatrix[2][1] = direction.y;
+    cylindricalMatrix[2][2] = direction.z;
     cylindricalMatrix[2][3] = 0.0f;
 
-    cylindricalMatrix[3][0] = position.x;
-    cylindricalMatrix[3][1] = position.y;
-    cylindricalMatrix[3][2] = position.z;
+    cylindricalMatrix[3][0] = _position.x;
+    cylindricalMatrix[3][1] = _position.y;
+    cylindricalMatrix[3][2] = _position.z;
     cylindricalMatrix[3][3] = 1.0f;
 
     return cylindricalMatrix;
 }
 
+mat4x4 iGaiaCamera::Get_SphericalMatrixForPosition(const vec3 &_position)
+{
+    vec3 direction = m_position - _position;
+    direction = normalize(direction);
+    vec3 up = vec3(m_view[1][0], m_view[1][1], m_view[1][2]);
 
-@end
+    vec3 right = cross(direction, up);
+    right = normalize(right);
+    up = cross(right, direction);
+
+    mat4x4 sphericalMatrix;
+    sphericalMatrix[0][0] = right.x;
+    sphericalMatrix[0][1] = right.y;
+    sphericalMatrix[0][2] = right.z;
+    sphericalMatrix[0][3] = 0.0f;
+    sphericalMatrix[1][0] = up.x;
+    sphericalMatrix[1][1] = up.y;
+    sphericalMatrix[1][2] = up.z;
+    sphericalMatrix[1][3] = 0.0f;
+    sphericalMatrix[2][0] = direction.x;
+    sphericalMatrix[2][1] = direction.y;
+    sphericalMatrix[2][2] = direction.z;
+    sphericalMatrix[2][3] = 0.0f;
+
+    sphericalMatrix[3][0] = _position.x;
+    sphericalMatrix[3][1] = _position.y;
+    sphericalMatrix[3][2] = _position.z;
+    sphericalMatrix[3][3] = 1.0f;
+
+    return sphericalMatrix;
+}
