@@ -6,30 +6,39 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <squirrel.h>
+#include "iGaiaCommon.h"
+#include <squirrel.h>
 
-@interface iGaiaSquirrelCommon : NSObject
+class iGaiaSquirrelCommon
+{
+private:
+    HSQUIRRELVM m_squireel_vm;
+protected:
+    
+public:
+    iGaiaSquirrelCommon(void);
+    ~iGaiaSquirrelCommon(void);
+    
+    static iGaiaSquirrelCommon* SharedInstance(void);
+    
+    void RegisterTable(const string& _name);
+    void RegisterClass(const string& _name);
+    void RegisterFunction(const string& _name);
+    
+    bool LoadScript(const string& _name);
+    
+    bool CallFunction(SQFUNCTION _function, const string& _name, SQFloat* _params, ui32 _count);
 
-+ (iGaiaSquirrelCommon*)sharedInstance;
+    void PopVector2d(SQFloat* _x, SQFloat* _y);
+    void PopVector3d(SQFloat* _x, SQFloat* _y, SQFloat* _z);
+    void PopVector4d(SQFloat* _x, SQFloat* _y, SQFloat* _z, SQFloat* _w);
 
-- (void)registerTable:(NSString*)t_name;
-- (void)registerClass:(NSString*)c_name;
-- (void)registerFunction:(SQFUNCTION)function withName:(NSString*)f_name forClass:(NSString*)c_name;
+    void PushVecto3d(SQFloat _x, SQFloat _y, SQFloat _z);
 
-- (BOOL)loadScriptWithFileName:(NSString*)name;
+    SQFloat PopFloat(i32 _index);
+    const SQChar* PopString(i32 _index);
+    SQInteger PopInteger(i32 _index);
+    SQUserPointer PopUserData(i32 _index);
+};
 
-- (SQBool)callFunctionWithName:(NSString*)name withParams:(SQFloat[])params withCount:(NSUInteger)count;
 
-- (void)popVector2dX:(SQFloat*)x Y:(SQFloat*)y forIndex:(NSInteger)index;
-- (void)popVector3dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z forIndex:(NSInteger)index;
-- (void)popVector4dX:(SQFloat*)x Y:(SQFloat*)y Z:(SQFloat*)z  W:(SQFloat*)w forIndex:(NSInteger)index;
-
-- (void)pushVector3dX:(SQFloat)x Y:(SQFloat)y Z:(SQFloat)z;
-
-- (SQFloat)retriveFloatValueWithIndex:(NSInteger)index;
-- (const SQChar*)retriveStringValueWithIndex:(NSInteger)index;
-- (SQInteger)retriveIntegerValueWithIndex:(NSInteger)index;
-- (SQUserPointer)retriveDataPtrValueWithIndex:(NSInteger)index;
-
-@end

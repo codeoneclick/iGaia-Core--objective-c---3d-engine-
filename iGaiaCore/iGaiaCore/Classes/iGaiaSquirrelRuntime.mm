@@ -10,6 +10,23 @@
 
 SQInteger sq_import(HSQUIRRELVM vm);
 
+
+iGaiaSquirrelRuntime::iGaiaSquirrelRuntime(iGaiaSquirrelCommon* _commonWrapper)
+{
+    m_commonWrapper = _commonWrapper;
+}
+
+iGaiaSquirrelRuntime::~iGaiaSquirrelRuntime(void)
+{
+    
+}
+
+void iGaiaSquirrelRuntime::Bind(void)
+{
+    [_m_commonWrapper registerClass:@"Runtime"];
+    [_m_commonWrapper registerFunction:sq_import withName:@"import" forClass:@"Runtime"];
+}
+
 @interface iGaiaSquirrelRuntime()
 
 @property(nonatomic, assign) iGaiaSquirrelCommon* m_commonWrapper;

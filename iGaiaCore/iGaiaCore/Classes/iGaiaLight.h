@@ -6,14 +6,19 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCommon.h"
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-#import <glm/gtc/matrix_transform.hpp>
+class iGaiaLight
+{
+private:
+    vec3 m_position;
+protected:
+    
+public:
+    iGaiaLight(void);
+    ~iGaiaLight(void);
+    
+    void Set_Position(const vec3& _position);
+    vec3 Get_Position(void);
+};
 
-@interface iGaiaLight : NSObject
-
-@property(nonatomic, assign) glm::vec3 m_position;
-
-@end

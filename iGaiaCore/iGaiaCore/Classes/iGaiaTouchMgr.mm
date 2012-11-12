@@ -8,34 +8,29 @@
 
 #import "iGaiaTouchMgr.h"
 
-@interface iGaiaTouchMgr()
-
-@property(nonatomic, readwrite) iGaiaTouchResponder* m_responder;
-@property(nonatomic, readwrite) iGaiaTouchCrosser* m_crosser;
-
-@end
-
-@implementation iGaiaTouchMgr
-
-@synthesize m_responder = _m_responder;
-@synthesize m_crosser = _m_crosser;
-@synthesize m_operationView = _m_operationView;
-
-- (id)init
+iGaiaTouchMgr::iGaiaTouchMgr(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_responder = [iGaiaTouchResponder new];
-        _m_crosser = [iGaiaTouchCrosser new];
-        [_m_responder addEventListener:_m_crosser];
-    }
-    return self;
+    m_responder = [iGaiaiOSTouchResponder new];
+    m_crosser = new iGaiaTouchCrosser();
+    [m_responder AddEventListener:m_crosser];
 }
 
-- (void)setM_operationView:(UIView *)m_operationView
+iGaiaTouchMgr::~iGaiaTouchMgr(void)
 {
-    _m_responder.m_operationView = m_operationView;
+    
 }
 
-@end
+inline void iGaiaTouchMgr::Set_OperationView(UIView* _view)
+{
+    m_responder.m_operationView = _view;
+}
+
+inline iGaiaiOSTouchResponder* iGaiaTouchMgr::Get_TouchResponder(void)
+{
+    return m_responder;
+}
+
+inline iGaiaTouchCrosser* iGaiaTouchMgr::Get_TouchCrosser(void)
+{
+    return m_crosser;
+}

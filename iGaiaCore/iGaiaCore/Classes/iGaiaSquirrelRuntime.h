@@ -6,12 +6,19 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "iGaiaSquirrelCommon.h"
+#include "iGaiaCommon.h"
+#include "iGaiaSquirrelCommon.h"
 
-@interface iGaiaSquirrelRuntime : NSObject
-
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
-- (void)sq_onUpdate;
-
-@end
+class iGaiaSquirrelRuntime
+{
+private:
+    iGaiaSquirrelCommon* m_commonWrapper;
+    void Bind(void);
+protected:
+    
+public:
+    iGaiaSquirrelRuntime(iGaiaSquirrelCommon* _commonWrapper);
+    ~iGaiaSquirrelRuntime(void);
+    
+    void sq_OnUpdate(void);
+};

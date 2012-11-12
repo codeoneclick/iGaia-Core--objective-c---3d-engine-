@@ -7,55 +7,74 @@
 //
 
 
-#import "iGaiaMaterial.h"
-#import "iGaiaMesh.h"
+#include "iGaiaMaterial.h"
+#include "iGaiaMesh.h"
 
-#import "iGaiaCamera.h"
-#import "iGaiaLight.h"
+#include "iGaiaCamera.h"
+#include "iGaiaLight.h"
 
-#import "iGaiaUpdateCallback.h"
-#import "iGaiaRenderCallback.h"
-#import "iGaiaLoadCallback.h"
+#include "iGaiaUpdateCallback.h"
+#include "iGaiaRenderCallback.h"
+#include "iGaiaLoadCallback.h"
 
-@interface iGaiaObject3d : NSObject<iGaiaUpdateCallback, iGaiaRenderCallback, iGaiaLoadCallback>
+class iGaiaObject3d : public iGaiaUpdateCallback, public iGaiaRenderCallback, public iGaiaLoadCallback
 {
-@protected
-    enum E_UPDATE_MODE
+private:
+    
+protected:
+    enum iGaia_E_UpdateMode
     {
-        E_UPDATE_MODE_SYNC = 0,
-        E_UPDATE_MODE_ASYNC
+        iGaia_E_UpdateModeSync = 0,
+        iGaia_E_UpdateModeAsync
     };
-
-    glm::mat4x4 _m_worldMatrix;
     
-    iGaiaMaterial* _m_material;
-    iGaiaMesh* _m_mesh;
+    mat4x4 m_worldMatrix;
     
-    glm::vec3 _m_position;
-    glm::vec3 _m_rotation;
-    glm::vec3 _m_scale;
+    iGaiaMaterial* m_material;
+    iGaiaMesh* m_mesh;
     
-    glm::vec3 _m_maxBound;
-    glm::vec3 _m_minBound;
+    vec3 m_position;
+    vec3 m_rotation;
+    vec3 m_scale;
     
-    __unsafe_unretained iGaiaCamera* _m_camera;
-    __unsafe_unretained iGaiaLight* _m_light;
+    vec3 m_maxBound;
+    vec3 m_minBound;
     
-    NSUInteger _m_priority;
-    E_UPDATE_MODE _m_updateMode;
-}
+    iGaiaCamera* m_camera;
+    iGaiaLight* m_light;
+    
+    iGaia_E_UpdateMode m_updateMode;
 
-@property(nonatomic, assign) glm::vec3 m_position;
-@property(nonatomic, assign) glm::vec3 m_rotation;
-@property(nonatomic, assign) glm::vec3 m_scale;
+public:
+    iGaiaObject3d(void);
+    virtual ~iGaiaObject3d(void);
+    
+    void Set_Position(const vec3& _position);
+    vec3 Get_Position(void);
 
-@property(nonatomic, readonly) glm::vec3 m_maxBound;
-@property(nonatomic, readonly) glm::vec3 m_minBound;
+    void Set_Rotation(const vec3& _rotation);
+    vec3 Get_Rotation(void);
+    
+    void Set_Scale(const vec3& _scale);
+    vec3 Get_Scale(void);
 
-@property(nonatomic, assign) iGaiaCamera* m_camera;
-@property(nonatomic, assign) iGaiaLight* m_light;
+    vec3 Get_MaxBound(void);
+    vec3 Get_MinBound(void);
 
-- (void)setShader:(E_SHADER)shader forMode:(NSUInteger)mode;
-- (void)setTextureWithFileName:(NSString *)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap;
+    void Set_Camera(iGaiaCamera* _camera);
+    void Set_Light(iGaiaLight* _light);
 
-@end
+    void Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode);
+    void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
+
+    virtual void OnUpdate(void);
+    virtual void OnLoad(iGaiaResource* _resource);
+
+    virtual ui32 Get_Priority(void);
+
+    virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+
+    virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+};
+

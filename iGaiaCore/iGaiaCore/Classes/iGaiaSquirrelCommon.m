@@ -25,11 +25,30 @@
 #define k_SQUIRREL_VM_INITIAL_STACK_SIZE 1024
 #define k_SQUIRREL_NAMESPACE  "igaia"
 
-@interface iGaiaSquirrelCommon()
+iGaiaSquirrelCommon::iGaiaSquirrelCommon(void)
 {
-     HSQUIRRELVM _m_squireel_vm;
+    if (m_squireel_vm == nil) {
+        m_squireel_vm = sq_open(k_SQUIRREL_VM_INITIAL_STACK_SIZE);
+    }
+    sqstd_seterrorhandlers(m_squireel_vm);
+    sq_setprintfunc(m_squireel_vm, sq_printfunc, sq_errorfunc);
+    sq_pushroottable(m_squireel_vm);
+    sqstd_register_systemlib(m_squireel_vm);
+    sqstd_register_bloblib(m_squireel_vm);
+    sqstd_register_mathlib(m_squireel_vm);
+    sqstd_register_stringlib(m_squireel_vm);
+    RegisterTable(k_SQUIRREL_NAMESPACE);
 }
-@end
+
+iGaiaSquirrelCommon::~iGaiaSquirrelCommon(void)
+{
+    
+}
+
+iGaiaSquirrelCommon* iGaiaSquirrelCommon::SharedInstance(void)
+{
+    
+}
 
 @implementation iGaiaSquirrelCommon
 
@@ -48,17 +67,7 @@
     self = [super init];
     if(self)
     {
-        if (_m_squireel_vm == nil) {
-            _m_squireel_vm = sq_open(k_SQUIRREL_VM_INITIAL_STACK_SIZE);
-        }
-        sqstd_seterrorhandlers(_m_squireel_vm);
-        sq_setprintfunc(_m_squireel_vm, sq_printfunc, sq_errorfunc);
-        sq_pushroottable(_m_squireel_vm);
-        sqstd_register_systemlib(_m_squireel_vm);
-        sqstd_register_bloblib(_m_squireel_vm);
-        sqstd_register_mathlib(_m_squireel_vm);
-        sqstd_register_stringlib(_m_squireel_vm);
-        [self registerTable:[NSString stringWithCString:k_SQUIRREL_NAMESPACE encoding:NSUTF8StringEncoding]];
+       
     }
     return self;
 }

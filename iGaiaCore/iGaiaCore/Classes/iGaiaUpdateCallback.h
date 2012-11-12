@@ -6,10 +6,18 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCommon.h"
 
-@protocol iGaiaUpdateCallback <NSObject>
+class iGaiaUpdateCallback
+{
+private:
+    
+protected:
+    
+public:
+    iGaiaUpdateCallback(void) = default;
+    virtual ~iGaiaUpdateCallback(void) = default;
+    
+    virtual void OnUpdate(void) = 0;
+};
 
-- (void)onUpdate;
-
-@end

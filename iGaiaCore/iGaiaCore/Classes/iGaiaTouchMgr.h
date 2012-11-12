@@ -12,18 +12,16 @@
 class iGaiaTouchMgr
 {
 private:
-
+    iGaiaiOSTouchResponder* m_responder;
+    iGaiaTouchCrosser* m_crosser;
 protected:
 
 public:
+    iGaiaTouchMgr(void);
+    ~iGaiaTouchMgr(void);
     
+    void Set_OperationView(UIView* _view);
+    
+    iGaiaiOSTouchResponder* Get_TouchResponder(void);
+    iGaiaTouchCrosser* Get_TouchCrosser(void);
 };
-
-@interface iGaiaTouchMgr : NSObject
-
-@property(nonatomic, assign) UIView* m_operationView;
-
-@property(nonatomic, readonly) iGaiaTouchResponder* m_responder;
-@property(nonatomic, readonly) iGaiaTouchCrosser* m_crosser;
-
-@end
