@@ -10,10 +10,16 @@
 #import "iGaiaLogger.h"
 #import "iGaiaResourceMgr.h"
 
-static ui32 k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
+static ui32 kShape3dRenderPriority = 5;
 
 iGaiaShape3d::iGaiaShape3d(const string& _name)
 {
+    m_crossingVertexData = nullptr;
+    m_crossingIndexData = nullptr;
+    
+    m_crossingNumVertexes = 0;
+    m_crossingNumIndexes = 0;
+    
     iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this);
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
@@ -47,140 +53,127 @@ iGaiaVertexBufferObject::iGaiaVertex* iGaiaShape3d::Get_CrossOperationVertexData
     {
         vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
         position = m_worldMatrix * position;
-        _m_crossOperationVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
+        m_crossingVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
     }
-
+    return m_crossingVertexData;
 }
 
-- (iGaiaVertex*)m_crossOperationVertexData
+ui16* iGaiaShape3d::Get_CrossOperationIndexData(void)
 {
-    if(_m_crossOperationVertexData == nil)
+    return m_crossingIndexData = m_mesh->Get_IndexBuffer()->Lock();
+}
+
+ui32 iGaiaShape3d::Get_CrossOperationNumVertexes(void)
+{
+    return m_crossingNumVertexes = m_mesh->Get_NumVertexes();
+}
+
+ui32 iGaiaShape3d::Get_CrossOperationNumIndexes(void)
+{
+    return m_crossingNumIndexes = m_mesh->Get_NumIndexes();
+}
+
+void iGaiaShape3d::OnLoad(iGaiaResource *_resource)
+{
+    if(_resource->Get_ResourceType() == iGaiaResource::iGaia_E_ResourceTypeMesh)
     {
-        return nil;
-    }
-    
-    iGaiaVertex* vertexData = [_m_mesh.m_vertexBuffer lock];
-    for(NSUInteger i = 0; i < _m_mesh.m_numVertexes; ++i)
-    {
-        glm::vec4 position = glm::vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
-        position = _m_worldMatrix * position;
-        _m_crossOperationVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
-    }
-    return _m_crossOperationVertexData;
-}
-
-- (unsigned short*)m_crossOperationIndexData
-{
-    return [_m_mesh.m_indexBuffer lock];
-}
-
-- (NSUInteger)m_crossOperationNumIndexes
-{
-    return _m_mesh.m_numIndexes;
-}
-
-- (void)onLoad:(id<iGaiaResource>)resource
-{
-    if(resource.m_resourceType == E_RESOURCE_TYPE_MESH)
-    {
-        iGaiaMesh* mesh = resource;
-        _m_mesh = mesh;
-        if(_m_crossOperationVertexData == nil)
+        m_mesh = static_cast<iGaiaMesh*>(_resource);
+        if(m_crossingVertexData != nullptr)
         {
-            _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
+            delete m_crossingVertexData;
         }
-        else
-        {
-            iGaiaLog(@"Current cross operation vertex data not nil.");
-        }
+        m_crossingVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
     }
 }
 
-- (void)onCross
+void iGaiaShape3d::OnCross(void)
 {
     
 }
 
-- (void)onUpdate
+void iGaiaShape3d::OnUpdate(void)
 {
-    [super onUpdate];
+    iGaiaObject3d::OnUpdate();
 }
 
-- (void)onBindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+void iGaiaShape3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
-    [super onBindWithRenderMode:mode];
+    iGaiaObject3d::OnBind(_mode);
 }
 
-- (void)onUnbindWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+void iGaiaShape3d::iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
-    [super onUnbindWithRenderMode:mode];
+    iGaiaObject3d::OnUnbind(_mode);
 }
 
-- (void)onDrawWithRenderMode:(E_RENDER_MODE_WORLD_SPACE)mode
+ui32 iGaiaShape3d::Get_Priority(void)
 {
-    [super onDrawWithRenderMode:mode];
+    return kShape3dRenderPriority;
+}
+
+void iGaiaShape3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    iGaiaObject3d::OnDraw(_mode);
     
-    switch (mode)
+    switch (_mode)
     {
-        case E_RENDER_MODE_WORLD_SPACE_SIMPLE:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple:
         {
-            if(_m_material.m_operatingShader == nil)
+            if(m_material->Get_OperatingShader() == nil)
             {
                 iGaiaLog(@"Shader MODE_SIMPLE == nil");
             }
             
-            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
             
-            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
-            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
         }
             break;
-        case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection:
         {
-            if(_m_material.m_operatingShader == nil)
+            if(m_material->Get_OperatingShader() == nil)
             {
                 iGaiaLog(@"Shader MODE_REFLECTION == nil");
             }
-
-            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_reflection forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
-
-            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
-            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
-            glm::vec4 clipping = _m_material.m_clipping;
-            [_m_material.m_operatingShader setVector4:clipping forAttribute:E_ATTRIBUTE_VECTOR_CLIPPING];
+            
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewReflectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+            
+            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            vec4 clipping = m_material->Get_Clipping();
+            m_material->Get_OperatingShader()->Set_Vector4(clipping, iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
         }
             break;
-        case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction:
         {
-            if(_m_material.m_operatingShader == nil)
+            if(m_material->Get_OperatingShader() == nil)
             {
                 iGaiaLog(@"Shader MODE_REFRACTION == nil");
             }
-
-            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
-            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
-
-            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
-            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
-            glm::vec4 clipping = _m_material.m_clipping;
+            
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+            
+            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            glm::vec4 clipping = m_material->Get_Clipping();
             clipping.y *= -1.0f;
-            [_m_material.m_operatingShader setVector4:clipping forAttribute:E_ATTRIBUTE_VECTOR_CLIPPING];
+            m_material->Get_OperatingShader()->Set_Vector4(clipping, iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
         }
             break;
-        case E_RENDER_MODE_WORLD_SPACE_SCREEN_NORMAL_MAP:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceScreenNormalMap:
         {
         }
             break;
         default:
             break;
     }
-
-    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, NULL);
+    
+    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, NULL);
 }
-
-@end

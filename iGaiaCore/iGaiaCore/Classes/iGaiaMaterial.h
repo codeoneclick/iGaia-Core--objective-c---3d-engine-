@@ -60,6 +60,8 @@ public:
     void InvalidateState(iGaia_E_RenderState _state, bool _value);
 
     iGaiaShader* Get_OperatingShader(void);
+    
+    vec4 Get_Clipping(void);
 
     void Set_CullFaceMode(GLenum _mode);
     void Set_BlendFunctionSource(GLenum _blendFunction);

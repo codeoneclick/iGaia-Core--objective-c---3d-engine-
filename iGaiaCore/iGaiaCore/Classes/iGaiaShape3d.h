@@ -12,7 +12,10 @@
 class iGaiaShape3d : public iGaiaObject3d, public iGaiaCrossCallback
 {
 private:
-    
+    iGaiaVertexBufferObject::iGaiaVertex* m_crossingVertexData;
+    ui16* m_crossingIndexData;
+    ui32 m_crossingNumVertexes;
+    ui32 m_crossingNumIndexes;
 protected:
     
 public:

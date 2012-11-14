@@ -52,6 +52,11 @@ inline void iGaiaMaterial::Set_Clipping(const vec4& _clipping)
     m_clipping = _clipping;
 }
 
+inline vec4 iGaiaMaterial::Get_Clipping(void)
+{
+    return m_clipping;
+}
+
 inline void iGaiaMaterial::Set_OperatingShader(iGaiaShader* _shader)
 {
     m_operatingShader = _shader;
