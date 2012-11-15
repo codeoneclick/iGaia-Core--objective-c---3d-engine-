@@ -10,7 +10,7 @@
 #import "iGaiaLogger.h"
 #import "iGaiaResourceMgr.h"
 
-static ui32 kShape3dRenderPriority = 5;
+static ui32 kiGaiaShape3dRenderPriority = 5;
 
 iGaiaShape3d::iGaiaShape3d(const string& _name)
 {
@@ -108,7 +108,7 @@ void iGaiaShape3d::iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorl
 
 ui32 iGaiaShape3d::Get_Priority(void)
 {
-    return kShape3dRenderPriority;
+    return kiGaiaShape3dRenderPriority;
 }
 
 void iGaiaShape3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)

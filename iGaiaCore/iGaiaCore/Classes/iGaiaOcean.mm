@@ -9,7 +9,152 @@
 #import "iGaiaOcean.h"
 #import "iGaiaLogger.h"
 
-static NSInteger k_IGAIA_OCEAN_RENDER_PRIORITY = 6;
+static ui32 kiGaiaOceanRenderPriority = 6;
+
+iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
+{
+    m_width = _width;
+    m_height = _height;
+
+    m_reflectionTexture = nullptr;
+    m_refractionTexture = nullptr;
+
+    iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(4, GL_STATIC_DRAW);
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
+
+    vertexData[0].m_position = vec3(0.0f,  _altitude,  0.0f);
+    vertexData[1].m_position = vec3(m_width, _altitude,  0.0f);
+    vertexData[2].m_position = vec3(m_width, _altitude,  m_height);
+    vertexData[3].m_position = vec3(0.0f,  _altitude,  m_height);
+
+    vertexData[0].m_texcoord = glm::vec2(0.0f,  0.0f);
+    vertexData[1].m_texcoord = glm::vec2(1.0f,  0.0f);
+    vertexData[2].m_texcoord = glm::vec2(1.0f,  1.0f);
+    vertexData[3].m_texcoord = glm::vec2(0.0f,  1.0f);
+
+    vertexBuffer->Unlock();
+
+    iGaiaIndexBufferObject* indexBuffer = new iGaiaIndexBufferObject(6, GL_STATIC_DRAW); 
+    ui16* indexData = indexBuffer->Lock();
+
+    indexData[0] = 0;
+    indexData[1] = 1;
+    indexData[2] = 2;
+    indexData[3] = 0;
+    indexData[4] = 2;
+    indexData[5] = 3;
+
+    indexBuffer->Unlock();
+
+    m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.ocean", iGaiaResource::iGaia_E_CreationModeCustom);
+
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
+    m_material->Set_CullFaceMode(GL_FRONT);
+    m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
+    m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+
+   m_updateMode = iGaia_E_UpdateModeSync;
+}
+
+iGaiaOcean::~iGaiaOcean(void)
+{
+
+}
+
+void iGaiaOcean::Set_ReflectionTexture(iGaiaTexture* _texture)
+{
+    if(_texture == m_reflectionTexture)
+    {
+        return;
+    }
+    m_reflectionTexture = _texture;
+    m_material->Set_Texture(m_reflectionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_01);
+}
+
+void iGaiaOcean::Set_RefractionTexture(iGaiaTexture* _texture)
+{
+    if(_texture == m_refractionTexture)
+    {
+        return;
+    }
+    m_refractionTexture = _texture;
+    m_material->Set_Texture(m_refractionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_02);
+}
+
+void iGaiaOcean::OnUpdate(void)
+{
+    m_position.x = m_camera->Get_LookAt().x - m_width / 2.0f;
+    m_position.z = m_camera->Get_LookAt().z - m_height / 2.0f;
+    iGaiaObject3d::OnUpdate();
+}
+
+void iGaiaOcean::OnLoad(iGaiaResource* _resource)
+{
+    
+}
+
+ui32 iGaiaOcean::Get_Priority(void)
+{
+    return kiGaiaOceanRenderPriority;
+}
+
+void iGaiaOcean::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    iGaiaObject3d::OnBind(_mode);
+}
+
+void iGaiaOcean::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    iGaiaObject3d::OnUnbind(_mode);
+}
+
+void iGaiaOcean::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+{
+    iGaiaObject3d::OnDraw(_mode);
+
+    switch (mode)
+    {
+        case E_RENDER_MODE_WORLD_SPACE_SIMPLE:
+        {
+            if(_m_material.m_operatingShader == nil)
+            {
+                iGaiaLog(@"Shader MODE_SIMPLE == nil.");
+            }
+
+            static float time = 0.0f;
+            time += 0.005f;
+
+            [_m_material.m_operatingShader setMatrix4x4:_m_worldMatrix forAttribute:E_ATTRIBUTE_MATRIX_WORLD];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_projection forAttribute:E_ATTRIBUTE_MATRIX_PROJECTION];
+            [_m_material.m_operatingShader setMatrix4x4:_m_camera.m_view forAttribute:E_ATTRIBUTE_MATRIX_VIEW];
+
+            [_m_material.m_operatingShader setVector3:_m_camera.m_position forAttribute:E_ATTRIBUTE_VECTOR_CAMERA_POSITION];
+            [_m_material.m_operatingShader setVector3:_m_light.m_position forAttribute:E_ATTRIBUTE_VECTOR_LIGHT_POSITION];
+            [_m_material.m_operatingShader setVector3:glm::vec3(_m_position.x + _m_width / 2.0f, 0.0f, _m_position.z + _m_height / 2.0f) forCustomAttribute:@"EXT_Center"];
+            [_m_material.m_operatingShader setFloat:time forCustomAttribute:@"EXT_Timer"];
+        }
+            break;
+        case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
+        {
+        }
+            break;
+        case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
+        {
+        }
+            break;
+        case E_RENDER_MODE_WORLD_SPACE_SCREEN_NORMAL_MAP:
+        {
+        }
+            break;
+        default:
+            break;
+    }
+
+    glDrawElements(GL_TRIANGLES, _m_mesh.m_numIndexes, GL_UNSIGNED_SHORT, NULL);
+}
 
 @interface iGaiaOcean()
 

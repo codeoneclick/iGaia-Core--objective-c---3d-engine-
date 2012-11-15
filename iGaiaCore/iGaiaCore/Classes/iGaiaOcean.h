@@ -6,15 +6,33 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include "iGaiaObject3d.h"
 
-#import "iGaiaObject3d.h"
+class iGaiaOcean : public iGaiaObject3d
+{
+private:
+    iGaiaTexture* m_reflectionTexture;
+    iGaiaTexture* m_refractionTexture;
+    f32 m_width;
+    f32 m_height;
+protected:
 
-@interface iGaiaOcean : iGaiaObject3d
+public:
+    iGaiaOcean(f32 _width, f32 _height, f32 _altitude);
+    ~iGaiaOcean(void);
 
-@property(nonatomic, assign) iGaiaTexture* m_reflectionTexture;
-@property(nonatomic, assign) iGaiaTexture* m_refractionTexture;
+    void Set_ReflectionTexture(iGaiaTexture* _texture);
+    void Set_RefractionTexture(iGaiaTexture* _texture);
 
-- (id)initWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
+    void OnUpdate(void);
 
-@end
+    void OnLoad(iGaiaResource* _resource);
+
+    ui32 Get_Priority(void);
+
+    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+
+    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+};
+
