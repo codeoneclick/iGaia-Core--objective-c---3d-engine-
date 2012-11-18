@@ -5,6 +5,8 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaFrustumClass
+#define iGaiaFrustumClass
 
 #include "iGaiaCommon.h"
 
@@ -61,3 +63,4 @@ public:
     iGaia_E_FrustumResult IsBoundBoxInFrustum(const vec3& _maxBound, const vec3& _minBound);
 };
 
+#endif

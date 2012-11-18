@@ -6,20 +6,15 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaCommon.h"
+#include "iGaiaCommon.h"
 
-#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-@implementation iGaiaCommon
-
-+ (float)retriveRandomValueWithMinBound:(float)minBound withMaxBound:(float)maxBound
+static f32 Get_Random(f32 _minValue, f32 _maxValue)
 {
-    float random = (((float)arc4random()/0x100000000)*(maxBound - minBound) + minBound);
+    f32 random = (((f32)arc4random()/0x100000000)*(_maxValue - _minValue) + _minValue);
     return random;
 }
 
-+ (unsigned long long)retriveTickCount
+static ui64 Get_TickCount(void)
 {
     static mach_timebase_info_data_t timebaseInfo;
     uint64_t machTime = mach_absolute_time();
@@ -31,4 +26,3 @@
     return milliseconds;
 }
 
-@end

@@ -5,7 +5,8 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-
+#ifndef iGaiaObject3dClass
+#define iGaiaObject3dClass
 
 #include "iGaiaMaterial.h"
 #include "iGaiaMesh.h"
@@ -79,3 +80,4 @@ public:
     virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 };
 
+#endif

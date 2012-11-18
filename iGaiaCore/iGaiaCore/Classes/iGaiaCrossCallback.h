@@ -5,6 +5,8 @@
 //  Created by Sergey Sergeev on 10/12/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaCrossCallbackClass
+#define iGaiaCrossCallbackClass
 
 #include "iGaiaVertexBufferObject.h"
 #include "iGaiaIndexBufferObject.h"
@@ -29,3 +31,5 @@ public:
 
     virtual void OnCross(void);
 };
+
+#endif

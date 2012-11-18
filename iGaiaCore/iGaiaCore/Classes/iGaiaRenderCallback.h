@@ -5,7 +5,6 @@
 //  Created by Sergey Sergeev on 10/2/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-
 #ifndef iGaiaRenderCallbackClass
 #define iGaiaRenderCallbackClass
 

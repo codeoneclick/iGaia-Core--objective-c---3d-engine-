@@ -5,6 +5,8 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaOceanClass
+#define iGaiaOceanClass
 
 #include "iGaiaObject3d.h"
 
@@ -36,3 +38,4 @@ public:
     void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 };
 
+#endif

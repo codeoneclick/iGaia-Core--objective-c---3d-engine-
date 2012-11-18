@@ -5,11 +5,31 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaSkyDomeClass
+#define iGaiaSkyDomeClass
 
-#import <Foundation/Foundation.h>
+#include "iGaiaObject3d.h"
 
-#import "iGaiaObject3d.h"
+class iGaiaSkyDome : public iGaiaObject3d
+{
+private:
 
-@interface iGaiaSkyDome : iGaiaObject3d
+protected:
+    
+public:
+    iGaiaSkyDome(void);
+    ~iGaiaSkyDome(void);
+    
+    void OnUpdate(void);
+    
+    void OnLoad(iGaiaResource* _resource);
+    
+    ui32 Get_Priority(void);
+    
+    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    
+    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+};
 
-@end
+#endif

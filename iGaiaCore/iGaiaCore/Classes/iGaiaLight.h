@@ -5,6 +5,8 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaLightClass
+#define iGaiaLightClass
 
 #include "iGaiaCommon.h"
 
@@ -22,3 +24,4 @@ public:
     vec3 Get_Position(void);
 };
 
+#endif

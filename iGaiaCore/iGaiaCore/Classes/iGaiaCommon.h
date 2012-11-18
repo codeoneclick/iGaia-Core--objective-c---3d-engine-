@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaCommonClass
+#define iGaiaCommonClass
+
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
-
 
 #include <algorithm>
 #include <string>
@@ -30,6 +32,9 @@
 #include <OpenGLES/ES2/glext.h>
 #include <QuartzCore/QuartzCore.h>
 
+#include <mach/mach.h>
+#include <mach/mach_time.h>
+
 using namespace std;
 using namespace glm;
 
@@ -39,11 +44,11 @@ typedef signed short i16;
 typedef unsigned short ui16;
 typedef signed int i32;
 typedef unsigned int ui32;
+typedef unsigned long long ui64;
 typedef float f32;
 
-/*@interface iGaiaCommon : NSObject
+static f32 Get_Random(f32 _minValue, f32 _maxValue);
+static ui64 Get_TickCount(void);
 
-+ (float)retriveRandomValueWithMinBound:(float)minBound withMaxBound:(float)maxBound;
-+ (unsigned long long)retriveTickCount;
 
-@end*/
+#endif

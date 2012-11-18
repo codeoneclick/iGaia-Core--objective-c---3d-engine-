@@ -5,41 +5,39 @@
 //  Created by Sergey Sergeev on 10/25/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaParticleEmitterSettingsClass
+#define iGaiaParticleEmitterSettingsClass
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCommon.h"
 
-#import <glm/glm.hpp>
-#import <glm/gtc/type_precision.hpp>
-#import <glm/gtc/matrix_transform.hpp>
+struct iGaiaParticleEmitterSettings
+{
+    ui32 m_numParticles;
+    string m_textureName;
 
-@protocol iGaiaParticleEmitterSettings <NSObject>
+    f32 m_duration;
+    f32 m_durationRandomness;
 
-@property(nonatomic, readonly) NSUInteger m_numParticles;
+    f32 m_velocitySensitivity;
 
-@property(nonatomic, readonly) NSString* m_textureName;
+    f32 m_minHorizontalVelocity;
+    f32 m_maxHorizontalVelocity;
 
-@property(nonatomic, readonly) float m_duration;
-@property(nonatomic, readonly) float m_durationRandomness;
+    f32 m_minVerticalVelocity;
+    f32 m_maxVerticalVelocity;
 
-@property(nonatomic, readonly) float m_velocitySensitivity;
+    f32 m_endVelocity;
 
-@property(nonatomic, readonly) float m_minHorizontalVelocity;
-@property(nonatomic, readonly) float m_maxHorizontalVelocity;
+    vec3 m_gravity;
 
-@property(nonatomic, readonly) float m_minVerticalVelocity;
-@property(nonatomic, readonly) float m_maxVerticalVelocity;
+    u8vec4 m_startColor;
+    u8vec4 m_endColor;
 
-@property(nonatomic, readonly) float m_endVelocity;
+    vec2 m_startSize;
+    vec2 m_endSize;
 
-@property(nonatomic, readonly) glm::vec3 m_gravity;
+    f32 m_minParticleEmittInterval;
+    f32 m_maxParticleEmittInterval;
+};
 
-@property(nonatomic, readonly) glm::u8vec4 m_startColor;
-@property(nonatomic, readonly) glm::u8vec4 m_endColor;
-
-@property(nonatomic, readonly) glm::vec2 m_startSize;
-@property(nonatomic, readonly) glm::vec2 m_endSize;
-
-@property(nonatomic, readonly) float m_minParticleEmittInterval;
-@property(nonatomic, readonly) float m_maxParticleEmittInterval;
-
-@end
+#endif

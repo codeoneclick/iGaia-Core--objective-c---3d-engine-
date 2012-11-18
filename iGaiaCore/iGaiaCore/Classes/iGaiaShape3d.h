@@ -5,6 +5,8 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaShape3dClass
+#define iGaiaShape3dClass
 
 #include "iGaiaObject3d.h"
 #include "iGaiaCrossCallback.h"
@@ -43,3 +45,5 @@ public:
     
     void OnCross(void);
 };
+
+#endif
