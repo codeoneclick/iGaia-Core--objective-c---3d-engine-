@@ -20,7 +20,7 @@ iGaiaShape3d::iGaiaShape3d(const string& _name)
     m_crossingNumVertexes = 0;
     m_crossingNumIndexes = 0;
     
-    iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this);
+    iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name);
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
@@ -42,7 +42,7 @@ void iGaiaShape3d::Set_Mesh(const string &_name)
 {
     if(m_mesh == nullptr)
     {
-        iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this);
+        iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name);
     }
 }
 

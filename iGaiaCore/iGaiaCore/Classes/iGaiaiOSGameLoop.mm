@@ -9,14 +9,17 @@
 #include "iGaiaiOSGameLoop.h"
 
 @interface iGaiaiOSGameLoop()
+{
+    set<iGaiaLoopCallback*> m_listeners;
+}
 
-@property(nonatomic, unsafe_unretained) set<iGaiaLoopCallback*> m_listeners;
+//@property(nonatomic, unsafe_unretained) set<iGaiaLoopCallback*> m_listeners;
 
 @end
 
 @implementation iGaiaiOSGameLoop
 
-@synthesize m_listeners = _m_listeners;
+//@synthesize m_listeners = _m_listeners;
 @synthesize m_callback = _m_callback;
 
 + (iGaiaiOSGameLoop*)SharedInstance
@@ -41,18 +44,19 @@
 
 - (void)AddEventListener:(iGaiaLoopCallback*)_listener
 {
-    self.m_listeners.insert(_listener);
+    m_listeners.insert(_listener);
 }
 
 - (void)RemoveEventListener:(iGaiaLoopCallback *)_listener
 {
-    self.m_listeners.erase(_listener);
+    m_listeners.erase(_listener);
 }
 
 - (void)onUpdate:(CADisplayLink*)displayLink
 {
-    for(iGaiaLoopCallback* listener : self.m_listeners)
+    for (set<iGaiaLoopCallback*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
     {
+        iGaiaLoopCallback* listener = *iterator;
         listener->OnUpdate();
     }
 }

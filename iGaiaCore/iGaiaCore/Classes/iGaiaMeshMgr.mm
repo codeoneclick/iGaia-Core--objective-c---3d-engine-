@@ -48,7 +48,7 @@ iGaiaResource* iGaiaMeshMgr::LoadResourceAsync(const string &_name, iGaiaLoadCal
     }
     else
     {
-        mesh = new iGaiaMesh(nil, nil, _name, iGaiaResource::iGaia_E_CreationModeNative);
+        mesh = new iGaiaMesh(nullptr, nullptr, _name, iGaiaResource::iGaia_E_CreationModeNative);
         if(m_tasks.find(_name) != m_tasks.end())
         {
             iGaiaLoader_MDL* loader = m_tasks.find(_name)->second;

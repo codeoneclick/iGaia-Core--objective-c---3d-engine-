@@ -100,7 +100,7 @@ void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_Sha
 
 void iGaiaMaterial::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
 {
-    m_textures[_slot] = static_cast<iGaiaTexture*>(iGaiaResourceMgr::SharedInstance()->LoadResourceAsync(_name, this));
+    m_textures[_slot] = static_cast<iGaiaTexture*>(iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name));
     map<ui32, ui32> settings;
     settings[iGaiaTexture::iGaia_E_TextureSettingsKeyWrapMode] = _wrap;
     m_textures[_slot]->Set_Settings(settings);

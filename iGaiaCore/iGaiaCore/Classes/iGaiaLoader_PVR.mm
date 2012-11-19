@@ -26,6 +26,7 @@ void iGaiaLoader_PVR::ParseFileWithName(const string &_name)
     m_name = _name;
 
     string path([[[NSBundle mainBundle] resourcePath] UTF8String]);
+    path.append("/");
     path.append(m_name);
 
     std::ifstream stream;

@@ -18,39 +18,36 @@ iGaiaMesh::iGaiaMesh(iGaiaVertexBufferObject* _vertexBuffer, iGaiaIndexBufferObj
 
     m_maxBound = glm::vec3( -4096.0f, -4096.0f, -4096.0f );
     m_minBound = glm::vec3(  4096.0f,  4096.0f,  4096.0f );
-
-    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_vertexBuffer->Lock();
-
-    for(unsigned int i = 0; i < m_vertexBuffer->Get_NumVertexes(); ++i)
+    
+    if(m_vertexBuffer != nullptr)
     {
-        if(vertexData[i].m_position.x > m_maxBound.x)
+        iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_vertexBuffer->Lock();
+        for(unsigned int i = 0; i < m_vertexBuffer->Get_NumVertexes(); ++i)
         {
-            m_maxBound.x = vertexData[i].m_position.x;
-        }
-
-        if(vertexData[i].m_position.y > m_maxBound.y)
-        {
-            m_maxBound.y = vertexData[i].m_position.y;
-        }
-
-        if(vertexData[i].m_position.z > m_maxBound.z)
-        {
-            m_maxBound.z = vertexData[i].m_position.z;
-        }
-
-        if(vertexData[i].m_position.x < m_minBound.x)
-        {
-            m_minBound.x = vertexData[i].m_position.x;
-        }
-
-        if(vertexData[i].m_position.y < m_minBound.y)
-        {
-            m_minBound.y = vertexData[i].m_position.y;
-        }
-
-        if(vertexData[i].m_position.z < m_minBound.z)
-        {
-            m_minBound.z = vertexData[i].m_position.z;
+            if(vertexData[i].m_position.x > m_maxBound.x)
+            {
+                m_maxBound.x = vertexData[i].m_position.x;
+            }
+            if(vertexData[i].m_position.y > m_maxBound.y)
+            {
+                m_maxBound.y = vertexData[i].m_position.y;
+            }
+            if(vertexData[i].m_position.z > m_maxBound.z)
+            {
+                m_maxBound.z = vertexData[i].m_position.z;
+            }
+            if(vertexData[i].m_position.x < m_minBound.x)
+            {
+                m_minBound.x = vertexData[i].m_position.x;
+            }
+            if(vertexData[i].m_position.y < m_minBound.y)
+            {
+                m_minBound.y = vertexData[i].m_position.y;
+            }
+            if(vertexData[i].m_position.z < m_minBound.z)
+            {
+                m_minBound.z = vertexData[i].m_position.z;
+            }
         }
     }
 }

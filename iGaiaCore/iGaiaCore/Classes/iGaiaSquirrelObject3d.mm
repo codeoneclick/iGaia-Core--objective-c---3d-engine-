@@ -35,8 +35,8 @@ void iGaiaSquirrelObject3d::Bind(void)
     m_commonWrapper->RegisterFunction(sq_getPositionObject3d, "getPositionObject3d", "Object3dWrapper");
     m_commonWrapper->RegisterFunction(sq_setRotationObject3d, "setRotationObject3d", "Object3dWrapper");
     m_commonWrapper->RegisterFunction(sq_getRotationObject3d, "getRotationObject3d", "Object3dWrapper");
-    m_commonWrapper->RegisterFunction(sq_setShaderObject3d, "setTexture", "Object3dWrapper");
-    m_commonWrapper->RegisterFunction(sq_setTextureObject3d, "setPositionObject3d", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setShaderObject3d, "setShader", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setTextureObject3d, "setTexture", "Object3dWrapper");
 }
 
 SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)
