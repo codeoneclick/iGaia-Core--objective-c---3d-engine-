@@ -15,8 +15,8 @@ private:
 protected:
 
 public:
-    iGaiaLoopCallback(void) = default;
-    virtual ~iGaiaLoopCallback(void) = default;
+    iGaiaLoopCallback(void) { };
+    virtual ~iGaiaLoopCallback(void) { };
 
     virtual void OnUpdate(void) = 0;
 };

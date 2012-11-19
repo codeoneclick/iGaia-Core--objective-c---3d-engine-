@@ -33,6 +33,11 @@ iGaiaShape3d::iGaiaShape3d(const string& _name)
     m_updateMode = iGaia_E_UpdateModeAsync;
 }
 
+iGaiaShape3d::~iGaiaShape3d(void)
+{
+    
+}
+
 void iGaiaShape3d::Set_Mesh(const string &_name)
 {
     if(m_mesh == nullptr)
@@ -101,7 +106,7 @@ void iGaiaShape3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     iGaiaObject3d::OnBind(_mode);
 }
 
-void iGaiaShape3d::iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaShape3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     iGaiaObject3d::OnUnbind(_mode);
 }

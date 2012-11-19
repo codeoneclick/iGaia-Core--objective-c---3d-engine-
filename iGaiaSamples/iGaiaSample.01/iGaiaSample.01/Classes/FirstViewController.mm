@@ -11,8 +11,6 @@
 #import "iGaiaRenderMgr.h"
 #import "iGaiaStageMgr.h"
 #import "iGaiaScriptMgr.h"
-#import "iGaiaLoop.h"
-#import "iGaiaSettings.h"
 
 #include <iostream>
 #include <vector>
@@ -23,7 +21,7 @@
 #include <mutex>
 #include <thread>
 
-@interface FirstViewController ()<iGaiaLoopCallback>
+@interface FirstViewController ()
 {
     iGaiaCamera* _m_camera;
 }
@@ -45,8 +43,8 @@ std::mutex mutex_01;
 
 - (void)viewDidLoad
 {
-
-    double *Tmvl;
+    [super viewDidLoad];
+    /*double *Tmvl;
     Nvl = 2;
     n = Nvl * 2;
     Tmvl = new double [n+1];
@@ -68,7 +66,7 @@ std::mutex mutex_01;
                                   mutex_01.unlock();
                               }, i);
         futures.push_back(std::move(fut));
-    }
+    }*/
     /*std::for_each(futures.begin(), futures.end(), [](std::future<void>& fut)
                   {
                       fut.wait();
@@ -111,16 +109,22 @@ std::mutex mutex_01;
         
     });*/
 
-    [self.view addSubview:[iGaiaStageMgr sharedInstance].m_renderMgr.m_glView];
+    [self.view addSubview:iGaiaStageMgr::SharedInstance()->Get_RenderMgr()->Get_GLView()];
     
-    CGRect viewport = [iGaiaSettings retriveFrameRect];
-    _m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
-    _m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
-    _m_camera.m_look = glm::vec3(16.0f, 0.0f, 32.0f);
+    CGRect viewport = CGRectMake(0, 0, 320, 480);
+    _m_camera = iGaiaStageMgr::SharedInstance()->CreateCamera(45.0f, 0.1f, 1000.0f, viewport.size.width, viewport.size.height);
+    //_m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
+    _m_camera->Set_Position(vec3(0.0f, 0.0f, 0.0f));
+    _m_camera->Set_LookAt(vec3(16.0f, 0.0f, 32.0f));
+    //_m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    //_m_camera.m_look = glm::vec3(16.0f, 0.0f, 32.0f);
+    
+    iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
+    
 
-    [[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
-    [[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
-    [[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
+    //[[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
+    //[[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
+    //[[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
     
     /*iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
     [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
@@ -164,23 +168,30 @@ std::mutex mutex_01;
     [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
     shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);*/
     
-    iGaiaSkyDome* skydome = [[iGaiaStageMgr sharedInstance] createSkyDome];
-    [skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
+    iGaiaSkyDome* skydome = iGaiaStageMgr::SharedInstance()->CreateSkyDome(); //[[iGaiaStageMgr sharedInstance] createSkyDome];
+    skydome->Set_Shader(iGaiaShader::iGaia_E_ShaderSkydome, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    //[skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    skydome->Set_Texture("skydome.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
+    //[skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
 
-    [[iGaiaStageMgr sharedInstance].m_particleMgr loadParticleEmitterFromFile:@"particle_emitter.nut"];
-    
-    iGaiaParticleEmitter* emitter = [[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithName:@"emitter"];
-    [emitter setShader:E_SHADER_PARTICLE forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [emitter setTextureWithFileName:@"fire.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    emitter.m_position = glm::vec3(8.0f, 2.5f, 16.0f);
+    iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->LoadParticleEmitterFromFile("particle_emitter.nut");
     
     
-    iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
-    [ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [ocean setTextureWithFileName:@"ocean_riple.pvr" forSlot:E_TEXTURE_SLOT_03 withWrap:iGaiaTextureSettingValues.repeat];
+    //[[iGaiaStageMgr sharedInstance].m_particleMgr loadParticleEmitterFromFile:@"particle_emitter.nut"];
     
-    [[iGaiaLoop sharedInstance] addEventListener:self];
+    iGaiaParticleEmitter* emitter = iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->CreateParticleEmitter("emitter"); //[[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithName:@"emitter"];
+    emitter->Set_Shader(iGaiaShader::iGaia_E_ShaderParticle, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
+    //[emitter setShader:E_SHADER_PARTICLE forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    //[emitter setTextureWithFileName:@"fire.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
+    //emitter.m_position = glm::vec3(8.0f, 2.5f, 16.0f);
+    
+    
+    //iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
+    //[ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
+    //[ocean setTextureWithFileName:@"ocean_riple.pvr" forSlot:E_TEXTURE_SLOT_03 withWrap:iGaiaTextureSettingValues.repeat];
+    
+    //[[iGaiaLoop sharedInstance] addEventListener:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,9 +201,9 @@ std::mutex mutex_01;
 
 - (void)onUpdate
 {
-    static float angle = 0.0f;
-    angle += 0.01f;
-    _m_camera.m_rotation = angle;
+    //static float angle = 0.0f;
+    //angle += 0.01f;
+    //_m_camera.m_rotation = angle;
 }
 
 @end

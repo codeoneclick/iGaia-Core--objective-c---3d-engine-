@@ -17,8 +17,8 @@ private:
 protected:
 
 public:
-    iGaiaTouchCallback(void) = default;
-    virtual ~iGaiaTouchCallback(void) = default;
+    iGaiaTouchCallback(void) { };
+    virtual ~iGaiaTouchCallback(void) { };
 
     virtual void OnTouch(f32 _x, f32 _y) = 0;
 };

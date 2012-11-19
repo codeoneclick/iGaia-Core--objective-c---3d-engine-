@@ -22,27 +22,27 @@ iGaiaScriptMgr::~iGaiaScriptMgr(void)
 
 }
 
-inline iGaiaSquirrelCommon* iGaiaScriptMgr::Get_CommonWrapper(void)
+iGaiaSquirrelCommon* iGaiaScriptMgr::Get_CommonWrapper(void)
 {
     return m_commonWrapper;
 }
 
-inline iGaiaSquirrelRuntime* iGaiaScriptMgr::Get_RuntimeWrapper(void)
+iGaiaSquirrelRuntime* iGaiaScriptMgr::Get_RuntimeWrapper(void)
 {
     return m_runtimeWrapper;
 }
 
-inline iGaiaSquirrelScene* iGaiaScriptMgr::Get_SceneWrapper(void)
+iGaiaSquirrelScene* iGaiaScriptMgr::Get_SceneWrapper(void)
 {
     return m_sceneWrapper;
 }
 
-inline iGaiaSquirrelObject3d* iGaiaScriptMgr::Get_Object3dWrapper(void)
+iGaiaSquirrelObject3d* iGaiaScriptMgr::Get_Object3dWrapper(void)
 {
     return m_object3dWrapper;
 }
 
-inline iGaiaSquirrelParticleEmitter* iGaiaScriptMgr::Get_ParticleEmitterWrapper(void)
+iGaiaSquirrelParticleEmitter* iGaiaScriptMgr::Get_ParticleEmitterWrapper(void)
 {
     return m_particleEmitterWrapper;
 }

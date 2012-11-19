@@ -61,32 +61,42 @@ iGaiaMesh::~iGaiaMesh(void)
     delete m_indexBuffer;
 }
 
-inline iGaiaVertexBufferObject* iGaiaMesh::Get_VertexBuffer(void)
+void iGaiaMesh::Set_Settings(const map<ui32, ui32> &_settings)
+{
+    m_settings = _settings;
+}
+
+map<ui32, ui32> iGaiaMesh::Get_Settings(void)
+{
+    return m_settings;
+}
+
+iGaiaVertexBufferObject* iGaiaMesh::Get_VertexBuffer(void)
 {
     return m_vertexBuffer;
 }
 
-inline iGaiaIndexBufferObject* iGaiaMesh::Get_IndexBuffer(void)
+iGaiaIndexBufferObject* iGaiaMesh::Get_IndexBuffer(void)
 {
     return m_indexBuffer;
 }
 
-inline ui32 iGaiaMesh::Get_NumVertexes(void)
+ui32 iGaiaMesh::Get_NumVertexes(void)
 {
     return m_vertexBuffer->Get_NumVertexes();
 }
 
-inline ui32 iGaiaMesh::Get_NumIndexes(void)
+ui32 iGaiaMesh::Get_NumIndexes(void)
 {
     return m_indexBuffer->Get_NumIndexes();
 }
 
-inline vec3 iGaiaMesh::Get_MaxBound(void)
+vec3 iGaiaMesh::Get_MaxBound(void)
 {
     return m_maxBound;
 }
 
-inline vec3 iGaiaMesh::Get_MinBound(void)
+vec3 iGaiaMesh::Get_MinBound(void)
 {
     return m_minBound;
 }

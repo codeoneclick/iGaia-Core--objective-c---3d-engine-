@@ -20,14 +20,14 @@ iGaiaParticleMgr::~iGaiaParticleMgr(void)
     
 }
 
-inline void iGaiaParticleMgr::Set_Camera(iGaiaCamera *_camera)
+void iGaiaParticleMgr::Set_Camera(iGaiaCamera *_camera)
 {
     m_camera = _camera;
 }
 
 void iGaiaParticleMgr::LoadParticleEmitterFromFile(const string& _name)
 {
-    //[[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:name];
+    iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript(_name);
 }
 
 iGaiaParticleEmitter* iGaiaParticleMgr::CreateParticleEmitter(const string& _name)

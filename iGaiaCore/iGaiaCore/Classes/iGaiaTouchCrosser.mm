@@ -19,18 +19,18 @@ iGaiaTouchCrosser::~iGaiaTouchCrosser(void)
     
 }
 
-inline void iGaiaTouchCrosser::Set_Camera(iGaiaCamera *_camera)
+void iGaiaTouchCrosser::Set_Camera(iGaiaCamera *_camera)
 {
     m_cameraReference = _camera;
 }
 
 
-inline void iGaiaTouchCrosser::AddEventListener(iGaiaCrossCallback* _listener)
+void iGaiaTouchCrosser::AddEventListener(iGaiaCrossCallback* _listener)
 {
     m_listeners.insert(_listener);
 }
 
-inline void iGaiaTouchCrosser::RemoveEventListener(iGaiaCrossCallback* _listener)
+void iGaiaTouchCrosser::RemoveEventListener(iGaiaCrossCallback* _listener)
 {
     m_listeners.erase(_listener);
 }

@@ -25,92 +25,92 @@ iGaiaCamera::~iGaiaCamera(void)
     
 }
 
-inline mat4x4 iGaiaCamera::Get_ViewMatrix(void)
+mat4x4 iGaiaCamera::Get_ViewMatrix(void)
 {
     return m_view;
 }
 
-inline mat4x4 iGaiaCamera::Get_ProjectionMatrix(void)
+mat4x4 iGaiaCamera::Get_ProjectionMatrix(void)
 {
     return m_projection;
 }
 
-inline mat4x4 iGaiaCamera::Get_ViewReflectionMatrix(void)
+mat4x4 iGaiaCamera::Get_ViewReflectionMatrix(void)
 {
     return m_reflection;
 }
 
-inline void iGaiaCamera::Set_Position(const vec3& _position)
+void iGaiaCamera::Set_Position(const vec3& _position)
 {
     m_position = _position;
 }
 
-inline vec3 iGaiaCamera::Get_Position(void)
+vec3 iGaiaCamera::Get_Position(void)
 {
     return m_position;
 }
 
-inline void iGaiaCamera::Set_LookAt(const vec3& _look)
+void iGaiaCamera::Set_LookAt(const vec3& _look)
 {
     m_look = _look;
 }
 
-inline vec3 iGaiaCamera::Get_LookAt(void)
+vec3 iGaiaCamera::Get_LookAt(void)
 {
     return m_look;
 }
 
-inline vec3 iGaiaCamera::Get_Up(void)
+vec3 iGaiaCamera::Get_Up(void)
 {
     return m_up;
 }
 
-inline void iGaiaCamera::Set_Rotation(f32 _rotation)
+void iGaiaCamera::Set_Rotation(f32 _rotation)
 {
     m_rotation = _rotation;
 }
 
-inline f32 iGaiaCamera::Get_Rotation(void)
+f32 iGaiaCamera::Get_Rotation(void)
 {
     return m_rotation;
 }
 
-inline void iGaiaCamera::Set_Altitude(f32 _altitude)
+void iGaiaCamera::Set_Altitude(f32 _altitude)
 {
     m_altitude = _altitude;
 }
 
-inline f32 iGaiaCamera::Get_Altitude(void)
+f32 iGaiaCamera::Get_Altitude(void)
 {
     return m_altitude;
 }
 
-inline void iGaiaCamera::Set_Distance(f32 _distance)
+void iGaiaCamera::Set_Distance(f32 _distance)
 {
     m_distance = _distance;
 }
 
-inline f32 iGaiaCamera::Get_Distance(void)
+f32 iGaiaCamera::Get_Distance(void)
 {
     return m_distance;
 }
 
-inline f32 iGaiaCamera::Get_Fov(void)
+f32 iGaiaCamera::Get_Fov(void)
 {
     return m_fov;
 }
 
-inline f32 iGaiaCamera::Get_Aspect(void)
+f32 iGaiaCamera::Get_Aspect(void)
 {
     return m_aspect;
 }
 
-inline f32 iGaiaCamera::Get_Near(void)
+f32 iGaiaCamera::Get_Near(void)
 {
     return m_near;
 }
 
-inline f32 iGaiaCamera::Get_Far(void)
+f32 iGaiaCamera::Get_Far(void)
 {
     return m_far;
 }

@@ -62,6 +62,11 @@ iGaiaParticleEmitter::iGaiaParticleEmitter(iGaiaParticleEmitterSettings* _settin
     m_lastEmittTimestamp = 0;
 }
 
+iGaiaParticleEmitter::~iGaiaParticleEmitter(void)
+{
+    
+}
+
 void iGaiaParticleEmitter::CreateParticle(ui32 _index)
 {
     m_particles[_index].m_position = m_position;

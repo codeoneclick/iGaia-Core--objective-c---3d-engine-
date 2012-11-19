@@ -30,6 +30,11 @@ iGaiaRenderMgr::iGaiaRenderMgr(void)
     m_outletOperation = new iGaiaRenderOperationOutlet(vec2(m_glView.frame.size.width, m_glView.frame.size.height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, ((iGaiaiOSGLView*)m_glView).m_frameBufferHandle, ((iGaiaiOSGLView*)m_glView).m_renderBufferHandle); 
 }
 
+iGaiaRenderMgr::~iGaiaRenderMgr(void)
+{
+    
+}
+
 void iGaiaRenderMgr::AddEventListener(iGaiaRenderCallback *_listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     m_worldSpaceOperations[_mode]->AddEventListener(_listener);
@@ -40,12 +45,17 @@ void iGaiaRenderMgr::RemoveEventListener(iGaiaRenderCallback *_listener, iGaiaMa
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }
 
-inline iGaiaTexture* iGaiaRenderMgr::Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+UIView* iGaiaRenderMgr::Get_GLView(void)
+{
+    return m_glView;
+}
+
+iGaiaTexture* iGaiaRenderMgr::Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     return m_worldSpaceOperations[_mode]->Get_OperatingTexture();
 }
 
-inline iGaiaTexture* iGaiaRenderMgr::Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeScreenSpace _mode)
+iGaiaTexture* iGaiaRenderMgr::Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeScreenSpace _mode)
 {
     return m_screenSpaceOperations[_mode]->Get_OperatingTexture();
 }

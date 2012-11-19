@@ -23,23 +23,28 @@ iGaiaIndexBufferObject::~iGaiaIndexBufferObject(void)
     m_handle = NULL;
 }
 
-inline u16* iGaiaIndexBufferObject::Lock(void)
+ui32 iGaiaIndexBufferObject::Get_NumIndexes(void)
+{
+    return m_numIndexes;
+}
+
+u16* iGaiaIndexBufferObject::Lock(void)
 {
     return m_data;
 }
 
-inline void iGaiaIndexBufferObject::Unlock(void)
+void iGaiaIndexBufferObject::Unlock(void)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handle);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(u16) * m_numIndexes, m_data, m_mode);
 }
 
-inline void iGaiaIndexBufferObject::Bind(void)
+void iGaiaIndexBufferObject::Bind(void)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handle);
 }
 
-inline void iGaiaIndexBufferObject::Unbind(void)
+void iGaiaIndexBufferObject::Unbind(void)
 {
      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 }

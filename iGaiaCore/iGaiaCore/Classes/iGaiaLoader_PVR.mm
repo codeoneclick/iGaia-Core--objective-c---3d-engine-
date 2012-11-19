@@ -15,6 +15,10 @@ iGaiaLoader_PVR::iGaiaLoader_PVR(void)
     m_status = iGaia_E_LoadStatusNone;
 }
 
+iGaiaLoader_PVR::~iGaiaLoader_PVR(void)
+{
+    
+}
 
 void iGaiaLoader_PVR::ParseFileWithName(const string &_name)
 {

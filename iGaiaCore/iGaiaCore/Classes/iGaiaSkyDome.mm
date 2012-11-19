@@ -152,7 +152,7 @@ void iGaiaSkyDome::OnUpdate(void)
     iGaiaObject3d::OnUpdate();
 }
 
-void OnLoad(iGaiaResource* _resource)
+void iGaiaSkyDome::OnLoad(iGaiaResource* _resource)
 {
     
 }

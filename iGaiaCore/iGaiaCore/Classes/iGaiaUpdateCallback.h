@@ -17,8 +17,8 @@ private:
 protected:
     
 public:
-    iGaiaUpdateCallback(void) = default;
-    virtual ~iGaiaUpdateCallback(void) = default;
+    iGaiaUpdateCallback(void) { };
+    virtual ~iGaiaUpdateCallback(void) { };
     
     virtual void OnUpdate(void) = 0;
 };

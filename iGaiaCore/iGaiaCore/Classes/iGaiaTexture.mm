@@ -23,7 +23,7 @@ iGaiaTexture::~iGaiaTexture(void)
     glDeleteTextures(1, &m_handle);
 }
 
-inline map<ui32, ui32> iGaiaTexture::Get_Settings(void)
+map<ui32, ui32> iGaiaTexture::Get_Settings(void)
 {
     return m_settings;
 }
@@ -54,17 +54,17 @@ void iGaiaTexture::Set_Settings(const map<ui32, ui32>& _settings)
     }
 }
 
-inline ui32 iGaiaTexture::Get_Handle(void)
+ui32 iGaiaTexture::Get_Handle(void)
 {
     return m_handle;
 }
 
-inline ui16 iGaiaTexture::Get_Width(void)
+ui16 iGaiaTexture::Get_Width(void)
 {
     return m_width;
 }
 
-inline ui16 iGaiaTexture::Get_Height(void)
+ui16 iGaiaTexture::Get_Height(void)
 {
     return m_height;
 }

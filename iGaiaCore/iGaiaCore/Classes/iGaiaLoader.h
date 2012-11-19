@@ -29,8 +29,8 @@ protected:
     string m_name;
     set<iGaiaLoadCallback*> m_listeners;
 public:
-    iGaiaLoader(void) = default;
-    virtual ~iGaiaLoader(void) = default;
+    iGaiaLoader(void) { };
+    virtual ~iGaiaLoader(void) { };
 
     iGaia_E_LoadStatus Get_Status(void);
     string Get_Name(void);

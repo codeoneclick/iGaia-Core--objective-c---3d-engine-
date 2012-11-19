@@ -32,42 +32,42 @@ iGaiaMaterial::~iGaiaMaterial(void)
     
 }
 
-inline void iGaiaMaterial::Set_CullFaceMode(GLenum _mode)
+void iGaiaMaterial::Set_CullFaceMode(GLenum _mode)
 {
     m_cullFaceMode = _mode;
 }
 
-inline void iGaiaMaterial::Set_BlendFunctionSource(GLenum _blendFunction)
+void iGaiaMaterial::Set_BlendFunctionSource(GLenum _blendFunction)
 {
     m_blendFunctionSource = _blendFunction;
 }
 
-inline void iGaiaMaterial::Set_BlendFunctionDest(GLenum _blendFunction)
+void iGaiaMaterial::Set_BlendFunctionDest(GLenum _blendFunction)
 {
     m_blendFunctionDest = _blendFunction;
 }
 
-inline void iGaiaMaterial::Set_Clipping(const vec4& _clipping)
+void iGaiaMaterial::Set_Clipping(const vec4& _clipping)
 {
     m_clipping = _clipping;
 }
 
-inline vec4 iGaiaMaterial::Get_Clipping(void)
+vec4 iGaiaMaterial::Get_Clipping(void)
 {
     return m_clipping;
 }
 
-inline void iGaiaMaterial::Set_OperatingShader(iGaiaShader* _shader)
+void iGaiaMaterial::Set_OperatingShader(iGaiaShader* _shader)
 {
     m_operatingShader = _shader;
 }
 
-inline iGaiaShader* iGaiaMaterial::Get_OperatingShader(void)
+iGaiaShader* iGaiaMaterial::Get_OperatingShader(void)
 {
     return m_operatingShader;
 }
 
-inline void iGaiaMaterial::InvalidateState(iGaiaMaterial::iGaia_E_RenderState _state, bool _value)
+void iGaiaMaterial::InvalidateState(iGaiaMaterial::iGaia_E_RenderState _state, bool _value)
 {
     m_states[_state] = _value;
 }

@@ -45,7 +45,7 @@ public:
     iGaia_E_CreationMode Get_CreationMode(void);
     iGaia_E_ResourceType Get_ResourceType(void);
 
-    virtual void Set_Settings(const map<ui32, ui32>& _settings);
+    virtual void Set_Settings(const map<ui32, ui32>& _settings) = 0;
 };
 
 #endif

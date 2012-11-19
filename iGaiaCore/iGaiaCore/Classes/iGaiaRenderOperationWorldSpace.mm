@@ -49,7 +49,7 @@ iGaiaRenderOperationWorldSpace::~iGaiaRenderOperationWorldSpace(void)
 
 }
 
-inline iGaiaTexture* iGaiaRenderOperationWorldSpace::Get_OperatingTexture(void)
+iGaiaTexture* iGaiaRenderOperationWorldSpace::Get_OperatingTexture(void)
 {
     return m_operatingTexture;
 }

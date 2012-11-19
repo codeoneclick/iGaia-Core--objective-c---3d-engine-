@@ -8,22 +8,22 @@
 
 #include "iGaiaLoader.h"
 
-inline iGaiaLoader::iGaia_E_LoadStatus iGaiaLoader::Get_Status(void)
+iGaiaLoader::iGaia_E_LoadStatus iGaiaLoader::Get_Status(void)
 {
     return m_status;
 }
 
-inline string iGaiaLoader::Get_Name(void)
+string iGaiaLoader::Get_Name(void)
 {
     return m_name;
 }
 
-inline void iGaiaLoader::AddEventListener(iGaiaLoadCallback *_listener)
+void iGaiaLoader::AddEventListener(iGaiaLoadCallback *_listener)
 {
     m_listeners.insert(_listener);
 }
 
-inline void iGaiaLoader::RemoveEventListener(iGaiaLoadCallback *_listener)
+void iGaiaLoader::RemoveEventListener(iGaiaLoadCallback *_listener)
 {
     m_listeners.erase(_listener);
 }

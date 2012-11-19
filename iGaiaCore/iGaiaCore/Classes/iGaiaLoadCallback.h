@@ -17,8 +17,9 @@ private:
 protected:
 
 public:
-    iGaiaLoadCallback(void) = default;
-    virtual ~iGaiaLoadCallback(void) = default;
+    iGaiaLoadCallback(void) { } ;
+    virtual ~iGaiaLoadCallback(void) { };
+    
     virtual void OnLoad(iGaiaResource* _resource) = 0;
 };
 

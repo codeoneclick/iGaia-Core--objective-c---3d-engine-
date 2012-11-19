@@ -18,12 +18,12 @@ iGaiaLight::~iGaiaLight(void)
     
 }
 
-inline void iGaiaLight::Set_Position(const vec3 &_position)
+void iGaiaLight::Set_Position(const vec3 &_position)
 {
     m_position = _position;
 }
 
-inline vec3 iGaiaLight::Get_Position(void)
+vec3 iGaiaLight::Get_Position(void)
 {
     return m_position;
 }

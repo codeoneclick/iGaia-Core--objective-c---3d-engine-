@@ -15,32 +15,33 @@ iGaiaResource::iGaiaResource(void)
     m_resourceType = iGaia_E_ResourceTypeUnknown;
 }
 
-inline void iGaiaResource::IncReferenceCount(void)
+void iGaiaResource::IncReferenceCount(void)
 {
     m_referencesCount++;
 }
 
-inline void iGaiaResource::DecReferenceCount(void)
+void iGaiaResource::DecReferenceCount(void)
 {
     m_referencesCount--;
 }
 
-inline i32 iGaiaResource::Get_ReferenceCount(void)
+i32 iGaiaResource::Get_ReferenceCount(void)
 {
     return m_referencesCount;
 }
 
-inline string iGaiaResource::Get_Name(void)
+string iGaiaResource::Get_Name(void)
 {
     return m_name;
 }
 
-inline iGaiaResource::iGaia_E_CreationMode iGaiaResource::Get_CreationMode(void)
+iGaiaResource::iGaia_E_CreationMode iGaiaResource::Get_CreationMode(void)
 {
     return m_creationMode;
 }
 
-inline iGaiaResource::iGaia_E_ResourceType iGaiaResource::Get_ResourceType(void)
+iGaiaResource::iGaia_E_ResourceType iGaiaResource::Get_ResourceType(void)
 {
     return m_resourceType;
 }
+

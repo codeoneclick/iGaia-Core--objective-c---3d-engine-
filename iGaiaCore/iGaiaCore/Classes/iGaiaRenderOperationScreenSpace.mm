@@ -85,12 +85,12 @@ iGaiaRenderOperationScreenSpace::~iGaiaRenderOperationScreenSpace(void)
 
 }
 
-inline iGaiaTexture* iGaiaRenderOperationScreenSpace::Get_OperatingTexture(void)
+iGaiaTexture* iGaiaRenderOperationScreenSpace::Get_OperatingTexture(void)
 {
     return m_operatingTexture;
 }
 
-inline iGaiaMaterial* iGaiaRenderOperationScreenSpace::Get_OperatingMaterial(void)
+iGaiaMaterial* iGaiaRenderOperationScreenSpace::Get_OperatingMaterial(void)
 {
     return m_operatingMaterial;
 }

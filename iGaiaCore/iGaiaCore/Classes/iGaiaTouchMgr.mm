@@ -20,17 +20,17 @@ iGaiaTouchMgr::~iGaiaTouchMgr(void)
     
 }
 
-inline void iGaiaTouchMgr::Set_OperationView(UIView* _view)
+void iGaiaTouchMgr::Set_OperationView(UIView* _view)
 {
     m_responder.m_operationView = _view;
 }
 
-inline iGaiaiOSTouchResponder* iGaiaTouchMgr::Get_TouchResponder(void)
+iGaiaiOSTouchResponder* iGaiaTouchMgr::Get_TouchResponder(void)
 {
     return m_responder;
 }
 
-inline iGaiaTouchCrosser* iGaiaTouchMgr::Get_TouchCrosser(void)
+iGaiaTouchCrosser* iGaiaTouchMgr::Get_TouchCrosser(void)
 {
     return m_crosser;
 }

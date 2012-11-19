@@ -60,7 +60,7 @@ iGaiaRenderOperationOutlet::~iGaiaRenderOperationOutlet(void)
 
 }
 
-inline iGaiaMaterial* iGaiaRenderOperationOutlet::Get_OperatingMaterial(void)
+iGaiaMaterial* iGaiaRenderOperationOutlet::Get_OperatingMaterial(void)
 {
     return m_operatingMaterial;
 }

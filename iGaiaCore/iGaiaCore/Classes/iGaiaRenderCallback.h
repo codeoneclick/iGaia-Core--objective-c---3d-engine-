@@ -17,8 +17,8 @@ private:
 protected:
 
 public:
-    iGaiaRenderCallback(void) = default;
-    virtual ~iGaiaRenderCallback(void) = default;
+    iGaiaRenderCallback(void) { };
+    virtual ~iGaiaRenderCallback(void) { };
 
     virtual ui32 Get_Priority(void) = 0;
 

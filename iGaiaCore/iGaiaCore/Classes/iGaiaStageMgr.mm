@@ -37,27 +37,27 @@ iGaiaStageMgr* iGaiaStageMgr::SharedInstance(void)
 }
 
 
-inline iGaiaRenderMgr* iGaiaStageMgr::Get_RenderMgr(void)
+iGaiaRenderMgr* iGaiaStageMgr::Get_RenderMgr(void)
 {
     return m_renderMgr;
 }
 
-inline iGaiaScriptMgr* iGaiaStageMgr::Get_ScriptMgr(void)
+iGaiaScriptMgr* iGaiaStageMgr::Get_ScriptMgr(void)
 {
     return m_scriptMgr;
 }
 
-inline iGaiaTouchMgr* iGaiaStageMgr::Get_TouchMgr(void)
+iGaiaTouchMgr* iGaiaStageMgr::Get_TouchMgr(void)
 {
     return m_touchMgr;
 }
 
-inline iGaiaParticleMgr* iGaiaStageMgr::Get_ParticleMgr(void)
+iGaiaParticleMgr* iGaiaStageMgr::Get_ParticleMgr(void)
 {
     return m_particleMgr;
 }
 
-inline iGaiaSoundMgr* iGaiaStageMgr::Get_SoundMgr(void)
+iGaiaSoundMgr* iGaiaStageMgr::Get_SoundMgr(void)
 {
     return m_soundMgr;
 }

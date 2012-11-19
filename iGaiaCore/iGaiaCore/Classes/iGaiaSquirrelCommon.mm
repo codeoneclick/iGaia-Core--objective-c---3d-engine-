@@ -80,7 +80,8 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
 
 iGaiaSquirrelCommon::iGaiaSquirrelCommon(void)
 {
-    if (m_squireel_vm == nil) {
+    if (m_squireel_vm == nil)
+    {
         m_squireel_vm = sq_open(k_SQUIRREL_VM_INITIAL_STACK_SIZE);
     }
     sqstd_seterrorhandlers(m_squireel_vm);

@@ -1385,6 +1385,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCore/Libs\"/**";
@@ -1402,6 +1403,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCore/Libs\"/**";
