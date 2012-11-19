@@ -5,20 +5,31 @@
 //  Created by Sergey Sergeev on 10/12/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaParticleMgrClass
+#define iGaiaParticleMgrClass
 
-#import <Foundation/Foundation.h>
+#include "iGaiaParticleEmitter.h"
 
-#import "iGaiaParticleEmitter.h"
+class iGaiaParticleMgr
+{
+private:
+    iGaiaCamera* m_camera;
+    set<iGaiaParticleEmitter*> m_listeners;
+    map<string, iGaiaParticleEmitterSettings*> m_settings;
+protected:
 
-@interface iGaiaParticleMgr : NSObject
+public:
+    iGaiaParticleMgr(void);
+    ~iGaiaParticleMgr(void);
 
-@property(nonatomic, assign) iGaiaCamera* m_camera;
+    void Set_Camera(iGaiaCamera* _camera);
 
-- (void)loadParticleEmitterFromFile:(NSString*)name;
-- (iGaiaParticleEmitter*)createParticleEmitterWithName:(NSString*)name;
-- (void)createParticleEmitterSettings:(id<iGaiaParticleEmitterSettings>)settings forKey:(NSString*)key;
-- (void)removeParticleEmitter:(iGaiaParticleEmitter*)emitter;
+    void LoadParticleEmitterFromFile(const string& _name);
+    iGaiaParticleEmitter* CreateParticleEmitter(const string& _name);
+    void RemoveParticleEmitter(iGaiaParticleEmitter* _emitter);
+    void PushParticleEmitterSettings(iGaiaParticleEmitterSettings* settings, const string& _name);
 
-- (void)onUpdate;
+    void OnUpdate(void);
+};
 
-@end
+#endif

@@ -10,35 +10,33 @@
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
 
-@interface iGaiaSquirrelObject3d()
+SQInteger sq_getPositionObject3d(HSQUIRRELVM vm);
+SQInteger sq_setPositionObject3d(HSQUIRRELVM vm);
+SQInteger sq_getRotationObject3d(HSQUIRRELVM vm);
+SQInteger sq_setRotationObject3d(HSQUIRRELVM vm);
+SQInteger sq_setShaderObject3d(HSQUIRRELVM vm);
+SQInteger sq_setTextureObject3d(HSQUIRRELVM vm);
 
-@property(nonatomic, assign) iGaiaSquirrelCommon* m_commonWrapper;
-
-@end
-
-
-@implementation iGaiaSquirrelObject3d
-
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon *)commonWrapper
+iGaiaSquirrelObject3d::iGaiaSquirrelObject3d(iGaiaSquirrelCommon* _commonWrapper)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_commonWrapper = commonWrapper;
-        [self bind];
-    }
-    return self;
+    m_commonWrapper = _commonWrapper;
+    Bind();
 }
 
-- (void)bind
+iGaiaSquirrelObject3d::~iGaiaSquirrelObject3d(void)
 {
-    [_m_commonWrapper registerClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_setPositionObject3d withName:@"setPositionObject3d" forClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_getPositionObject3d withName:@"getPositionObject3d" forClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_setRotationObject3d withName:@"setRotationObject3d" forClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_getRotationObject3d withName:@"getRotationObject3d" forClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_setShaderObject3d withName:@"setShader" forClass:@"Object3dWrapper"];
-    [_m_commonWrapper registerFunction:sq_setTextureObject3d withName:@"setTexture" forClass:@"Object3dWrapper"];
+    
+}
+
+void iGaiaSquirrelObject3d::Bind(void)
+{
+    m_commonWrapper->RegisterClass("Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setPositionObject3d, "setPositionObject3d", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_getPositionObject3d, "getPositionObject3d", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setRotationObject3d, "setRotationObject3d", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_getRotationObject3d, "getRotationObject3d", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setShaderObject3d, "setTexture", "Object3dWrapper");
+    m_commonWrapper->RegisterFunction(sq_setTextureObject3d, "setPositionObject3d", "Object3dWrapper");
 }
 
 SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)
@@ -47,14 +45,14 @@ SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        glm::vec3 position = shape3d.m_position;
-        [[iGaiaSquirrelCommon sharedInstance] pushVector3dX:position.x Y:position.y Z:position.z];
-        return YES;
+        SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        vec3 position = shape3d->Get_Position();
+        iGaiaSquirrelCommon::SharedInstance()->PushVecto3d(position.x, position.y, position.z);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
 
 SQInteger sq_setPositionObject3d(HSQUIRRELVM vm)
@@ -63,15 +61,15 @@ SQInteger sq_setPositionObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        glm::vec3 position;
-        [[iGaiaSquirrelCommon sharedInstance] popVector3dX:&position.x Y:&position.y Z:&position.z forIndex:3];
-        shape3d.m_position = position;
-        return YES;
+        SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        vec3 position;
+        iGaiaSquirrelCommon::SharedInstance()->PopVector3d(&position.x, &position.y, &position.z, 3);
+        shape3d->Set_Position(position);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
 
 SQInteger sq_getRotationObject3d(HSQUIRRELVM vm)
@@ -80,14 +78,14 @@ SQInteger sq_getRotationObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        glm::vec3 rotation = shape3d.m_rotation;
-        [[iGaiaSquirrelCommon sharedInstance] pushVector3dX:rotation.x Y:rotation.y Z:rotation.z];
-        return YES;
+        SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        vec3 rotation = shape3d->Get_Rotation();
+        iGaiaSquirrelCommon::SharedInstance()->PushVecto3d(rotation.x, rotation.y, rotation.z);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
 
 SQInteger sq_setRotationObject3d(HSQUIRRELVM vm)
@@ -96,15 +94,15 @@ SQInteger sq_setRotationObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        glm::vec3 rotation;
-        [[iGaiaSquirrelCommon sharedInstance] popVector3dX:&rotation.x Y:&rotation.y Z:&rotation.z forIndex:3];
-        shape3d.m_rotation = rotation;
-        return YES;
+        SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        vec3 rotation;
+        iGaiaSquirrelCommon::SharedInstance()->PopVector3d(&rotation.x, &rotation.y, &rotation.z, 3);
+        shape3d->Set_Rotation(rotation);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
 
 SQInteger sq_setShaderObject3d(HSQUIRRELVM vm)
@@ -113,15 +111,15 @@ SQInteger sq_setShaderObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        NSInteger shader = [[iGaiaSquirrelCommon sharedInstance] retriveIntegerValueWithIndex:3];
-        NSInteger mode = [[iGaiaSquirrelCommon sharedInstance] retriveIntegerValueWithIndex:4];
-        [shape3d setShader:(E_SHADER)shader forMode:mode];
-        return YES;
+        SQUserPointer ptr =iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        i32 shader = iGaiaSquirrelCommon::SharedInstance()->PopInteger(3); 
+        i32 mode = iGaiaSquirrelCommon::SharedInstance()->PopInteger(4);
+        shape3d->Set_Shader(static_cast<iGaiaShader::iGaia_E_Shader>(shader), mode);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
 
 SQInteger sq_setTextureObject3d(HSQUIRRELVM vm)
@@ -130,15 +128,13 @@ SQInteger sq_setTextureObject3d(HSQUIRRELVM vm)
     if(numArgs >= 2)
     {
         iGaiaShape3d* shape3d = nil;
-        SQUserPointer ptr = [[iGaiaSquirrelCommon sharedInstance] retriveDataPtrValueWithIndex:2];
-        shape3d = (__bridge iGaiaShape3d*)ptr;
-        const SQChar* f_name = [[iGaiaSquirrelCommon sharedInstance] retriveStringValueWithIndex:3];
-        NSInteger slot = [[iGaiaSquirrelCommon sharedInstance] retriveIntegerValueWithIndex:4];
-        [shape3d setTextureWithFileName:[[NSString alloc] initWithUTF8String:f_name] forSlot:(E_TEXTURE_SLOT)slot withWrap:iGaiaTextureSettingValues.clamp];
-        return YES;
+        SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
+        shape3d = (iGaiaShape3d*)ptr;
+        const SQChar* name = iGaiaSquirrelCommon::SharedInstance()->PopString(3); 
+        i32 slot = iGaiaSquirrelCommon::SharedInstance()->PopInteger(4);
+        shape3d->Set_Texture(name, static_cast<iGaiaShader::iGaia_E_ShaderTextureSlot>(slot), iGaiaTexture::iGaia_E_TextureSettingsValueClamp);
+        return true;
     }
     iGaiaLog(@"Script call args NULL.");
-    return NO;
+    return false;
 }
-
-@end

@@ -5,7 +5,7 @@
 //  Created by Sergey Sergeev on 10/16/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-
+/*
 #import "iGaiaSquirrelParticleMgr.h"
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
@@ -54,3 +54,4 @@ SQInteger sq_createParticleEmmiter(HSQUIRRELVM vm)
 
 
 @end
+*/

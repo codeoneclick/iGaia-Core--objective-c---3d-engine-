@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaSquirrelRuntimeClass
+#define iGaiaSquirrelRuntimeClass
+
 #include "iGaiaCommon.h"
 #include "iGaiaSquirrelCommon.h"
 
@@ -22,3 +25,5 @@ public:
     
     void sq_OnUpdate(void);
 };
+
+#endif

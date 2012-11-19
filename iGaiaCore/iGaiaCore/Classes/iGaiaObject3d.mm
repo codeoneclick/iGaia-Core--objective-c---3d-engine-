@@ -43,7 +43,7 @@ inline void iGaiaObject3d::Set_Position(const vec3& _position)
 
 inline vec3 iGaiaObject3d::Get_Position(void)
 {
-    returm m_position;
+    return m_position;
 }
 
 inline void iGaiaObject3d::Set_Rotation(const vec3& _rotation)
@@ -117,7 +117,7 @@ void iGaiaObject3d::OnUpdate(void)
             
             translationMatrix = translate(mat4(1.0f), position);
             
-            scaleMatrix = scale(mat4(1.0f), scale);
+            scaleMatrix = glm::scale(mat4(1.0f), scale);
             
             worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -140,30 +140,30 @@ void iGaiaObject3d::OnUpdate(void)
     }
 }
 
-void OnLoad(iGaiaResource* _resource)
+void iGaiaObject3d::OnLoad(iGaiaResource* _resource)
 {
     
 }
 
-ui32 Get_Priority(void)
+ui32 iGaiaObject3d::Get_Priority(void)
 {
     return 0;
 }
 
-void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     m_material->Bind(_mode);
-    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_OperatingShader);
+    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_OperatingShader());
     m_mesh->Bind();
 }
 
-void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
-    m_material->Unbind();
+    m_material->Unbind(_mode);
     m_mesh->Unbind();
 }
 
-void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     
 }

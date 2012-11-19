@@ -7,133 +7,121 @@
 //
 
 #import "iGaiaStageMgr.h"
-#import "iGaiaLoop.h"
 #import "iGaiaLogger.h"
-#import "iGaiaCommon.h"
 
-@interface iGaiaStageMgr()<iGaiaLoopCallback>
-
-@property(nonatomic, strong) NSMutableSet* m_listeners;
-@property(nonatomic, strong) iGaiaCamera* m_camera;
-@property(nonatomic, strong) iGaiaLight* m_light;
-@property(nonatomic, strong) iGaiaOcean* m_ocean;
-
-@property(nonatomic, readwrite) iGaiaRenderMgr* m_renderMgr;
-@property(nonatomic, readwrite) iGaiaScriptMgr* m_scriptMgr;
-@property(nonatomic, readwrite) iGaiaTouchMgr* m_touchMgr;
-@property(nonatomic, readwrite) iGaiaParticleMgr* m_particleMgr;
-
-
-@end
-
-@implementation iGaiaStageMgr
-
-@synthesize m_listeners = _m_listeners;
-@synthesize m_camera = _m_camera;
-@synthesize m_light = _m_light;
-@synthesize m_ocean = _m_ocean;
-
-@synthesize m_renderMgr= _m_renderMgr;
-@synthesize m_scriptMgr = _m_scriptMgr;
-@synthesize m_touchMgr = _m_touchMgr;
-@synthesize m_particleMgr = _m_particleMgr;
-
-+ (iGaiaStageMgr *)sharedInstance
+iGaiaStageMgr::iGaiaStageMgr(void)
 {
-    static iGaiaStageMgr *_shared = nil;
+    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:this];
+
+    m_renderMgr = new iGaiaRenderMgr();
+    m_touchMgr = new iGaiaTouchMgr(); //[iGaiaTouchMgr new];
+    m_touchMgr->Set_OperationView(m_renderMgr->Get_GLView());
+    m_scriptMgr = new iGaiaScriptMgr();
+    m_particleMgr = new iGaiaParticleMgr();
+    m_soundMgr = new iGaiaSoundMgr();
+}
+
+iGaiaStageMgr::~iGaiaStageMgr(void)
+{
+    
+}
+
+iGaiaStageMgr* iGaiaStageMgr::SharedInstance(void)
+{
+    static iGaiaStageMgr *instance = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        _shared = [[self alloc] init];
+        instance = new iGaiaStageMgr();
     });
-    return _shared;
+    return instance;
 }
 
-- (id)init
+
+inline iGaiaRenderMgr* iGaiaStageMgr::Get_RenderMgr(void)
 {
-    self = [super init];
-    if(self)
+    return m_renderMgr;
+}
+
+inline iGaiaScriptMgr* iGaiaStageMgr::Get_ScriptMgr(void)
+{
+    return m_scriptMgr;
+}
+
+inline iGaiaTouchMgr* iGaiaStageMgr::Get_TouchMgr(void)
+{
+    return m_touchMgr;
+}
+
+inline iGaiaParticleMgr* iGaiaStageMgr::Get_ParticleMgr(void)
+{
+    return m_particleMgr;
+}
+
+inline iGaiaSoundMgr* iGaiaStageMgr::Get_SoundMgr(void)
+{
+    return m_soundMgr;
+}
+
+iGaiaCamera* iGaiaStageMgr::CreateCamera(f32 _fov, f32 _near, f32 _far, ui32 _width, ui32 _height)
+{
+    m_camera = new iGaiaCamera(_fov, _near, _far, _width, _height);
+
+    for(iGaiaObject3d* object3d : m_listeners)
     {
-        _m_listeners = [NSMutableSet new];
-
-        [[iGaiaLoop sharedInstance] addEventListener:self];
-
-        _m_renderMgr = [iGaiaRenderMgr new];
-        _m_touchMgr = [iGaiaTouchMgr new];
-        _m_touchMgr.m_operationView = _m_renderMgr.m_glView;
-        _m_scriptMgr = [iGaiaScriptMgr new];
-        _m_particleMgr = [iGaiaParticleMgr new];
-        _m_soundMgr = [iGaiaSoundMgr new];
+        object3d->Set_Camera(m_camera);
     }
-    return self;
+    m_particleMgr->Set_Camera(m_camera);
+    m_touchMgr->Get_TouchCrosser()->Set_Camera(m_camera);
+    return m_camera;
 }
 
-- (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
+iGaiaLight* iGaiaStageMgr::CreateLight(void)
 {
-    _m_camera = [[iGaiaCamera alloc] initWithFov:fov withNear:near withFar:far forScreenWidth:width forScreenHeight:height];
-    
-    for(iGaiaObject3d* object3d in _m_listeners)
-    {
-        object3d.m_camera = _m_camera;
-    }
-    
-    _m_particleMgr.m_camera = _m_camera;
-    
-    _m_touchMgr.m_crosser.m_camera = _m_camera;
-    return _m_camera;
+    m_light = new iGaiaLight();
+    return m_light;
 }
 
-- (iGaiaLight*)createLight
+iGaiaShape3d* iGaiaStageMgr::CreateShape3d(const string& _name)
 {
-    return [iGaiaLight new];
-}
-
-- (iGaiaShape3d*)createShape3dWithFileName:(NSString *)name
-{
-    iGaiaShape3d* shape3d = [[iGaiaShape3d alloc] initWithMeshFileName:name];
-    shape3d.m_camera = _m_camera;
-    [_m_listeners addObject:shape3d];
-    [_m_touchMgr.m_crosser addEventListener:shape3d];
+    iGaiaShape3d* shape3d = new iGaiaShape3d(_name);
+    shape3d->Set_Camera(m_camera);
+    m_listeners.insert(shape3d);
+    m_touchMgr->Get_TouchCrosser()->AddEventListener(shape3d);
     return shape3d;
 }
 
-- (iGaiaOcean*)createOceanWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude
+iGaiaOcean* iGaiaStageMgr::CreateOcean(f32 _width, f32 _height, f32 _altitude)
 {
-    for(id<iGaiaUpdateCallback> listener in _m_listeners)
+    for(iGaiaUpdateCallback* listener : m_listeners)
     {
-        if([listener isKindOfClass:[iGaiaShape3d class]])
-        {
-            iGaiaShape3d* shape3d = static_cast<iGaiaShape3d*>(listener);
-            [shape3d setClipping:glm::vec4(0.0f, 1.0f, 0.0f, altitude)];
-        }
+        iGaiaShape3d* shape3d = static_cast<iGaiaShape3d*>(listener);
+        shape3d->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, _altitude));
     }
-    _m_camera.m_altitude = altitude;
-    
-    _m_ocean = [[iGaiaOcean alloc] initWithWidth:witdh withHeight:height withAltitude:altitude];
-    _m_ocean.m_camera = _m_camera;
-    _m_ocean.m_reflectionTexture = [_m_renderMgr retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    _m_ocean.m_refractionTexture = [_m_renderMgr retriveTextureFromWorldSpaceRenderMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [_m_listeners addObject:_m_ocean];
-    return _m_ocean;
+    m_camera->Set_Altitude(_altitude);
+
+    m_ocean = new iGaiaOcean(_width, _height, _altitude);
+    m_ocean->Set_Camera(m_camera);
+    m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection));
+    m_ocean->Set_RefractionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction));
+    m_listeners.insert(m_ocean);
+    return m_ocean;
 }
 
-- (iGaiaSkyDome*)createSkyDome
+iGaiaSkyDome* iGaiaStageMgr::CreateSkyDome(void)
 {
-    iGaiaSkyDome* skydome = [[iGaiaSkyDome alloc] init];
-    skydome.m_camera = _m_camera;
-    [_m_listeners addObject:skydome];
+    iGaiaSkyDome* skydome = new iGaiaSkyDome();
+    skydome->Set_Camera(m_camera);
+    m_listeners.insert(skydome);
     return skydome;
 }
 
-- (void)onUpdate
+void iGaiaStageMgr::OnUpdate(void)
 {
-    [_m_camera onUpdate];
-    
-    for(id<iGaiaUpdateCallback> listener in _m_listeners)
-    {
-        [listener onUpdate];
-    }
-    
-    [_m_particleMgr onUpdate];
-}
+    m_camera->OnUpdate();
 
-@end
+    for(iGaiaUpdateCallback* listener : m_listeners)
+    {
+        listener->OnUpdate();
+    }
+    m_particleMgr->OnUpdate();
+}

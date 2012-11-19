@@ -6,25 +6,40 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <squirrel.h>
+#ifndef iGaiaScriptMgrClass
+#define iGaiaScriptMgrClass
 
-#import "iGaiaSquirrelRuntime.h"
-#import "iGaiaSquirrelCommon.h"
-#import "iGaiaSquirrelScene.h"
-#import "iGaiaSquirrelObject3d.h"
-#import "iGaiaSquirrelParticleMgr.h"
-#import "iGaiaSquirrelParticleEmitter.h"
+#include <squirrel.h>
 
-@interface iGaiaScriptMgr : NSObject
+#include "iGaiaSquirrelRuntime.h"
+#include "iGaiaSquirrelCommon.h"
+#include "iGaiaSquirrelScene.h"
+#include "iGaiaSquirrelObject3d.h"
+#include "iGaiaSquirrelParticleMgr.h"
+#include "iGaiaSquirrelParticleEmitter.h"
 
-@property(nonatomic, readonly) iGaiaSquirrelCommon* m_commonWrapper;
-@property(nonatomic, readonly) iGaiaSquirrelRuntime* m_runtimeWrapper;
-@property(nonatomic, readonly) iGaiaSquirrelScene* m_sceneWrapper;
-@property(nonatomic, readonly) iGaiaSquirrelObject3d* m_object3dWrapper;
-@property(nonatomic, readonly) iGaiaSquirrelParticleMgr* m_particleMgrWrapper;
-@property(nonatomic, readonly) iGaiaSquirrelParticleEmitter* m_particleEmitterWrapper;
+class iGaiaScriptMgr
+{
+private:
+    iGaiaSquirrelCommon* m_commonWrapper;
+    iGaiaSquirrelRuntime* m_runtimeWrapper;
+    iGaiaSquirrelScene* m_sceneWrapper;
+    iGaiaSquirrelObject3d* m_object3dWrapper;
+    iGaiaSquirrelParticleEmitter* m_particleEmitterWrapper;
+protected:
 
-- (BOOL)loadScriptWithFileName:(NSString*)name;
+public:
+    iGaiaScriptMgr(void);
+    ~iGaiaScriptMgr(void);
 
-@end
+    iGaiaSquirrelCommon* Get_CommonWrapper(void);
+    iGaiaSquirrelRuntime* Get_RuntimeWrapper(void);
+    iGaiaSquirrelScene* Get_SceneWrapper(void);
+    iGaiaSquirrelObject3d* Get_Object3dWrapper(void);
+    iGaiaSquirrelParticleEmitter* Get_ParticleEmitterWrapper(void);
+
+    bool LoadScript(const string& _name);
+};
+
+
+#endif

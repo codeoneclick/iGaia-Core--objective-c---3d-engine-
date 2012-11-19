@@ -38,12 +38,12 @@
 		A4ADF481160B6FE4000D6A0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF480160B6FE4000D6A0A /* main.m */; };
 		A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4EB160B70E4000D6A0A /* libiGaiaCore.a */; };
 		A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */; };
-		A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.m */; };
+		A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.mm */; };
 		A4D1B2931642C2B800FA3BE5 /* iGaiaRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1B2911642C2B800FA3BE5 /* iGaiaRootViewController.xib */; };
 		A4D1F071160C43D7005307F4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06A160C43D7005307F4 /* AppDelegate.mm */; };
 		A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06C160C43D7005307F4 /* FirstViewController.mm */; };
 		A4D1F073160C43D7005307F4 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F06D160C43D7005307F4 /* FirstViewController.xib */; };
-		A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06F160C43D7005307F4 /* SecondViewController.m */; };
+		A4D1F074160C43D7005307F4 /* SecondViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06F160C43D7005307F4 /* SecondViewController.mm */; };
 		A4D1F075160C43D7005307F4 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F070160C43D7005307F4 /* SecondViewController.xib */; };
 		A4D1F07E160C43FC005307F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F077160C43FC005307F4 /* Default-568h@2x.png */; };
 		A4D1F07F160C43FC005307F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D1F078160C43FC005307F4 /* Default.png */; };
@@ -112,7 +112,7 @@
 		A4ADF4CC160B70E3000D6A0A /* iGaiaCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCore.xcodeproj; path = ../../iGaiaCore/iGaiaCore.xcodeproj; sourceTree = "<group>"; };
 		A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A4D1B28F1642C2B800FA3BE5 /* iGaiaRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaRootViewController.h; sourceTree = "<group>"; };
-		A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGaiaRootViewController.m; sourceTree = "<group>"; };
+		A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaRootViewController.mm; sourceTree = "<group>"; };
 		A4D1B2911642C2B800FA3BE5 /* iGaiaRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iGaiaRootViewController.xib; sourceTree = "<group>"; };
 		A4D1F069160C43D7005307F4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A4D1F06A160C43D7005307F4 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		A4D1F06C160C43D7005307F4 /* FirstViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FirstViewController.mm; sourceTree = "<group>"; };
 		A4D1F06D160C43D7005307F4 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		A4D1F06E160C43D7005307F4 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		A4D1F06F160C43D7005307F4 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A4D1F06F160C43D7005307F4 /* SecondViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SecondViewController.mm; sourceTree = "<group>"; };
 		A4D1F070160C43D7005307F4 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		A4D1F077160C43FC005307F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A4D1F078160C43FC005307F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D1B28F1642C2B800FA3BE5 /* iGaiaRootViewController.h */,
-				A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.m */,
+				A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.mm */,
 				A4D1B2911642C2B800FA3BE5 /* iGaiaRootViewController.xib */,
 			);
 			name = ViewControllers;
@@ -305,7 +305,7 @@
 				A4D1F06C160C43D7005307F4 /* FirstViewController.mm */,
 				A4D1F06D160C43D7005307F4 /* FirstViewController.xib */,
 				A4D1F06E160C43D7005307F4 /* SecondViewController.h */,
-				A4D1F06F160C43D7005307F4 /* SecondViewController.m */,
+				A4D1F06F160C43D7005307F4 /* SecondViewController.mm */,
 				A4D1F070160C43D7005307F4 /* SecondViewController.xib */,
 			);
 			path = Classes;
@@ -465,8 +465,8 @@
 				A4ADF481160B6FE4000D6A0A /* main.m in Sources */,
 				A4D1F071160C43D7005307F4 /* AppDelegate.mm in Sources */,
 				A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */,
-				A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */,
-				A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.m in Sources */,
+				A4D1F074160C43D7005307F4 /* SecondViewController.mm in Sources */,
+				A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,8 +544,11 @@
 		A4ADF4A3160B6FE5000D6A0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
@@ -565,8 +568,11 @@
 		A4ADF4A4160B6FE5000D6A0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";

@@ -5,12 +5,22 @@
 //  Created by Sergey Sergeev on 10/11/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaSquirrelSceneClass
+#define iGaiaSquirrelSceneClass
 
-#import <Foundation/Foundation.h>
 #import "iGaiaSquirrelCommon.h"
 
-@interface iGaiaSquirrelScene : NSObject
+class iGaiaSquirrelScene
+{
+private:
+    iGaiaSquirrelCommon* m_commonWrapper;
+    void Bind(void);
+protected:
 
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
+public:
+    iGaiaSquirrelScene(iGaiaSquirrelCommon* _commonWrapper);
+    ~iGaiaSquirrelScene(void);
+};
 
-@end
+
+#endif

@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
+#ifndef iGaiaSquirrelCommonClass
+#define iGaiaSquirrelCommonClass
+
 #include "iGaiaCommon.h"
 #include <squirrel.h>
 
@@ -13,6 +16,7 @@ class iGaiaSquirrelCommon
 {
 private:
     HSQUIRRELVM m_squireel_vm;
+    SQBool PopFloatArray(SQFloat* _value, const string& _name, i32 _index);
 protected:
     
 public:
@@ -23,15 +27,15 @@ public:
     
     void RegisterTable(const string& _name);
     void RegisterClass(const string& _name);
-    void RegisterFunction(const string& _name);
+    void RegisterFunction(SQFUNCTION _function, const string& _functionName, const string& _className);
     
     bool LoadScript(const string& _name);
     
-    bool CallFunction(SQFUNCTION _function, const string& _name, SQFloat* _params, ui32 _count);
+    bool CallFunction(const string& _name, SQFloat* _params, ui32 _count);
 
-    void PopVector2d(SQFloat* _x, SQFloat* _y);
-    void PopVector3d(SQFloat* _x, SQFloat* _y, SQFloat* _z);
-    void PopVector4d(SQFloat* _x, SQFloat* _y, SQFloat* _z, SQFloat* _w);
+    void PopVector2d(SQFloat* _x, SQFloat* _y, i32 _index);
+    void PopVector3d(SQFloat* _x, SQFloat* _y, SQFloat* _z, i32 _index);
+    void PopVector4d(SQFloat* _x, SQFloat* _y, SQFloat* _z, SQFloat* _w, i32 _index);
 
     void PushVecto3d(SQFloat _x, SQFloat _y, SQFloat _z);
 
@@ -41,4 +45,5 @@ public:
     SQUserPointer PopUserData(i32 _index);
 };
 
+#endif
 

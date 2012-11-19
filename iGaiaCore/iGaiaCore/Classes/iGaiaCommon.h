@@ -12,10 +12,12 @@
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
 
+#include "stdlib.h"
+#include <iostream>
+#include <map>
 #include <algorithm>
 #include <string>
 #include <vector>
-#include <map>
 #include <numeric>
 #include <future>
 #include <mutex>
@@ -35,6 +37,11 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
+#include <AudioToolbox/AudioToolbox.h>
+#include <AVFoundation/AVAudioPlayer.h>
+
 using namespace std;
 using namespace glm;
 
@@ -47,8 +54,8 @@ typedef unsigned int ui32;
 typedef unsigned long long ui64;
 typedef float f32;
 
-static f32 Get_Random(f32 _minValue, f32 _maxValue);
-static ui64 Get_TickCount(void);
+f32 Get_Random(f32 _minValue, f32 _maxValue);
+ui64 Get_TickCount(void);
 
 
 #endif

@@ -10,10 +10,10 @@
 
 SQInteger sq_import(HSQUIRRELVM vm);
 
-
 iGaiaSquirrelRuntime::iGaiaSquirrelRuntime(iGaiaSquirrelCommon* _commonWrapper)
 {
     m_commonWrapper = _commonWrapper;
+    Bind();
 }
 
 iGaiaSquirrelRuntime::~iGaiaSquirrelRuntime(void)
@@ -23,36 +23,15 @@ iGaiaSquirrelRuntime::~iGaiaSquirrelRuntime(void)
 
 void iGaiaSquirrelRuntime::Bind(void)
 {
-    [_m_commonWrapper registerClass:@"Runtime"];
-    [_m_commonWrapper registerFunction:sq_import withName:@"import" forClass:@"Runtime"];
+    m_commonWrapper->RegisterClass("Runtime");
+    m_commonWrapper->RegisterFunction(sq_import, "import", "Runtime");
 }
 
-@interface iGaiaSquirrelRuntime()
-
-@property(nonatomic, assign) iGaiaSquirrelCommon* m_commonWrapper;
-
-@end
-
-@implementation iGaiaSquirrelRuntime
-
-@synthesize m_commonWrapper = _m_commonWrapper;
-
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon *)commonWrapper
+void iGaiaSquirrelRuntime::sq_OnUpdate(void)
 {
-    self = [super init];
-    if(self)
-    {
-        _m_commonWrapper = commonWrapper;
-        [self bind];
-    }
-    return self;
+    iGaiaSquirrelCommon::SharedInstance()->CallFunction("onUpdate", nullptr, 0);
 }
 
-- (void)bind
-{
-    [_m_commonWrapper registerClass:@"Runtime"];
-    [_m_commonWrapper registerFunction:sq_import withName:@"import" forClass:@"Runtime"];
-}
 
 SQInteger sq_import(HSQUIRRELVM vm)
 {
@@ -65,15 +44,8 @@ SQInteger sq_import(HSQUIRRELVM vm)
             sq_tostring(vm, n);
             sq_getstring(vm, -1, &f_name);
             sq_poptop(vm);
-            [[iGaiaSquirrelCommon sharedInstance] loadScriptWithFileName:[NSString stringWithCString:f_name encoding:NSUTF8StringEncoding]];
+            iGaiaSquirrelCommon::SharedInstance()->LoadScript(f_name);
     	}
     }
 	return 0;
 }
-
-- (void)sq_onUpdate
-{
-    [[iGaiaSquirrelCommon sharedInstance] callFunctionWithName:@"onUpdate" withParams:nil withCount:0];
-}
-
-@end

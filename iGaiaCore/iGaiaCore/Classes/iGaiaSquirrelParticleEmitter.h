@@ -5,13 +5,21 @@
 //  Created by Sergey Sergeev on 10/18/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
+#ifndef iGaiaSquirrelParticleEmitterClass
+#define iGaiaSquirrelParticleEmitterClass
 
 #import "iGaiaSquirrelCommon.h"
 
-@interface iGaiaSquirrelParticleEmitter : NSObject
+class iGaiaSquirrelParticleEmitter
+{
+private:
+    iGaiaSquirrelCommon* m_commonWrapper;
+    void Bind(void);
+protected:
 
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
+public:
+    iGaiaSquirrelParticleEmitter(iGaiaSquirrelCommon* _commonWrapper);
+    ~iGaiaSquirrelParticleEmitter(void);
+};
 
-@end
+#endif

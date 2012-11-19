@@ -5,22 +5,39 @@
 //  Created by Sergey Sergeev on 22/05/2012.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
+#ifndef iGaiaSoundMgrClass
+#define iGaiaSoundMgrClass
 
-#import <Foundation/Foundation.h>
-#import <OpenAL/al.h>
-#import <OpenAL/alc.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVAudioPlayer.h>
+#include "iGaiaCommon.h"
 
 #define kMaxSources 32
 
-@interface iGaiaSoundMgr : NSObject
+class iGaiaSoundMgr
+{
+private:
+    ALCcontext* m_context;
+    ALCdevice* m_device;
 
-- (void)createSoundFromFile:(NSString*)name withExtension:(NSString*)extension withKey:(NSString*)key withFrequency:(NSUInteger)frequency;
-- (void)createBackgroundMusicFromFile:(NSString*)name withExtension:(NSString*)extension withKey:(NSString*)key;
+    ui32 m_sources[kMaxSources];
+    map<string, ui32> m_sounds;
+    map<string, string> m_music;
 
-- (NSUInteger)playSoundWithKey:(NSString*)key withGain:(ALfloat)gain withPitch:(ALfloat)pitch shouldLoop:(BOOL)loop;
-- (void)playMusicWithKey:(NSString*)key timesToRepeat:(NSUInteger)timesToRepeat;
-- (void)stopPlayingMusic;
+    AVAudioPlayer* m_backgroundAudio;
+    ALfloat m_backgroundVolume;
 
-@end
+    ui32 RetriveAvailableSource(void);
+protected:
+
+public:
+    iGaiaSoundMgr(void);
+    ~iGaiaSoundMgr(void);
+
+    void CreateSound(const string& _name, const string& _extension, const string& _key, ui32 _frequency);
+    void CreateMusic(const string& _name, const string& _extension, const string& _key);
+
+    ui32 PlaySound(const string& _key, ALfloat _gain, ALfloat _pitch, bool _loop);
+    void PlayMusic(const string& _key, ui32 _repeatCount);
+    void StopMusic(void);
+};
+
+#endif

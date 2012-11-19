@@ -5,36 +5,56 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaStageMgrClass
+#define iGaiaStageMgrClass
 
-#import <Foundation/Foundation.h>
+#include "iGaiaCamera.h"
+#include "iGaiaLight.h"
+#include "iGaiaShape3d.h"
+#include "iGaiaBillboard.h"
+#include "iGaiaOcean.h"
+#include "iGaiaSkyDome.h"
+#include "iGaiaScriptMgr.h"
+#include "iGaiaTouchMgr.h"
+#include "iGaiaRenderMgr.h"
+#include "iGaiaParticleMgr.h"
+#include "iGaiaSoundMgr.h"
+#include "iGaiaiOSGameLoop.h"
 
-#import "iGaiaCamera.h"
-#import "iGaiaLight.h"
-#import "iGaiaShape3d.h"
-#import "iGaiaBillboard.h"
-#import "iGaiaOcean.h"
-#import "iGaiaSkyDome.h"
-#import "iGaiaScriptMgr.h"
-#import "iGaiaTouchMgr.h"
-#import "iGaiaRenderMgr.h"
-#import "iGaiaParticleMgr.h"
-#import "iGaiaSoundMgr.h"
+class iGaiaStageMgr : public iGaiaLoopCallback
+{
+private:
+    iGaiaRenderMgr* m_renderMgr;
+    iGaiaScriptMgr* m_scriptMgr;
+    iGaiaTouchMgr* m_touchMgr;
+    iGaiaParticleMgr* m_particleMgr;
+    iGaiaSoundMgr* m_soundMgr;
 
-@interface iGaiaStageMgr : NSObject
+    set<iGaiaObject3d*> m_listeners;
+    iGaiaCamera* m_camera;
+    iGaiaLight* m_light;
+    iGaiaOcean* m_ocean;
+protected:
+    
+public:
+    iGaiaStageMgr(void);
+    ~iGaiaStageMgr(void);
 
-@property(nonatomic, readonly) iGaiaRenderMgr* m_renderMgr;
-@property(nonatomic, readonly) iGaiaScriptMgr* m_scriptMgr;
-@property(nonatomic, readonly) iGaiaTouchMgr* m_touchMgr;
-@property(nonatomic, readonly) iGaiaParticleMgr* m_particleMgr;
-@property(nonatomic, readonly) iGaiaSoundMgr* m_soundMgr;
+    static iGaiaStageMgr* SharedInstance(void);
 
+    iGaiaRenderMgr* Get_RenderMgr(void);
+    iGaiaScriptMgr* Get_ScriptMgr(void);
+    iGaiaTouchMgr* Get_TouchMgr(void);
+    iGaiaParticleMgr* Get_ParticleMgr(void);
+    iGaiaSoundMgr* Get_SoundMgr(void);
 
-+ (iGaiaStageMgr *)sharedInstance;
+    iGaiaCamera* CreateCamera(f32 _fov, f32 _near, f32 _far, ui32 _width, ui32 _height);
+    iGaiaLight* CreateLight(void);
+    iGaiaShape3d* CreateShape3d(const string& _name);
+    iGaiaOcean* CreateOcean(f32 _width, f32 _height, f32 _altitude);
+    iGaiaSkyDome* CreateSkyDome(void);
 
-- (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height;
-- (iGaiaLight*)createLight;
-- (iGaiaShape3d*)createShape3dWithFileName:(NSString*)name;
-- (iGaiaOcean*)createOceanWithWidth:(float)witdh withHeight:(float)height withAltitude:(float)altitude;
-- (iGaiaSkyDome*)createSkyDome;
+    void OnUpdate(void);
+};
 
-@end
+#endif

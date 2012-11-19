@@ -5,12 +5,22 @@
 //  Created by Sergey Sergeev on 10/11/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaSquirrelObject3dClass
+#define iGaiaSquirrelObject3dClass
 
-#import <Foundation/Foundation.h>
 #import "iGaiaSquirrelCommon.h"
 
-@interface iGaiaSquirrelObject3d : NSObject
+class iGaiaSquirrelObject3d
+{
+private:
+    iGaiaSquirrelCommon* m_commonWrapper;
+    void Bind(void);
+protected:
 
-- (id)initWithCommonWrapper:(iGaiaSquirrelCommon*)commonWrapper;
+public:
+    iGaiaSquirrelObject3d(iGaiaSquirrelCommon* _commonWrapper);
+    ~iGaiaSquirrelObject3d(void);
+};
 
-@end
+#endif
+
