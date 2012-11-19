@@ -35,14 +35,12 @@ inline string iGaiaResource::Get_Name(void)
     return m_name;
 }
 
-inline iGaia_E_CreationMode iGaiaResource::Get_CreationMode(void)
+inline iGaiaResource::iGaia_E_CreationMode iGaiaResource::Get_CreationMode(void)
 {
     return m_creationMode;
 }
 
-inline iGaia_E_ResourceType iGaiaResource::Get_ResourceType(void)
+inline iGaiaResource::iGaia_E_ResourceType iGaiaResource::Get_ResourceType(void)
 {
     return m_resourceType;
 }
-
-void
