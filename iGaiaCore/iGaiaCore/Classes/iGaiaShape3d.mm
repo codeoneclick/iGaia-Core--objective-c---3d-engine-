@@ -20,7 +20,7 @@ iGaiaShape3d::iGaiaShape3d(const string& _name)
     m_crossingNumVertexes = 0;
     m_crossingNumIndexes = 0;
     
-    iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name);
+    m_mesh = static_cast<iGaiaMesh*>(iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name));
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);

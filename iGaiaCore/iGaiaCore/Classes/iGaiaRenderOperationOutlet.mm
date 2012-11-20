@@ -86,6 +86,6 @@ void iGaiaRenderOperationOutlet::Unbind(void)
 
 void iGaiaRenderOperationOutlet::Draw(void)
 {
-    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)NULL);
+    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, nullptr);
 }
 

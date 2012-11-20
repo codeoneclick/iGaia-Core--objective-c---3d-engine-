@@ -63,7 +63,7 @@ iGaiaRenderOperationScreenSpace::iGaiaRenderOperationScreenSpace(vec2 _frameSize
     indexData[3] = 1;
     indexData[4] = 2;
     indexData[5] = 3;
-    indexBuffer->Lock();
+    indexBuffer->Unlock();
 
     m_operatingMaterial = new iGaiaMaterial();
     m_operatingMaterial->Set_Shader(_shader, k_RENDER_OPERATION_SCREEN_SPACE_MODE);
@@ -116,6 +116,6 @@ void iGaiaRenderOperationScreenSpace::Unbind(void)
 
 void iGaiaRenderOperationScreenSpace::Draw(void)
 {
-    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)NULL);
+    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, nullptr);
 }
 

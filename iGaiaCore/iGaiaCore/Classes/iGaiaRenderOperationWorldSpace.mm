@@ -87,7 +87,7 @@ void iGaiaRenderOperationWorldSpace::Bind(void)
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
     glViewport(0, 0, m_frameSize.x, m_frameSize.y);
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
@@ -98,16 +98,14 @@ void iGaiaRenderOperationWorldSpace::Unbind(void)
 
 void iGaiaRenderOperationWorldSpace::Draw(void)
 {
-    for(ui32 i = 0; i < kMaxRenderPriority; ++i)
+    for(map<ui32, set<iGaiaRenderCallback*>>::iterator iterator_01 = m_listeners.begin(); iterator_01 != m_listeners.end(); ++iterator_01)
     {
-        if(m_listeners.find(i) != m_listeners.end())
+        for(set<iGaiaRenderCallback*>::iterator iterator_02 = (*iterator_01).second.begin(); iterator_02 !=  (*iterator_01).second.end(); ++iterator_02)
         {
-            for(iGaiaRenderCallback* listener : m_listeners[i])
-            {
-                listener->OnBind(m_mode);
-                listener->OnDraw(m_mode);
-                listener->OnUnbind(m_mode);
-            }
+            iGaiaRenderCallback* listener = (*iterator_02);
+            listener->OnBind(m_mode);
+            listener->OnDraw(m_mode);
+            listener->OnUnbind(m_mode);
         }
     }
 }

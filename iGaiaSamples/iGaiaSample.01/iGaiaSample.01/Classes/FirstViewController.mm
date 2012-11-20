@@ -23,7 +23,8 @@
 
 @interface FirstViewController ()
 {
-    iGaiaCamera* _m_camera;
+    iGaiaCamera* m_camera;
+    iGaiaLight* m_light;
 }
 @end
 
@@ -112,13 +113,13 @@ std::mutex mutex_01;
     [self.view addSubview:iGaiaStageMgr::SharedInstance()->Get_RenderMgr()->Get_GLView()];
     
     CGRect viewport = CGRectMake(0, 0, 320, 480);
-    _m_camera = iGaiaStageMgr::SharedInstance()->CreateCamera(45.0f, 0.1f, 1000.0f, viewport.size.width, viewport.size.height);
+    m_camera = iGaiaStageMgr::SharedInstance()->CreateCamera(45.0f, 0.1f, 1000.0f, viewport.size.width, viewport.size.height);
     //_m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
-    _m_camera->Set_Position(vec3(0.0f, 0.0f, 0.0f));
-    _m_camera->Set_LookAt(vec3(16.0f, 0.0f, 32.0f));
+    m_camera->Set_Position(vec3(0.0f, 0.0f, 0.0f));
+    m_camera->Set_LookAt(vec3(16.0f, 0.0f, 32.0f));
     //_m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     //_m_camera.m_look = glm::vec3(16.0f, 0.0f, 32.0f);
-    
+    m_light = iGaiaStageMgr::SharedInstance()->CreateLight();
     iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
     
 
@@ -181,11 +182,15 @@ std::mutex mutex_01;
     
     iGaiaParticleEmitter* emitter = iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->CreateParticleEmitter("emitter"); //[[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithName:@"emitter"];
     emitter->Set_Shader(iGaiaShader::iGaia_E_ShaderParticle, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    emitter->Set_Texture("fire.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueClamp);
     emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
     //[emitter setShader:E_SHADER_PARTICLE forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     //[emitter setTextureWithFileName:@"fire.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
     //emitter.m_position = glm::vec3(8.0f, 2.5f, 16.0f);
-    
+
+    iGaiaOcean* ocean  = iGaiaStageMgr::SharedInstance()->CreateOcean(256.0f, 256.0f, 0.1f);
+    ocean->Set_Shader(iGaiaShader::iGaia_E_ShaderOcean, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    ocean->Set_Texture("ocean_riple.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_03, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
     
     //iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
     //[ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];

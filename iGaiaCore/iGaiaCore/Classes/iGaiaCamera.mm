@@ -117,8 +117,9 @@ f32 iGaiaCamera::Get_Far(void)
 
 void iGaiaCamera::OnUpdate(void)
 {
-    m_position.x = m_look.x + cosf(-m_rotation) * -m_distance;
-    m_position.z = m_look.z + sinf(-m_rotation) * -m_distance;
+    m_position.y = 20.0f;
+    m_position.x = m_look.x + cosf(-m_rotation) * -60.0f;
+    m_position.z = m_look.z + sinf(-m_rotation) * -60.0f;
     m_view = lookAt(m_position, m_look, m_up);
 
     vec3 position = m_position;

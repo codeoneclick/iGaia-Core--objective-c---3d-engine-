@@ -210,5 +210,5 @@ void iGaiaSkyDome::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
         default:
             break;
     }
-    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, NULL);
+    glDrawElements(GL_TRIANGLES, m_mesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, nullptr);
 }

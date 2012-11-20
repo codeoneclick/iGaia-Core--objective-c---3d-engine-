@@ -25,6 +25,11 @@ void iGaiaParticleMgr::Set_Camera(iGaiaCamera *_camera)
     m_camera = _camera;
 }
 
+void iGaiaParticleMgr::Set_Light(iGaiaLight *_light)
+{
+    m_light = _light;
+}
+
 void iGaiaParticleMgr::LoadParticleEmitterFromFile(const string& _name)
 {
     iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript(_name);
@@ -40,6 +45,7 @@ iGaiaParticleEmitter* iGaiaParticleMgr::CreateParticleEmitter(const string& _nam
     iGaiaParticleEmitterSettings* settings = m_settings.find(_name)->second;
     iGaiaParticleEmitter* emitter = new iGaiaParticleEmitter(settings);
     emitter->Set_Camera(m_camera);
+    emitter->Set_Light(m_light);
     m_listeners.insert(emitter);
     return emitter;
 }

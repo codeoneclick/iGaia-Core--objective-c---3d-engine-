@@ -66,8 +66,9 @@ iGaiaCamera* iGaiaStageMgr::CreateCamera(f32 _fov, f32 _near, f32 _far, ui32 _wi
 {
     m_camera = new iGaiaCamera(_fov, _near, _far, _width, _height);
 
-    for(iGaiaObject3d* object3d : m_listeners)
+    for(set<iGaiaObject3d*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
     {
+        iGaiaObject3d* object3d = *iterator;
         object3d->Set_Camera(m_camera);
     }
     m_particleMgr->Set_Camera(m_camera);
@@ -78,6 +79,12 @@ iGaiaCamera* iGaiaStageMgr::CreateCamera(f32 _fov, f32 _near, f32 _far, ui32 _wi
 iGaiaLight* iGaiaStageMgr::CreateLight(void)
 {
     m_light = new iGaiaLight();
+    for(set<iGaiaObject3d*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
+    {
+        iGaiaObject3d* object3d = *iterator;
+        object3d->Set_Light(m_light);
+    }
+    m_particleMgr->Set_Light(m_light);
     return m_light;
 }
 
@@ -85,6 +92,7 @@ iGaiaShape3d* iGaiaStageMgr::CreateShape3d(const string& _name)
 {
     iGaiaShape3d* shape3d = new iGaiaShape3d(_name);
     shape3d->Set_Camera(m_camera);
+    shape3d->Set_Light(m_light);
     m_listeners.insert(shape3d);
     m_touchMgr->Get_TouchCrosser()->AddEventListener(shape3d);
     return shape3d;
@@ -101,6 +109,7 @@ iGaiaOcean* iGaiaStageMgr::CreateOcean(f32 _width, f32 _height, f32 _altitude)
 
     m_ocean = new iGaiaOcean(_width, _height, _altitude);
     m_ocean->Set_Camera(m_camera);
+    m_ocean->Set_Light(m_light);
     m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection));
     m_ocean->Set_RefractionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction));
     m_listeners.insert(m_ocean);
@@ -111,6 +120,7 @@ iGaiaSkyDome* iGaiaStageMgr::CreateSkyDome(void)
 {
     iGaiaSkyDome* skydome = new iGaiaSkyDome();
     skydome->Set_Camera(m_camera);
+    skydome->Set_Light(m_light);
     m_listeners.insert(skydome);
     return skydome;
 }
