@@ -45,6 +45,23 @@ std::mutex mutex_01;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    std::function<void()> task;
+    i8 *data = new i8[5];
+    data[0] = 'h';
+    data[1] = 'e';
+    data[2] = 'l';
+    data[3] = 'l';
+    data[4] = 'o';
+    task = ([data]
+            {
+                std::cout<<data<<std::endl;
+            });
+    memset(data, 0x0, 5);
+    delete[] data;
+    data = nullptr;
+    task();
+    
     /*double *Tmvl;
     Nvl = 2;
     n = Nvl * 2;
@@ -111,7 +128,9 @@ std::mutex mutex_01;
     });*/
 
     [self.view addSubview:iGaiaStageMgr::SharedInstance()->Get_RenderMgr()->Get_GLView()];
-    
+    delete[] data;
+    data = nullptr;
+    task();
     CGRect viewport = CGRectMake(0, 0, 320, 480);
     m_camera = iGaiaStageMgr::SharedInstance()->CreateCamera(45.0f, 0.1f, 1000.0f, viewport.size.width, viewport.size.height);
     //_m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];

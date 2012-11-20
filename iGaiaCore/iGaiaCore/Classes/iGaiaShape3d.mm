@@ -12,6 +12,11 @@
 
 static ui32 kiGaiaShape3dRenderPriority = 5;
 
+void fooooo()
+{
+    
+}
+
 iGaiaShape3d::iGaiaShape3d(const string& _name)
 {
     m_crossingVertexData = nullptr;
@@ -31,6 +36,9 @@ iGaiaShape3d::iGaiaShape3d(const string& _name)
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
     
     m_updateMode = iGaia_E_UpdateModeAsync;
+    
+    std::function<void(const string&)> foo = std::bind(&iGaiaShape3d::Set_Mesh, this, std::placeholders::_1);
+    foo("hello world");
 }
 
 iGaiaShape3d::~iGaiaShape3d(void)
@@ -38,7 +46,7 @@ iGaiaShape3d::~iGaiaShape3d(void)
     
 }
 
-void iGaiaShape3d::Set_Mesh(const string &_name)
+void iGaiaShape3d::Set_Mesh(const string& _name)
 {
     if(m_mesh == nullptr)
     {

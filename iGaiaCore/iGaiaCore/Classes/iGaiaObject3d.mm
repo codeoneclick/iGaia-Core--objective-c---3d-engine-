@@ -10,6 +10,7 @@
 #import "iGaiaResourceMgr.h"
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
+#include "iGaiaThreadQueue.h"
 
 static dispatch_queue_t g_onUpdateQueue;
 
@@ -26,9 +27,13 @@ iGaiaObject3d::iGaiaObject3d(void)
     
     m_material = new iGaiaMaterial();
     m_mesh = nullptr;
+    m_camera = nullptr;
+    m_light = nullptr;
     
     m_updateMode = iGaia_E_UpdateModeSync;
-
+    
+    static iGaiaThreadQueue* queue = new iGaiaThreadQueue();
+    queue->Start();
 }
 
 iGaiaObject3d::~iGaiaObject3d(void)
