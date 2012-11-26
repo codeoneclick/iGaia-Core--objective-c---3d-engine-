@@ -56,25 +56,25 @@ iGaiaTexture* iGaiaRenderOperationWorldSpace::Get_OperatingTexture(void)
 
 void iGaiaRenderOperationWorldSpace::AddEventListener(iGaiaRenderCallback *_listener)
 {
-    if(m_listeners.find(_listener->Get_Priority()) != m_listeners.end())
+    if(m_listeners.find(_listener->InvokeGetPrecedenceListener()) != m_listeners.end())
     {
-        m_listeners.find(_listener->Get_Priority())->second.insert(_listener);
+        m_listeners.find(_listener->InvokeGetPrecedenceListener())->second.insert(_listener);
     }
     else
     {
-        m_listeners[_listener->Get_Priority()].insert(_listener);
+        m_listeners[_listener->InvokeGetPrecedenceListener()].insert(_listener);
     }
 }
 
 void iGaiaRenderOperationWorldSpace::RemoveEventListener(iGaiaRenderCallback *_listener)
 {
-    if(m_listeners.find(_listener->Get_Priority()) != m_listeners.end())
+    if(m_listeners.find(_listener->InvokeGetPrecedenceListener()) != m_listeners.end())
     {
-        m_listeners.find(_listener->Get_Priority())->second.erase(_listener);
+        m_listeners.find(_listener->InvokeGetPrecedenceListener())->second.erase(_listener);
     }
     else
     {
-        m_listeners[_listener->Get_Priority()].erase(_listener);
+        m_listeners[_listener->InvokeGetPrecedenceListener()].erase(_listener);
     }
 }
 
@@ -103,9 +103,9 @@ void iGaiaRenderOperationWorldSpace::Draw(void)
         for(set<iGaiaRenderCallback*>::iterator iterator_02 = (*iterator_01).second.begin(); iterator_02 !=  (*iterator_01).second.end(); ++iterator_02)
         {
             iGaiaRenderCallback* listener = (*iterator_02);
-            listener->OnBind(m_mode);
-            listener->OnDraw(m_mode);
-            listener->OnUnbind(m_mode);
+            listener->InvokeOnBindListener(m_mode);
+            listener->InvokeOnDrawListener(m_mode);
+            listener->InvokeOnUnbindListener(m_mode);
         }
     }
 }

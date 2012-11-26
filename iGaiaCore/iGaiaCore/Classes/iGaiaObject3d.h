@@ -18,7 +18,7 @@
 #include "iGaiaRenderCallback.h"
 #include "iGaiaLoadCallback.h"
 
-class iGaiaObject3d : public iGaiaUpdateCallback, public iGaiaRenderCallback, public iGaiaLoadCallback
+class iGaiaObject3d : public iGaiaUpdateCallback, public iGaiaLoadCallback
 {
 private:
     
@@ -45,6 +45,8 @@ protected:
     iGaiaLight* m_light;
     
     iGaia_E_UpdateMode m_updateMode;
+    
+    iGaiaRenderCallback m_renderCallback;
 
 public:
     iGaiaObject3d(void);

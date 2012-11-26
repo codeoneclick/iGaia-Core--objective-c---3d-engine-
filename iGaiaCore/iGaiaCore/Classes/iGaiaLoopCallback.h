@@ -8,17 +8,29 @@
 #ifndef iGaiaLoopCallbackClass
 #define iGaiaLoopCallbackClass
 
+#include "iGaiaCommon.h"
+
+typedef std::function<void(void)> OnUpdateListener;
+
 class iGaiaLoopCallback
 {
 private:
-
+    OnUpdateListener m_onUpdateListener;
 protected:
 
 public:
-    iGaiaLoopCallback(void) { };
-    virtual ~iGaiaLoopCallback(void) { };
+    iGaiaLoopCallback(void) = default;
+    virtual ~iGaiaLoopCallback(void) = default;
 
-    virtual void OnUpdate(void) = 0;
+    void Set_OnUpdateListener(const OnUpdateListener& _listener)
+    {
+        m_onUpdateListener = _listener;
+    }
+    
+    void InvokeOnUpdateListener(void)
+    {
+        m_onUpdateListener();
+    }
 };
 
 #endif

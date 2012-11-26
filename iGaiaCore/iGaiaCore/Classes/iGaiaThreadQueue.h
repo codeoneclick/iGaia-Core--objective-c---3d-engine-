@@ -14,7 +14,7 @@
 class iGaiaThreadQueue
 {
 private:
-    std::thread m_thread;
+    thread m_thread;
     bool m_isStarted;
     void Loop(void);
 protected:

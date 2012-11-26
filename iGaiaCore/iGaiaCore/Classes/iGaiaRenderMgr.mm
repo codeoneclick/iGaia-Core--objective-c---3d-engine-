@@ -13,7 +13,8 @@
 
 iGaiaRenderMgr::iGaiaRenderMgr(void)
 {
-    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:this];
+    m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaRenderMgr::OnUpdate, this));
+    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:&m_loopCallback];
 
     m_glView = [[iGaiaiOSGLView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 

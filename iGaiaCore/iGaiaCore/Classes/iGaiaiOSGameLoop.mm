@@ -13,13 +13,10 @@
     set<iGaiaLoopCallback*> m_listeners;
 }
 
-//@property(nonatomic, unsafe_unretained) set<iGaiaLoopCallback*> m_listeners;
-
 @end
 
 @implementation iGaiaiOSGameLoop
 
-//@synthesize m_listeners = _m_listeners;
 @synthesize m_callback = _m_callback;
 
 + (iGaiaiOSGameLoop*)SharedInstance
@@ -57,7 +54,7 @@
     for (set<iGaiaLoopCallback*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
     {
         iGaiaLoopCallback* listener = *iterator;
-        listener->OnUpdate();
+        listener->InvokeOnUpdateListener();
     }
 }
 

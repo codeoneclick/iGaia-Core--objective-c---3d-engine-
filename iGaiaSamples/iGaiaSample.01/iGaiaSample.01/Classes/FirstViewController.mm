@@ -21,6 +21,8 @@
 #include <mutex>
 #include <thread>
 
+//#import <Python/Python.h>
+
 @interface FirstViewController ()
 {
     iGaiaCamera* m_camera;

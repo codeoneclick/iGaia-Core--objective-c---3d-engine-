@@ -11,10 +11,11 @@
 
 iGaiaStageMgr::iGaiaStageMgr(void)
 {
-    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:this];
+    m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaStageMgr::OnUpdate, this));
+    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:&m_loopCallback];
 
     m_renderMgr = new iGaiaRenderMgr();
-    m_touchMgr = new iGaiaTouchMgr(); //[iGaiaTouchMgr new];
+    m_touchMgr = new iGaiaTouchMgr(); 
     m_touchMgr->Set_OperationView(m_renderMgr->Get_GLView());
     m_scriptMgr = new iGaiaScriptMgr();
     m_particleMgr = new iGaiaParticleMgr();

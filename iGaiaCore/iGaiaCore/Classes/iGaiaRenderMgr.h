@@ -18,7 +18,7 @@
 #include "iGaiaRenderOperationScreenSpace.h"
 #include "iGaiaRenderOperationOutlet.h"
 
-class iGaiaRenderMgr : public iGaiaLoopCallback
+class iGaiaRenderMgr
 {
 private:
     UIView* m_glView;
@@ -26,6 +26,9 @@ private:
     iGaiaRenderOperationWorldSpace* m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue];
     iGaiaRenderOperationScreenSpace* m_screenSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue];
     iGaiaRenderOperationOutlet* m_outletOperation;
+    
+    iGaiaLoopCallback m_loopCallback;
+    
 protected:
 
 public:

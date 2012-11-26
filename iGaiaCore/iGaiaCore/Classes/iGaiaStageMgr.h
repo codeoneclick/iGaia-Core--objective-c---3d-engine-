@@ -21,9 +21,10 @@
 #include "iGaiaSoundMgr.h"
 #include "iGaiaiOSGameLoop.h"
 
-class iGaiaStageMgr : public iGaiaLoopCallback
+class iGaiaStageMgr
 {
 private:
+    
     iGaiaRenderMgr* m_renderMgr;
     iGaiaScriptMgr* m_scriptMgr;
     iGaiaTouchMgr* m_touchMgr;
@@ -34,6 +35,9 @@ private:
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
     iGaiaOcean* m_ocean;
+    
+    iGaiaLoopCallback m_loopCallback;
+    
 protected:
     
 public:

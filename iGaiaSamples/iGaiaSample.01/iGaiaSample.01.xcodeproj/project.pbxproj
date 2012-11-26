@@ -19,6 +19,7 @@
 		15AD3F1F16236879004CB184 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1A16236879004CB184 /* building_04.mdl */; };
 		15AD3F2016236879004CB184 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1B16236879004CB184 /* building_05.mdl */; };
 		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
+		212CEA7616642B5E00137B57 /* Python in Frameworks */ = {isa = PBXBuildFile; fileRef = 212CEA7516642B5E00137B57 /* Python */; };
 		2155D7C5163863BC0012D346 /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7C4163863BC0012D346 /* fire.pvr */; };
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		A40A97B81642CCE400424B76 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40A97B71642CCE300424B76 /* Settings.bundle */; };
@@ -89,6 +90,7 @@
 		15AD3F1A16236879004CB184 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
 		15AD3F1B16236879004CB184 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
 		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
+		212CEA7516642B5E00137B57 /* Python */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Python; path = /System/Library/Frameworks/Python.framework/Versions/2.7/Python; sourceTree = "<absolute>"; };
 		2155D7C4163863BC0012D346 /* fire.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = fire.pvr; sourceTree = "<group>"; };
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		A40A97B71642CCE300424B76 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212CEA7616642B5E00137B57 /* Python in Frameworks */,
 				A494C0E6163AA7F000E8BCF6 /* AudioToolbox.framework in Frameworks */,
 				A494C0E4163AA74900E8BCF6 /* OpenAL.framework in Frameworks */,
 				A494C0E2163AA74300E8BCF6 /* CoreAudio.framework in Frameworks */,
@@ -228,6 +231,7 @@
 		A4ADF473160B6FE4000D6A0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				212CEA7516642B5E00137B57 /* Python */,
 				A494C0E5163AA7F000E8BCF6 /* AudioToolbox.framework */,
 				A494C0E3163AA74900E8BCF6 /* OpenAL.framework */,
 				A494C0E1163AA74300E8BCF6 /* CoreAudio.framework */,
@@ -548,16 +552,18 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "/System/Library/Frameworks/Python.framework/Versions/2.7/**";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-v",
+				LIBRARY_SEARCH_PATHS = (
+					"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/**",
+					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/Python.framework/Versions/2.7\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -572,16 +578,18 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = "/System/Library/Frameworks/Python.framework/Versions/2.7/**";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-v",
+				LIBRARY_SEARCH_PATHS = (
+					"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/**",
+					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/Python.framework/Versions/2.7\"",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
