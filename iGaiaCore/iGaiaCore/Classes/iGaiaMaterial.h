@@ -13,7 +13,7 @@
 #include "iGaiaShader.h"
 #include "iGaiaLoadCallback.h"
 
-class iGaiaMaterial : public iGaiaLoadCallback
+class iGaiaMaterial 
 {
 public:
     enum iGaia_E_RenderState
@@ -51,6 +51,8 @@ private:
     iGaiaShader* m_shaders[iGaia_E_RenderModeWorldSpaceMaxValue + iGaia_E_RenderModeScreenSpaceMaxValue];
     iGaiaTexture* m_textures[iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue];
     bool m_states[iGaia_E_RenderStateValueMax];
+    iGaiaLoadCallback m_loadCallback;
+
 protected:
 
 public:

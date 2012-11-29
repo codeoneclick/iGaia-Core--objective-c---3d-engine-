@@ -147,7 +147,7 @@ iGaiaResource* iGaiaLoader_PVR::CommitToVRAM(void)
     for(iGaiaLoadCallback* listener : m_listeners)
     {
         texture->IncReferenceCount();
-        listener->OnLoad(texture);
+        listener->InvokeOnLoadListener(texture);
     }
     
     m_listeners.clear();

@@ -119,7 +119,7 @@ void iGaiaShape3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     iGaiaObject3d::OnUnbind(_mode);
 }
 
-ui32 iGaiaShape3d::Get_Priority(void)
+ui32 iGaiaShape3d::Get_Precedence(void)
 {
     return kiGaiaShape3dRenderPriority;
 }

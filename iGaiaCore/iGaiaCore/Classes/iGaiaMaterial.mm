@@ -23,6 +23,8 @@ iGaiaMaterial::iGaiaMaterial(void)
         m_textures[i] = nullptr;
     }
 
+    m_loadCallback.Set_OnLoadListener(std::bind(&iGaiaMaterial::OnLoad, this, std::placeholders::_1));
+
     m_states[iGaia_E_RenderStateDepthMask] = YES;
     m_states[iGaia_E_RenderStateDepthTest] = YES;
 }

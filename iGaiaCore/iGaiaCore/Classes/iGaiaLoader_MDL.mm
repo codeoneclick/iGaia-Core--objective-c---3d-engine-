@@ -86,7 +86,7 @@ iGaiaResource* iGaiaLoader_MDL::CommitToVRAM(void)
     for(iGaiaLoadCallback* listener : m_listeners)
     {
         mesh->IncReferenceCount();
-        listener->OnLoad(mesh);
+        listener->InvokeOnLoadListener(mesh);
     }
     m_listeners.clear();
     return mesh;

@@ -96,7 +96,7 @@ void iGaiaOcean::OnLoad(iGaiaResource* _resource)
     
 }
 
-ui32 iGaiaOcean::Get_Priority(void)
+ui32 iGaiaOcean::Get_Precedence(void)
 {
     return kiGaiaOceanRenderPriority;
 }

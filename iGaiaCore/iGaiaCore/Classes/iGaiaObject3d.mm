@@ -16,11 +16,13 @@ static dispatch_queue_t g_onUpdateQueue;
 
 iGaiaObject3d::iGaiaObject3d(void)
 {
-    m_renderCallback.Set_GetPrecedenceListener(std::bind(&iGaiaObject3d::Get_Priority, this));
+    m_renderCallback.Set_GetPrecedenceListener(std::bind(&iGaiaObject3d::Get_Precedence, this));
     m_renderCallback.Set_OnBindListener(std::bind(&iGaiaObject3d::OnBind, this, std::placeholders::_1));
     m_renderCallback.Set_OnDrawListener(std::bind(&iGaiaObject3d::OnDraw, this, std::placeholders::_1));
     m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
-    
+
+    m_loadCallback.Set_OnLoadListener(std::bind(&iGaiaObject3d::OnLoad, this, std::placeholders::_1));
+
     m_worldMatrix = mat4x4();
     
     m_position = vec3(0.0f, 0.0f, 0.0f);
@@ -155,7 +157,7 @@ void iGaiaObject3d::OnLoad(iGaiaResource* _resource)
     
 }
 
-ui32 iGaiaObject3d::Get_Priority(void)
+ui32 iGaiaObject3d::Get_Precedence(void)
 {
     return 0;
 }

@@ -10,15 +10,19 @@
 #define iGaiaThreadMgrClass
 
 #include "iGaiaCommon.h"
+#include "iGaiaThreadQueue.h"
 
-class iGaiaThread
+class iGaiaThreadMgr
 {
 private:
-    
+    set<iGaiaThreadQueue> m_threadQueue;
 protected:
     
 public:
-    
+    iGaiaThreadMgr(void);
+    ~iGaiaThreadMgr(void);
+
+    void DispatchTask(const std::function<void()>& _function, iGaiaThreadQueue _queue);
 };
 
 #endif 

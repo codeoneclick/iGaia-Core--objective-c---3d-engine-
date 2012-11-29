@@ -7,3 +7,18 @@
 //
 
 #include "iGaiaThreadMgr.h"
+
+iGaiaThreadMgr::iGaiaThreadMgr(void)
+{
+
+}
+
+iGaiaThreadMgr::~iGaiaThreadMgr(void)
+{
+
+}
+
+void iGaiaThreadMgr::DispatchTask(const std::function<void ()> &_function, iGaiaThreadQueue _queue)
+{
+    
+}

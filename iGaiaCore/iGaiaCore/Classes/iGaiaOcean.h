@@ -13,12 +13,22 @@
 class iGaiaOcean : public iGaiaObject3d
 {
 private:
+    
     iGaiaTexture* m_reflectionTexture;
     iGaiaTexture* m_refractionTexture;
     f32 m_width;
     f32 m_height;
+    
 protected:
+    
+    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 
+    ui32 Get_Precedence(void);
+
+    void OnLoad(iGaiaResource* _resource);
+    
 public:
     iGaiaOcean(f32 _width, f32 _height, f32 _altitude);
     ~iGaiaOcean(void);
@@ -27,15 +37,6 @@ public:
     void Set_RefractionTexture(iGaiaTexture* _texture);
 
     void OnUpdate(void);
-
-    void OnLoad(iGaiaResource* _resource);
-
-    ui32 Get_Priority(void);
-
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 };
 
 #endif

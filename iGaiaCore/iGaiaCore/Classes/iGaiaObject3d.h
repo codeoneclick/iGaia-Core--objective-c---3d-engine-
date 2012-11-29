@@ -18,7 +18,7 @@
 #include "iGaiaRenderCallback.h"
 #include "iGaiaLoadCallback.h"
 
-class iGaiaObject3d : public iGaiaUpdateCallback, public iGaiaLoadCallback
+class iGaiaObject3d : public iGaiaUpdateCallback
 {
 private:
     
@@ -47,6 +47,15 @@ protected:
     iGaia_E_UpdateMode m_updateMode;
     
     iGaiaRenderCallback m_renderCallback;
+    iGaiaLoadCallback m_loadCallback;
+
+    virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    
+    virtual ui32 Get_Precedence(void);
+
+    virtual void OnLoad(iGaiaResource* _resource);
 
 public:
     iGaiaObject3d(void);
@@ -72,14 +81,7 @@ public:
 
     virtual void OnUpdate(void);
     
-    virtual void OnLoad(iGaiaResource* _resource);
-
-    virtual ui32 Get_Priority(void);
-
-    virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-
-    virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    
 };
 
 #endif
