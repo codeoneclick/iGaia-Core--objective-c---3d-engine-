@@ -57,11 +57,8 @@ void iGaiaThreadQueue::Loop(void)
 {
     while(m_isStarted)
     {
-        Py_SetProgramName("/usr/bin/python");
-        Py_Initialize();
-        PyRun_SimpleString("import os; os.system('say good night')");
         std::cout<<"THREAD !!!"<<std::endl;
-        usleep(300);
+        usleep(1000);
     }
 }
 
