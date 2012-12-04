@@ -15,7 +15,7 @@ typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnBindL
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnUnbindListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnDrawListener;
 
-class iGaiaRenderCallback
+class iGaiaRenderCallback final
 {
 private:
     GetPrecedenceListener m_getPrecedenceListener;
@@ -26,7 +26,7 @@ protected:
 
 public:
     iGaiaRenderCallback(void) = default;
-    virtual ~iGaiaRenderCallback(void) = default;
+    ~iGaiaRenderCallback(void) = default;
     
     void Set_GetPrecedenceListener(const GetPrecedenceListener& _listener)
     {

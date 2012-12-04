@@ -12,7 +12,7 @@
 
 typedef std::function<void(void)> OnUpdateListener;
 
-class iGaiaLoopCallback
+class iGaiaLoopCallback final
 {
 private:
     OnUpdateListener m_onUpdateListener;
@@ -20,7 +20,7 @@ protected:
 
 public:
     iGaiaLoopCallback(void) = default;
-    virtual ~iGaiaLoopCallback(void) = default;
+    ~iGaiaLoopCallback(void) = default;
 
     void Set_OnUpdateListener(const OnUpdateListener& _listener)
     {

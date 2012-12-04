@@ -20,7 +20,7 @@ protected:
 
 public:
     iGaiaLoadCallback(void) = default;
-    virtual ~iGaiaLoadCallback(void) = default;
+    ~iGaiaLoadCallback(void) = default;
     
     void Set_OnLoadListener(const OnLoadListener& _listener)
     {

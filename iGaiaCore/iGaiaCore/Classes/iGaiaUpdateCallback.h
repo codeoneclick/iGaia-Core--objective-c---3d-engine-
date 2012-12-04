@@ -10,17 +10,24 @@
 
 #include "iGaiaCommon.h"
 
-class iGaiaUpdateCallback
+typedef std::function<void(void)> OnUpdateListener;
+
+class iGaiaUpdateCallback final
 {
 private:
-    
+    OnUpdateListener m_onUpdateListener;
 protected:
     
 public:
-    iGaiaUpdateCallback(void) { };
-    virtual ~iGaiaUpdateCallback(void) { };
+    iGaiaUpdateCallback(void) = default;
+    ~iGaiaUpdateCallback(void) = default;
     
-    virtual void OnUpdate(void) = 0;
+    void Set_OnUpdateListener(const OnUpdateListener& _listener)
+    {
+        m_onUpdateListener = _listener;
+    }
+
+    void InvokeOnUpdate 
 };
 
 #endif
