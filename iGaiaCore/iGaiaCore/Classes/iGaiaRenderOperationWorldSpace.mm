@@ -62,7 +62,7 @@
             iGaiaLog(@"Failed init render state");
         }
 
-        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:iGaia_E_CreationModeCustom];
         NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:iGaiaTextureSettingValues.clamp,iGaiaTextureSettingKeys.wrap, nil];
         _m_externalTexture.m_settings = settings;
 

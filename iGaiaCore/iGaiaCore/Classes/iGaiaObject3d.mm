@@ -7,7 +7,6 @@
 //
 
 #import "iGaiaObject3d.h"
-#import "iGaiaResourceMgr.h"
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
 

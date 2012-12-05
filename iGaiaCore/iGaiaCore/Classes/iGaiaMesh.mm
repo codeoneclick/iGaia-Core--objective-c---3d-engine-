@@ -22,7 +22,7 @@
 @synthesize m_creationMode = _m_creationMode;
 @synthesize m_settings = _m_settings;
 
-- (id)initWithVertexBuffer:(iGaiaVertexBufferObject *)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject *)indexBuffer withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode
+- (id)initWithVertexBuffer:(iGaiaVertexBufferObject *)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject *)indexBuffer withName:(NSString*)name withCreationMode:(iGaia_E_CreationMode)creationMode
 {
     self = [super init];
     if(self)
@@ -70,7 +70,6 @@
                 _m_minBound.z = vertexData[i].m_position.z;
             }
         }
-
     }
     return self;
 }
@@ -99,7 +98,8 @@
 
 - (void)unload
 {
-
+    [_m_vertexBuffer unload];
+    [_m_indexBuffer unload];
 }
 
 - (void)incReferenceCount

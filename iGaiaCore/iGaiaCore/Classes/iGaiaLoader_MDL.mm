@@ -122,7 +122,7 @@
     memcpy(indexData, _m_indexData, sizeof(unsigned short) * _m_numIndexes);
     [indexBuffer unlock];
 
-    iGaiaMesh* mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:_m_name withCreationMode:E_CREATION_MODE_NATIVE];
+    iGaiaMesh* mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:_m_name withCreationMode:iGaia_E_CreationModeNative];
 
     for(id<iGaiaLoadCallback> listener in _m_listeners)
     {

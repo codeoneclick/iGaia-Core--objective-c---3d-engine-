@@ -132,7 +132,7 @@ static NSInteger k_IGAIA_SKYDOME_RENDER_PRIORITY = 0;
         
         [indexBuffer unlock];
         
-        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"igaia.mesh.skydome" withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"igaia.mesh.skydome" withCreationMode:iGaia_E_CreationModeCustom];
         
         [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:NO];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:NO];

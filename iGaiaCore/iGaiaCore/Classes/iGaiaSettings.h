@@ -11,7 +11,10 @@
 
 @interface iGaiaSettings : NSObject
 
-+ (CGRect)retriveFrameRect;
-+ (void)registerDefaultsFromSettingsBundle;
++ (CGRect)frame;
++ (CGSize)resolution;
+
+/*+ (CGRect)retriveFrameRect;
++ (void)registerDefaultsFromSettingsBundle;*/
 
 @end

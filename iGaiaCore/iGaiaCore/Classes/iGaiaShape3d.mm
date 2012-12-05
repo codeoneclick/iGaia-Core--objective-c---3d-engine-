@@ -8,7 +8,7 @@
 
 #import "iGaiaShape3d.h"
 #import "iGaiaLogger.h"
-#import "iGaiaResourceMgr.h"
+#import "iGaiaMeshMgr.h"
 
 static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 
@@ -31,8 +31,7 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
     self = [super init];
     if(self)
     {
-        [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
-
+        _m_mesh = [[iGaiaMeshMgr sharedInstance] getMeshWithName:name];
         [_m_material invalidateState:E_RENDER_STATE_CULL_MODE withValue:YES];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_MASK withValue:YES];
         [_m_material invalidateState:E_RENDER_STATE_DEPTH_TEST withValue:YES];
@@ -61,7 +60,8 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 {
     if(_m_mesh == nil)
     {
-        [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
+        _m_mesh = [[iGaiaMeshMgr sharedInstance] getMeshWithName:name];
+        _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
     }
     else
     {
@@ -99,23 +99,6 @@ static NSInteger k_IGAIA_SHAPE3D_RENDER_PRIORITY = 5;
 - (NSUInteger)m_crossOperationNumIndexes
 {
     return _m_mesh.m_numIndexes;
-}
-
-- (void)onLoad:(id<iGaiaResource>)resource
-{
-    if(resource.m_resourceType == E_RESOURCE_TYPE_MESH)
-    {
-        iGaiaMesh* mesh = resource;
-        _m_mesh = mesh;
-        if(_m_crossOperationVertexData == nil)
-        {
-            _m_crossOperationVertexData = new iGaiaVertex[_m_mesh.m_numVertexes];
-        }
-        else
-        {
-            iGaiaLog(@"Current cross operation vertex data not nil.");
-        }
-    }
 }
 
 - (void)onCross

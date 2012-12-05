@@ -13,10 +13,10 @@
 #import <glm/gtc/type_precision.hpp>
 
 #import "iGaiaShaderComposite.h"
-#import "iGaiaResourceMgr.h"
 #import "iGaiaLogger.h"
+#import "iGaiaTextureMgr.h"
 
-@interface iGaiaMaterial()<iGaiaLoadCallback>
+@interface iGaiaMaterial()
 {
     iGaiaShader* _m_shaders[E_RENDER_MODE_WORLD_SPACE_MAX + E_RENDER_MODE_SCREEN_SPACE_MAX];
     iGaiaTexture* _m_textures[k_TEXTURES_MAX_COUNT];
@@ -63,22 +63,6 @@
     _m_shaders[mode] = [[iGaiaShaderComposite sharedInstance] getShader:shader];
 }
 
-- (void)onLoad:(id<iGaiaResource>)resource
-{
-    if(resource.m_resourceType == E_RESOURCE_TYPE_TEXTURE)
-    {
-        iGaiaTexture* texture = resource;
-        for(NSUInteger i = 0; i < E_TEXTURE_SLOT_MAX; ++i)
-        {
-            if(_m_textures[i] != nil && [_m_textures[i].m_name isEqualToString:texture.m_name])
-            {
-                texture.m_settings = _m_textures[i].m_settings;
-                _m_textures[i] = texture;
-            }
-        }
-    }
-}
-
 - (void)setTexture:(iGaiaTexture*)texture forSlot:(E_TEXTURE_SLOT)slot
 {
     _m_textures[slot] = texture;
@@ -86,8 +70,8 @@
 
 - (void)setTextureWithFileName:(NSString*)name forSlot:(E_TEXTURE_SLOT)slot withWrap:(NSString*)wrap
 {
-    _m_textures[slot] = [[iGaiaResourceMgr sharedInstance] loadResourceAsyncWithName:name withListener:self];
-    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:wrap,iGaiaTextureSettingKeys.wrap, nil];
+    _m_textures[slot] = [[iGaiaTextureMgr sharedInstance] getTextureWithName:name];
+    NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:wrap, iGaiaTextureSettingKeys.wrap, nil];
     [_m_textures[slot] setM_settings:settings];
 }
 

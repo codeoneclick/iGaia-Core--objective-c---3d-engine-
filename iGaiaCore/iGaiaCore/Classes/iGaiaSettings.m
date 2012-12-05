@@ -17,9 +17,19 @@ enum E_ORIENTATION { E_ORIENTATION_LANDSCAPE = 0, E_ORIENTATION_PORTRAIT };
 
 @implementation iGaiaSettings
 
++ (CGRect)frame
+{
+    return CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
+}
+
++ (CGSize)resolution
+{
+    return CGSizeMake(240, 160);
+}
+
 + (CGRect)retriveFrameRect
 {
-    NSNumber* resolution = [[NSUserDefaults standardUserDefaults] objectForKey:kPreferencesResolution];
+    /*NSNumber* resolution = [[NSUserDefaults standardUserDefaults] objectForKey:kPreferencesResolution];
     NSNumber* orientation = [[NSUserDefaults standardUserDefaults] objectForKey:kPreferencesOrientation];
 
     CGRect rect;
@@ -53,7 +63,8 @@ enum E_ORIENTATION { E_ORIENTATION_LANDSCAPE = 0, E_ORIENTATION_PORTRAIT };
         default:
             break;
     }
-    return rect;
+    return rect;*/
+    return CGRectMake(0, 0, 480, 320);
 }
 
 + (void)registerDefaultsFromSettingsBundle

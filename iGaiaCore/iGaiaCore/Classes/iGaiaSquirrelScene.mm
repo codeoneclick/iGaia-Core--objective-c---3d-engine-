@@ -54,7 +54,7 @@ SQInteger sq_createCamera(HSQUIRRELVM vm)
         SQFloat near = [[iGaiaSquirrelCommon sharedInstance] retriveFloatValueWithIndex:3];
         SQFloat far = [[iGaiaSquirrelCommon sharedInstance] retriveFloatValueWithIndex:4];
 
-        CGRect viewport = [iGaiaSettings retriveFrameRect];
+        CGRect viewport = [iGaiaSettings frame];
         iGaiaCamera* camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:fov withNear:near withFar:far forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
         sq_pushuserpointer(vm, (__bridge SQUserPointer)camera);
         return YES;

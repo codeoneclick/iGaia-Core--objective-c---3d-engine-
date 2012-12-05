@@ -5,15 +5,13 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#import "iGaiaTexture.h"
 
-#import <Foundation/Foundation.h>
-
-#import "iGaiaResource.h"
-
-@protocol iGaiaLoadCallback;
 @interface iGaiaTextureMgr : NSObject
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name;
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener;
++ (iGaiaTextureMgr*)sharedInstance;
+
+- (iGaiaTexture*)getTextureWithName:(NSString*)name;
+- (void)removeTextureWithName:(NSString*)name;
 
 @end

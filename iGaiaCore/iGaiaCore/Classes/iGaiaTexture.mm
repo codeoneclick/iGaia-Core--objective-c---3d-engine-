@@ -41,7 +41,7 @@ const struct iGaiaTextureSettingValues iGaiaTextureSettingValues =
 @synthesize m_creationMode = _m_creationMode;
 @synthesize m_settings = _m_settings;
 
-- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(iGaia_E_CreationMode)creationMode;
 {
     self = [super init];
     if(self)

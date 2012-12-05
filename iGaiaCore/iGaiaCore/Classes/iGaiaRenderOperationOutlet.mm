@@ -76,7 +76,7 @@ static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
         _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
         
-        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"render.operation.outlet" withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:@"render.operation.outlet" withCreationMode:iGaia_E_CreationModeCustom];
     }
     return self;
 }

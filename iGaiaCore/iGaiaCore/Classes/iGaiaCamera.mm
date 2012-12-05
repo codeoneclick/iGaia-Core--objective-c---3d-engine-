@@ -14,22 +14,6 @@
 
 @implementation iGaiaCamera
 
-@synthesize m_view = _m_view;
-@synthesize m_reflection = _m_reflection;
-@synthesize m_projection = _m_projection;
-
-@synthesize m_fov = _m_fov;
-@synthesize m_aspect = _m_aspect;
-@synthesize m_near = _m_near;
-@synthesize m_far = _m_far;
-
-@synthesize m_position = _m_position;
-@synthesize m_rotation = _m_rotation;
-@synthesize m_look = _m_look;
-@synthesize m_up = _m_up;
-@synthesize m_altitude = _m_altitude;
-@synthesize m_frustum = _m_frustum;
-
 - (id)initWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height
 {
     self = [super init];
@@ -49,9 +33,8 @@
 
 - (void)onUpdate
 {
-    _m_position.y = 20.0f;
-    _m_position.x = _m_look.x + cos(-_m_rotation) * -60.0f;
-    _m_position.z = _m_look.z + sin(-_m_rotation) * -60.0f;
+    _m_position.x = _m_look.x + cos(-_m_rotation) * -_m_distance;
+    _m_position.z = _m_look.z + sin(-_m_rotation) * -_m_distance;
     _m_view = glm::lookAt(_m_position, _m_look, _m_up);
 
     glm::vec3 position = _m_position;

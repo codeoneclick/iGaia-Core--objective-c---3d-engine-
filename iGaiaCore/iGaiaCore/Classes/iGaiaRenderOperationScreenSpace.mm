@@ -62,7 +62,7 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
             iGaiaLog(@"Failed init render state");
         }
 
-        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_externalTexture = [[iGaiaTexture alloc] initWithHandle:textureHandle withWidth:_m_size.x withHeight:_m_size.y withName:name withCreationMode:iGaia_E_CreationModeCustom];
         NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:iGaiaTextureSettingValues.clamp,iGaiaTextureSettingKeys.wrap, nil];
         _m_externalTexture.m_settings = settings;
 
@@ -99,7 +99,7 @@ static NSUInteger k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
         _m_material.m_blendFunctionSource = GL_SRC_ALPHA;
         _m_material.m_blendFunctionDest = GL_ONE_MINUS_SRC_ALPHA;
         
-        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:name withCreationMode:E_CREATION_MODE_CUSTOM];
+        _m_mesh = [[iGaiaMesh alloc] initWithVertexBuffer:vertexBuffer withIndexBuffer:indexBuffer withName:name withCreationMode:iGaia_E_CreationModeCustom];
 
     }
     return self;

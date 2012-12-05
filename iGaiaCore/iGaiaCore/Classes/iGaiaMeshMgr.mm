@@ -8,37 +8,46 @@
 
 #import "iGaiaMeshMgr.h"
 #import "iGaiaLoader_MDL.h"
-#import "iGaiaMesh.h"
+
+static iGaiaMeshMgr* g_instance = nil;
 
 @interface iGaiaMeshMgr()
 
-@property(nonatomic, strong) NSMutableDictionary* m_tasks;
-@property(nonatomic, strong) NSMutableDictionary* m_resources;
+@property(nonatomic, strong) NSMutableDictionary* m_meshes;
 
 @end
 
 @implementation iGaiaMeshMgr
 
-@synthesize m_tasks = _m_tasks;
-@synthesize m_resources = _m_resources;
++ (iGaiaMeshMgr*)sharedInstance
+{
+    static iGaiaMeshMgr *instance = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
+    return instance;
+}
 
 - (id)init
 {
+    NSAssert(g_instance == nil, @"iGaiaMeshMgr created twice.");
     self = [super init];
     if(self)
     {
-        _m_tasks = [NSMutableDictionary new];
-        _m_resources = [NSMutableDictionary new];
+        g_instance = self;
+        _m_meshes = [NSMutableDictionary new];
     }
     return self;
 }
 
-- (id<iGaiaResource>)loadResourceSyncWithName:(NSString*)name
+- (iGaiaMesh*)getMeshWithName:(NSString *)name
 {
     iGaiaMesh* mesh = nil;
-    if([_m_resources objectForKey:name] != nil)
+    if([_m_meshes objectForKey:name] != nil)
     {
-        mesh = [_m_resources objectForKey:name];
+        mesh = [_m_meshes objectForKey:name];
+        [mesh incReferenceCount];
     }
     else
     {
@@ -50,42 +59,23 @@
             [mesh incReferenceCount];
         }
     }
+    NSAssert(mesh != nil, @"Texture not loaded.");
     return mesh;
 }
 
-- (id<iGaiaResource>)loadResourceAsyncWithName:(NSString*)name withListener:(id<iGaiaLoadCallback>)listener
+- (void)removeMeshWithName:(NSString *)name
 {
-    iGaiaMesh* mesh = nil;
-    if([_m_resources objectForKey:name] != nil)
+    if([_m_meshes objectForKey:name] != nil)
     {
-        mesh = [_m_resources objectForKey:name];
-    }
-    else
-    {
-        mesh = [[iGaiaMesh alloc] initWithVertexBuffer:nil withIndexBuffer:nil withName:name withCreationMode:E_CREATION_MODE_NATIVE];
-        if([_m_tasks objectForKey:name] != nil)
+        iGaiaMesh* mesh = [_m_meshes objectForKey:name];
+        [mesh decReferenceCount];
+        if(mesh.m_referencesCount <= 0)
         {
-            iGaiaLoader_MDL* loader = [_m_tasks objectForKey:name];
-            [loader addEventListener:listener];
-        }
-        else
-        {
-            iGaiaLoader_MDL* loader = [iGaiaLoader_MDL new];
-            [_m_tasks setObject:loader forKey:name];
-            [loader addEventListener:listener];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [loader parseFileWithName:name];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(loader.m_status == E_LOAD_STATUS_DONE)
-                    {
-                        iGaiaMesh* mesh = [loader commitToVRAM];
-                        [_m_resources setObject:mesh forKey:name];
-                    }
-                });
-            });
+            [_m_meshes removeObjectForKey:name];
+            [mesh unload];
+            mesh = nil;
         }
     }
-    return mesh;
 }
 
 @end

@@ -22,7 +22,7 @@
 @property(nonatomic, readonly) NSUInteger m_numVertexes;
 @property(nonatomic, readonly) NSUInteger m_numIndexes;
 
-- (id)initWithVertexBuffer:(iGaiaVertexBufferObject*)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject*)indexBuffer withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+- (id)initWithVertexBuffer:(iGaiaVertexBufferObject*)vertexBuffer withIndexBuffer:(iGaiaIndexBufferObject*)indexBuffer withName:(NSString*)name withCreationMode:(iGaia_E_CreationMode)creationMode;
 
 - (void)bind;
 - (void)unbind;

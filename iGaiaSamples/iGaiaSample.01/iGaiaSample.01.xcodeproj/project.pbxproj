@@ -23,6 +23,7 @@
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		A40A97B81642CCE400424B76 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40A97B71642CCE300424B76 /* Settings.bundle */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
+		A4153A6D166F9954004367CD /* iGaiaScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A4153A6C166F9954004367CD /* iGaiaScene.m */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A494C0DC163AA63700E8BCF6 /* laser.caf in Resources */ = {isa = PBXBuildFile; fileRef = A494C0D9163AA63700E8BCF6 /* laser.caf */; };
 		A494C0DD163AA63700E8BCF6 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A494C0DA163AA63700E8BCF6 /* music.mp3 */; };
@@ -93,6 +94,8 @@
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		A40A97B71642CCE300424B76 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
+		A4153A6B166F9954004367CD /* iGaiaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaScene.h; sourceTree = "<group>"; };
+		A4153A6C166F9954004367CD /* iGaiaScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGaiaScene.m; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A494C0D9163AA63700E8BCF6 /* laser.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laser.caf; sourceTree = "<group>"; };
 		A494C0DA163AA63700E8BCF6 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
@@ -196,6 +199,15 @@
 			name = visual_effects;
 			sourceTree = "<group>";
 		};
+		A4153A6A166F992F004367CD /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				A4153A6B166F9954004367CD /* iGaiaScene.h */,
+				A4153A6C166F9954004367CD /* iGaiaScene.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		A494C0D8163AA62B00E8BCF6 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +308,7 @@
 		A4D1F068160C43D7005307F4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A4153A6A166F992F004367CD /* Game */,
 				A4D1B28E1642C24800FA3BE5 /* Model */,
 				A4D1B28D1642C24200FA3BE5 /* Views */,
 				A4D1B28C1642C23300FA3BE5 /* ViewControllers */,
@@ -467,6 +480,7 @@
 				A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */,
 				A4D1F074160C43D7005307F4 /* SecondViewController.m in Sources */,
 				A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.m in Sources */,
+				A4153A6D166F9954004367CD /* iGaiaScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

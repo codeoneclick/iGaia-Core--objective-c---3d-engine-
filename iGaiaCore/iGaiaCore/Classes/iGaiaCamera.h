@@ -27,6 +27,7 @@
 @property(nonatomic, assign) float m_altitude;
 @property(nonatomic, readonly) float m_fov;
 @property(nonatomic, readonly) float m_aspect;
+@property(nonatomic, assign) float m_distance;
 
 @property(nonatomic, readonly) float m_near;
 @property(nonatomic, readonly) float m_far;

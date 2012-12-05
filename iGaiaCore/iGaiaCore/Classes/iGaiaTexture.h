@@ -15,7 +15,7 @@
 
 extern const struct iGaiaTextureSettingKeys
 {
-    NSString* wrap;
+    __unsafe_unretained NSString* wrap;
 
 } iGaiaTextureSettingKeys;
 
@@ -29,7 +29,7 @@ extern const struct iGaiaTextureSettingValues
 @property(nonatomic, readonly) NSUInteger m_width;
 @property(nonatomic, readonly) NSUInteger m_height;
 
-- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(E_CREATION_MODE)creationMode;
+- (id)initWithHandle:(NSUInteger)handle withWidth:(NSUInteger)width withHeight:(NSUInteger)height withName:(NSString*)name withCreationMode:(iGaia_E_CreationMode)creationMode;
 
 - (void)bind;
 - (void)unbind;

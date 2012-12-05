@@ -190,7 +190,7 @@
         width >>= 1; height >>= 1;
     }
 
-    iGaiaTexture* texture = [[iGaiaTexture alloc] initWithHandle:handle withWidth:_m_size.x withHeight:_m_size.y withName:_m_name withCreationMode:E_CREATION_MODE_NATIVE];
+    iGaiaTexture* texture = [[iGaiaTexture alloc] initWithHandle:handle withWidth:_m_size.x withHeight:_m_size.y withName:_m_name withCreationMode:iGaia_E_CreationModeNative];
 
     for(id<iGaiaLoadCallback> listener in _m_listeners)
     {

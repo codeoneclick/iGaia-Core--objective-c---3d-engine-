@@ -42,19 +42,20 @@
     {
         [[iGaiaLoop sharedInstance] addEventListener:self];
 
-        _m_glView = [[iGaiaGLView alloc] initWithFrame:[iGaiaSettings retriveFrameRect]];
+        _m_glView = [[iGaiaGLView alloc] initWithFrame:[iGaiaSettings frame]];
 
         for(NSInteger i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
         {
-            _m_worldSpaceOperations[i] = [[iGaiaRenderOperationWorldSpace alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) forRenderMode:(E_RENDER_MODE_WORLD_SPACE)i withName:@"render.mode.worldspace"];
+            _m_worldSpaceOperations[i] = [[iGaiaRenderOperationWorldSpace alloc] initWithSize:glm::vec2([iGaiaSettings resolution].width
+                                                                                                        , [iGaiaSettings resolution].height) forRenderMode:(E_RENDER_MODE_WORLD_SPACE)i withName:@"render.mode.worldspace"];
         }
 
         for(NSInteger i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
         {
-            _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) withShader:E_SHADER_SCREEN_PLANE withName:@"render.mode.screenspace"];
+            _m_screenSpaceOperations[i] = [[iGaiaRenderOperationScreenSpace alloc] initWithSize:glm::vec2([iGaiaSettings resolution].width, [iGaiaSettings resolution].height) withShader:E_SHADER_SCREEN_PLANE withName:@"render.mode.screenspace"];
         }
 
-        _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2(_m_glView.frame.size.width, _m_glView.frame.size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:((iGaiaGLView*)_m_glView).m_frameBufferHandle withRenderBufferHandle:((iGaiaGLView*)_m_glView).m_renderBufferHandle];
+        _m_outletOperation = [[iGaiaRenderOperationOutlet alloc] initWithSize:glm::vec2([iGaiaSettings frame].size.width, [iGaiaSettings frame].size.height) withShaderName:E_SHADER_SCREEN_PLANE withFrameBufferHandle:((iGaiaGLView*)_m_glView).m_frameBufferHandle withRenderBufferHandle:((iGaiaGLView*)_m_glView).m_renderBufferHandle];
     }
     return self;
 }

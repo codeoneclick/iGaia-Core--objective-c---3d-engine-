@@ -28,7 +28,6 @@
 @property(nonatomic, readonly) iGaiaParticleMgr* m_particleMgr;
 @property(nonatomic, readonly) iGaiaSoundMgr* m_soundMgr;
 
-
 + (iGaiaStageMgr *)sharedInstance;
 
 - (iGaiaCamera*)createCameraWithFov:(float)fov withNear:(float)near withFar:(float)far forScreenWidth:(NSUInteger)width forScreenHeight:(NSUInteger)height;

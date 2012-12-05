@@ -23,7 +23,6 @@
 @property(nonatomic, readwrite) iGaiaTouchMgr* m_touchMgr;
 @property(nonatomic, readwrite) iGaiaParticleMgr* m_particleMgr;
 
-
 @end
 
 @implementation iGaiaStageMgr
