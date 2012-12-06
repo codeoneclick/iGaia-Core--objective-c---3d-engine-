@@ -15,6 +15,7 @@ iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
 {
     m_width = _width;
     m_height = _height;
+    m_altitude = _altitude;
 
     m_reflectionTexture = nullptr;
     m_refractionTexture = nullptr;
@@ -68,6 +69,7 @@ void iGaiaOcean::Set_ReflectionTexture(iGaiaTexture* _texture)
 {
     if(_texture == m_reflectionTexture)
     {
+        // TODO : log
         return;
     }
     m_reflectionTexture = _texture;
@@ -78,10 +80,16 @@ void iGaiaOcean::Set_RefractionTexture(iGaiaTexture* _texture)
 {
     if(_texture == m_refractionTexture)
     {
+        // TODO : log
         return;
     }
     m_refractionTexture = _texture;
     m_material->Set_Texture(m_refractionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_02);
+}
+
+f32 iGaiaOcean::Get_Altitude(void)
+{
+    return m_altitude;
 }
 
 void iGaiaOcean::OnUpdate(void)
@@ -96,7 +104,7 @@ void iGaiaOcean::OnLoad(iGaiaResource* _resource)
     
 }
 
-ui32 iGaiaOcean::Get_Precedence(void)
+ui32 iGaiaOcean::OnDrawIndex(void)
 {
     return kiGaiaOceanRenderPriority;
 }

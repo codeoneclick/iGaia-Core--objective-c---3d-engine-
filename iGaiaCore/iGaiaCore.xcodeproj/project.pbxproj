@@ -46,6 +46,11 @@
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */; };
 		A494C0CE163A89A100E8BCF6 /* iGaiaSoundMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4FB158716397F07002B59D6 /* iGaiaSoundMgr.mm */; };
+		A49C460D16708DC300316865 /* iGaiaUpdateMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C460C16708DC200316865 /* iGaiaUpdateMgr.mm */; };
+		A49C46111670A55300316865 /* iGaiaStageFabricator.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46101670A55300316865 /* iGaiaStageFabricator.mm */; };
+		A49C46141670A57700316865 /* iGaiaStageContainer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46131670A57700316865 /* iGaiaStageContainer.mm */; };
+		A49C46171670A59200316865 /* iGaiaStageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46161670A59200316865 /* iGaiaStageProcessor.mm */; };
+		A49C461A1670A61500316865 /* iGaiaSharedFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46191670A61400316865 /* iGaiaSharedFacade.mm */; };
 		A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */; };
 		A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF116197A4B00004F34 /* iGaiaLoader_PVR.mm */; };
 		A4BF9EF816197A7C00004F34 /* iGaiaLoader_MDL.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */; };
@@ -211,6 +216,16 @@
 		A45F6110160327D2005B10A3 /* iGaiaCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCore-Prefix.pch"; sourceTree = "<group>"; };
 		A48CAAAB16369415009CB4AA /* iGaiaCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCommon.h; path = iGaiaCore/Classes/iGaiaCommon.h; sourceTree = "<group>"; };
 		A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCommon.mm; path = iGaiaCore/Classes/iGaiaCommon.mm; sourceTree = "<group>"; };
+		A49C460B16708DC200316865 /* iGaiaUpdateMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaUpdateMgr.h; path = iGaiaCore/Classes/iGaiaUpdateMgr.h; sourceTree = "<group>"; };
+		A49C460C16708DC200316865 /* iGaiaUpdateMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaUpdateMgr.mm; path = iGaiaCore/Classes/iGaiaUpdateMgr.mm; sourceTree = "<group>"; };
+		A49C460F1670A55200316865 /* iGaiaStageFabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaStageFabricator.h; path = iGaiaCore/Classes/iGaiaStageFabricator.h; sourceTree = "<group>"; };
+		A49C46101670A55300316865 /* iGaiaStageFabricator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaStageFabricator.mm; path = iGaiaCore/Classes/iGaiaStageFabricator.mm; sourceTree = "<group>"; };
+		A49C46121670A57600316865 /* iGaiaStageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaStageContainer.h; path = iGaiaCore/Classes/iGaiaStageContainer.h; sourceTree = "<group>"; };
+		A49C46131670A57700316865 /* iGaiaStageContainer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaStageContainer.mm; path = iGaiaCore/Classes/iGaiaStageContainer.mm; sourceTree = "<group>"; };
+		A49C46151670A59100316865 /* iGaiaStageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaStageProcessor.h; path = iGaiaCore/Classes/iGaiaStageProcessor.h; sourceTree = "<group>"; };
+		A49C46161670A59200316865 /* iGaiaStageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaStageProcessor.mm; path = iGaiaCore/Classes/iGaiaStageProcessor.mm; sourceTree = "<group>"; };
+		A49C46181670A61400316865 /* iGaiaSharedFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSharedFacade.h; path = iGaiaCore/Classes/iGaiaSharedFacade.h; sourceTree = "<group>"; };
+		A49C46191670A61400316865 /* iGaiaSharedFacade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSharedFacade.mm; path = iGaiaCore/Classes/iGaiaSharedFacade.mm; sourceTree = "<group>"; };
 		A4BF9EE41619773D00004F34 /* iGaiaResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaResource.h; path = iGaiaCore/Classes/iGaiaResource.h; sourceTree = "<group>"; };
 		A4BF9EE5161978AF00004F34 /* iGaiaTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaTexture.h; path = iGaiaCore/Classes/iGaiaTexture.h; sourceTree = "<group>"; };
 		A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaTexture.mm; path = iGaiaCore/Classes/iGaiaTexture.mm; sourceTree = "<group>"; };
@@ -821,6 +836,16 @@
 				A4BF9F1B16197CA100004F34 /* Objects */,
 				A4BF9F3B16197E1E00004F34 /* iGaiaStageMgr.h */,
 				A4BF9F3C16197E1E00004F34 /* iGaiaStageMgr.mm */,
+				A49C460B16708DC200316865 /* iGaiaUpdateMgr.h */,
+				A49C460C16708DC200316865 /* iGaiaUpdateMgr.mm */,
+				A49C460F1670A55200316865 /* iGaiaStageFabricator.h */,
+				A49C46101670A55300316865 /* iGaiaStageFabricator.mm */,
+				A49C46121670A57600316865 /* iGaiaStageContainer.h */,
+				A49C46131670A57700316865 /* iGaiaStageContainer.mm */,
+				A49C46151670A59100316865 /* iGaiaStageProcessor.h */,
+				A49C46161670A59200316865 /* iGaiaStageProcessor.mm */,
+				A49C46181670A61400316865 /* iGaiaSharedFacade.h */,
+				A49C46191670A61400316865 /* iGaiaSharedFacade.mm */,
 			);
 			name = StageEngine;
 			sourceTree = "<group>";
@@ -1345,6 +1370,11 @@
 				A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */,
 				21916222165C0F8B00F4CED4 /* iGaiaThreadMgr.mm in Sources */,
 				21916237165C1B7600F4CED4 /* iGaiaThreadQueue.mm in Sources */,
+				A49C460D16708DC300316865 /* iGaiaUpdateMgr.mm in Sources */,
+				A49C46111670A55300316865 /* iGaiaStageFabricator.mm in Sources */,
+				A49C46141670A57700316865 /* iGaiaStageContainer.mm in Sources */,
+				A49C46171670A59200316865 /* iGaiaStageProcessor.mm in Sources */,
+				A49C461A1670A61500316865 /* iGaiaSharedFacade.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

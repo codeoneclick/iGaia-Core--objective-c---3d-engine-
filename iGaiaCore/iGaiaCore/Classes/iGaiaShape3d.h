@@ -13,6 +13,14 @@
 
 class iGaiaShape3d : public iGaiaObject3d, public iGaiaCrossCallback
 {
+public:
+    struct iGaiaShape3dSettings
+    {
+        set<iGaiaObject3dShaderSettings> m_shaders;
+        set<iGaiaObject3dTextureSettings> m_textures;
+        string m_meshFileName;
+    };
+
 private:
     iGaiaVertexBufferObject::iGaiaVertex* m_crossingVertexData;
     ui16* m_crossingIndexData;
@@ -24,12 +32,12 @@ protected:
     void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 
-    ui32 Get_Precedence(void);
+    ui32 OnDrawIndex(void);
 
     void OnLoad(iGaiaResource* _resource);
     
 public:
-    iGaiaShape3d(const string& _name);
+    iGaiaShape3d(const iGaiaShape3dSettings& _settings);
     ~iGaiaShape3d(void);
     
     void Set_Mesh(const string& _name);

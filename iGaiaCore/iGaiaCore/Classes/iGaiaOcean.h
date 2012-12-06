@@ -18,6 +18,7 @@ private:
     iGaiaTexture* m_refractionTexture;
     f32 m_width;
     f32 m_height;
+    f32 m_altitude;
     
 protected:
     
@@ -25,7 +26,7 @@ protected:
     void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 
-    ui32 Get_Precedence(void);
+    ui32 OnDrawIndex(void);
 
     void OnLoad(iGaiaResource* _resource);
     
@@ -35,6 +36,8 @@ public:
 
     void Set_ReflectionTexture(iGaiaTexture* _texture);
     void Set_RefractionTexture(iGaiaTexture* _texture);
+
+    f32 Get_Altitude(void);
 
     void OnUpdate(void);
 };

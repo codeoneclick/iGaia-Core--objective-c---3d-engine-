@@ -18,10 +18,34 @@
 #include "iGaiaRenderCallback.h"
 #include "iGaiaLoadCallback.h"
 
-class iGaiaObject3d : public iGaiaUpdateCallback
+#include "iGaiaRenderMgr.h"
+#include "iGaiaUpdateMgr.h"
+
+class iGaiaObject3d
 {
-private:
+public:
+    enum iGaia_E_ProcessStatus
+    {
+        iGaia_E_LoadStatusNone = 0,
+        iGaia_E_LoadStatusLoading,
+        iGaia_E_LoadStatusReady,
+        iGaia_E_LoadStatusError
+    };
     
+    struct iGaiaObject3dShaderSettings
+    {
+        iGaiaShader::iGaia_E_Shader m_shader;
+        iGaiaMaterial::iGaia_E_RenderModeWorldSpace m_mode;
+    };
+
+    struct iGaiaObject3dTextureSettings
+    {
+        string m_name;
+        iGaiaShader::iGaia_E_ShaderTextureSlot m_slot;
+        iGaiaTexture::iGaia_E_TextureSettingsValue m_wrap;
+    };
+private:
+
 protected:
     enum iGaia_E_UpdateMode
     {
@@ -43,19 +67,27 @@ protected:
     
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
-    
+
+    iGaia_E_ProcessStatus m_processStatus;
     iGaia_E_UpdateMode m_updateMode;
     
     iGaiaRenderCallback m_renderCallback;
+    iGaiaUpdateCallback m_updateCallback;
     iGaiaLoadCallback m_loadCallback;
 
     virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    
-    virtual ui32 Get_Precedence(void);
+    virtual ui32 OnDrawIndex(void);
 
+    virtual void OnUpdate(void);
+    
     virtual void OnLoad(iGaiaResource* _resource);
+
+    virtual ui32* OnProcessStatus(void);
+
+    iGaiaRenderMgr* m_renderMgr;
+    iGaiaUpdateMgr* m_updateMgr;
 
 public:
     iGaiaObject3d(void);
@@ -79,9 +111,11 @@ public:
     void Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode);
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
-    virtual void OnUpdate(void);
-    
-    
+    void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
+    void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
+
+    void ListenRenderMgr(bool _value);
+    void ListenUpdateMgr(bool _value);
 };
 
 #endif

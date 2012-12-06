@@ -157,7 +157,7 @@ void iGaiaSkyDome::OnLoad(iGaiaResource* _resource)
     
 }
 
-ui32 iGaiaSkyDome::Get_Precedence(void)
+ui32 iGaiaSkyDome::OnDrawIndex(void)
 {
     return kiGaiaSkyDomeRenderPriority;
 }

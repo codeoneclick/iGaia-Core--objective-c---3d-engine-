@@ -20,7 +20,7 @@ protected:
     void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 
-    ui32 Get_Precedence(void);
+    ui32 OnDrawIndex(void);
 
     void OnLoad(iGaiaResource* _resource);
     

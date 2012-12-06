@@ -56,25 +56,25 @@ iGaiaTexture* iGaiaRenderOperationWorldSpace::Get_OperatingTexture(void)
 
 void iGaiaRenderOperationWorldSpace::AddEventListener(iGaiaRenderCallback *_listener)
 {
-    if(m_listeners.find(_listener->InvokeGetPrecedenceListener()) != m_listeners.end())
+    if(m_listeners.find(_listener->InvokeOnDrawIndexListener()) != m_listeners.end())
     {
-        m_listeners.find(_listener->InvokeGetPrecedenceListener())->second.insert(_listener);
+        m_listeners.find(_listener->InvokeOnDrawIndexListener())->second.insert(_listener);
     }
     else
     {
-        m_listeners[_listener->InvokeGetPrecedenceListener()].insert(_listener);
+        m_listeners[_listener->InvokeOnDrawIndexListener()].insert(_listener);
     }
 }
 
 void iGaiaRenderOperationWorldSpace::RemoveEventListener(iGaiaRenderCallback *_listener)
 {
-    if(m_listeners.find(_listener->InvokeGetPrecedenceListener()) != m_listeners.end())
+    if(m_listeners.find(_listener->InvokeOnDrawIndexListener()) != m_listeners.end())
     {
-        m_listeners.find(_listener->InvokeGetPrecedenceListener())->second.erase(_listener);
+        m_listeners.find(_listener->InvokeOnDrawIndexListener())->second.erase(_listener);
     }
     else
     {
-        m_listeners[_listener->InvokeGetPrecedenceListener()].erase(_listener);
+        m_listeners[_listener->InvokeOnDrawIndexListener()].erase(_listener);
     }
 }
 
@@ -103,9 +103,12 @@ void iGaiaRenderOperationWorldSpace::Draw(void)
         for(set<iGaiaRenderCallback*>::iterator iterator_02 = (*iterator_01).second.begin(); iterator_02 !=  (*iterator_01).second.end(); ++iterator_02)
         {
             iGaiaRenderCallback* listener = (*iterator_02);
-            listener->InvokeOnBindListener(m_mode);
-            listener->InvokeOnDrawListener(m_mode);
-            listener->InvokeOnUnbindListener(m_mode);
+            if(listener->InvokeOnProcessStatusListener() == iGaiaRenderCallback::iGaia_E_LoadStatusReady)
+            {
+                listener->InvokeOnBindListener(m_mode);
+                listener->InvokeOnDrawListener(m_mode);
+                listener->InvokeOnUnbindListener(m_mode);
+            }
         }
     }
 }

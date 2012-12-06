@@ -79,6 +79,15 @@ void iGaiaMaterial::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
     m_shaders[_mode] = iGaiaShaderComposite::SharedInstance()->Get_Shader(_shader);
 }
 
+bool iGaiaMaterial::IsContainRenderMode(ui32 _mode)
+{
+    if(m_shaders[_mode] != nullptr)
+    {
+        return true;
+    }
+    return false;
+}
+
 void iGaiaMaterial::OnLoad(iGaiaResource *_resource)
 {
     if(_resource->Get_ResourceType() == iGaiaResource::iGaia_E_ResourceTypeTexture)

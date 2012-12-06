@@ -75,6 +75,8 @@ public:
     void Set_Texture(iGaiaTexture* _texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot);
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
+    bool IsContainRenderMode(ui32 _mode);
+
     void OnLoad(iGaiaResource* _resource);
 
     void Bind(ui32 _mode);

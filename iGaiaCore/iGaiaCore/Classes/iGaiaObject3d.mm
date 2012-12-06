@@ -16,12 +16,14 @@ static dispatch_queue_t g_onUpdateQueue;
 
 iGaiaObject3d::iGaiaObject3d(void)
 {
-    m_renderCallback.Set_GetPrecedenceListener(std::bind(&iGaiaObject3d::Get_Precedence, this));
+    m_renderCallback.Set_OnDrawIndexListener(std::bind(&iGaiaObject3d::OnDrawIndex, this));
     m_renderCallback.Set_OnBindListener(std::bind(&iGaiaObject3d::OnBind, this, std::placeholders::_1));
     m_renderCallback.Set_OnDrawListener(std::bind(&iGaiaObject3d::OnDraw, this, std::placeholders::_1));
     m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
 
     m_loadCallback.Set_OnLoadListener(std::bind(&iGaiaObject3d::OnLoad, this, std::placeholders::_1));
+
+    m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaObject3d::OnUpdate, this));
 
     m_worldMatrix = mat4x4();
     
@@ -36,11 +38,11 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_mesh = nullptr;
     m_camera = nullptr;
     m_light = nullptr;
+
+    m_renderMgr = nullptr;
+    m_updateMgr = nullptr;
     
     m_updateMode = iGaia_E_UpdateModeSync;
-    
-    static iGaiaThreadQueue* queue = new iGaiaThreadQueue();
-    queue->Start();
 }
 
 iGaiaObject3d::~iGaiaObject3d(void)
@@ -98,6 +100,16 @@ void iGaiaObject3d::Set_Light(iGaiaLight* _light)
     m_light = _light;
 }
 
+void iGaiaObject3d::Set_RenderMgr(iGaiaRenderMgr *_renderMgr)
+{
+    m_renderMgr = _renderMgr;
+}
+
+void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
+{
+    m_updateMgr = _updateMgr;
+}
+
 void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 {
     m_material->Set_Shader(_shader, _mode);
@@ -107,6 +119,42 @@ void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 void iGaiaObject3d::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
 {
     m_material->Set_Texture(_name, _slot, _wrap);
+}
+
+void iGaiaObject3d::ListenRenderMgr(bool _value)
+{
+    if(_value)
+    {
+        for(ui32 _mode = 0; _mode < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++_mode)
+        {
+            if(m_material->IsContainRenderMode(_mode) == true)
+            {
+                m_renderMgr->AddEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
+            }
+        }
+    }
+    else
+    {
+        for(ui32 _mode = 0; _mode < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++_mode)
+        {
+            if(m_material->IsContainRenderMode(_mode) == true)
+            {
+                m_renderMgr->RemoveEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
+            }
+        }
+    }
+}
+
+void iGaiaObject3d::ListenUpdateMgr(bool _value)
+{
+    if(_value)
+    {
+        m_updateMgr->AddEventListener(&m_updateCallback);
+    }
+    else
+    {
+        m_updateMgr->RemoveEventListener(&m_updateCallback);
+    }
 }
 
 void iGaiaObject3d::OnUpdate(void)
@@ -157,7 +205,7 @@ void iGaiaObject3d::OnLoad(iGaiaResource* _resource)
     
 }
 
-ui32 iGaiaObject3d::Get_Precedence(void)
+ui32 iGaiaObject3d::OnDrawIndex(void)
 {
     return 0;
 }

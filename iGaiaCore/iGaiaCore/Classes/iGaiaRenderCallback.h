@@ -10,27 +10,37 @@
 
 #include "iGaiaMaterial.h"
 
-typedef std::function<ui32(void)> GetPrecedenceListener;
+typedef std::function<ui32(void)> OnDrawIndexListener;
+typedef std::function<ui32(void)> OnProcessStatusListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnBindListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnUnbindListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnDrawListener;
 
 class iGaiaRenderCallback final
 {
+public:
+    enum iGaia_E_ProcessStatus
+    {
+        iGaia_E_LoadStatusNone = 0,
+        iGaia_E_LoadStatusLoading,
+        iGaia_E_LoadStatusReady,
+        iGaia_E_LoadStatusError
+    };
 private:
-    GetPrecedenceListener m_getPrecedenceListener;
+    OnDrawIndexListener m_onDrawIndexListener;
     OnBindListener m_onBindListener;
     OnUnbindListener m_onUnbindListener;
-    OnDrawListener m_OnDrawListener;
+    OnDrawListener m_onDrawListener;
+    OnProcessStatusListener m_onProcessStatusListener;
 protected:
 
 public:
     iGaiaRenderCallback(void) = default;
     ~iGaiaRenderCallback(void) = default;
     
-    void Set_GetPrecedenceListener(const GetPrecedenceListener& _listener)
+    void Set_OnDrawIndexListener(const OnDrawIndexListener& _listener)
     {
-        m_getPrecedenceListener = _listener;
+        m_onDrawIndexListener = _listener;
     }
     
     void Set_OnBindListener(const OnBindListener& _listener)
@@ -45,12 +55,17 @@ public:
     
     void Set_OnDrawListener(const OnDrawListener& _listener)
     {
-        m_OnDrawListener = _listener;
+        m_onDrawListener = _listener;
+    }
+
+    void Set_OnProcessStatusListener(const OnProcessStatusListener& _listener)
+    {
+        m_onProcessStatusListener = _listener;
     }
     
-    ui32 InvokeGetPrecedenceListener(void)
+    ui32 InvokeOnDrawIndexListener(void)
     {
-        return m_getPrecedenceListener();
+        return m_onDrawIndexListener();
     }
     
     void InvokeOnBindListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
@@ -65,7 +80,12 @@ public:
     
     void InvokeOnDrawListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     {
-        m_OnDrawListener(_mode);
+        m_onDrawListener(_mode);
+    }
+
+    ui32 InvokeOnProcessStatusListener(void)
+    {
+        return m_onProcessStatusListener();
     }
 };
 
