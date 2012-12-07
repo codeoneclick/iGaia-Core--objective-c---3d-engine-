@@ -12,6 +12,17 @@
 
 class iGaiaOcean : public iGaiaObject3d
 {
+public:
+
+    struct iGaiaOceanSettings
+    {
+        vector<iGaiaObject3dShaderSettings> m_shaders;
+        vector<iGaiaObject3dTextureSettings> m_textures;
+        f32 m_width;
+        f32 m_height;
+        f32 m_altitude;
+    };
+
 private:
     
     iGaiaTexture* m_reflectionTexture;
@@ -31,7 +42,7 @@ protected:
     void OnLoad(iGaiaResource* _resource);
     
 public:
-    iGaiaOcean(f32 _width, f32 _height, f32 _altitude);
+    iGaiaOcean(const iGaiaOceanSettings& _settings);
     ~iGaiaOcean(void);
 
     void Set_ReflectionTexture(iGaiaTexture* _texture);

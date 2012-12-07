@@ -7,7 +7,7 @@
 //
 #ifndef iGaiaLoadCallbackClass
 #define iGaiaLoadCallbackClass
-
+/*
 class iGaiaResource;
 
 typedef std::function<void(iGaiaResource*)> OnLoadListener;
@@ -32,5 +32,5 @@ public:
         m_onLoadListener(_resource);
     }
 };
-
+*/
 #endif

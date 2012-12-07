@@ -21,7 +21,6 @@
 class iGaiaRenderMgr
 {
 private:
-    UIView* m_glView;
 
     iGaiaRenderOperationWorldSpace* m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue];
     iGaiaRenderOperationScreenSpace* m_screenSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue];
@@ -34,8 +33,6 @@ protected:
 public:
     iGaiaRenderMgr(void);
     ~iGaiaRenderMgr(void);
-
-    UIView* Get_GLView(void);
 
     void AddEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void RemoveEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);

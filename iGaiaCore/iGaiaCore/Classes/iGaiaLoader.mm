@@ -18,14 +18,4 @@ string iGaiaLoader::Get_Name(void)
     return m_name;
 }
 
-void iGaiaLoader::AddEventListener(iGaiaLoadCallback *_listener)
-{
-    m_listeners.insert(_listener);
-}
-
-void iGaiaLoader::RemoveEventListener(iGaiaLoadCallback *_listener)
-{
-    m_listeners.erase(_listener);
-}
-
 

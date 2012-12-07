@@ -22,10 +22,11 @@ public:
 
     iGaiaCamera* CreateCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport);
     iGaiaLight* CreateLight(void);
-    iGaiaOcean* CreateOcean(f32 _width, f32 _height, f32 _altitude);
-    iGaiaSkyDome* CreateSkyDome(void);
+
+    iGaiaOcean* CreateOcean(const iGaiaOcean::iGaiaOceanSettings& _settings);
+    iGaiaSkyDome* CreateSkyDome(const iGaiaSkyDome::iGaiaSkyDomeSettings& _settings);
     iGaiaShape3d* CreateShape3d(const iGaiaShape3d::iGaiaShape3dSettings& _settings);
-    iGaiaParticleEmitter* CreateParticleEmitter(void);
+    iGaiaParticleEmitter* CreateParticleEmitter(const iGaiaParticleEmitter::iGaiaParticleEmitterSettings& _settings);
 };
 
 #endif

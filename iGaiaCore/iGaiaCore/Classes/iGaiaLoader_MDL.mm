@@ -82,12 +82,5 @@ iGaiaResource* iGaiaLoader_MDL::CommitToVRAM(void)
     indexBuffer->Unlock();
 
     iGaiaMesh* mesh = new iGaiaMesh(vertexBuffer, indexBuffer, m_name, iGaiaResource::iGaia_E_CreationModeNative);
-
-    for(iGaiaLoadCallback* listener : m_listeners)
-    {
-        mesh->IncReferenceCount();
-        listener->InvokeOnLoadListener(mesh);
-    }
-    m_listeners.clear();
     return mesh;
 }

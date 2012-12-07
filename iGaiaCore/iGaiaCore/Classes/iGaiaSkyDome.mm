@@ -11,7 +11,7 @@
 
 static ui32 kiGaiaSkyDomeRenderPriority = 0;
 
-iGaiaSkyDome::iGaiaSkyDome(void)
+iGaiaSkyDome::iGaiaSkyDome(const iGaiaSkyDomeSettings& _settings)
 {
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(24, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
@@ -129,7 +129,19 @@ iGaiaSkyDome::iGaiaSkyDome(void)
     indexBuffer->Unlock(); 
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer,"igaia.mesh.skydome", iGaiaResource::iGaia_E_CreationModeCustom);
-    
+
+    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
+    {
+        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
+        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
+    }
+
+    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
+    {
+        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
+        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
+    }
+
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, false);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, false);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, false);
@@ -150,11 +162,6 @@ void iGaiaSkyDome::OnUpdate(void)
 {
     m_position = m_camera->Get_Position();
     iGaiaObject3d::OnUpdate();
-}
-
-void iGaiaSkyDome::OnLoad(iGaiaResource* _resource)
-{
-    
 }
 
 ui32 iGaiaSkyDome::OnDrawIndex(void)

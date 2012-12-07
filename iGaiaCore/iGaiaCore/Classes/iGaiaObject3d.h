@@ -24,13 +24,6 @@
 class iGaiaObject3d
 {
 public:
-    enum iGaia_E_ProcessStatus
-    {
-        iGaia_E_LoadStatusNone = 0,
-        iGaia_E_LoadStatusLoading,
-        iGaia_E_LoadStatusReady,
-        iGaia_E_LoadStatusError
-    };
     
     struct iGaiaObject3dShaderSettings
     {
@@ -44,9 +37,11 @@ public:
         iGaiaShader::iGaia_E_ShaderTextureSlot m_slot;
         iGaiaTexture::iGaia_E_TextureSettingsValue m_wrap;
     };
+    
 private:
 
 protected:
+    
     enum iGaia_E_UpdateMode
     {
         iGaia_E_UpdateModeSync = 0,
@@ -68,12 +63,10 @@ protected:
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
 
-    iGaia_E_ProcessStatus m_processStatus;
     iGaia_E_UpdateMode m_updateMode;
     
     iGaiaRenderCallback m_renderCallback;
     iGaiaUpdateCallback m_updateCallback;
-    iGaiaLoadCallback m_loadCallback;
 
     virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
@@ -81,10 +74,6 @@ protected:
     virtual ui32 OnDrawIndex(void);
 
     virtual void OnUpdate(void);
-    
-    virtual void OnLoad(iGaiaResource* _resource);
-
-    virtual ui32* OnProcessStatus(void);
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;

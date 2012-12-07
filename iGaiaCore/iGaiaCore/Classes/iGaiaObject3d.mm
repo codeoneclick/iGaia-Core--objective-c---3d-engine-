@@ -21,8 +21,6 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_renderCallback.Set_OnDrawListener(std::bind(&iGaiaObject3d::OnDraw, this, std::placeholders::_1));
     m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
 
-    m_loadCallback.Set_OnLoadListener(std::bind(&iGaiaObject3d::OnLoad, this, std::placeholders::_1));
-
     m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaObject3d::OnUpdate, this));
 
     m_worldMatrix = mat4x4();
@@ -113,7 +111,10 @@ void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
 void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 {
     m_material->Set_Shader(_shader, _mode);
-    iGaiaStageMgr::SharedInstance()->Get_RenderMgr()->AddEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
+    if(m_renderMgr != nullptr)
+    {
+        m_renderMgr->AddEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
+    }
 }
 
 void iGaiaObject3d::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
@@ -198,11 +199,6 @@ void iGaiaObject3d::OnUpdate(void)
         
         m_worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
     }
-}
-
-void iGaiaObject3d::OnLoad(iGaiaResource* _resource)
-{
-    
 }
 
 ui32 iGaiaObject3d::OnDrawIndex(void)

@@ -8,7 +8,6 @@
 
 #import "iGaiaMaterial.h"
 #import "iGaiaRenderCallback.h"
-#import "iGaiaShaderComposite.h"
 #import "iGaiaResourceMgr.h"
 #import "iGaiaLogger.h"
 
@@ -22,8 +21,6 @@ iGaiaMaterial::iGaiaMaterial(void)
     {
         m_textures[i] = nullptr;
     }
-
-    m_loadCallback.Set_OnLoadListener(std::bind(&iGaiaMaterial::OnLoad, this, std::placeholders::_1));
 
     m_states[iGaia_E_RenderStateDepthMask] = YES;
     m_states[iGaia_E_RenderStateDepthTest] = YES;
@@ -76,7 +73,7 @@ void iGaiaMaterial::InvalidateState(iGaiaMaterial::iGaia_E_RenderState _state, b
 
 void iGaiaMaterial::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 {
-    m_shaders[_mode] = iGaiaShaderComposite::SharedInstance()->Get_Shader(_shader);
+    m_shaders[_mode] = iGaiaResourceMgr::SharedInstance()->Get_Shader(_shader);
 }
 
 bool iGaiaMaterial::IsContainRenderMode(ui32 _mode)
@@ -88,22 +85,6 @@ bool iGaiaMaterial::IsContainRenderMode(ui32 _mode)
     return false;
 }
 
-void iGaiaMaterial::OnLoad(iGaiaResource *_resource)
-{
-    if(_resource->Get_ResourceType() == iGaiaResource::iGaia_E_ResourceTypeTexture)
-    {
-        iGaiaTexture* texture = static_cast<iGaiaTexture*>(_resource);
-        for(ui32 i = 0; i < iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue; ++i)
-        {
-            if(m_textures[i] != nullptr &&  m_textures[i]->Get_Name().compare(texture->Get_Name()) == 0)
-            {
-                texture->Set_Settings(m_textures[i]->Get_Settings());
-                m_textures[i] = texture;
-            }
-        }
-    }
-}
-
 void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot)
 {
     m_textures[_slot] = _texture;
@@ -111,7 +92,7 @@ void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_Sha
 
 void iGaiaMaterial::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
 {
-    m_textures[_slot] = static_cast<iGaiaTexture*>(iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name));
+    m_textures[_slot] = iGaiaResourceMgr::SharedInstance()->Get_Texture(_name);
     map<ui32, ui32> settings;
     settings[iGaiaTexture::iGaia_E_TextureSettingsKeyWrapMode] = _wrap;
     m_textures[_slot]->Set_Settings(settings);

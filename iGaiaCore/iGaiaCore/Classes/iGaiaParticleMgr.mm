@@ -7,7 +7,6 @@
 //
 
 #include "iGaiaParticleMgr.h"
-#include "iGaiaStageMgr.h"
 #include "iGaiaLogger.h"
 
 iGaiaParticleMgr::iGaiaParticleMgr(void)
@@ -20,50 +19,16 @@ iGaiaParticleMgr::~iGaiaParticleMgr(void)
     
 }
 
-void iGaiaParticleMgr::Set_Camera(iGaiaCamera *_camera)
+iGaiaParticleEmitter::iGaiaParticleEmitterSettings iGaiaParticleMgr::Get_ParticleEmitterSettings(const string& _name)
 {
-    m_camera = _camera;
-}
-
-void iGaiaParticleMgr::Set_Light(iGaiaLight *_light)
-{
-    m_light = _light;
-}
-
-void iGaiaParticleMgr::LoadParticleEmitterFromFile(const string& _name)
-{
-    iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript(_name);
-}
-
-iGaiaParticleEmitter* iGaiaParticleMgr::CreateParticleEmitter(const string& _name)
-{
-    if(m_settings.find(_name) == m_settings.end())
+    iGaiaParticleEmitter::iGaiaParticleEmitterSettings settings;
+    if(m_settings.find(_name) != m_settings.end())
     {
-        iGaiaLog(@"Cannot create emitter with name: %s", _name.c_str());
-        return nullptr;
+        settings = m_settings.find(_name)->second;
     }
-    iGaiaParticleEmitterSettings* settings = m_settings.find(_name)->second;
-    iGaiaParticleEmitter* emitter = new iGaiaParticleEmitter(settings);
-    emitter->Set_Camera(m_camera);
-    emitter->Set_Light(m_light);
-    m_listeners.insert(emitter);
-    return emitter;
-}
-
-void iGaiaParticleMgr::RemoveParticleEmitter(iGaiaParticleEmitter* _emitter)
-{
-    m_listeners.erase(_emitter);
-}
-    
-void iGaiaParticleMgr::PushParticleEmitterSettings(iGaiaParticleEmitterSettings* settings, const string& _name)
-{
-    m_settings[_name] = settings;
-}
-
-void iGaiaParticleMgr::OnUpdate(void)
-{
-    for(iGaiaParticleEmitter* emitter : m_listeners)
+    else
     {
-        emitter->OnUpdate();
+        // TODO : implement settings loader
     }
+    return settings;
 }

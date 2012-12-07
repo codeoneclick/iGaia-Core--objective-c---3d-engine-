@@ -7,7 +7,6 @@
 //
 
 #import "iGaiaRenderOperationOutlet.h"
-#import "iGaiaShaderComposite.h"
 #import "iGaiaLogger.h"
 
 static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;

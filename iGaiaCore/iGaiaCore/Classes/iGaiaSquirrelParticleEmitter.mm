@@ -35,7 +35,7 @@ SQInteger sq_createParticleEmmiterSettings(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if (numArgs >= 2)
     {
-        iGaiaParticleEmitterSettings* settings = new iGaiaParticleEmitterSettings();
+        /*iGaiaParticleEmitterSettings* settings = new iGaiaParticleEmitterSettings();
         settings->m_numParticles = iGaiaSquirrelCommon::SharedInstance()->PopFloat(2);
         settings->m_textureName = iGaiaSquirrelCommon::SharedInstance()->PopString(3);
         settings->m_duration = iGaiaSquirrelCommon::SharedInstance()->PopFloat(4);
@@ -64,7 +64,7 @@ SQInteger sq_createParticleEmmiterSettings(HSQUIRRELVM vm)
         settings->m_minParticleEmittInterval = iGaiaSquirrelCommon::SharedInstance()->PopFloat(17); 
         settings->m_maxParticleEmittInterval = iGaiaSquirrelCommon::SharedInstance()->PopFloat(18); 
 
-        iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->PushParticleEmitterSettings(settings, "emitter");
+        iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->PushParticleEmitterSettings(settings, "emitter");*/
         return true;
     }
     iGaiaLog(@"Script call args NULL.");

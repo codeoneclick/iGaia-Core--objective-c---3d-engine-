@@ -19,8 +19,20 @@ iGaiaShape3d::iGaiaShape3d(const iGaiaShape3dSettings& _settings)
     
     m_crossingNumVertexes = 0;
     m_crossingNumIndexes = 0;
-    
-    m_mesh = static_cast<iGaiaMesh*>(iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name));
+
+    m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_settings.m_meshFileName);
+
+    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
+    {
+        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
+        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
+    }
+
+    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
+    {
+        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
+        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
+    }
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
@@ -42,7 +54,12 @@ void iGaiaShape3d::Set_Mesh(const string& _name)
 {
     if(m_mesh == nullptr)
     {
-        iGaiaResourceMgr::SharedInstance()->LoadResourceSync(_name);
+         m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_name);
+        if(m_crossingVertexData != nullptr)
+        {
+            delete m_crossingVertexData;
+        }
+        m_crossingVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
     }
 }
 
@@ -76,19 +93,6 @@ ui32 iGaiaShape3d::Get_CrossOperationNumVertexes(void)
 ui32 iGaiaShape3d::Get_CrossOperationNumIndexes(void)
 {
     return m_crossingNumIndexes = m_mesh->Get_NumIndexes();
-}
-
-void iGaiaShape3d::OnLoad(iGaiaResource *_resource)
-{
-    if(_resource->Get_ResourceType() == iGaiaResource::iGaia_E_ResourceTypeMesh)
-    {
-        m_mesh = static_cast<iGaiaMesh*>(_resource);
-        if(m_crossingVertexData != nullptr)
-        {
-            delete m_crossingVertexData;
-        }
-        m_crossingVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
-    }
 }
 
 void iGaiaShape3d::OnCross(void)

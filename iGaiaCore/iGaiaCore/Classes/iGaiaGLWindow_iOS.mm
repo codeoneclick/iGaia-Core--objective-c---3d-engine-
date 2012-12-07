@@ -1,27 +1,38 @@
 //
-//  iGaiaiOSGLView.m
+//  iGaiaGLWindow_iOS.mm
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/2/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaiOSGLView.h"
-#import "iGaiaiOSGameLoop.h"
-#import "iGaiaLogger.h"
+#include "iGaiaGLWindow_iOS.h"
+#include "iGaiaGameLoop_iOS.h"
+#include "iGaiaSettings_iOS.h"
+#include "iGaiaLogger.h"
 
-@interface iGaiaiOSGLView()
+@interface iGaiaGLWindow_iOS()
 
 @property(nonatomic, strong) CAEAGLLayer* m_eaglLayer;
 
 @end
 
-@implementation iGaiaiOSGLView
+@implementation iGaiaGLWindow_iOS
 
 
 + (Class) layerClass
 {
     return [CAEAGLLayer class];
+}
+
++ (iGaiaGLWindow_iOS*)SharedInstance
+{
+    static iGaiaGLWindow_iOS* instance = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        instance = [[self alloc] initWithFrame:[iGaiaSettings_iOS Get_Frame]];
+    });
+    return instance;
 }
 
 - (id)initWithFrame:(CGRect)frame;
@@ -51,7 +62,7 @@
         {
 
         }
-        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:[iGaiaiOSGameLoop SharedInstance] selector:[iGaiaiOSGameLoop SharedInstance].m_callback];
+        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:[iGaiaGameLoop_iOS SharedInstance] selector:[iGaiaGameLoop_iOS SharedInstance].m_callback];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;

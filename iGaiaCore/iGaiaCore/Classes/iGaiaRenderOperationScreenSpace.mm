@@ -8,7 +8,6 @@
 
 #import "iGaiaRenderOperationScreenSpace.h"
 #import "iGaiaLogger.h"
-#import "iGaiaShaderComposite.h"
 
 static ui32 k_RENDER_OPERATION_SCREEN_SPACE_MODE = 0;
 

@@ -51,8 +51,6 @@ private:
     iGaiaShader* m_shaders[iGaia_E_RenderModeWorldSpaceMaxValue + iGaia_E_RenderModeScreenSpaceMaxValue];
     iGaiaTexture* m_textures[iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue];
     bool m_states[iGaia_E_RenderStateValueMax];
-    iGaiaLoadCallback m_loadCallback;
-
 protected:
 
 public:
@@ -76,8 +74,6 @@ public:
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
     bool IsContainRenderMode(ui32 _mode);
-
-    void OnLoad(iGaiaResource* _resource);
 
     void Bind(ui32 _mode);
     void Unbind(ui32 _mode);

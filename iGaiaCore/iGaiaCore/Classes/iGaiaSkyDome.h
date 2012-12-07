@@ -12,6 +12,14 @@
 
 class iGaiaSkyDome : public iGaiaObject3d
 {
+public:
+
+    struct iGaiaSkyDomeSettings
+    {
+        vector<iGaiaObject3dShaderSettings> m_shaders;
+        vector<iGaiaObject3dTextureSettings> m_textures;
+    };
+    
 private:
 
 protected:
@@ -25,7 +33,7 @@ protected:
     void OnLoad(iGaiaResource* _resource);
     
 public:
-    iGaiaSkyDome(void);
+    iGaiaSkyDome(const iGaiaSkyDomeSettings& _settings);
     ~iGaiaSkyDome(void);
     
     void OnUpdate(void);

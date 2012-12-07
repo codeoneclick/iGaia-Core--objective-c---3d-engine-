@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaSquirrelObject3d.h"
-#import "iGaiaStageMgr.h"
-#import "iGaiaLogger.h"
+#include "iGaiaSquirrelObject3d.h"
+#include "iGaiaSharedFacade.h"
+#include "iGaiaLogger.h"
 
 SQInteger sq_getPositionObject3d(HSQUIRRELVM vm);
 SQInteger sq_setPositionObject3d(HSQUIRRELVM vm);
@@ -44,7 +44,7 @@ SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         vec3 position = shape3d->Get_Position();
@@ -60,7 +60,7 @@ SQInteger sq_setPositionObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         vec3 position;
@@ -77,7 +77,7 @@ SQInteger sq_getRotationObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         vec3 rotation = shape3d->Get_Rotation();
@@ -93,7 +93,7 @@ SQInteger sq_setRotationObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         vec3 rotation;
@@ -110,7 +110,7 @@ SQInteger sq_setShaderObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr =iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         i32 shader = iGaiaSquirrelCommon::SharedInstance()->PopInteger(3); 
@@ -127,7 +127,7 @@ SQInteger sq_setTextureObject3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if(numArgs >= 2)
     {
-        iGaiaShape3d* shape3d = nil;
+        iGaiaShape3d* shape3d = nullptr;
         SQUserPointer ptr = iGaiaSquirrelCommon::SharedInstance()->PopUserData(2);
         shape3d = (iGaiaShape3d*)ptr;
         const SQChar* name = iGaiaSquirrelCommon::SharedInstance()->PopString(3); 

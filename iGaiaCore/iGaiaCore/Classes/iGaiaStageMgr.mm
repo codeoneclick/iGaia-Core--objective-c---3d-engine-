@@ -5,7 +5,7 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-
+/*
 #import "iGaiaStageMgr.h"
 #import "iGaiaLogger.h"
 
@@ -135,4 +135,4 @@ void iGaiaStageMgr::OnUpdate(void)
         listener->OnUpdate();
     }
     m_particleMgr->OnUpdate();
-}
+}*/

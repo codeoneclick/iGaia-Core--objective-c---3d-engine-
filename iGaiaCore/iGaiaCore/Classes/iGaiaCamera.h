@@ -34,7 +34,7 @@ private:
 protected:
 
 public:
-    iGaiaCamera(f32 _fov, f32 _near, f32 _far, ui32 _width,  ui32 _height);
+    iGaiaCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport);
     ~iGaiaCamera(void);
 
     mat4x4 Get_ViewMatrix(void);

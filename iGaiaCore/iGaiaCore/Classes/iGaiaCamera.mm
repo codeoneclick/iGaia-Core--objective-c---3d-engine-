@@ -8,10 +8,10 @@
 
 #include "iGaiaCamera.h"
 
-iGaiaCamera::iGaiaCamera(f32 _fov, f32 _near, f32 _far, ui32 _width,  ui32 _height)
+iGaiaCamera::iGaiaCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport)
 {
     m_fov = _fov;
-    m_aspect = static_cast<f32>(_width) / static_cast<f32>(_height);
+    m_aspect = static_cast<f32>(_viewport.z) / static_cast<f32>(_viewport.w);
     m_near = _near;
     m_far = _far;
     m_projection = perspective(m_fov, m_aspect, m_near, m_far);

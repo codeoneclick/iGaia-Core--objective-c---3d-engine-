@@ -11,11 +11,11 @@
 
 static ui32 kiGaiaOceanRenderPriority = 6;
 
-iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
+iGaiaOcean::iGaiaOcean(const iGaiaOceanSettings& _settings)
 {
-    m_width = _width;
-    m_height = _height;
-    m_altitude = _altitude;
+    m_width = _settings.m_width;
+    m_height = _settings.m_height;
+    m_altitude = _settings.m_altitude;
 
     m_reflectionTexture = nullptr;
     m_refractionTexture = nullptr;
@@ -23,10 +23,10 @@ iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(4, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
 
-    vertexData[0].m_position = vec3(0.0f,  _altitude,  0.0f);
-    vertexData[1].m_position = vec3(m_width, _altitude,  0.0f);
-    vertexData[2].m_position = vec3(m_width, _altitude,  m_height);
-    vertexData[3].m_position = vec3(0.0f,  _altitude,  m_height);
+    vertexData[0].m_position = vec3(0.0f,  _settings.m_altitude,  0.0f);
+    vertexData[1].m_position = vec3(m_width, _settings.m_altitude,  0.0f);
+    vertexData[2].m_position = vec3(m_width, _settings.m_altitude,  m_height);
+    vertexData[3].m_position = vec3(0.0f,  _settings.m_altitude,  m_height);
 
     vertexData[0].m_texcoord = vec2(0.0f,  0.0f);
     vertexData[1].m_texcoord = vec2(1.0f,  0.0f);
@@ -49,6 +49,18 @@ iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
 
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.ocean", iGaiaResource::iGaia_E_CreationModeCustom);
 
+    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
+    {
+        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
+        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
+    }
+
+    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
+    {
+        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
+        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
+    }
+
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
@@ -57,7 +69,7 @@ iGaiaOcean::iGaiaOcean(f32 _width, f32 _height, f32 _altitude)
     m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
 
-   m_updateMode = iGaia_E_UpdateModeSync;
+    m_updateMode = iGaia_E_UpdateModeSync;
 }
 
 iGaiaOcean::~iGaiaOcean(void)

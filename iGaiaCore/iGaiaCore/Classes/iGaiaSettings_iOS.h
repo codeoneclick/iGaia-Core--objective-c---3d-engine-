@@ -1,5 +1,5 @@
 //
-//  iGaiaSettings.h
+//  iGaiaSettings_iOS.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 11/1/12.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface iGaiaSettings : NSObject
+@interface iGaiaSettings_iOS : NSObject
 
-+ (CGRect)retriveFrameRect;
-+ (void)registerDefaultsFromSettingsBundle;
++ (CGRect)Get_Frame;
++ (CGSize)Get_Size;
 
 @end

@@ -8,9 +8,9 @@
 
 #import "FirstViewController.h"
 
-#import "iGaiaRenderMgr.h"
-#import "iGaiaStageMgr.h"
-#import "iGaiaScriptMgr.h"
+#include "iGaiaSharedFacade.h"
+#include "iGaiaGLWindow_iOS.h"
+#include "iGaiaSettings_iOS.h"
 
 #include <iostream>
 #include <vector>
@@ -129,89 +129,63 @@ std::mutex mutex_01;
         
     });*/
 
-    [self.view addSubview:iGaiaStageMgr::SharedInstance()->Get_RenderMgr()->Get_GLView()];
-    delete[] data;
-    data = nullptr;
-    task();
-    CGRect viewport = CGRectMake(0, 0, 320, 480);
-    m_camera = iGaiaStageMgr::SharedInstance()->CreateCamera(45.0f, 0.1f, 1000.0f, viewport.size.width, viewport.size.height);
-    //_m_camera = [[iGaiaStageMgr sharedInstance] createCameraWithFov:45.0f withNear:0.1f withFar:1000.0f forScreenWidth:viewport.size.width forScreenHeight:viewport.size.height];
+    [self.view addSubview:[iGaiaGLWindow_iOS SharedInstance]];
+
+    m_camera = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateCamera(45.0f, 0.1f, 1000.0f, vec4(0.0f, 0.0f, [iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height));
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Camera(m_camera);
     m_camera->Set_Position(vec3(0.0f, 0.0f, 0.0f));
     m_camera->Set_LookAt(vec3(16.0f, 0.0f, 32.0f));
-    //_m_camera.m_position = glm::vec3(0.0f, 0.0f, 0.0f);
-    //_m_camera.m_look = glm::vec3(16.0f, 0.0f, 32.0f);
-    m_light = iGaiaStageMgr::SharedInstance()->CreateLight();
-    iGaiaStageMgr::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
-    
 
-    //[[iGaiaStageMgr sharedInstance].m_scriptMgr loadScriptWithFileName:@"Scene_01.nut"];
-    //[[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
-    //[[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
-    
-    /*iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_01.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(-10.0f, 0.0f, 0.0f);
-   
-    iGaiaShape3d* shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_02.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(0.0f, 0.0f, -10.0f);
-    
-    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_03.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(-15.0f, 0.0f, -15.0f);
-    
-    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_04.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(10.0f, 0.0f, 0.0f);
-    
-    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_05.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(0.0f, 0.0f, 10.0f);
-    
-    shape3d = [[iGaiaSceneMgr sharedInstance] createShape3dWithFileName:@"building_06.mdl"];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFLECTION];
-    [shape3d setShader:E_SHADER_MODEL forMode:E_RENDER_MODE_WORLD_SPACE_REFRACTION];
-    [shape3d setTextureWithFileName:@"default.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
-    shape3d.m_position = glm::vec3(15.0f, 0.0f, 15.0f);*/
-    
-    iGaiaSkyDome* skydome = iGaiaStageMgr::SharedInstance()->CreateSkyDome(); //[[iGaiaStageMgr sharedInstance] createSkyDome];
-    skydome->Set_Shader(iGaiaShader::iGaia_E_ShaderSkydome, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    m_light = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateLight();
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Light(m_light);
+
+    iGaiaShape3d::iGaiaShape3dSettings settings;
+    settings.m_meshFileName = "building_01.mdl";
+
+    iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
+    shaderSettingsSimple.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+    shaderSettingsSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+    settings.m_shaders.push_back(shaderSettingsSimple);
+
+    iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsReflection;
+    shaderSettingsReflection.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+    shaderSettingsReflection.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection;
+    settings.m_shaders.push_back(shaderSettingsReflection);
+
+    iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsRefraction;
+    shaderSettingsRefraction.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+    shaderSettingsRefraction.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction;
+    settings.m_shaders.push_back(shaderSettingsRefraction);
+
+    iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settings);
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushShape3d(shape3d);
+
+    //iGaiaSharedFacade::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
+
+    //iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(const iGaiaSkyDome::iGaiaSkyDomeSettings &_settings);
+        
+    //iGaiaSkyDome* skydome = iGaiaStageMgr::SharedInstance()->CreateSkyDome(); //[[iGaiaStageMgr sharedInstance] createSkyDome];
+    //skydome->Set_Shader(iGaiaShader::iGaia_E_ShaderSkydome, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
     //[skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    skydome->Set_Texture("skydome.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
+    //skydome->Set_Texture("skydome.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
     //[skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
 
-    iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->LoadParticleEmitterFromFile("particle_emitter.nut");
+   // iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->LoadParticleEmitterFromFile("particle_emitter.nut");
     
     
     //[[iGaiaStageMgr sharedInstance].m_particleMgr loadParticleEmitterFromFile:@"particle_emitter.nut"];
     
-    iGaiaParticleEmitter* emitter = iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->CreateParticleEmitter("emitter"); //[[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithName:@"emitter"];
-    emitter->Set_Shader(iGaiaShader::iGaia_E_ShaderParticle, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
-    emitter->Set_Texture("fire.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueClamp);
-    emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
+    //iGaiaParticleEmitter* emitter = iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->CreateParticleEmitter("emitter"); //[[iGaiaStageMgr sharedInstance].m_particleMgr createParticleEmitterWithName:@"emitter"];
+    //emitter->Set_Shader(iGaiaShader::iGaia_E_ShaderParticle, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    //emitter->Set_Texture("fire.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueClamp);
+    //emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
     //[emitter setShader:E_SHADER_PARTICLE forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
     //[emitter setTextureWithFileName:@"fire.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.clamp];
     //emitter.m_position = glm::vec3(8.0f, 2.5f, 16.0f);
 
-    iGaiaOcean* ocean  = iGaiaStageMgr::SharedInstance()->CreateOcean(256.0f, 256.0f, 0.1f);
-    ocean->Set_Shader(iGaiaShader::iGaia_E_ShaderOcean, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
-    ocean->Set_Texture("ocean_riple.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_03, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
+    //iGaiaOcean* ocean  = iGaiaStageMgr::SharedInstance()->CreateOcean(256.0f, 256.0f, 0.1f);
+    //ocean->Set_Shader(iGaiaShader::iGaia_E_ShaderOcean, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
+    //ocean->Set_Texture("ocean_riple.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_03, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
     
     //iGaiaOcean* ocean = [[iGaiaStageMgr sharedInstance] createOceanWithWidth:256.0f withHeight:256.0f withAltitude:0.1f];
     //[ocean setShader:E_SHADER_OCEAN forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
