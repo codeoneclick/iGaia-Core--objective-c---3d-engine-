@@ -10,6 +10,8 @@
 
 iGaiaCamera::iGaiaCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport)
 {
+    m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaCamera::OnUpdate, this));
+    
     m_fov = _fov;
     m_aspect = static_cast<f32>(_viewport.z) / static_cast<f32>(_viewport.w);
     m_near = _near;
@@ -113,6 +115,23 @@ f32 iGaiaCamera::Get_Near(void)
 f32 iGaiaCamera::Get_Far(void)
 {
     return m_far;
+}
+
+void iGaiaCamera::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
+{
+    m_updateMgr = _updateMgr;
+}
+
+void iGaiaCamera::ListenUpdateMgr(bool _value)
+{
+    if(_value)
+    {
+        m_updateMgr->AddEventListener(&m_updateCallback);
+    }
+    else
+    {
+        m_updateMgr->RemoveEventListener(&m_updateCallback);
+    }
 }
 
 void iGaiaCamera::OnUpdate(void)

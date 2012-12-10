@@ -11,27 +11,17 @@
 #include "iGaiaMaterial.h"
 
 typedef std::function<ui32(void)> OnDrawIndexListener;
-typedef std::function<ui32(void)> OnProcessStatusListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnBindListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnUnbindListener;
 typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnDrawListener;
 
 class iGaiaRenderCallback final
 {
-public:
-    enum iGaia_E_ProcessStatus
-    {
-        iGaia_E_LoadStatusNone = 0,
-        iGaia_E_LoadStatusLoading,
-        iGaia_E_LoadStatusReady,
-        iGaia_E_LoadStatusError
-    };
 private:
     OnDrawIndexListener m_onDrawIndexListener;
     OnBindListener m_onBindListener;
     OnUnbindListener m_onUnbindListener;
     OnDrawListener m_onDrawListener;
-    OnProcessStatusListener m_onProcessStatusListener;
 protected:
 
 public:
@@ -57,11 +47,6 @@ public:
     {
         m_onDrawListener = _listener;
     }
-
-    void Set_OnProcessStatusListener(const OnProcessStatusListener& _listener)
-    {
-        m_onProcessStatusListener = _listener;
-    }
     
     ui32 InvokeOnDrawIndexListener(void)
     {
@@ -81,11 +66,6 @@ public:
     void InvokeOnDrawListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     {
         m_onDrawListener(_mode);
-    }
-
-    ui32 InvokeOnProcessStatusListener(void)
-    {
-        return m_onProcessStatusListener();
     }
 };
 

@@ -42,8 +42,11 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include <AVFoundation/AVAudioPlayer.h>
 
+#include "pugixml.hpp"
+
 using namespace std;
 using namespace glm;
+using namespace pugi;
 
 typedef signed char i8;
 typedef unsigned char ui8;
