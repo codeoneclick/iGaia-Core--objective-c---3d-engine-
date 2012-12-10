@@ -10,10 +10,13 @@
 #define iGaiaCameraClass
 
 #include "iGaiaFrustum.h"
+#include "iGaiaUpdateCallback.h"
+#include "iGaiaUpdateMgr.h"
 
 class iGaiaCamera
 {
 private:
+    
     mat4x4 m_view;
     mat4x4 m_reflection;
     mat4x4 m_projection;
@@ -31,6 +34,13 @@ private:
     f32 m_far;
     
     iGaiaFrustum* m_frustum;
+
+    iGaiaUpdateCallback m_updateCallback;
+    
+    iGaiaUpdateMgr* m_updateMgr;
+
+    void OnUpdate(void);
+    
 protected:
 
 public:
@@ -64,10 +74,12 @@ public:
     f32 Get_Near(void);
     f32 Get_Far(void);
 
-    void OnUpdate(void);
-
     mat4x4 Get_SphericalMatrixForPosition(const vec3& _position);
     mat4x4 Get_CylindricalMatrixForPosition(const vec3& _position);
+
+    void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
+
+    void ListenUpdateMgr(bool _value);
 };
 
 #endif

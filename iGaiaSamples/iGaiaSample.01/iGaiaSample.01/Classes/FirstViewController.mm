@@ -47,87 +47,6 @@ std::mutex mutex_01;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    std::function<void()> task;
-    i8 *data = new i8[5];
-    data[0] = 'h';
-    data[1] = 'e';
-    data[2] = 'l';
-    data[3] = 'l';
-    data[4] = 'o';
-    task = ([data]
-            {
-                std::cout<<data<<std::endl;
-            });
-    memset(data, 0x0, 5);
-    delete[] data;
-    data = nullptr;
-    task();
-    
-    /*double *Tmvl;
-    Nvl = 2;
-    n = Nvl * 2;
-    Tmvl = new double [n+1];
-
-    [super viewDidLoad];
-    
-    std::cout << "Main thread id: " << std::this_thread::get_id()
-    << std::endl;
-    std::vector<std::future<void>> futures;
-    for (int i = 0; i < 10; ++i)
-    {
-        auto fut = std::async(std::launch::async,[=](int index)
-                              {
-                                  std::this_thread::sleep_for(std::chrono::seconds(10 - index));
-                                  mutex_01.lock();
-                                  std::cout << "thread id: " << std::this_thread::get_id()
-                                  << std::endl;
-                                  std::cout<<index<<std::endl;
-                                  mutex_01.unlock();
-                              }, i);
-        futures.push_back(std::move(fut));
-    }*/
-    /*std::for_each(futures.begin(), futures.end(), [](std::future<void>& fut)
-                  {
-                      fut.wait();
-                  });
-    std::cout << std::endl;*/
-    
-    /*std::vector<std::thread> threadVec;
-    
-    for (int i = 0; i < 20; ++i) {
-        
-        auto thread = std::thread([=]() {
-            
-            try {
-                
-                //std::lock_guard<std::mutex> lock(mutex);
-                mutex_01.lock();
-                std::cout<<std::this_thread::get_id() << std::endl;
-                std::cout<<i<<std::endl;
-                mutex_01.unlock();
-                //std::cout << "thread done id: " << std::this_thread::get_id() << std::endl;
-                
-            } catch(std::exception& exc) {
-                std::cout << "Thread Exception: " << exc.what() << std::endl;
-            } catch(...) {
-                std::cout << "Thread Uknwon Exception: " << std::endl;
-            }
-        });
-        
-        threadVec.push_back(std::move(thread));
-    }
-    
-    std::for_each(threadVec.begin(), threadVec.end(), [&](std::thread& thread) {
-        try {
-            std::cout << "join start" << std::endl;
-            thread.join();
-            std::cout << "join done" << std::endl;
-        } catch(std::exception& exc) {
-            std::cout << "Async Exception: " << exc.what() << std::endl;
-        }
-        
-    });*/
 
     [self.view addSubview:[iGaiaGLWindow_iOS SharedInstance]];
 
@@ -157,21 +76,64 @@ std::mutex mutex_01;
     shaderSettingsRefraction.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction;
     settings.m_shaders.push_back(shaderSettingsRefraction);
 
+    iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureShape3dSimple;
+    settingsTextureShape3dSimple.m_name = "default.pvr";
+    settingsTextureShape3dSimple.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_01;
+    settingsTextureShape3dSimple.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
+
+    settings.m_textures.push_back(settingsTextureShape3dSimple);
+
     iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settings);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushShape3d(shape3d);
+    shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
 
     //iGaiaSharedFacade::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
 
-    //iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(const iGaiaSkyDome::iGaiaSkyDomeSettings &_settings);
-        
-    //iGaiaSkyDome* skydome = iGaiaStageMgr::SharedInstance()->CreateSkyDome(); //[[iGaiaStageMgr sharedInstance] createSkyDome];
-    //skydome->Set_Shader(iGaiaShader::iGaia_E_ShaderSkydome, iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple);
-    //[skydome setShader:E_SHADER_SKYBOX forMode:E_RENDER_MODE_WORLD_SPACE_SIMPLE];
-    //skydome->Set_Texture("skydome.pvr", iGaiaShader::iGaia_E_ShaderTextureSlot_01, iGaiaTexture::iGaia_E_TextureSettingsValueRepeat);
-    //[skydome setTextureWithFileName:@"skydome.pvr" forSlot:E_TEXTURE_SLOT_01 withWrap:iGaiaTextureSettingValues.repeat];
+    iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome;
+    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderSkyDomeSimple;
+    iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureSkyDomeSimple;
+
+    settingsShaderSkyDomeSimple.m_shader = iGaiaShader::iGaia_E_ShaderSkydome;
+    settingsShaderSkyDomeSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+
+    settingsTextureSkyDomeSimple.m_name = "skydome.pvr";
+    settingsTextureSkyDomeSimple.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_01;
+    settingsTextureSkyDomeSimple.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
+
+    settingsSkyDome.m_shaders.push_back(settingsShaderSkyDomeSimple);
+    settingsSkyDome.m_textures.push_back(settingsTextureSkyDomeSimple);
+
+    iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(settingsSkyDome);
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_SkyDome(skydome);
+
+    iGaiaOcean::iGaiaOceanSettings settingsOcean;
+    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderOceanSimple;
+    iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureOcean;
+
+    settingsShaderOceanSimple.m_shader = iGaiaShader::iGaia_E_ShaderOcean;
+    settingsShaderOceanSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+
+    settingsTextureOcean.m_name = "ocean_riple.pvr";
+    settingsTextureOcean.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_03;
+    settingsTextureOcean.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
+
+    settingsOcean.m_shaders.push_back(settingsShaderOceanSimple);
+    settingsOcean.m_textures.push_back(settingsTextureOcean);
+
+    settingsOcean.m_width = 256.0f;
+    settingsOcean.m_height = 256.0f;
+    settingsOcean.m_altitude = 0.1f;
+
+    iGaiaOcean* ocean = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateOcean(settingsOcean);
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Ocean(ocean);
+
+    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->CreateMusic("music", "mp3", "music");
+    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->PlayMusic("music", -1);
+
+    //[[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
+    //[[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
 
    // iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->LoadParticleEmitterFromFile("particle_emitter.nut");
-    
     
     //[[iGaiaStageMgr sharedInstance].m_particleMgr loadParticleEmitterFromFile:@"particle_emitter.nut"];
     
@@ -199,11 +161,21 @@ std::mutex mutex_01;
     [super didReceiveMemoryWarning];
 }
 
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)onUpdate
 {
-    //static float angle = 0.0f;
-    //angle += 0.01f;
-    //_m_camera.m_rotation = angle;
-}
+    static float angle = 0.0f;
+    angle += 0.01f;
+    m_camera->Set_Rotation(angle);
+};
 
 @end

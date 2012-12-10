@@ -103,12 +103,9 @@ void iGaiaRenderOperationWorldSpace::Draw(void)
         for(set<iGaiaRenderCallback*>::iterator iterator_02 = (*iterator_01).second.begin(); iterator_02 !=  (*iterator_01).second.end(); ++iterator_02)
         {
             iGaiaRenderCallback* listener = (*iterator_02);
-            if(listener->InvokeOnProcessStatusListener() == iGaiaRenderCallback::iGaia_E_LoadStatusReady)
-            {
-                listener->InvokeOnBindListener(m_mode);
-                listener->InvokeOnDrawListener(m_mode);
-                listener->InvokeOnUnbindListener(m_mode);
-            }
+            listener->InvokeOnBindListener(m_mode);
+            listener->InvokeOnDrawListener(m_mode);
+            listener->InvokeOnUnbindListener(m_mode);
         }
     }
 }

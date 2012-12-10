@@ -41,6 +41,8 @@
 		A40C5A671625791800120D76 /* sqtable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A4F1625791800120D76 /* sqtable.cpp */; };
 		A40C5A681625791800120D76 /* sqvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A531625791800120D76 /* sqvm.cpp */; };
 		A40C5A6D1625796900120D76 /* iGaiaScriptMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A6C1625796900120D76 /* iGaiaScriptMgr.mm */; };
+		A425F73A1675DA26005A4A7D /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425F7381675DA26005A4A7D /* pugixml.cpp */; };
+		A425F73F1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */; };
 		A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */; };
 		A4466549161B1A490025601F /* iGaiaGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLWindow_iOS.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
@@ -171,6 +173,11 @@
 		A40C5A541625791800120D76 /* sqvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqvm.h; sourceTree = "<group>"; };
 		A40C5A6B1625796900120D76 /* iGaiaScriptMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaScriptMgr.h; path = iGaiaCore/Classes/iGaiaScriptMgr.h; sourceTree = "<group>"; };
 		A40C5A6C1625796900120D76 /* iGaiaScriptMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaScriptMgr.mm; path = iGaiaCore/Classes/iGaiaScriptMgr.mm; sourceTree = "<group>"; };
+		A425F7371675DA26005A4A7D /* pugiconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugiconfig.hpp; sourceTree = "<group>"; };
+		A425F7381675DA26005A4A7D /* pugixml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixml.cpp; sourceTree = "<group>"; };
+		A425F7391675DA26005A4A7D /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
+		A425F73D1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParser_ParticleEmitterSettings.h; path = iGaiaCore/Classes/iGaiaParser_ParticleEmitterSettings.h; sourceTree = "<group>"; };
+		A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParser_ParticleEmitterSettings.mm; path = iGaiaCore/Classes/iGaiaParser_ParticleEmitterSettings.mm; sourceTree = "<group>"; };
 		A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoader.mm; path = iGaiaCore/Classes/iGaiaLoader.mm; sourceTree = "<group>"; };
 		A44664F1161AED5C0025601F /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
 		A44664F2161AED5C0025601F /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.vert; path = Shaders/ShaderDecal.vert; sourceTree = "<group>"; };
@@ -660,6 +667,25 @@
 			name = ScriptEngine;
 			sourceTree = "<group>";
 		};
+		A425F7361675DA26005A4A7D /* pugixml */ = {
+			isa = PBXGroup;
+			children = (
+				A425F7371675DA26005A4A7D /* pugiconfig.hpp */,
+				A425F7381675DA26005A4A7D /* pugixml.cpp */,
+				A425F7391675DA26005A4A7D /* pugixml.hpp */,
+			);
+			path = pugixml;
+			sourceTree = "<group>";
+		};
+		A425F73C1675E22A005A4A7D /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				A425F73D1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.h */,
+				A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */,
+			);
+			name = Parsers;
+			sourceTree = "<group>";
+		};
 		A4300C4C163FC87700528C26 /* SocialEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,6 +803,7 @@
 		A4BF9EED161979ED00004F34 /* ResourceEngine */ = {
 			isa = PBXGroup;
 			children = (
+				A425F73C1675E22A005A4A7D /* Parsers */,
 				A4BFA11F1619D33B00004F34 /* Extensions */,
 				A4BF9EEF16197A0400004F34 /* Loaders */,
 				A4BF9EEE161979FA00004F34 /* Resources */,
@@ -916,6 +943,7 @@
 		A4BFA1211619D39500004F34 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A425F7361675DA26005A4A7D /* pugixml */,
 				A40C5A241625791800120D76 /* squirrel */,
 				A4BFA1221619D39500004F34 /* glm */,
 				A4BFA2041619D39500004F34 /* pvr */,
@@ -1373,6 +1401,8 @@
 				A49C46141670A57700316865 /* iGaiaStageContainer.mm in Sources */,
 				A49C46171670A59200316865 /* iGaiaStageProcessor.mm in Sources */,
 				A49C461A1670A61500316865 /* iGaiaSharedFacade.mm in Sources */,
+				A425F73A1675DA26005A4A7D /* pugixml.cpp in Sources */,
+				A425F73F1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

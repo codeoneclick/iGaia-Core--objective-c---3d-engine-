@@ -23,6 +23,7 @@
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		A40A97B81642CCE400424B76 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40A97B71642CCE300424B76 /* Settings.bundle */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
+		A425F7411675E770005A4A7D /* particle_emitter_fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = A425F7401675E770005A4A7D /* particle_emitter_fire.xml */; };
 		A42F81E7160CC1D300453D28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42F81E6160CC1D300453D28 /* QuartzCore.framework */; };
 		A494C0DC163AA63700E8BCF6 /* laser.caf in Resources */ = {isa = PBXBuildFile; fileRef = A494C0D9163AA63700E8BCF6 /* laser.caf */; };
 		A494C0DD163AA63700E8BCF6 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A494C0DA163AA63700E8BCF6 /* music.mp3 */; };
@@ -93,6 +94,7 @@
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		A40A97B71642CCE300424B76 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
+		A425F7401675E770005A4A7D /* particle_emitter_fire.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = particle_emitter_fire.xml; sourceTree = "<group>"; };
 		A42F81E6160CC1D300453D28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A494C0D9163AA63700E8BCF6 /* laser.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = laser.caf; sourceTree = "<group>"; };
 		A494C0DA163AA63700E8BCF6 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A425F7401675E770005A4A7D /* particle_emitter_fire.xml */,
 				A40A97B71642CCE300424B76 /* Settings.bundle */,
 				A494C0D8163AA62B00E8BCF6 /* Sounds */,
 				A4D4DE731626C5F800B1959F /* Scripts */,
@@ -452,6 +455,7 @@
 				A494C0DE163AA63700E8BCF6 /* photon.caf in Resources */,
 				A4D1B2931642C2B800FA3BE5 /* iGaiaRootViewController.xib in Resources */,
 				A40A97B81642CCE400424B76 /* Settings.bundle in Resources */,
+				A425F7411675E770005A4A7D /* particle_emitter_fire.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

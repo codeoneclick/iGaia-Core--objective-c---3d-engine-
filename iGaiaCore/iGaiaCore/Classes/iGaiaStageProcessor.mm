@@ -27,7 +27,14 @@ iGaiaStageProcessor::~iGaiaStageProcessor(void)
 
 void iGaiaStageProcessor::Set_Camera(iGaiaCamera* _camera)
 {
+    if(m_camera != nullptr)
+    {
+        m_camera->ListenUpdateMgr(false);
+    }
+    
     m_camera = _camera;
+    m_camera->Set_UpdateMgr(m_updateMgr);
+    m_camera->ListenUpdateMgr(true);
 
     for(set<iGaiaShape3d*>::iterator iterator = m_shapes3d.begin(); iterator != m_shapes3d.end(); ++iterator)
     {

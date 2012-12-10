@@ -35,9 +35,6 @@ void iGaiaUpdateMgr::OnLoop(void)
     for(set<iGaiaUpdateCallback*>::iterator iterator_ = m_listeners.begin(); iterator_ != m_listeners.end(); ++iterator_)
     {
         iGaiaUpdateCallback* listener = (*iterator_);
-        if(listener->InvokeOnProcessStatusListener() == iGaiaUpdateCallback::iGaia_E_LoadStatusReady)
-        {
-            listener->InvokeOnUpdate();
-        }
+        listener->InvokeOnUpdate();
     }
 }

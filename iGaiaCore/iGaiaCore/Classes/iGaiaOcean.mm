@@ -111,11 +111,6 @@ void iGaiaOcean::OnUpdate(void)
     iGaiaObject3d::OnUpdate();
 }
 
-void iGaiaOcean::OnLoad(iGaiaResource* _resource)
-{
-    
-}
-
 ui32 iGaiaOcean::OnDrawIndex(void)
 {
     return kiGaiaOceanRenderPriority;
