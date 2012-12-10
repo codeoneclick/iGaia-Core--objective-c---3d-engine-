@@ -7,8 +7,8 @@
 //
 
 #include "iGaiaSquirrelScene.h"
-#include "iGaiaStageMgr.h"
 #include "iGaiaLogger.h"
+#include "iGaiaSharedFacade.h"
 
 SQInteger sq_createCamera(HSQUIRRELVM vm);
 SQInteger sq_createShape3d(HSQUIRRELVM vm);
@@ -43,8 +43,9 @@ SQInteger sq_createCamera(HSQUIRRELVM vm)
         SQFloat near = iGaiaSquirrelCommon::SharedInstance()->PopFloat(3);;
         SQFloat far = iGaiaSquirrelCommon::SharedInstance()->PopFloat(4);;
 
-        CGRect viewport = CGRectMake(0, 0, 320, 480);
-        iGaiaCamera* camera = iGaiaStageMgr::SharedInstance()->CreateCamera(fov, near, far, viewport.size.width, viewport.size.height); 
+        vec4 viewport = vec4(0, 0, 320, 480);
+        iGaiaCamera* camera = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateCamera(fov, near, far, viewport);
+        iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Camera(camera);
         sq_pushuserpointer(vm, (SQUserPointer)camera);
         return true;
     }
@@ -57,8 +58,28 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
     SQInteger numArgs = sq_gettop(vm);
     if (numArgs >= 2)
     {
-        const SQChar* f_name = iGaiaSquirrelCommon::SharedInstance()->PopString(2); 
-        iGaiaShape3d* shape3d = iGaiaStageMgr::SharedInstance()->CreateShape3d(f_name);
+        const SQChar* f_name = iGaiaSquirrelCommon::SharedInstance()->PopString(2);
+        iGaiaShape3d::iGaiaShape3dSettings settings;
+        settings.m_meshFileName = f_name;
+
+        iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
+        shaderSettingsSimple.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+        shaderSettingsSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+        settings.m_shaders.push_back(shaderSettingsSimple);
+
+        iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsReflection;
+        shaderSettingsReflection.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+        shaderSettingsReflection.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection;
+        settings.m_shaders.push_back(shaderSettingsReflection);
+
+        iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsRefraction;
+        shaderSettingsRefraction.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
+        shaderSettingsRefraction.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction;
+        settings.m_shaders.push_back(shaderSettingsRefraction);
+
+        iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settings);
+        iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushShape3d(shape3d);
+
         sq_pushuserpointer(vm, (SQUserPointer)shape3d);
         return true;
     }

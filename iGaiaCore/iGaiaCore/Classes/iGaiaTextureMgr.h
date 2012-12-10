@@ -17,16 +17,14 @@
 class iGaiaTextureMgr
 {
 private:
-    map<string, iGaiaLoader_PVR*> m_tasks;
-    map<string, iGaiaTexture*> m_resources;
+    map<string, iGaiaTexture*> m_textures;
 protected:
 
 public:
     iGaiaTextureMgr(void);
     ~iGaiaTextureMgr(void);
 
-    iGaiaResource* LoadResourceSync(const string& _name);
-    iGaiaResource* LoadResourceAsync(const string& _name, iGaiaLoadCallback* _listener);
+    iGaiaTexture* Get_Texture(const string& _name);
 };
 
 #endif

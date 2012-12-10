@@ -12,15 +12,15 @@
 static ui32 kiGaiaParticlesRenderPriority = 7;
 static dispatch_queue_t g_onUpdateEmitterQueue;
 
-iGaiaParticleEmitter::iGaiaParticleEmitter(iGaiaParticleEmitterSettings* _settings)
+iGaiaParticleEmitter::iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaParticleEmitterSettings& _settings)
 {
     m_settings = _settings;
-    m_particles = new iGaiaParticle[m_settings->m_numParticles];
+    m_particles = new iGaiaParticle[m_settings.m_numParticles];
     
-    iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(m_settings->m_numParticles * 4, GL_STREAM_DRAW);
+    iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(m_settings.m_numParticles * 4, GL_STREAM_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
     
-    for(ui32 i = 0; i < m_settings->m_numParticles; ++i)
+    for(ui32 i = 0; i < m_settings.m_numParticles; ++i)
     {
         m_particles[i].m_size = vec2(0.0f, 0.0f);
         m_particles[i].m_color = u8vec4(0, 0, 0, 0);
@@ -32,10 +32,10 @@ iGaiaParticleEmitter::iGaiaParticleEmitter(iGaiaParticleEmitterSettings* _settin
     }
     vertexBuffer->Unlock();
     
-    iGaiaIndexBufferObject* indexBuffer = new iGaiaIndexBufferObject(m_settings->m_numParticles * 6, GL_STREAM_DRAW);
+    iGaiaIndexBufferObject* indexBuffer = new iGaiaIndexBufferObject(m_settings.m_numParticles * 6, GL_STREAM_DRAW);
     ui16* indexData = indexBuffer->Lock();
     
-    for(unsigned int i = 0; i < m_settings->m_numParticles; ++i)
+    for(unsigned int i = 0; i < m_settings.m_numParticles; ++i)
     {
         indexData[i * 6 + 0] = static_cast<ui16>(i * 4 + 0);
         indexData[i * 6 + 1] = static_cast<ui16>(i * 4 + 1);
@@ -72,20 +72,20 @@ void iGaiaParticleEmitter::CreateParticle(ui32 _index)
     m_particles[_index].m_position = m_position;
     m_particles[_index].m_velocity = vec3(0.0f, 0.0f, 0.0f);
     
-    m_particles[_index].m_size = m_settings->m_startSize;
-    m_particles[_index].m_color = m_settings->m_startColor;
+    m_particles[_index].m_size = m_settings.m_startSize;
+    m_particles[_index].m_color = m_settings.m_startColor;
     
     m_particles[_index].m_timestamp = Get_TickCount();
     
-    f32 horizontalVelocity = mix(m_settings->m_minHorizontalVelocity, m_settings->m_maxHorizontalVelocity, Get_Random(0.0f, 1.0f));
+    f32 horizontalVelocity = mix(m_settings.m_minHorizontalVelocity, m_settings.m_maxHorizontalVelocity, Get_Random(0.0f, 1.0f));
     
     f32 horizontalAngle = Get_Random(0.0f, 1.0f) * M_PI * 2.0f;
     
     m_particles[_index].m_velocity.x += horizontalVelocity * cosf(horizontalAngle);
     m_particles[_index].m_velocity.z += horizontalVelocity * sinf(horizontalAngle);
     
-    m_particles[_index].m_velocity.y += mix(m_settings->m_minVerticalVelocity, m_settings->m_maxVerticalVelocity, Get_Random(0.0f, 1.0f));
-    m_particles[_index].m_velocity *= m_settings->m_velocitySensitivity;
+    m_particles[_index].m_velocity.y += mix(m_settings.m_minVerticalVelocity, m_settings.m_maxVerticalVelocity, Get_Random(0.0f, 1.0f));
+    m_particles[_index].m_velocity *= m_settings.m_velocitySensitivity;
 }
 
 void iGaiaParticleEmitter::OnUpdate(void)
@@ -102,13 +102,13 @@ void iGaiaParticleEmitter::OnUpdate(void)
         iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
         f32 currentTime = Get_TickCount();
         
-        for(ui32 i = 0; i < m_settings->m_numParticles; ++i)
+        for(ui32 i = 0; i < m_settings.m_numParticles; ++i)
         {
             f32 particleAge = currentTime - m_particles[i].m_timestamp;
             
-            if(particleAge > m_settings->m_duration)
+            if(particleAge > m_settings.m_duration)
             {
-                if((currentTime - m_lastEmittTimestamp) > Get_Random(m_settings->m_minParticleEmittInterval, m_settings->m_maxParticleEmittInterval))
+                if((currentTime - m_lastEmittTimestamp) > Get_Random(m_settings.m_minParticleEmittInterval, m_settings.m_maxParticleEmittInterval))
                 {
                     m_lastEmittTimestamp = currentTime;
                     CreateParticle(i);
@@ -120,21 +120,21 @@ void iGaiaParticleEmitter::OnUpdate(void)
                 }
             }
             
-            f32 particleClampAge = clamp( particleAge / m_settings->m_duration, 0.0f, 1.0f);
+            f32 particleClampAge = clamp( particleAge / m_settings.m_duration, 0.0f, 1.0f);
             
             f32 startVelocity = length(m_particles[i].m_velocity);
-            f32 endVelocity = m_settings->m_endVelocity * startVelocity;
+            f32 endVelocity = m_settings.m_endVelocity * startVelocity;
             f32 velocityIntegral = startVelocity * particleClampAge + (endVelocity - startVelocity) * particleClampAge * particleClampAge / 2.0f;
-            m_particles[i].m_position += normalize(m_particles[i].m_velocity) * velocityIntegral * m_settings->m_duration;
-            m_particles[i].m_position += m_settings->m_gravity * particleAge * particleClampAge;
+            m_particles[i].m_position += normalize(m_particles[i].m_velocity) * velocityIntegral * m_settings.m_duration;
+            m_particles[i].m_position += m_settings.m_gravity * particleAge * particleClampAge;
             
             f32 randomValue = Get_Random(0.0f, 1.0f);
-            f32 startSize = mix(m_settings->m_startSize.x, m_settings->m_startSize.y, randomValue);
-            f32 endSize = mix(m_settings->m_endSize.x, m_settings->m_endSize.y, randomValue);
+            f32 startSize = mix(m_settings.m_startSize.x, m_settings.m_startSize.y, randomValue);
+            f32 endSize = mix(m_settings.m_endSize.x, m_settings.m_endSize.y, randomValue);
             m_particles[i].m_size = vec2(mix(startSize, endSize, particleClampAge));
             
-            m_particles[i].m_color = mix(m_settings->m_startColor, m_settings->m_endColor, particleClampAge);
-            m_particles[i].m_color.a = mix(m_settings->m_startColor.a, m_settings->m_endColor.a, particleClampAge);
+            m_particles[i].m_color = mix(m_settings.m_startColor, m_settings.m_endColor, particleClampAge);
+            m_particles[i].m_color.a = mix(m_settings.m_startColor.a, m_settings.m_endColor.a, particleClampAge);
             
             mat4x4 matrixSpherical = m_camera->Get_SphericalMatrixForPosition(m_particles[i].m_position);
             
@@ -164,11 +164,6 @@ void iGaiaParticleEmitter::OnUpdate(void)
             m_mesh->Get_VertexBuffer()->Unlock();
         });
     });
-}
-
-void iGaiaParticleEmitter::OnLoad(iGaiaResource* _resource)
-{
-    
 }
 
 ui32 iGaiaParticleEmitter::Get_Priority(void)

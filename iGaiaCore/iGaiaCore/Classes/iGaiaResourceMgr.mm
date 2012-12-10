@@ -6,28 +6,14 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaResourceMgr.h"
-
-#import "iGaiaTextureMgr.h"
-#import "iGaiaMeshMgr.h"
-
-extern const struct iGaiaResourceExtensions
-{
-    string pvr;
-    string mdl;
-    
-} iGaiaResourceExtensions;
-
-const struct iGaiaResourceExtensions iGaiaResourceExtensions =
-{
-    .pvr = ".pvr",
-    .mdl = ".mdl",
-};
+#include "iGaiaResourceMgr.h"
 
 iGaiaResourceMgr::iGaiaResourceMgr(void)
 {
     m_textureMgr = new iGaiaTextureMgr();
     m_meshMgr = new iGaiaMeshMgr();
+    m_shaderMgr = new iGaiaShaderMgr();
+    m_particleMgr = new iGaiaParticleMgr();
 }
 
 iGaiaResourceMgr::~iGaiaResourceMgr(void)
@@ -45,36 +31,24 @@ iGaiaResourceMgr* iGaiaResourceMgr::SharedInstance(void)
     return instance;
 }
 
-iGaiaResource* iGaiaResourceMgr::LoadResourceSync(const string &_name)
+iGaiaShader* iGaiaResourceMgr::Get_Shader(iGaiaShader::iGaia_E_Shader _shader)
 {
-    size_t found = _name.find(iGaiaResourceExtensions.pvr);
-    if(found != string::npos)
-    {
-        return m_textureMgr->LoadResourceSync(_name);
-    }
-
-    found = _name.find(iGaiaResourceExtensions.mdl);
-    if(found != string::npos)
-    {
-        return m_meshMgr->LoadResourceSync(_name);
-    }
-    return nullptr;
+    return m_shaderMgr->Get_Shader(_shader);
 }
 
-iGaiaResource* iGaiaResourceMgr::LoadResourceAsync(const string &_name, iGaiaLoadCallback *_listener)
+iGaiaTexture* iGaiaResourceMgr::Get_Texture(const string& _name)
 {
-    size_t found = _name.find(iGaiaResourceExtensions.pvr);
-    if(found != string::npos)
-    {
-        return m_textureMgr->LoadResourceAsync(_name, _listener);
-    }
+    return m_textureMgr->Get_Texture(_name);
+}
 
-    found = _name.find(iGaiaResourceExtensions.mdl);
-    if(found != string::npos)
-    {
-        return m_meshMgr->LoadResourceAsync(_name, _listener);
-    }
-    return nullptr;
+iGaiaMesh* iGaiaResourceMgr::Get_Mesh(const string& _name)
+{
+    return m_meshMgr->Get_Mesh(_name);
+}
+
+iGaiaParticleEmitter::iGaiaParticleEmitterSettings iGaiaResourceMgr::Get_ParticleEmitterSettings(const string& _name)
+{
+    return m_particleMgr->Get_ParticleEmitterSettings(_name);
 }
 
 

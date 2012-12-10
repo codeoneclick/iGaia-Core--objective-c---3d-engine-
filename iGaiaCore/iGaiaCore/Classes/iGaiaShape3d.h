@@ -13,30 +13,39 @@
 
 class iGaiaShape3d : public iGaiaObject3d, public iGaiaCrossCallback
 {
+public:
+    
+    struct iGaiaShape3dSettings
+    {
+        vector<iGaiaObject3dShaderSettings> m_shaders;
+        vector<iGaiaObject3dTextureSettings> m_textures;
+        string m_meshFileName;
+    };
+
 private:
+    
     iGaiaVertexBufferObject::iGaiaVertex* m_crossingVertexData;
     ui16* m_crossingIndexData;
     ui32 m_crossingNumVertexes;
     ui32 m_crossingNumIndexes;
+    
 protected:
+
+    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+
+    ui32 OnDrawIndex(void);
     
 public:
-    iGaiaShape3d(const string& _name);
+    
+    iGaiaShape3d(const iGaiaShape3dSettings& _settings);
     ~iGaiaShape3d(void);
     
     void Set_Mesh(const string& _name);
     void Set_Clipping(const glm::vec4& _clipping);
     
     void OnUpdate(void);
-    
-    void OnLoad(iGaiaResource* _resource);
-    
-    ui32 Get_Priority(void);
-    
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     
     iGaiaVertexBufferObject::iGaiaVertex* Get_CrossOperationVertexData(void);
     ui16* Get_CrossOperationIndexData(void);

@@ -10,7 +10,6 @@
 #define iGaiaLoaderClass
 
 #include "iGaiaResource.h"
-#include "iGaiaLoadCallback.h"
 
 class iGaiaLoader
 {
@@ -27,16 +26,12 @@ private:
 protected:
     iGaia_E_LoadStatus m_status;
     string m_name;
-    set<iGaiaLoadCallback*> m_listeners;
 public:
     iGaiaLoader(void) { };
     virtual ~iGaiaLoader(void) { };
 
     iGaia_E_LoadStatus Get_Status(void);
     string Get_Name(void);
-
-    void AddEventListener(iGaiaLoadCallback* _listener);
-    void RemoveEventListener(iGaiaLoadCallback* _listener);
 
     virtual void ParseFileWithName(const string& _name) = 0;
     virtual iGaiaResource* CommitToVRAM(void) = 0;

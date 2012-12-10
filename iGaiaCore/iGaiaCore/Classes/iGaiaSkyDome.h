@@ -12,24 +12,31 @@
 
 class iGaiaSkyDome : public iGaiaObject3d
 {
+public:
+
+    struct iGaiaSkyDomeSettings
+    {
+        vector<iGaiaObject3dShaderSettings> m_shaders;
+        vector<iGaiaObject3dTextureSettings> m_textures;
+    };
+    
 private:
 
 protected:
     
+    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
+
+    ui32 OnDrawIndex(void);
+
+    void OnLoad(iGaiaResource* _resource);
+    
 public:
-    iGaiaSkyDome(void);
+    iGaiaSkyDome(const iGaiaSkyDomeSettings& _settings);
     ~iGaiaSkyDome(void);
     
     void OnUpdate(void);
-    
-    void OnLoad(iGaiaResource* _resource);
-    
-    ui32 Get_Priority(void);
-    
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 };
 
 #endif

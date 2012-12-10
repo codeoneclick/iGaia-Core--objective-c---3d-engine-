@@ -17,16 +17,14 @@
 class iGaiaMeshMgr
 {
 private:
-    map<string, iGaiaLoader_MDL*> m_tasks;
-    map<string, iGaiaMesh*> m_resources;
+    map<string, iGaiaMesh*> m_meshes;
 protected:
 
 public:
     iGaiaMeshMgr(void);
     ~iGaiaMeshMgr(void);
 
-    iGaiaResource* LoadResourceSync(const string& _name);
-    iGaiaResource* LoadResourceAsync(const string& _name, iGaiaLoadCallback* _listener);
+    iGaiaMesh* Get_Mesh(const string& _name);
 };
 
 #endif

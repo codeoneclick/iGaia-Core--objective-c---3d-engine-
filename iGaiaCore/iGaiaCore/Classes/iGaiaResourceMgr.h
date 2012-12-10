@@ -12,12 +12,16 @@
 #include "iGaiaResource.h"
 #include "iGaiaTextureMgr.h"
 #include "iGaiaMeshMgr.h"
+#include "iGaiaShaderMgr.h"
+#include "iGaiaParticleMgr.h"
 
 class iGaiaResourceMgr
 {
 private:
     iGaiaTextureMgr* m_textureMgr;
     iGaiaMeshMgr* m_meshMgr;
+    iGaiaShaderMgr* m_shaderMgr;
+    iGaiaParticleMgr* m_particleMgr;
 protected:
 
 public:
@@ -26,8 +30,10 @@ public:
 
     static iGaiaResourceMgr* SharedInstance(void);
 
-    iGaiaResource* LoadResourceSync(const string& _name);
-    iGaiaResource* LoadResourceAsync(const string& _name, iGaiaLoadCallback* _listener);
+    iGaiaShader* Get_Shader(iGaiaShader::iGaia_E_Shader _shader);
+    iGaiaTexture* Get_Texture(const string& _name);
+    iGaiaMesh* Get_Mesh(const string& _name);
+    iGaiaParticleEmitter::iGaiaParticleEmitterSettings Get_ParticleEmitterSettings(const string& _name);
 };
 
 #endif

@@ -1,29 +1,29 @@
 //
-//  iGaiaiOSGameLoop.m
+//  iGaiaGameLoop_iOS.mm
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/7/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#include "iGaiaiOSGameLoop.h"
+#include "iGaiaGameLoop_iOS.h"
 
-@interface iGaiaiOSGameLoop()
+@interface iGaiaGameLoop_iOS()
 {
     set<iGaiaLoopCallback*> m_listeners;
 }
 
 @end
 
-@implementation iGaiaiOSGameLoop
+@implementation iGaiaGameLoop_iOS
 
 @synthesize m_callback = _m_callback;
 
-+ (iGaiaiOSGameLoop*)SharedInstance
++ (iGaiaGameLoop_iOS*)SharedInstance
 {
-    static iGaiaiOSGameLoop *instance = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
+    static iGaiaGameLoop_iOS *instance = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
         instance = [[self alloc] init];
     });
     return instance;

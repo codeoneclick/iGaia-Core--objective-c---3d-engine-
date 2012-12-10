@@ -143,15 +143,6 @@ iGaiaResource* iGaiaLoader_PVR::CommitToVRAM(void)
     }
 
     iGaiaTexture* texture = new iGaiaTexture(handle, m_size.x, m_size.y, m_name, iGaiaResource::iGaia_E_CreationModeNative);
-
-    for(iGaiaLoadCallback* listener : m_listeners)
-    {
-        texture->IncReferenceCount();
-        listener->OnLoad(texture);
-    }
-    
-    m_listeners.clear();
-    
     return texture;
 }
 

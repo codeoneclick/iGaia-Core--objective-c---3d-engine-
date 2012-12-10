@@ -9,11 +9,45 @@
 #define iGaiaParticleEmitterClass
 
 #include "iGaiaObject3d.h"
-#include "iGaiaParticleEmitterSettings.h"
 
 class iGaiaParticleEmitter : public iGaiaObject3d
 {
+public:
+
+    struct iGaiaParticleEmitterSettings
+    {
+        vector<iGaiaObject3dShaderSettings> m_shaders;
+        vector<iGaiaObject3dTextureSettings> m_textures;
+        
+        ui32 m_numParticles;
+
+        f32 m_duration;
+        f32 m_durationRandomness;
+
+        f32 m_velocitySensitivity;
+
+        f32 m_minHorizontalVelocity;
+        f32 m_maxHorizontalVelocity;
+
+        f32 m_minVerticalVelocity;
+        f32 m_maxVerticalVelocity;
+
+        f32 m_endVelocity;
+
+        vec3 m_gravity;
+
+        u8vec4 m_startColor;
+        u8vec4 m_endColor;
+
+        vec2 m_startSize;
+        vec2 m_endSize;
+        
+        f32 m_minParticleEmittInterval;
+        f32 m_maxParticleEmittInterval;
+    };
+
 private:
+    
     struct iGaiaParticle
     {
         vec3 m_position;
@@ -22,7 +56,7 @@ private:
         u8vec4 m_color;
         f32 m_timestamp;
     };
-    iGaiaParticleEmitterSettings* m_settings;
+    iGaiaParticleEmitterSettings m_settings;
     iGaiaParticle* m_particles;
     f32 m_lastEmittTimestamp;
     f32 m_lastParticleEmittTime;
@@ -31,12 +65,10 @@ private:
 protected:
     
 public:
-    iGaiaParticleEmitter(iGaiaParticleEmitterSettings* _settings);
+    iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaParticleEmitterSettings& _settings);
     ~iGaiaParticleEmitter(void);
     
     void OnUpdate(void);
-    
-    void OnLoad(iGaiaResource* _resource);
     
     ui32 Get_Priority(void);
     

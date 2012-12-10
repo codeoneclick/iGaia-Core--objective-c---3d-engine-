@@ -13,7 +13,7 @@
 #include "iGaiaShader.h"
 #include "iGaiaLoadCallback.h"
 
-class iGaiaMaterial : public iGaiaLoadCallback
+class iGaiaMaterial 
 {
 public:
     enum iGaia_E_RenderState
@@ -73,7 +73,7 @@ public:
     void Set_Texture(iGaiaTexture* _texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot);
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
-    void OnLoad(iGaiaResource* _resource);
+    bool IsContainRenderMode(ui32 _mode);
 
     void Bind(ui32 _mode);
     void Unbind(ui32 _mode);

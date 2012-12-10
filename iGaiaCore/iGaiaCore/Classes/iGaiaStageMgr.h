@@ -5,7 +5,7 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-#ifndef iGaiaStageMgrClass
+/*#ifndef iGaiaStageMgrClass
 #define iGaiaStageMgrClass
 
 #include "iGaiaCamera.h"
@@ -61,4 +61,4 @@ public:
     void OnUpdate(void);
 };
 
-#endif
+#endif*/

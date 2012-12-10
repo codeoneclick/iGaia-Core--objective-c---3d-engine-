@@ -7,20 +7,30 @@
 //
 #ifndef iGaiaLoadCallbackClass
 #define iGaiaLoadCallbackClass
-
+/*
 class iGaiaResource;
 
-class iGaiaLoadCallback
+typedef std::function<void(iGaiaResource*)> OnLoadListener;
+
+class iGaiaLoadCallback final
 {
 private:
-
+    OnLoadListener m_onLoadListener;
 protected:
 
 public:
-    iGaiaLoadCallback(void) { } ;
-    virtual ~iGaiaLoadCallback(void) { };
+    iGaiaLoadCallback(void) = default;
+    ~iGaiaLoadCallback(void) = default;
     
-    virtual void OnLoad(iGaiaResource* _resource) = 0;
-};
+    void Set_OnLoadListener(const OnLoadListener& _listener)
+    {
+        m_onLoadListener = _listener;
+    }
 
+    void InvokeOnLoadListener(iGaiaResource* _resource)
+    {
+        m_onLoadListener(_resource);
+    }
+};
+*/
 #endif

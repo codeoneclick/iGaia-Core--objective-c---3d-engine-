@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#include "iGaiaShaderComposite.h"
+#include "iGaiaShaderMgr.h"
 
 #include "iGaiaLoader_GLSL.h"
 
@@ -66,7 +66,7 @@
 #include "../Shaders/ShaderLandscapeEdges.frag"
 #include "../Shaders/ShaderLandscapeEdges.vert"
 
-iGaiaShaderComposite::iGaiaShaderComposite(void)
+iGaiaShaderMgr::iGaiaShaderMgr(void)
 {
     iGaiaShader* shader = iGaiaLoader_GLSL::LoadShader((i8*)ShaderModelV, (i8*)ShaderModelF); 
     m_shaders[iGaiaShader::iGaia_E_ShaderShape3d] = shader;
@@ -123,23 +123,12 @@ iGaiaShaderComposite::iGaiaShaderComposite(void)
     m_shaders[iGaiaShader::iGaia_E_ShaderLandscapeEdge] = shader;
 }
 
-iGaiaShaderComposite::~iGaiaShaderComposite(void)
+iGaiaShaderMgr::~iGaiaShaderMgr(void)
 {
 
 }
 
-iGaiaShaderComposite* iGaiaShaderComposite::SharedInstance(void)
-{
-    static iGaiaShaderComposite *instance = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^
-    {
-        instance = new iGaiaShaderComposite();
-    });
-    return instance;
-}
-
-iGaiaShader* iGaiaShaderComposite::Get_Shader(iGaiaShader::iGaia_E_Shader _shader)
+iGaiaShader* iGaiaShaderMgr::Get_Shader(iGaiaShader::iGaia_E_Shader _shader)
 {
     return m_shaders[_shader];
 }

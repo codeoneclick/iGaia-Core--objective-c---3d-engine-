@@ -18,12 +18,13 @@ iGaiaMeshMgr::~iGaiaMeshMgr(void)
 
 }
 
-iGaiaResource* iGaiaMeshMgr::LoadResourceSync(const string &_name)
+iGaiaMesh* iGaiaMeshMgr::Get_Mesh(const string &_name)
 {
     iGaiaMesh* mesh = nullptr;
-    if(m_resources.find(_name) != m_resources.end())
+    if(m_meshes.find(_name) != m_meshes.end())
     {
-        mesh = m_resources.find(_name)->second;
+        mesh = m_meshes.find(_name)->second;
+        mesh->IncReferenceCount();
     }
     else
     {
@@ -32,47 +33,9 @@ iGaiaResource* iGaiaMeshMgr::LoadResourceSync(const string &_name)
         if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
         {
             mesh = static_cast<iGaiaMesh*>(loader->CommitToVRAM());
+            m_meshes[_name] = mesh;
             mesh->IncReferenceCount();
-            m_resources[_name] = mesh;
         }
     }
     return mesh;
 }
-
-iGaiaResource* iGaiaMeshMgr::LoadResourceAsync(const string &_name, iGaiaLoadCallback *_listener)
-{
-    iGaiaMesh* mesh = nullptr;
-    if(m_resources.find(_name) != m_resources.end())
-    {
-        mesh = m_resources.find(_name)->second;
-    }
-    else
-    {
-        mesh = new iGaiaMesh(nullptr, nullptr, _name, iGaiaResource::iGaia_E_CreationModeNative);
-        if(m_tasks.find(_name) != m_tasks.end())
-        {
-            iGaiaLoader_MDL* loader = m_tasks.find(_name)->second;
-            loader->AddEventListener(_listener);
-        }
-        else
-        {
-            iGaiaLoader_MDL* loader = new iGaiaLoader_MDL();
-            m_tasks[_name] = loader;
-            loader->AddEventListener(_listener);
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
-            {
-                loader->ParseFileWithName(_name);
-                dispatch_async(dispatch_get_main_queue(), ^
-                {
-                    if(loader->Get_Status() == iGaiaLoader::iGaia_E_LoadStatusDone)
-                    {
-                        iGaiaMesh* mesh = static_cast<iGaiaMesh*>(loader->CommitToVRAM());
-                        m_resources[_name] = mesh;
-                    }
-                });
-            });
-        }
-    }
-    return mesh;
-}
-
