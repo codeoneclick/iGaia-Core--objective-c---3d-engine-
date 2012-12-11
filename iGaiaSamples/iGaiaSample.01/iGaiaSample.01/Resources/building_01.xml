@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings name="building_01">
+    <mesh value="building_01.mdl" />
+    <textures>
+        <texture_01 name="default.pvr" slot="0" wrap="1" />
+    </textures>
+    <shaders>
+        <shader_01 id="2" mode="0" />
+        <shader_02 id="2" mode="1" />
+        <shader_03 id="2" mode="2" />
+    </shaders>
+</settings>
