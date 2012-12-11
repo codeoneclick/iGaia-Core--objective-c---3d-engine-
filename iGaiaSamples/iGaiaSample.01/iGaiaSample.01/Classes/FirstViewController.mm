@@ -60,7 +60,7 @@ std::mutex mutex_01;
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Light(m_light);
 
     iGaiaShape3d::iGaiaShape3dSettings settings;
-    settings.m_meshFileName = "building_01.mdl";
+    settings.m_meshName = "building_01.mdl";
 
     iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
     shaderSettingsSimple.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;

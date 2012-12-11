@@ -45,6 +45,7 @@
 		A425F73F1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */; };
 		A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */; };
 		A42E9B3816773ED600974C71 /* iGaiaParser_Shape3dSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42E9B3716773ED600974C71 /* iGaiaParser_Shape3dSettings.mm */; };
+		A42E9B491677608000974C71 /* iGaiaParser_OceanSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A42E9B481677608000974C71 /* iGaiaParser_OceanSettings.mm */; };
 		A4466549161B1A490025601F /* iGaiaGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLWindow_iOS.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */; };
@@ -182,6 +183,8 @@
 		A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLoader.mm; path = iGaiaCore/Classes/iGaiaLoader.mm; sourceTree = "<group>"; };
 		A42E9B3616773ED600974C71 /* iGaiaParser_Shape3dSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParser_Shape3dSettings.h; path = iGaiaCore/Classes/iGaiaParser_Shape3dSettings.h; sourceTree = "<group>"; };
 		A42E9B3716773ED600974C71 /* iGaiaParser_Shape3dSettings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParser_Shape3dSettings.mm; path = iGaiaCore/Classes/iGaiaParser_Shape3dSettings.mm; sourceTree = "<group>"; };
+		A42E9B471677607F00974C71 /* iGaiaParser_OceanSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParser_OceanSettings.h; path = iGaiaCore/Classes/iGaiaParser_OceanSettings.h; sourceTree = "<group>"; };
+		A42E9B481677608000974C71 /* iGaiaParser_OceanSettings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParser_OceanSettings.mm; path = iGaiaCore/Classes/iGaiaParser_OceanSettings.mm; sourceTree = "<group>"; };
 		A44664F1161AED5C0025601F /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
 		A44664F2161AED5C0025601F /* ShaderDecal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.vert; path = Shaders/ShaderDecal.vert; sourceTree = "<group>"; };
 		A44664F3161AED5C0025601F /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.frag; path = Shaders/ShaderGrass.frag; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 				A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */,
 				A42E9B3616773ED600974C71 /* iGaiaParser_Shape3dSettings.h */,
 				A42E9B3716773ED600974C71 /* iGaiaParser_Shape3dSettings.mm */,
+				A42E9B471677607F00974C71 /* iGaiaParser_OceanSettings.h */,
+				A42E9B481677608000974C71 /* iGaiaParser_OceanSettings.mm */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -1409,6 +1414,7 @@
 				A425F73A1675DA26005A4A7D /* pugixml.cpp in Sources */,
 				A425F73F1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm in Sources */,
 				A42E9B3816773ED600974C71 /* iGaiaParser_Shape3dSettings.mm in Sources */,
+				A42E9B491677608000974C71 /* iGaiaParser_OceanSettings.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

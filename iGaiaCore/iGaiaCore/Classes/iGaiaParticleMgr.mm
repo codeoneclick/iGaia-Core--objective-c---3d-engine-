@@ -32,6 +32,7 @@ iGaiaParticleEmitter::iGaiaParticleEmitterSettings iGaiaParticleMgr::Get_Particl
         iGaiaParser_ParticleEmitterSettings* parser = new iGaiaParser_ParticleEmitterSettings();
         settings = parser->Get_Settings(_name);
         m_settings[_name] = settings;
+        delete parser;
     }
     return settings;
 }

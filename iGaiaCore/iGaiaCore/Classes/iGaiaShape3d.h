@@ -19,7 +19,7 @@ public:
     {
         vector<iGaiaObject3dShaderSettings> m_shaders;
         vector<iGaiaObject3dTextureSettings> m_textures;
-        string m_meshFileName;
+        string m_meshName;
     };
 
 private:

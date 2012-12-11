@@ -5,21 +5,12 @@
 //  Created by Sergey Sergeev on 10/1/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-/*
-#import "iGaiaStageMgr.h"
-#import "iGaiaLogger.h"
+#include "iGaiaStageMgr.h"
+#include "iGaiaLogger.h"
 
 iGaiaStageMgr::iGaiaStageMgr(void)
 {
-    m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaStageMgr::OnUpdate, this));
-    [[iGaiaiOSGameLoop SharedInstance] AddEventListener:&m_loopCallback];
 
-    m_renderMgr = new iGaiaRenderMgr();
-    m_touchMgr = new iGaiaTouchMgr(); 
-    m_touchMgr->Set_OperationView(m_renderMgr->Get_GLView());
-    m_scriptMgr = new iGaiaScriptMgr();
-    m_particleMgr = new iGaiaParticleMgr();
-    m_soundMgr = new iGaiaSoundMgr();
 }
 
 iGaiaStageMgr::~iGaiaStageMgr(void)
@@ -27,112 +18,19 @@ iGaiaStageMgr::~iGaiaStageMgr(void)
     
 }
 
-iGaiaStageMgr* iGaiaStageMgr::SharedInstance(void)
+iGaiaShape3d::iGaiaShape3dSettings iGaiaStageMgr::Get_Shape3dSettings(const string& _name)
 {
-    static iGaiaStageMgr *instance = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        instance = new iGaiaStageMgr();
-    });
-    return instance;
-}
-
-
-iGaiaRenderMgr* iGaiaStageMgr::Get_RenderMgr(void)
-{
-    return m_renderMgr;
-}
-
-iGaiaScriptMgr* iGaiaStageMgr::Get_ScriptMgr(void)
-{
-    return m_scriptMgr;
-}
-
-iGaiaTouchMgr* iGaiaStageMgr::Get_TouchMgr(void)
-{
-    return m_touchMgr;
-}
-
-iGaiaParticleMgr* iGaiaStageMgr::Get_ParticleMgr(void)
-{
-    return m_particleMgr;
-}
-
-iGaiaSoundMgr* iGaiaStageMgr::Get_SoundMgr(void)
-{
-    return m_soundMgr;
-}
-
-iGaiaCamera* iGaiaStageMgr::CreateCamera(f32 _fov, f32 _near, f32 _far, ui32 _width, ui32 _height)
-{
-    m_camera = new iGaiaCamera(_fov, _near, _far, _width, _height);
-
-    for(set<iGaiaObject3d*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
+    iGaiaShape3d::iGaiaShape3dSettings settings;
+    if(m_shapes3dSettings.find(_name) != m_shapes3dSettings.end())
     {
-        iGaiaObject3d* object3d = *iterator;
-        object3d->Set_Camera(m_camera);
+        settings = m_shapes3dSettings.find(_name)->second;
     }
-    m_particleMgr->Set_Camera(m_camera);
-    m_touchMgr->Get_TouchCrosser()->Set_Camera(m_camera);
-    return m_camera;
-}
-
-iGaiaLight* iGaiaStageMgr::CreateLight(void)
-{
-    m_light = new iGaiaLight();
-    for(set<iGaiaObject3d*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
+    else
     {
-        iGaiaObject3d* object3d = *iterator;
-        object3d->Set_Light(m_light);
+        iGaiaParser_Shape3dSettings* parser = new iGaiaParser_Shape3dSettings();
+        settings = parser->Get_Settings(_name);
+        m_shapes3dSettings[_name] = settings;
+        delete parser;
     }
-    m_particleMgr->Set_Light(m_light);
-    return m_light;
+    return settings;
 }
-
-iGaiaShape3d* iGaiaStageMgr::CreateShape3d(const string& _name)
-{
-    iGaiaShape3d* shape3d = new iGaiaShape3d(_name);
-    shape3d->Set_Camera(m_camera);
-    shape3d->Set_Light(m_light);
-    m_listeners.insert(shape3d);
-    m_touchMgr->Get_TouchCrosser()->AddEventListener(shape3d);
-    return shape3d;
-}
-
-iGaiaOcean* iGaiaStageMgr::CreateOcean(f32 _width, f32 _height, f32 _altitude)
-{
-    for(iGaiaUpdateCallback* listener : m_listeners)
-    {
-        iGaiaShape3d* shape3d = static_cast<iGaiaShape3d*>(listener);
-        shape3d->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, _altitude));
-    }
-    m_camera->Set_Altitude(_altitude);
-
-    m_ocean = new iGaiaOcean(_width, _height, _altitude);
-    m_ocean->Set_Camera(m_camera);
-    m_ocean->Set_Light(m_light);
-    m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection));
-    m_ocean->Set_RefractionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction));
-    m_listeners.insert(m_ocean);
-    return m_ocean;
-}
-
-iGaiaSkyDome* iGaiaStageMgr::CreateSkyDome(void)
-{
-    iGaiaSkyDome* skydome = new iGaiaSkyDome();
-    skydome->Set_Camera(m_camera);
-    skydome->Set_Light(m_light);
-    m_listeners.insert(skydome);
-    return skydome;
-}
-
-void iGaiaStageMgr::OnUpdate(void)
-{
-    m_camera->OnUpdate();
-
-    for(iGaiaUpdateCallback* listener : m_listeners)
-    {
-        listener->OnUpdate();
-    }
-    m_particleMgr->OnUpdate();
-}*/
