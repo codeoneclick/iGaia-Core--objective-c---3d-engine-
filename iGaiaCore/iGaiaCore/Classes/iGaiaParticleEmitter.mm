@@ -49,6 +49,18 @@ iGaiaParticleEmitter::iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaPart
     indexBuffer->Unlock();
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.particle.emitter", iGaiaResource::iGaia_E_CreationModeCustom);
+
+    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
+    {
+        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
+        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
+    }
+
+    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
+    {
+        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
+        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
+    }
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, false);

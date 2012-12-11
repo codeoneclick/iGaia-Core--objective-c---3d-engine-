@@ -27,10 +27,10 @@ public:
     enum iGaia_E_RenderModeWorldSpace
     {
         iGaia_E_RenderModeWorldSpaceSimple = 0,
-        iGaia_E_RenderModeWorldSpaceReflection,
-        iGaia_E_RenderModeWorldSpaceRefraction,
-        iGaia_E_RenderModeWorldSpaceScreenNormalMap,
-        iGaia_E_RenderModeWorldSpaceMaxValue
+        iGaia_E_RenderModeWorldSpaceReflection = 1,
+        iGaia_E_RenderModeWorldSpaceRefraction = 2,
+        iGaia_E_RenderModeWorldSpaceScreenNormalMap = 3,
+        iGaia_E_RenderModeWorldSpaceMaxValue = 4
     };
 
     enum iGaia_E_RenderModeScreenSpace

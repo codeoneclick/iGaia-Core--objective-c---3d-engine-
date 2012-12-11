@@ -11,6 +11,7 @@
 #include "iGaiaSharedFacade.h"
 #include "iGaiaGLWindow_iOS.h"
 #include "iGaiaSettings_iOS.h"
+#include "iGaiaResourceMgr.h"
 
 #include <iostream>
 #include <vector>
@@ -130,6 +131,12 @@ std::mutex mutex_01;
     iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->CreateMusic("music", "mp3", "music");
     iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->PlayMusic("music", -1);
 
+    iGaiaParticleEmitter::iGaiaParticleEmitterSettings settings_particle = iGaiaResourceMgr::SharedInstance()->Get_ParticleEmitterSettings("particle_emitter_fire.xml");
+
+    iGaiaParticleEmitter* emitter = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateParticleEmitter(settings_particle);
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushParticleEmitter(emitter);
+    emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
+    
     //[[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
     //[[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
 
