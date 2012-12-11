@@ -1474,10 +1474,7 @@
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCore/Libs\"/**";
 				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					Python,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7;
@@ -1497,10 +1494,7 @@
 				GCC_PREFIX_HEADER = "iGaiaCore/iGaiaCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/iGaiaCore/Libs\"/**";
 				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					Python,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7;

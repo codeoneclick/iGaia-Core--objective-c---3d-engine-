@@ -13,6 +13,7 @@ iGaiaUpdateMgr::iGaiaUpdateMgr(void)
 {
     m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaUpdateMgr::OnLoop, this));
     [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
+    m_loopCallback.InvokeOnUpdateListener();
 }
 
 iGaiaUpdateMgr::~iGaiaUpdateMgr(void)
