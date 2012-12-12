@@ -59,7 +59,7 @@ std::mutex mutex_01;
     m_light = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateLight();
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Light(m_light);
 
-    iGaiaShape3d::iGaiaShape3dSettings settings;
+    /*iGaiaShape3d::iGaiaShape3dSettings settings;
     settings.m_meshName = "building_01.mdl";
 
     iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
@@ -82,15 +82,16 @@ std::mutex mutex_01;
     settingsTextureShape3dSimple.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_01;
     settingsTextureShape3dSimple.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
 
-    settings.m_textures.push_back(settingsTextureShape3dSimple);
+    settings.m_textures.push_back(settingsTextureShape3dSimple);*/
 
-    iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settings);
+    iGaiaShape3d::iGaiaShape3dSettings settingsBuilding_01 = iGaiaResourceMgr::SharedInstance()->Get_Shape3dSettings("building_01.xml");
+    iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settingsBuilding_01);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushShape3d(shape3d);
     shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
 
     //iGaiaSharedFacade::SharedInstance()->Get_ScriptMgr()->LoadScript("Scene_01.nut");
 
-    iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome;
+    /*iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome;
     iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderSkyDomeSimple;
     iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureSkyDomeSimple;
 
@@ -102,12 +103,13 @@ std::mutex mutex_01;
     settingsTextureSkyDomeSimple.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
 
     settingsSkyDome.m_shaders.push_back(settingsShaderSkyDomeSimple);
-    settingsSkyDome.m_textures.push_back(settingsTextureSkyDomeSimple);
+    settingsSkyDome.m_textures.push_back(settingsTextureSkyDomeSimple);*/
 
+    iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome = iGaiaResourceMgr::SharedInstance()->Get_SkyDomeSettings("skydome.xml");
     iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(settingsSkyDome);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_SkyDome(skydome);
 
-    iGaiaOcean::iGaiaOceanSettings settingsOcean;
+    /*iGaiaOcean::iGaiaOceanSettings settingsOcean;
     iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderOceanSimple;
     iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureOcean;
 
@@ -123,8 +125,9 @@ std::mutex mutex_01;
 
     settingsOcean.m_width = 256.0f;
     settingsOcean.m_height = 256.0f;
-    settingsOcean.m_altitude = 0.1f;
+    settingsOcean.m_altitude = 0.1f;*/
 
+    iGaiaOcean::iGaiaOceanSettings settingsOcean = iGaiaResourceMgr::SharedInstance()->Get_OceanSettings("ocean.xml");
     iGaiaOcean* ocean = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateOcean(settingsOcean);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Ocean(ocean);
 

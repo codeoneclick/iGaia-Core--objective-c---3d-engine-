@@ -14,8 +14,8 @@
 
 iGaiaRenderMgr::iGaiaRenderMgr(void)
 {
-    //m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaRenderMgr::OnUpdate, this));
-    //[[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
+    m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaRenderMgr::OnUpdate, this));
+    [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
 
     for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
     {

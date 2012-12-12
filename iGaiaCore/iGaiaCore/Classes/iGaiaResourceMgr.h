@@ -14,6 +14,7 @@
 #include "iGaiaMeshMgr.h"
 #include "iGaiaShaderMgr.h"
 #include "iGaiaParticleMgr.h"
+#include "iGaiaStageMgr.h"
 
 class iGaiaResourceMgr
 {
@@ -22,6 +23,7 @@ private:
     iGaiaMeshMgr* m_meshMgr;
     iGaiaShaderMgr* m_shaderMgr;
     iGaiaParticleMgr* m_particleMgr;
+    iGaiaStageMgr* m_stageMgr;
 protected:
 
 public:
@@ -33,7 +35,11 @@ public:
     iGaiaShader* Get_Shader(iGaiaShader::iGaia_E_Shader _shader);
     iGaiaTexture* Get_Texture(const string& _name);
     iGaiaMesh* Get_Mesh(const string& _name);
+    
     iGaiaParticleEmitter::iGaiaParticleEmitterSettings Get_ParticleEmitterSettings(const string& _name);
+    iGaiaShape3d::iGaiaShape3dSettings Get_Shape3dSettings(const string& _name);
+    iGaiaOcean::iGaiaOceanSettings Get_OceanSettings(const string& _name);
+    iGaiaSkyDome::iGaiaSkyDomeSettings Get_SkyDomeSettings(const string& _name);
 };
 
 #endif

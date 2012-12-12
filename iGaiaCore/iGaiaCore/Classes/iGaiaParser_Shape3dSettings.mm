@@ -66,7 +66,7 @@ iGaiaShape3d::iGaiaShape3dSettings iGaiaParser_Shape3dSettings::Get_Settings(con
     xml_node settings_node = document.child(iGaiaShape3dSettingsXMLValue.settings);
     iGaiaShape3d::iGaiaShape3dSettings settings;
     
-    settings.m_meshName = settings_node.child(iGaiaShape3dSettingsXMLValue.mesh).attribute(iGaiaShape3dSettingsXMLValue.mesh_name).as_int();
+    settings.m_meshName = settings_node.child(iGaiaShape3dSettingsXMLValue.mesh).attribute(iGaiaShape3dSettingsXMLValue.mesh_name).as_string();
 
     iGaiaObject3d::iGaiaObject3dTextureSettings settingsTexture_01;
     settingsTexture_01.m_name = settings_node.child(iGaiaShape3dSettingsXMLValue.textures).child(iGaiaShape3dSettingsXMLValue.texture_01).attribute(iGaiaShape3dSettingsXMLValue.texture_name).as_string();

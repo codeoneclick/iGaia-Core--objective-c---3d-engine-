@@ -20,5 +20,5 @@ public:
     iGaiaParser_OceanSettings(void);
     ~iGaiaParser_OceanSettings(void);
 
-    iGaiaShape3d::iGaiaShape3dSettings Get_Settings(const string& _name);
+    iGaiaOcean::iGaiaOceanSettings Get_Settings(const string& _name);
 };

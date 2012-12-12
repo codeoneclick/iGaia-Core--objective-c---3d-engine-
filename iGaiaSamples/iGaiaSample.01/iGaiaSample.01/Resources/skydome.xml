@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings name="skydome">
+    <textures>
+        <texture_01 name="skydome.pvr" slot="0" wrap="1" />
+    </textures>
+    <shaders>
+        <shader_01 id="10" mode="0" />
+    </shaders>
+</settings>

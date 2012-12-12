@@ -20,7 +20,7 @@ iGaiaShape3d::iGaiaShape3d(const iGaiaShape3dSettings& _settings)
     m_crossingNumVertexes = 0;
     m_crossingNumIndexes = 0;
 
-    m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_settings.m_meshFileName);
+    m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_settings.m_meshName);
 
     for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
     {

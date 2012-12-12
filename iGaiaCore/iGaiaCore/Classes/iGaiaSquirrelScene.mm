@@ -60,7 +60,7 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
     {
         const SQChar* f_name = iGaiaSquirrelCommon::SharedInstance()->PopString(2);
         iGaiaShape3d::iGaiaShape3dSettings settings;
-        settings.m_meshFileName = f_name;
+        settings.m_meshName = f_name;
 
         iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
         shaderSettingsSimple.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;

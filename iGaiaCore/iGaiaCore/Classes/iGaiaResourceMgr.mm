@@ -14,6 +14,7 @@ iGaiaResourceMgr::iGaiaResourceMgr(void)
     m_meshMgr = new iGaiaMeshMgr();
     m_shaderMgr = new iGaiaShaderMgr();
     m_particleMgr = new iGaiaParticleMgr();
+    m_stageMgr = new iGaiaStageMgr();
 }
 
 iGaiaResourceMgr::~iGaiaResourceMgr(void)
@@ -51,4 +52,18 @@ iGaiaParticleEmitter::iGaiaParticleEmitterSettings iGaiaResourceMgr::Get_Particl
     return m_particleMgr->Get_ParticleEmitterSettings(_name);
 }
 
+iGaiaShape3d::iGaiaShape3dSettings iGaiaResourceMgr::Get_Shape3dSettings(const string& _name)
+{
+    return m_stageMgr->Get_Shape3dSettings(_name);
+}
+
+iGaiaOcean::iGaiaOceanSettings iGaiaResourceMgr::Get_OceanSettings(const string& _name)
+{
+    return m_stageMgr->Get_OceanSettings(_name);
+}
+
+iGaiaSkyDome::iGaiaSkyDomeSettings iGaiaResourceMgr::Get_SkyDomeSettings(const string& _name)
+{
+    return m_stageMgr->Get_SkyDomeSettings(_name);
+}
 
