@@ -14,6 +14,7 @@
 #include "iGaiaBillboard.h"
 #include "iGaiaOcean.h"
 #include "iGaiaSkyDome.h"
+#include "iGaiaLandscape.h"
 #include "iGaiaParticleEmitter.h"
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
@@ -29,6 +30,7 @@ private:
 
     iGaiaOcean* m_ocean;
     iGaiaSkyDome* m_skyDome;
+    iGaiaLandscape* m_landscape;
 
     set<iGaiaShape3d*> m_shapes3d;
     set<iGaiaParticleEmitter*> m_particleEmitters;
@@ -42,6 +44,7 @@ public:
     void Set_Camera(iGaiaCamera* _camera);
     void Set_Light(iGaiaLight* _light);
     void Set_Ocean(iGaiaOcean* _ocean);
+    void Set_Landscape(iGaiaLandscape* _landscape);
     void Set_SkyDome(iGaiaSkyDome* _skyDome);
 
     void PushShape3d(iGaiaShape3d* _shape3d);

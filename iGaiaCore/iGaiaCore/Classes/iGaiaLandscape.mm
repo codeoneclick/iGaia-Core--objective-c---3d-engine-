@@ -9,7 +9,7 @@
 #include "iGaiaLandscape.h"
 #include "iGaiaLogger.h"
 
-static ui32 kiGaiaLandscapeRenderPriority = 6;
+static ui32 kiGaiaLandscapeRenderPriority = 5;
 
 iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
 {

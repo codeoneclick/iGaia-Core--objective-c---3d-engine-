@@ -109,23 +109,26 @@ std::mutex mutex_01;
     iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(settingsSkyDome);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_SkyDome(skydome);
 
-    /*iGaiaOcean::iGaiaOceanSettings settingsOcean;
-    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderOceanSimple;
-    iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureOcean;
+    iGaiaLandscape::iGaiaLandscapeSettings settingsLanscape;
+    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderLandscapeSimple;
+    iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureLandscape;
 
-    settingsShaderOceanSimple.m_shader = iGaiaShader::iGaia_E_ShaderOcean;
-    settingsShaderOceanSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+    settingsShaderLandscapeSimple.m_shader = iGaiaShader::iGaia_E_ShaderLandscape;
+    settingsShaderLandscapeSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
 
-    settingsTextureOcean.m_name = "ocean_riple.pvr";
-    settingsTextureOcean.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_03;
-    settingsTextureOcean.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
+    settingsTextureLandscape.m_name = "default.pvr";
+    settingsTextureLandscape.m_slot = iGaiaShader::iGaia_E_ShaderTextureSlot_03;
+    settingsTextureLandscape.m_wrap = iGaiaTexture::iGaia_E_TextureSettingsValueRepeat;
 
-    settingsOcean.m_shaders.push_back(settingsShaderOceanSimple);
-    settingsOcean.m_textures.push_back(settingsTextureOcean);
+    settingsLanscape.m_shaders.push_back(settingsShaderLandscapeSimple);
+    settingsLanscape.m_textures.push_back(settingsTextureLandscape);
 
-    settingsOcean.m_width = 256.0f;
-    settingsOcean.m_height = 256.0f;
-    settingsOcean.m_altitude = 0.1f;*/
+    settingsLanscape.m_width = 256.0f;
+    settingsLanscape.m_height = 256.0f;
+    settingsLanscape.m_scaleFactor = vec2(1.0f, 1.0f);
+    
+    iGaiaLandscape* landscape = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateLandscape(settingsLanscape);
+    iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Landscape(landscape);
 
     iGaiaOcean::iGaiaOceanSettings settingsOcean = iGaiaResourceMgr::SharedInstance()->Get_OceanSettings("ocean.xml");
     iGaiaOcean* ocean = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateOcean(settingsOcean);

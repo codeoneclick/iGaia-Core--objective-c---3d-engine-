@@ -17,6 +17,7 @@ iGaiaStageProcessor::iGaiaStageProcessor(void)
     m_light = nullptr;
 
     m_ocean = nullptr;
+    m_landscape = nullptr;
     m_skyDome = nullptr;
 }
 
@@ -132,6 +133,25 @@ void iGaiaStageProcessor::Set_Ocean(iGaiaOcean* _ocean)
     m_ocean->Set_RenderMgr(m_renderMgr);
     m_ocean->ListenUpdateMgr(true);
     m_ocean->ListenRenderMgr(true);
+}
+
+void iGaiaStageProcessor::Set_Landscape(iGaiaLandscape *_landscape)
+{
+    if(m_landscape != nullptr)
+    {
+        m_landscape->ListenUpdateMgr(false);
+        m_landscape->ListenRenderMgr(false);
+        m_landscape = nullptr;
+    }
+    
+    m_landscape = _landscape;
+    
+    m_landscape->Set_Camera(m_camera);
+    m_landscape->Set_Light(m_light);
+    m_landscape->Set_UpdateMgr(m_updateMgr);
+    m_landscape->Set_RenderMgr(m_renderMgr);
+    m_landscape->ListenUpdateMgr(true);
+    m_landscape->ListenRenderMgr(true);
 }
 
 void iGaiaStageProcessor::Set_SkyDome(iGaiaSkyDome* _skyDome)
