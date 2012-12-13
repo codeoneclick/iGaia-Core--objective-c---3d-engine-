@@ -14,6 +14,7 @@
 #include "iGaiaBillboard.h"
 #include "iGaiaOcean.h"
 #include "iGaiaSkyDome.h"
+#include "iGaiaLandscape.h"
 #include "iGaiaParticleEmitter.h"
 
 class iGaiaStageContainer

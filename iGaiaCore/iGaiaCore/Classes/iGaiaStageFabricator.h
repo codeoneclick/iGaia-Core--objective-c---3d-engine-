@@ -24,6 +24,7 @@ public:
     iGaiaLight* CreateLight(void);
 
     iGaiaOcean* CreateOcean(const iGaiaOcean::iGaiaOceanSettings& _settings);
+    iGaiaLandscape* CreateLandscape(const iGaiaLandscape::iGaiaLandscapeSettings& _settings);
     iGaiaSkyDome* CreateSkyDome(const iGaiaSkyDome::iGaiaSkyDomeSettings& _settings);
     iGaiaShape3d* CreateShape3d(const iGaiaShape3d::iGaiaShape3dSettings& _settings);
     iGaiaParticleEmitter* CreateParticleEmitter(const iGaiaParticleEmitter::iGaiaParticleEmitterSettings& _settings);

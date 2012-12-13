@@ -46,6 +46,8 @@ iGaiaOcean* iGaiaStageFabricator::CreateOcean(const iGaiaOcean::iGaiaOceanSettin
     return ocean;
 }
 
+iGaiaLandscape* iGaiaStageFabricator::Cre
+
 iGaiaSkyDome* iGaiaStageFabricator::CreateSkyDome(const iGaiaSkyDome::iGaiaSkyDomeSettings& _settings)
 {
     iGaiaSkyDome* skyDome = new iGaiaSkyDome(_settings);
