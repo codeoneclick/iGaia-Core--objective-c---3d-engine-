@@ -52,6 +52,23 @@ iGaiaOcean::iGaiaOceanSettings iGaiaStageMgr::Get_OceanSettings(const string &_n
     return settings;
 }
 
+iGaiaLandscape::iGaiaLandscapeSettings iGaiaStageMgr::Get_LandscapeSettings(const string &_name)
+{
+    iGaiaLandscape::iGaiaLandscapeSettings settings;
+    if(m_landscapeSettings.find(_name) != m_landscapeSettings.end())
+    {
+        settings = m_landscapeSettings.find(_name)->second;
+    }
+    else
+    {
+        iGaiaParser_LandscapeSettings* parser = new iGaiaParser_LandscapeSettings();
+        settings = parser->Get_Settings(_name);
+        m_landscapeSettings[_name] = settings;
+        delete parser;
+    }
+    return settings;
+}
+
 iGaiaSkyDome::iGaiaSkyDomeSettings iGaiaStageMgr::Get_SkyDomeSettings(const string &_name)
 {
     iGaiaSkyDome::iGaiaSkyDomeSettings settings;

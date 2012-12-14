@@ -39,6 +39,7 @@ public:
     iGaiaParticleEmitter::iGaiaParticleEmitterSettings Get_ParticleEmitterSettings(const string& _name);
     iGaiaShape3d::iGaiaShape3dSettings Get_Shape3dSettings(const string& _name);
     iGaiaOcean::iGaiaOceanSettings Get_OceanSettings(const string& _name);
+    iGaiaLandscape::iGaiaLandscapeSettings Get_LandscapeSettings(const string& _name);
     iGaiaSkyDome::iGaiaSkyDomeSettings Get_SkyDomeSettings(const string& _name);
 };
 

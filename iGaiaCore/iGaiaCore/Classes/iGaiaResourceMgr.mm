@@ -62,6 +62,11 @@ iGaiaOcean::iGaiaOceanSettings iGaiaResourceMgr::Get_OceanSettings(const string&
     return m_stageMgr->Get_OceanSettings(_name);
 }
 
+iGaiaLandscape::iGaiaLandscapeSettings iGaiaResourceMgr::Get_LandscapeSettings(const string& _name)
+{
+    return m_stageMgr->Get_LandscapeSettings(_name);
+}
+
 iGaiaSkyDome::iGaiaSkyDomeSettings iGaiaResourceMgr::Get_SkyDomeSettings(const string& _name)
 {
     return m_stageMgr->Get_SkyDomeSettings(_name);

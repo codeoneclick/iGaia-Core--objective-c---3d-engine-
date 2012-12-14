@@ -63,7 +63,7 @@ iGaiaParticleEmitter::iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaPart
     }
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, false);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
     m_material->Set_CullFaceMode(GL_FRONT);

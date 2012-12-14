@@ -109,7 +109,7 @@ std::mutex mutex_01;
     iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(settingsSkyDome);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_SkyDome(skydome);
 
-    iGaiaLandscape::iGaiaLandscapeSettings settingsLanscape;
+    /*iGaiaLandscape::iGaiaLandscapeSettings settingsLanscape;
     iGaiaObject3d::iGaiaObject3dShaderSettings settingsShaderLandscapeSimple;
     iGaiaObject3d::iGaiaObject3dTextureSettings settingsTextureLandscape;
 
@@ -125,8 +125,9 @@ std::mutex mutex_01;
 
     settingsLanscape.m_width = 256.0f;
     settingsLanscape.m_height = 256.0f;
-    settingsLanscape.m_scaleFactor = vec2(1.0f, 1.0f);
-    
+    settingsLanscape.m_scaleFactor = vec2(1.0f, 1.0f);*/
+
+    iGaiaLandscape::iGaiaLandscapeSettings settingsLanscape = iGaiaResourceMgr::SharedInstance()->Get_LandscapeSettings("landscape.xml");
     iGaiaLandscape* landscape = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateLandscape(settingsLanscape);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Landscape(landscape);
 
