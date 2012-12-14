@@ -23,6 +23,7 @@
 #include <mutex>
 #include <thread>
 #include <set>
+#include <queue>
 #include <fstream>
 #include <strstream>
 

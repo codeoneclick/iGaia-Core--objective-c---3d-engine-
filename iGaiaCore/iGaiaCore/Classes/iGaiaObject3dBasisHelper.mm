@@ -8,134 +8,134 @@
 
 #import "iGaiaObject3dBasisHelper.h"
 
-@implementation iGaiaObject3dBasisHelper
 
-@end
-
-void iGaiaObject3dBasisHelper::_CalculateNormals(IVertexBuffer* _pVertexBuffer, CIndexBuffer* _pIndexBuffer)
+void iGaiaObject3dBasisHelper::CalculateNormals(iGaiaVertexBufferObject* _vertexBuffer, iGaiaIndexBufferObject* _indexBuffer)
 {
-    CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(_pVertexBuffer->Lock());
-    unsigned short* pIndexBufferData = _pIndexBuffer->Get_SourceData();
-    unsigned int iNumIndexes = _pIndexBuffer->Get_NumIndexes();
-    for(unsigned int index = 0; index < iNumIndexes; index += 3)
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = _vertexBuffer->Lock();
+    ui16* indexData = _indexBuffer->Lock();
+    ui32 numIndexes = _indexBuffer->Get_NumIndexes();
+    for(ui32 index = 0; index < numIndexes; index += 3)
     {
-        glm::vec3 vPoint_01 = pVertexBufferData[pIndexBufferData[index + 0]].m_vPosition;
-        glm::vec3 vPoint_02 = pVertexBufferData[pIndexBufferData[index + 1]].m_vPosition;
-        glm::vec3 vPoint_03 = pVertexBufferData[pIndexBufferData[index + 2]].m_vPosition;
+        vec3 point_01 = vertexData[indexData[index + 0]].m_position;
+        vec3 point_02 = vertexData[indexData[index + 1]].m_position;
+        vec3 point_03 = vertexData[indexData[index + 2]].m_position;
 
-        glm::vec3 vEdge_01 = vPoint_02 - vPoint_01;
-        glm::vec3 vEdge_02 = vPoint_03 - vPoint_01;
-        glm::vec3 vNormal = glm::cross(vEdge_01, vEdge_02);
-        vNormal = glm::normalize(vNormal);
-        glm::u8vec4 vByteNormal = IVertexBuffer::CompressVEC3(vNormal);
-        pVertexBufferData[pIndexBufferData[index + 0]].m_vNormal = vByteNormal;
-        pVertexBufferData[pIndexBufferData[index + 1]].m_vNormal = vByteNormal;
-        pVertexBufferData[pIndexBufferData[index + 2]].m_vNormal = vByteNormal;
+        vec3 edge_01 = point_02 - point_01;
+        vec3 edge_02 = point_03 - point_01;
+        
+        vec3 normal = cross(edge_01, edge_02);
+        normal = normalize(normal);
+        u8vec4 byteNormal = iGaiaVertexBufferObject::CompressVec3(normal);
+        vertexData[indexData[index + 0]].m_normal = byteNormal;
+        vertexData[indexData[index + 1]].m_normal = byteNormal;
+        vertexData[indexData[index + 2]].m_normal = byteNormal;
     }
+    _vertexBuffer->Unlock();
+    _indexBuffer->Unlock();
 }
 
-void CHeightMapSetter::_CalculateTangentsAndBinormals(IVertexBuffer* _pVertexBuffer, CIndexBuffer* _pIndexBuffer)
+void iGaiaObject3dBasisHelper::CalculateTangentsAndBinormals(iGaiaVertexBufferObject* _vertexBuffer, iGaiaIndexBufferObject* _indexBuffer)
 {
-	register int i, j;
-	std::vector<glm::vec3> lTangents, lBinormals;
+	register ui32 i, j;
+	vector<vec3> tangents, binormals;
 
-	int iNumIndexes = _pIndexBuffer->Get_NumIndexes();
-    CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(_pVertexBuffer->Lock());
-    unsigned short* pIndexBufferData = _pIndexBuffer->Get_SourceData();
+	ui32 numIndexes = _indexBuffer->Get_NumIndexes();
+    
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = _vertexBuffer->Lock();
+    ui16* indexData = _indexBuffer->Lock();
 
-    for ( i = 0; i < iNumIndexes; i += 3 )
+    for (i = 0; i < numIndexes; i += 3)
 	{
-		glm::vec3 v1 = pVertexBufferData[pIndexBufferData[i + 0]].m_vPosition;
-		glm::vec3 v2 = pVertexBufferData[pIndexBufferData[i + 1]].m_vPosition;
-		glm::vec3 v3 = pVertexBufferData[pIndexBufferData[i + 2]].m_vPosition;
-		float s1 = pVertexBufferData[pIndexBufferData[i + 0]].m_vTexcoord.x;
-		float t1 = pVertexBufferData[pIndexBufferData[i + 0]].m_vTexcoord.y;
-		float s2 = pVertexBufferData[pIndexBufferData[i + 1]].m_vTexcoord.x;
-		float t2 = pVertexBufferData[pIndexBufferData[i + 1]].m_vTexcoord.y;
-		float s3 = pVertexBufferData[pIndexBufferData[i + 2]].m_vTexcoord.x;
-		float t3 = pVertexBufferData[pIndexBufferData[i + 2]].m_vTexcoord.y;
+		vec3 v1 = vertexData[indexData[i + 0]].m_position;
+		vec3 v2 = vertexData[indexData[i + 1]].m_position;
+		vec3 v3 = vertexData[indexData[i + 2]].m_position;
+        
+		f32 s1 = vertexData[indexData[i + 0]].m_texcoord.x;
+		f32 t1 = vertexData[indexData[i + 0]].m_texcoord.y;
+		f32 s2 = vertexData[indexData[i + 1]].m_texcoord.x;
+		f32 t2 = vertexData[indexData[i + 1]].m_texcoord.y;
+		f32 s3 = vertexData[indexData[i + 2]].m_texcoord.x;
+		f32 t3 = vertexData[indexData[i + 2]].m_texcoord.y;
 
-		glm::vec3  t, b;
-		_CalculateTriangleBasis(v1, v2, v3, s1, t1, s2, t2, s3, t3, t, b);
-		lTangents.push_back(t);
-		lBinormals.push_back(b);
+		vec3  t, b;
+		CalculateTriangleBasis(v1, v2, v3, s1, t1, s2, t2, s3, t3, t, b);
+		tangents.push_back(t);
+		binormals.push_back(b);
 	}
 
-    int iNumVertexes = _pVertexBuffer->Get_NumVertexes();
-	for (i = 0; i < iNumVertexes; i++)
+    ui32 numVertexes = _vertexBuffer->Get_NumVertexes();
+	for (i = 0; i < numVertexes; i++)
 	{
-		std::vector<glm::vec3> lrt, lrb;
-		for (j = 0; j < iNumIndexes; j += 3)
+		vector<vec3> lrt, lrb;
+		for (j = 0; j < numVertexes; j += 3)
 		{
-			if ((pIndexBufferData[j + 0]) == i || (pIndexBufferData[j + 1]) == i || (pIndexBufferData[j + 2]) == i)
+			if ((indexData[j + 0]) == i || (indexData[j + 1]) == i || (indexData[j + 2]) == i)
 			{
-				lrt.push_back(lTangents[i]);
-				lrb.push_back(lBinormals[i]);
+				lrt.push_back(tangents[i]);
+				lrb.push_back(binormals[i]);
 			}
 		}
 
-        glm::vec3 vTangentRes(0.0f, 0.0f, 0.0f);
-        glm::vec3 vBinormalRes(0.0f, 0.0f, 0.0f);
+        vec3 tangent(0.0f, 0.0f, 0.0f);
+        vec3 binormal(0.0f, 0.0f, 0.0f);
 		for (j = 0; j < lrt.size(); j++)
 		{
-			vTangentRes += lrt[j];
-			vBinormalRes += lrb[j];
+			tangent += lrt[j];
+			binormal += lrb[j];
 		}
-		vTangentRes /= float(lrt.size());
-		vBinormalRes /= float(lrb.size());
+		tangent /= float(lrt.size());
+		binormal /= float(lrb.size());
 
-        glm::vec3 vNormal = IVertexBuffer::UnCompressU8VEC4(pVertexBufferData[i].m_vNormal);
-		vTangentRes = _Ortogonalize(vNormal, vTangentRes);
-		vBinormalRes = _Ortogonalize(vNormal, vBinormalRes);
+        vec3 normal = iGaiaVertexBufferObject::UncompressU8Vec4(vertexData[i].m_normal);
+		tangent = Ortogonalize(normal, tangent);
+		binormal = Ortogonalize(normal, binormal);
 
-        pVertexBufferData[i].m_vTangent = IVertexBuffer::CompressVEC3(vTangentRes);
+        vertexData[i].m_tangent = iGaiaVertexBufferObject::CompressVec3(tangent);
 	}
 }
 
 
-void CHeightMapSetter::_CalculateTriangleBasis( const glm::vec3& E, const glm::vec3& F, const glm::vec3& G, float sE,
-                                               float tE, float sF, float tF, float sG, float tG, glm::vec3& tangentX,
-                                               glm::vec3& tangentY )
+void iGaiaObject3dBasisHelper::CalculateTriangleBasis(const vec3& E, const vec3& F, const vec3& G, f32 sE, f32 tE, f32 sF, f32 tF, f32 sG, f32 tG, vec3& tangentX, vec3& tangentY)
 {
-    glm::vec3 P = F - E;
-    glm::vec3 Q = G - E;
-	float s1 = sF - sE;
-	float t1 = tF - tE;
-	float s2 = sG - sE;
-	float t2 = tG - tE;
-	float pqMatrix[2][3];
+    vec3 P = F - E;
+    vec3 Q = G - E;
+	f32 s1 = sF - sE;
+	f32 t1 = tF - tE;
+	f32 s2 = sG - sE;
+	f32 t2 = tG - tE;
+	f32 pqMatrix[2][3];
 	pqMatrix[0][0] = P[0];
 	pqMatrix[0][1] = P[1];
 	pqMatrix[0][2] = P[2];
 	pqMatrix[1][0] = Q[0];
 	pqMatrix[1][1] = Q[1];
 	pqMatrix[1][2] = Q[2];
-	float temp = 1.0f / ( s1 * t2 - s2 * t1);
-	float stMatrix[2][2];
+	f32 temp = 1.0f / ( s1 * t2 - s2 * t1);
+	f32 stMatrix[2][2];
 	stMatrix[0][0] =  t2 * temp;
 	stMatrix[0][1] = -t1 * temp;
 	stMatrix[1][0] = -s2 * temp;
 	stMatrix[1][1] =  s1 * temp;
-	float tbMatrix[2][3];
+	f32 tbMatrix[2][3];
 	tbMatrix[0][0] = stMatrix[0][0] * pqMatrix[0][0] + stMatrix[0][1] * pqMatrix[1][0];
 	tbMatrix[0][1] = stMatrix[0][0] * pqMatrix[0][1] + stMatrix[0][1] * pqMatrix[1][1];
 	tbMatrix[0][2] = stMatrix[0][0] * pqMatrix[0][2] + stMatrix[0][1] * pqMatrix[1][2];
 	tbMatrix[1][0] = stMatrix[1][0] * pqMatrix[0][0] + stMatrix[1][1] * pqMatrix[1][0];
 	tbMatrix[1][1] = stMatrix[1][0] * pqMatrix[0][1] + stMatrix[1][1] * pqMatrix[1][1];
 	tbMatrix[1][2] = stMatrix[1][0] * pqMatrix[0][2] + stMatrix[1][1] * pqMatrix[1][2];
-	tangentX = glm::vec3( tbMatrix[0][0], tbMatrix[0][1], tbMatrix[0][2] );
-	tangentY = glm::vec3( tbMatrix[1][0], tbMatrix[1][1], tbMatrix[1][2] );
-	tangentX = glm::normalize(tangentX);
-	tangentY = glm::normalize(tangentY);
+	tangentX = vec3( tbMatrix[0][0], tbMatrix[0][1], tbMatrix[0][2] );
+	tangentY = vec3( tbMatrix[1][0], tbMatrix[1][1], tbMatrix[1][2] );
+	tangentX = normalize(tangentX);
+	tangentY = normalize(tangentY);
 }
 
-glm::vec3 CHeightMapSetter::_ClosestPointOnLine(const glm::vec3& a, const glm::vec3& b, const glm::vec3& p)
+vec3 iGaiaObject3dBasisHelper::ClosestPointOnLine(const vec3& a, const vec3& b, const vec3& p)
 {
-    glm::vec3 c = p - a;
-    glm::vec3 V = b - a;
-	float d = V.length();
-	V = glm::normalize(V);
-	float t = glm::dot( V, c );
+    vec3 c = p - a;
+    vec3 V = b - a;
+	f32 d = V.length();
+	V = normalize(V);
+	f32 t = dot( V, c );
 
 	if ( t < 0.0f )
 		return a;
@@ -146,10 +146,10 @@ glm::vec3 CHeightMapSetter::_ClosestPointOnLine(const glm::vec3& a, const glm::v
 	return ( a + V );
 }
 
-glm::vec3 CHeightMapSetter::_Ortogonalize(const glm::vec3& v1, const glm::vec3& v2)
+vec3 iGaiaObject3dBasisHelper::Ortogonalize(const vec3& v1, const vec3& v2)
 {
-	glm::vec3 v2ProjV1 = _ClosestPointOnLine( v1, -v1, v2 );
-	glm::vec3 res = v2 - v2ProjV1;
-	res = glm::normalize(res);
+	vec3 v2ProjV1 = ClosestPointOnLine( v1, -v1, v2 );
+	vec3 res = v2 - v2ProjV1;
+	res = normalize(res);
 	return res;
 }

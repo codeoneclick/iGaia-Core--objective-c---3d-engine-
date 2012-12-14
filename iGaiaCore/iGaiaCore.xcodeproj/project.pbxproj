@@ -91,7 +91,9 @@
 		A4C899F61628582C003AC188 /* iGaiaParticleEmitter.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4C899F51628582C003AC188 /* iGaiaParticleEmitter.mm */; };
 		A4D1B2D11642C8CD00FA3BE5 /* iGaiaSettings_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B2D01642C8CD00FA3BE5 /* iGaiaSettings_iOS.mm */; };
 		A4E51192167B72130069F06A /* iGaiaObject3dBasisHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4E51191167B72130069F06A /* iGaiaObject3dBasisHelper.mm */; };
-		A4E51195167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.m */; };
+		A4E51195167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm */; };
+		A4E51198167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4E51197167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm */; };
+		A4E5119B167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4E5119A167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -546,7 +548,11 @@
 		A4E51190167B72130069F06A /* iGaiaObject3dBasisHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaObject3dBasisHelper.h; path = iGaiaCore/Classes/iGaiaObject3dBasisHelper.h; sourceTree = "<group>"; };
 		A4E51191167B72130069F06A /* iGaiaObject3dBasisHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaObject3dBasisHelper.mm; path = iGaiaCore/Classes/iGaiaObject3dBasisHelper.mm; sourceTree = "<group>"; };
 		A4E51193167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRenderOperationOffscreenProcessingHelper.h; path = iGaiaCore/Classes/iGaiaRenderOperationOffscreenProcessingHelper.h; sourceTree = "<group>"; };
-		A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iGaiaRenderOperationOffscreenProcessingHelper.m; path = iGaiaCore/Classes/iGaiaRenderOperationOffscreenProcessingHelper.m; sourceTree = "<group>"; };
+		A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRenderOperationOffscreenProcessingHelper.mm; path = iGaiaCore/Classes/iGaiaRenderOperationOffscreenProcessingHelper.mm; sourceTree = "<group>"; };
+		A4E51196167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLandscapeSplattingTextureProcessorHelper.h; path = iGaiaCore/Classes/iGaiaLandscapeSplattingTextureProcessorHelper.h; sourceTree = "<group>"; };
+		A4E51197167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLandscapeSplattingTextureProcessorHelper.mm; path = iGaiaCore/Classes/iGaiaLandscapeSplattingTextureProcessorHelper.mm; sourceTree = "<group>"; };
+		A4E51199167B8A0F0069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLandscapeHeightmapTextureProcessorHelper.h; path = iGaiaCore/Classes/iGaiaLandscapeHeightmapTextureProcessorHelper.h; sourceTree = "<group>"; };
+		A4E5119A167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLandscapeHeightmapTextureProcessorHelper.mm; path = iGaiaCore/Classes/iGaiaLandscapeHeightmapTextureProcessorHelper.mm; sourceTree = "<group>"; };
 		A4FB158616397F07002B59D6 /* iGaiaSoundMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSoundMgr.h; path = iGaiaCore/Classes/iGaiaSoundMgr.h; sourceTree = "<group>"; };
 		A4FB158716397F07002B59D6 /* iGaiaSoundMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSoundMgr.mm; path = iGaiaCore/Classes/iGaiaSoundMgr.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1304,7 +1310,11 @@
 				A4E51190167B72130069F06A /* iGaiaObject3dBasisHelper.h */,
 				A4E51191167B72130069F06A /* iGaiaObject3dBasisHelper.mm */,
 				A4E51193167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.h */,
-				A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.m */,
+				A4E51194167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm */,
+				A4E51196167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.h */,
+				A4E51197167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm */,
+				A4E51199167B8A0F0069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.h */,
+				A4E5119A167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm */,
 			);
 			name = HelperEngine;
 			sourceTree = "<group>";
@@ -1452,7 +1462,9 @@
 				21079A15167A5C320086429B /* iGaiaLandscape.mm in Sources */,
 				A41381D7167B31D000FF06AF /* iGaiaParser_LandscapeSettings.mm in Sources */,
 				A4E51192167B72130069F06A /* iGaiaObject3dBasisHelper.mm in Sources */,
-				A4E51195167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.m in Sources */,
+				A4E51195167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm in Sources */,
+				A4E51198167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm in Sources */,
+				A4E5119B167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

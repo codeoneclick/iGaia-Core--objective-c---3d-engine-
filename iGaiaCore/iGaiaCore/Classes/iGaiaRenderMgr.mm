@@ -45,6 +45,11 @@ void iGaiaRenderMgr::RemoveEventListener(iGaiaRenderCallback *_listener, iGaiaMa
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }
 
+void iGaiaRenderMgr::AddOffscreenProcessOperation(iGaiaRenderOperationOffscreenProcessingHelper *_operation)
+{
+    m_offscreenProcessingOperation.push(_operation);
+}
+
 iGaiaTexture* iGaiaRenderMgr::Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
     return m_worldSpaceOperations[_mode]->Get_OperatingTexture();
@@ -57,6 +62,15 @@ iGaiaTexture* iGaiaRenderMgr::Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial
 
 void iGaiaRenderMgr::OnUpdate(void)
 {
+    while(m_offscreenProcessingOperation.empty() != true)
+    {
+        iGaiaRenderOperationOffscreenProcessingHelper* operation = m_offscreenProcessingOperation.front();
+        operation->Bind();
+        operation->Draw();
+        operation->Unbind();
+        m_offscreenProcessingOperation.pop();
+    }
+
     for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
     {
         m_worldSpaceOperations[i]->Bind();
