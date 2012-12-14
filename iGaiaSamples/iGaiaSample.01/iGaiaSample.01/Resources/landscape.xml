@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings name="landscape">
+    <width value="256" />
+    <height value="256" />
+    <scaleFactor x="1" y="1" />
+    <heightmap value="heightmap.map" />
+    <textures>
+        <texture_01 name="default.pvr" slot="0" wrap="1" />
+    </textures>
+    <shaders>
+        <shader_01 id="0" mode="0" />
+    </shaders>
+</settings>
