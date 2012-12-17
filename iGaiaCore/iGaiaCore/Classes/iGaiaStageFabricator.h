@@ -22,6 +22,7 @@ public:
 
     iGaiaCamera* CreateCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport);
     iGaiaLight* CreateLight(void);
+    iGaiaNavigationHelper* CreateNavigationHelper(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
 
     iGaiaOcean* CreateOcean(const iGaiaOcean::iGaiaOceanSettings& _settings);
     iGaiaLandscape* CreateLandscape(const iGaiaLandscape::iGaiaLandscapeSettings& _settings);

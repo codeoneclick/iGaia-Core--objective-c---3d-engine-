@@ -32,6 +32,13 @@ iGaiaLight* iGaiaStageFabricator::CreateLight(void)
     return light;
 }
 
+iGaiaNavigationHelper* iGaiaStageFabricator::CreateNavigationHelper(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed)
+{
+    iGaiaNavigationHelper* navigationHelper = new iGaiaNavigationHelper(_moveForwardSpeed, _moveBackwardSpeed, _strafeSpeed, _steerSpeed);
+    m_stageContainer->AddNavigationHelper(navigationHelper);
+    return navigationHelper;
+}
+
 iGaiaShape3d* iGaiaStageFabricator::CreateShape3d(const iGaiaShape3d::iGaiaShape3dSettings& _settings)
 {
     iGaiaShape3d* shape3d = new iGaiaShape3d(_settings);
@@ -66,3 +73,6 @@ iGaiaParticleEmitter* iGaiaStageFabricator::CreateParticleEmitter(const iGaiaPar
     m_stageContainer->AddObject3d(shape3d);
     return shape3d;
 }
+
+
+

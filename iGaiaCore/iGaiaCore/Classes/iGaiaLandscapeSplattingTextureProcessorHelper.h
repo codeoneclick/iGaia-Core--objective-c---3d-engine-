@@ -21,7 +21,7 @@ public:
     iGaiaLandscapeSplattingTextureProcessorHelper(void) = default;
     ~iGaiaLandscapeSplattingTextureProcessorHelper(void) = default;
 
-    iGaiaTexture* CreateTexture(f32* _landscapeData, ui32 _ladnscapeWidth, ui32 _landscapeHeight, f32 _level_01, f32 _level_02, f32 _level_03);
+    static iGaiaTexture* CreateTexture(f32* _data, ui32 _width, ui32 _height, vec2 _scaleFactor, f32 _level_01, f32 _level_02, f32 _level_03);
 };
 
 #endif

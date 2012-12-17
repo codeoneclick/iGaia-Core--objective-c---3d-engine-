@@ -27,9 +27,12 @@ private:
     
     iGaiaTexture* m_reflectionTexture;
     iGaiaTexture* m_refractionTexture;
+    iGaiaTexture* m_heightmapTexture;
     f32 m_width;
     f32 m_height;
     f32 m_altitude;
+    f32 m_waveGeneratorTimer;
+    f32 m_waveGeneratorInterval;
     
 protected:
     
@@ -47,6 +50,7 @@ public:
 
     void Set_ReflectionTexture(iGaiaTexture* _texture);
     void Set_RefractionTexture(iGaiaTexture* _texture);
+    void Set_HeightmapTexture(iGaiaTexture* _texture);
 
     f32 Get_Altitude(void);
 

@@ -43,6 +43,10 @@
 		A4ADF481160B6FE4000D6A0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADF480160B6FE4000D6A0A /* main.m */; };
 		A4ADF4EF160B71C1000D6A0A /* libiGaiaCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4EB160B70E4000D6A0A /* libiGaiaCore.a */; };
 		A4ADF4FB160B71DB000D6A0A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */; };
+		A4B9D608167F5C5400CF7C90 /* iGaiaCharacterController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D607167F5C5400CF7C90 /* iGaiaCharacterController.mm */; };
+		A4B9D60B167F5D1900CF7C90 /* iGaiaGame.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D60A167F5D1900CF7C90 /* iGaiaGame.m */; };
+		A4B9D60E167F5D5000CF7C90 /* iGaiaJoystick.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D60D167F5D5000CF7C90 /* iGaiaJoystick.mm */; };
+		A4B9D623167F67AF00CF7C90 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B9D622167F67AF00CF7C90 /* joystick.png */; };
 		A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.mm */; };
 		A4D1B2931642C2B800FA3BE5 /* iGaiaRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1B2911642C2B800FA3BE5 /* iGaiaRootViewController.xib */; };
 		A4D1F071160C43D7005307F4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F06A160C43D7005307F4 /* AppDelegate.mm */; };
@@ -121,6 +125,13 @@
 		A4ADF482160B6FE4000D6A0A /* iGaiaSample.01-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaSample.01-Prefix.pch"; sourceTree = "<group>"; };
 		A4ADF4CC160B70E3000D6A0A /* iGaiaCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iGaiaCore.xcodeproj; path = ../../iGaiaCore/iGaiaCore.xcodeproj; sourceTree = "<group>"; };
 		A4ADF4FA160B71DB000D6A0A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A4B9D606167F5C5400CF7C90 /* iGaiaCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaCharacterController.h; sourceTree = "<group>"; };
+		A4B9D607167F5C5400CF7C90 /* iGaiaCharacterController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaCharacterController.mm; sourceTree = "<group>"; };
+		A4B9D609167F5D1900CF7C90 /* iGaiaGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaGame.h; sourceTree = "<group>"; };
+		A4B9D60A167F5D1900CF7C90 /* iGaiaGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGaiaGame.m; sourceTree = "<group>"; };
+		A4B9D60C167F5D5000CF7C90 /* iGaiaJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaJoystick.h; sourceTree = "<group>"; };
+		A4B9D60D167F5D5000CF7C90 /* iGaiaJoystick.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaJoystick.mm; sourceTree = "<group>"; };
+		A4B9D622167F67AF00CF7C90 /* joystick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joystick.png; sourceTree = "<group>"; };
 		A4D1B28F1642C2B800FA3BE5 /* iGaiaRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGaiaRootViewController.h; sourceTree = "<group>"; };
 		A4D1B2901642C2B800FA3BE5 /* iGaiaRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iGaiaRootViewController.mm; sourceTree = "<group>"; };
 		A4D1B2911642C2B800FA3BE5 /* iGaiaRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iGaiaRootViewController.xib; sourceTree = "<group>"; };
@@ -279,6 +290,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A4B9D603167F5AC700CF7C90 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				A4B9D605167F5ADB00CF7C90 /* Characters */,
+				A4B9D604167F5AD000CF7C90 /* Level */,
+				A4B9D609167F5D1900CF7C90 /* iGaiaGame.h */,
+				A4B9D60A167F5D1900CF7C90 /* iGaiaGame.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		A4B9D604167F5AD000CF7C90 /* Level */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Level;
+			sourceTree = "<group>";
+		};
+		A4B9D605167F5ADB00CF7C90 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A4B9D606167F5C5400CF7C90 /* iGaiaCharacterController.h */,
+				A4B9D607167F5C5400CF7C90 /* iGaiaCharacterController.mm */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
 		A4D1B28C1642C23300FA3BE5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +330,8 @@
 		A4D1B28D1642C24200FA3BE5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4B9D60C167F5D5000CF7C90 /* iGaiaJoystick.h */,
+				A4B9D60D167F5D5000CF7C90 /* iGaiaJoystick.mm */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -306,6 +346,7 @@
 		A4D1F068160C43D7005307F4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A4B9D603167F5AC700CF7C90 /* Game */,
 				A4D1B28E1642C24800FA3BE5 /* Model */,
 				A4D1B28D1642C24200FA3BE5 /* Views */,
 				A4D1B28C1642C23300FA3BE5 /* ViewControllers */,
@@ -324,6 +365,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4B9D622167F67AF00CF7C90 /* joystick.png */,
 				A41381D9167B339A00FF06AF /* landscape.xml */,
 				A44301921678D639004D941C /* skydome.xml */,
 				A42E9B4B1677631100974C71 /* ocean.xml */,
@@ -472,6 +514,7 @@
 				A42E9B4C1677631100974C71 /* ocean.xml in Resources */,
 				A44301931678D639004D941C /* skydome.xml in Resources */,
 				A41381DA167B339A00FF06AF /* landscape.xml in Resources */,
+				A4B9D623167F67AF00CF7C90 /* joystick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +530,9 @@
 				A4D1F072160C43D7005307F4 /* FirstViewController.mm in Sources */,
 				A4D1F074160C43D7005307F4 /* SecondViewController.mm in Sources */,
 				A4D1B2921642C2B800FA3BE5 /* iGaiaRootViewController.mm in Sources */,
+				A4B9D608167F5C5400CF7C90 /* iGaiaCharacterController.mm in Sources */,
+				A4B9D60B167F5D1900CF7C90 /* iGaiaGame.m in Sources */,
+				A4B9D60E167F5D5000CF7C90 /* iGaiaJoystick.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

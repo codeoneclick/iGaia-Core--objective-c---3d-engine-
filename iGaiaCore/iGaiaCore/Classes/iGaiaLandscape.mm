@@ -8,15 +8,33 @@
 
 #include "iGaiaLandscape.h"
 #include "iGaiaLogger.h"
+#include "iGaiaLandscapeHeightmapTextureProcessorHelper.h"
+#include "iGaiaLandscapeSplattingTextureProcessorHelper.h"
 
 static ui32 kiGaiaLandscapeRenderPriority = 3;
 
 iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
 {
+
     m_width = _settings.m_width;
     m_height = _settings.m_height;
     m_scaleFactor = _settings.m_scaleFactor;
-    
+
+// TODO : remove after texture heightmap implementation
+    m_heightmapData = new f32[m_width * m_height];
+    m_maxAltitude = 0.0f;
+    for(ui32 i = 0; i < m_width;++i)
+    {
+        for(ui32 j = 0; j < m_height;++j)
+        {
+            m_heightmapData[i + j * m_height] = (sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f) * 8.0f;
+            if(fabsf(m_heightmapData[i +j * m_height]) > m_maxAltitude)
+            {
+                m_maxAltitude = fabsf(m_heightmapData[i +j * m_height]);
+            }
+        }
+    }
+
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(m_width * m_height, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
     
@@ -26,7 +44,7 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
         for(ui32 j = 0; j < m_height;++j)
         {
             vertexData[index].m_position.x = i;
-            vertexData[index].m_position.y = (sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f) * 8.0f;
+            vertexData[index].m_position.y = m_heightmapData[i + j * m_height];
             vertexData[index].m_position.z = j;
             
             vertexData[index].m_texcoord.x = i / static_cast<f32>(m_width);
@@ -83,6 +101,9 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     m_material->Set_CullFaceMode(GL_FRONT);
     m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+
+    m_heightmapTexture = iGaiaLandscapeHeightmapTextureProcessorHelper::CreateTexture(m_heightmapData, m_width, m_height, m_scaleFactor, m_maxAltitude);
+    m_splattingTexture = iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(m_heightmapData, m_width, m_height, m_scaleFactor, 0.0f, 0.1f, 1.0f);
     
     m_updateMode = iGaia_E_UpdateModeSync;
 }
@@ -95,6 +116,36 @@ iGaiaLandscape::~iGaiaLandscape(void)
 void iGaiaLandscape::Set_Clipping(const glm::vec4& _clipping)
 {
     m_material->Set_Clipping(_clipping);
+}
+
+iGaiaTexture* iGaiaLandscape::Get_HeightmapTexture(void)
+{
+    return m_heightmapTexture;
+}
+
+iGaiaTexture* iGaiaLandscape::Get_SplattingTexture(void)
+{
+    return m_splattingTexture;
+}
+
+ui32 iGaiaLandscape::Get_Width(void)
+{
+    return m_width;
+}
+
+ui32 iGaiaLandscape::Get_Height(void)
+{
+    return m_height;
+}
+
+f32* iGaiaLandscape::Get_HeightmapData(void)
+{
+    return m_heightmapData;
+}
+
+vec2 iGaiaLandscape::Get_ScaleFactor(void)
+{
+    
 }
 
 void iGaiaLandscape::OnUpdate(void)

@@ -70,6 +70,9 @@ iGaiaOcean::iGaiaOcean(const iGaiaOceanSettings& _settings)
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
 
     m_updateMode = iGaia_E_UpdateModeSync;
+
+    m_waveGeneratorTimer = 0.0f;
+    m_waveGeneratorInterval = 0.005f;
 }
 
 iGaiaOcean::~iGaiaOcean(void)
@@ -99,6 +102,17 @@ void iGaiaOcean::Set_RefractionTexture(iGaiaTexture* _texture)
     m_material->Set_Texture(m_refractionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_02);
 }
 
+void iGaiaOcean::Set_HeightmapTexture(iGaiaTexture *_texture)
+{
+    if(_texture == m_heightmapTexture)
+    {
+        // TODO : log
+        return;
+    }
+    m_heightmapTexture = _texture;
+    m_material->Set_Texture(m_heightmapTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_03);
+}
+
 f32 iGaiaOcean::Get_Altitude(void)
 {
     return m_altitude;
@@ -106,8 +120,7 @@ f32 iGaiaOcean::Get_Altitude(void)
 
 void iGaiaOcean::OnUpdate(void)
 {
-    m_position.x = m_camera->Get_LookAt().x - m_width / 2.0f;
-    m_position.z = m_camera->Get_LookAt().z - m_height / 2.0f;
+    m_waveGeneratorTimer += m_waveGeneratorInterval;
     iGaiaObject3d::OnUpdate();
 }
 
@@ -139,29 +152,28 @@ void iGaiaOcean::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
                 iGaiaLog(@"Shader MODE_SIMPLE == nil");
             }
             
-            static f32 time = 0.0f;
-            time += 0.005f;
-            
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
             
             m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
             m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
-            m_material->Get_OperatingShader()->Set_Vector3Custom(vec3(m_position.x + m_width / 2.0f, 0.0f, m_position.z + m_height / 2.0f), "EXT_Center");
-            m_material->Get_OperatingShader()->Set_FloatCustom(time, "EXT_Timer");
+            m_material->Get_OperatingShader()->Set_FloatCustom(m_waveGeneratorTimer, "EXT_Timer");
         }
             break;
         case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection:
         {
+            
         }
             break;
         case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction:
         {
+            
         }
             break;
         case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceScreenNormalMap:
         {
+            
         }
             break;
         default:

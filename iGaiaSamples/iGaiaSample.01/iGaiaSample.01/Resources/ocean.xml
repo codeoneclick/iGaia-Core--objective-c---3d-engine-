@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings name="ocean">
-    <width value="256" />
-    <height value="256" />
+    <width value="64" />
+    <height value="64" />
     <altitude value="0.1" />
     <textures>
-        <texture_01 name="ocean_riple.pvr" slot="2" wrap="1" />
+        <texture_01 name="ocean_riple.pvr" slot="3" wrap="1" />
     </textures>
     <shaders>
         <shader_01 id="6" mode="0" />

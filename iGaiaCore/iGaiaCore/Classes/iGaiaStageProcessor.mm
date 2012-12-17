@@ -130,8 +130,12 @@ void iGaiaStageProcessor::Set_Ocean(iGaiaOcean* _ocean)
         iGaiaShape3d* shape3d = *iterator;
         shape3d->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
     }
-    
-    m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+
+    if(m_landscape != nullptr)
+    {
+        m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+        m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
+    }
     
     m_ocean->Set_Camera(m_camera);
     m_ocean->Set_Light(m_light);
@@ -157,6 +161,7 @@ void iGaiaStageProcessor::Set_Landscape(iGaiaLandscape *_landscape)
     if(m_ocean != nullptr)
     {
         m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+        m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
     }
     
     m_landscape->Set_Camera(m_camera);

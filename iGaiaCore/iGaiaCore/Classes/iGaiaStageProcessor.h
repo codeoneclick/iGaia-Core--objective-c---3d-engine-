@@ -18,6 +18,7 @@
 #include "iGaiaParticleEmitter.h"
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
+#include "iGaiaNavigationHelper.h"
 
 class iGaiaStageProcessor
 {

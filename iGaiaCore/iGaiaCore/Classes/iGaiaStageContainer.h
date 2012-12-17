@@ -10,6 +10,7 @@
 
 #include "iGaiaCamera.h"
 #include "iGaiaLight.h"
+#include "iGaiaNavigationHelper.h"
 #include "iGaiaShape3d.h"
 #include "iGaiaBillboard.h"
 #include "iGaiaOcean.h"
@@ -23,6 +24,7 @@ private:
     set<iGaiaObject3d*> m_objects3d;
     set<iGaiaCamera*> m_cameras;
     set<iGaiaLight*> m_lights;
+    set<iGaiaNavigationHelper*> m_navigationHelpers;
 protected:
 
 public:
@@ -37,6 +39,9 @@ public:
 
     void AddLight(iGaiaLight* _light);
     void RemoveLight(iGaiaLight* _light);
+
+    void AddNavigationHelper(iGaiaNavigationHelper* _navigationHelper);
+    void RemoveNavigationHelper(iGaiaNavigationHelper* _navigationHelper);
 };
 
 #endif

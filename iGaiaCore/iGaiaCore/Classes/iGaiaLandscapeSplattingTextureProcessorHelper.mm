@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaLandscapeSplattingTextureProcessorHelper.h"
+#include "iGaiaLandscapeSplattingTextureProcessorHelper.h"
+#include "iGaiaLandscapeHeightmapHelper.h"
 
-iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* _landscapeData, ui32 _ladnscapeWidth, ui32 _landscapeHeight, f32 _level_01, f32 _level_02, f32 _level_03)
+iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* _data, ui32 _width, ui32 _height, vec2 _scaleFactor, f32 _level_01, f32 _level_02, f32 _level_03)
 {
-    /*ui32 textureHandle;
+    ui32 textureHandle;
     glGenTextures(1, &textureHandle);
     glBindTexture(GL_TEXTURE_2D, textureHandle);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -18,28 +19,36 @@ iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* 
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    ui16* textureData = new ui16[_ladnscapeWidth * _landscapeHeight];
-    for(int i = 0; i < _ladnscapeWidth; i++)
+    ui16* data = new ui16[_width * _height];
+    for(int i = 0; i < _width; i++)
     {
-        for(int j = 0; j < _landscapeHeight; j++)
+        for(int j = 0; j < _height; j++)
         {
-            textureData[i + j * _landscapeHeight] = RGB(255, 0, 0);
+            data[i + j * _height] = iGaia_RGB(255, 0, 0);
 
-            if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) > 1.0f)
-            {
-                textureData[i + j * m_iHeight] = RGB(0, 255, 0);
-            }
-            if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) < 0.1f)
-            {
-                textureData[i + j * m_iHeight] = RGB(0, 0, 255);
-            }
+            f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(_data, _width, _height, vec2(i * _scaleFactor.x, j * _scaleFactor.y), _scaleFactor);
 
-            if( i == 0 || j == 0 || i == (m_iWidth - 1) * m_vScaleFactor.x || j == (m_iHeight - 1) * m_vScaleFactor.y)
+            if(height > _level_03)
             {
-                pTextureData[i + j * m_iHeight] = RGB(255, 0, 0);
+                data[i + j * _height] = iGaia_RGB(0, 255, 0);
+            }
+            if(height < _level_02)
+            {
+                data[i + j * _height] = iGaia_RGB(0, 0, 255);
             }
 
+            if( i == 0 || j == 0 || i == (_width - 1) * _scaleFactor.x || j == (_height - 1) * _scaleFactor.y)
+            {
+                data[i + j * _height] = iGaia_RGB(255, 0, 0);
+            }
         }
     }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);*/
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
+    delete data;
+    
+    iGaiaTexture* texture = new iGaiaTexture(textureHandle, _width, _height, "igaia.texture.landscape.splatting", iGaiaResource::iGaia_E_CreationModeCustom);
+    map<ui32, ui32> settings;
+    settings[iGaiaTexture::iGaia_E_TextureSettingsKeyWrapMode] = iGaiaTexture::iGaia_E_TextureSettingsValueClamp;
+    texture->Set_Settings(settings);
+    return texture;
 }

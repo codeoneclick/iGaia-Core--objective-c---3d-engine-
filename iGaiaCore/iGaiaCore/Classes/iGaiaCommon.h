@@ -58,6 +58,8 @@ typedef unsigned int ui32;
 typedef unsigned long long ui64;
 typedef float f32;
 
+#define iGaia_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+
 f32 Get_Random(f32 _minValue, f32 _maxValue);
 ui64 Get_TickCount(void);
 

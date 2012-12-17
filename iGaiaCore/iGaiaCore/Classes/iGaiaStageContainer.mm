@@ -47,3 +47,14 @@ void iGaiaStageContainer::RemoveObject3d(iGaiaObject3d *_object3d)
 {
     m_objects3d.erase(_object3d);
 }
+
+void iGaiaStageContainer::AddNavigationHelper(iGaiaNavigationHelper* _navigationHelper)
+{
+    m_navigationHelpers.insert(_navigationHelper);
+}
+
+void iGaiaStageContainer::RemoveNavigationHelper(iGaiaNavigationHelper* _navigationHelper)
+{
+    m_navigationHelpers.erase(_navigationHelper);
+}
+

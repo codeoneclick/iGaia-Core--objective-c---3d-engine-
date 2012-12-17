@@ -58,6 +58,8 @@
 		A49C46141670A57700316865 /* iGaiaStageContainer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46131670A57700316865 /* iGaiaStageContainer.mm */; };
 		A49C46171670A59200316865 /* iGaiaStageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46161670A59200316865 /* iGaiaStageProcessor.mm */; };
 		A49C461A1670A61500316865 /* iGaiaSharedFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46191670A61400316865 /* iGaiaSharedFacade.mm */; };
+		A4B9D5F0167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D5EF167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm */; };
+		A4B9D5F9167F2E7F00CF7C90 /* iGaiaNavigationHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B9D5F8167F2E7E00CF7C90 /* iGaiaNavigationHelper.mm */; };
 		A4BF9EE7161978AF00004F34 /* iGaiaTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */; };
 		A4BF9EF216197A4B00004F34 /* iGaiaLoader_PVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF116197A4B00004F34 /* iGaiaLoader_PVR.mm */; };
 		A4BF9EF816197A7C00004F34 /* iGaiaLoader_MDL.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4BF9EF716197A7C00004F34 /* iGaiaLoader_MDL.mm */; };
@@ -252,6 +254,10 @@
 		A49C46161670A59200316865 /* iGaiaStageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaStageProcessor.mm; path = iGaiaCore/Classes/iGaiaStageProcessor.mm; sourceTree = "<group>"; };
 		A49C46181670A61400316865 /* iGaiaSharedFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSharedFacade.h; path = iGaiaCore/Classes/iGaiaSharedFacade.h; sourceTree = "<group>"; };
 		A49C46191670A61400316865 /* iGaiaSharedFacade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSharedFacade.mm; path = iGaiaCore/Classes/iGaiaSharedFacade.mm; sourceTree = "<group>"; };
+		A4B9D5EE167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLandscapeHeightmapHelper.h; path = iGaiaCore/Classes/iGaiaLandscapeHeightmapHelper.h; sourceTree = "<group>"; };
+		A4B9D5EF167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLandscapeHeightmapHelper.mm; path = iGaiaCore/Classes/iGaiaLandscapeHeightmapHelper.mm; sourceTree = "<group>"; };
+		A4B9D5F7167F2E7E00CF7C90 /* iGaiaNavigationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaNavigationHelper.h; path = iGaiaCore/Classes/iGaiaNavigationHelper.h; sourceTree = "<group>"; };
+		A4B9D5F8167F2E7E00CF7C90 /* iGaiaNavigationHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaNavigationHelper.mm; path = iGaiaCore/Classes/iGaiaNavigationHelper.mm; sourceTree = "<group>"; };
 		A4BF9EE41619773D00004F34 /* iGaiaResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaResource.h; path = iGaiaCore/Classes/iGaiaResource.h; sourceTree = "<group>"; };
 		A4BF9EE5161978AF00004F34 /* iGaiaTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaTexture.h; path = iGaiaCore/Classes/iGaiaTexture.h; sourceTree = "<group>"; };
 		A4BF9EE6161978AF00004F34 /* iGaiaTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaTexture.mm; path = iGaiaCore/Classes/iGaiaTexture.mm; sourceTree = "<group>"; };
@@ -1315,6 +1321,10 @@
 				A4E51197167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm */,
 				A4E51199167B8A0F0069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.h */,
 				A4E5119A167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm */,
+				A4B9D5EE167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.h */,
+				A4B9D5EF167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm */,
+				A4B9D5F7167F2E7E00CF7C90 /* iGaiaNavigationHelper.h */,
+				A4B9D5F8167F2E7E00CF7C90 /* iGaiaNavigationHelper.mm */,
 			);
 			name = HelperEngine;
 			sourceTree = "<group>";
@@ -1465,6 +1475,8 @@
 				A4E51195167B78110069F06A /* iGaiaRenderOperationOffscreenProcessingHelper.mm in Sources */,
 				A4E51198167B89F70069F06A /* iGaiaLandscapeSplattingTextureProcessorHelper.mm in Sources */,
 				A4E5119B167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm in Sources */,
+				A4B9D5F0167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm in Sources */,
+				A4B9D5F9167F2E7F00CF7C90 /* iGaiaNavigationHelper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
