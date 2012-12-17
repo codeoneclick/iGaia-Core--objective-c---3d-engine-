@@ -115,7 +115,7 @@ void iGaiaOcean::Set_HeightmapTexture(iGaiaTexture *_texture)
 
 f32 iGaiaOcean::Get_Altitude(void)
 {
-    return m_altitude;
+    return m_altitude + 0.1f;
 }
 
 void iGaiaOcean::OnUpdate(void)

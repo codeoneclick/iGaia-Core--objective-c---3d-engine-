@@ -26,10 +26,7 @@
 //#import <Python/Python.h>
 
 @interface FirstViewController ()
-{
-    iGaiaCamera* m_camera;
-    iGaiaLight* m_light;
-}
+@property (nonatomic, unsafe_unretained) iGaiaScene* m_scene;
 @property (weak, nonatomic) IBOutlet UILabel *m_framePerSecondLabel;
 @property (weak, nonatomic) IBOutlet UIView *m_GLView;
 @end
@@ -53,6 +50,9 @@ std::mutex mutex_01;
     [super viewDidLoad];
 
     [self.m_GLView addSubview:[iGaiaGLWindow_iOS SharedInstance]];
+    
+    _m_scene = new iGaiaScene();
+    _m_scene->Load("");
 
         
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
@@ -87,9 +87,7 @@ std::mutex mutex_01;
 
 - (void)onUpdate
 {
-    static float angle = 0.0f;
-    angle += 0.01f;
-    m_camera->Set_Rotation(angle);
+
 };
 
 - (void)viewDidUnload {

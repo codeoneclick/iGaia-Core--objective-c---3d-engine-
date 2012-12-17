@@ -27,7 +27,7 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     {
         for(ui32 j = 0; j < m_height;++j)
         {
-            m_heightmapData[i + j * m_height] = (sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f) * 8.0f;
+            m_heightmapData[i + j * m_height] = (sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f) * 2.0f;
             if(fabsf(m_heightmapData[i +j * m_height]) > m_maxAltitude)
             {
                 m_maxAltitude = fabsf(m_heightmapData[i +j * m_height]);
