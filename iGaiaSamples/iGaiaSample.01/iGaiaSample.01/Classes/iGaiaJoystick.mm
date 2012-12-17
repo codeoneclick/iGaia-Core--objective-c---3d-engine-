@@ -9,6 +9,9 @@
 #include "iGaiaJoystick.h"
 
 @interface iGaiaJoystick()
+{
+    set<iGaiaJoystickCallback*> m_listeners;
+}
 
 @property(nonatomic, assign) NSInteger m_maxOffsetX;
 @property(nonatomic, assign) NSInteger m_minOffsetX;
@@ -18,7 +21,6 @@
 @property(nonatomic, strong) UIImageView* m_control;
 
 @end
-
 
 @implementation iGaiaJoystick
 
@@ -69,13 +71,31 @@
     [self addSubview:_m_control];
 }
 
+- (void)AddEventListener:(iGaiaJoystickCallback*)_listener
+{
+    m_listeners.insert(_listener);
+}
+
+- (void)RemoveEventListener:(iGaiaJoystickCallback*)_listener
+{
+    m_listeners.erase(_listener);
+}
+
+- (void)invokeCallback:(iGaiaJoystickCallback::iGaia_E_JoystickDirection)_direction
+{
+    for (set<iGaiaJoystickCallback*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
+    {
+        iGaiaJoystickCallback* listener = *iterator;
+        listener->InvokeOnJoystickEventListener(_direction);
+    }
+}
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     for (UITouch*touch in touches)
     {
-        CGPoint TouchLocation = [touch locationInView:self];
-        [self update:TouchLocation];
+        CGPoint touchLocation = [touch locationInView:self];
+        [self update:touchLocation];
     }
 }
 
@@ -83,8 +103,8 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint TouchLocation = [touch locationInView:self];
-        [self update:TouchLocation];
+        CGPoint touchLocation = [touch locationInView:self];
+        [self update:touchLocation];
     }
 }
 
@@ -92,12 +112,11 @@
 {
     for (UITouch*touch in touches)
     {
-        /*CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
-        CGRect tRect = m_pControl.frame;
-        tRect.origin.x = self.frame.size.width / 2 - (self.frame.size.width / 3) / 2;
-        tRect.origin.y = self.frame.size.height / 2 - (self.frame.size.height / 3) / 2;
-        m_pControl.frame = tRect;*/
+        CGRect rect = _m_control.frame;
+        rect.origin.x = self.frame.size.width / 2 - (self.frame.size.width / 3) / 2;
+        rect.origin.y = self.frame.size.height / 2 - (self.frame.size.height / 3) / 2;
+        _m_control.frame = rect;
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionNone];
     }
 }
 
@@ -108,56 +127,47 @@
 
 - (void)update:(CGPoint)touchPoint
 {
-    /*if(touchPoint.x > m_iMaxOffsetX && touchPoint.y > m_iMaxOffsetY)
+    if(touchPoint.x > _m_maxOffsetX && touchPoint.y > _m_maxOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionNorthWest];
     }
-    else if(touchPoint.x > m_iMaxOffsetX && touchPoint.y < m_iMinOffsetY)
+    else if(touchPoint.x > _m_maxOffsetX && touchPoint.y < _m_minOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionSouthWest];
     }
-    else if(touchPoint.x < m_iMinOffsetX && touchPoint.y > m_iMaxOffsetY)
+    else if(touchPoint.x < _m_minOffsetX && touchPoint.y > _m_maxOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionNorthEast];
     }
-    else if(touchPoint.x < m_iMinOffsetX && touchPoint.y < m_iMinOffsetY)
+    else if(touchPoint.x < _m_minOffsetX && touchPoint.y < _m_minOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionSouthEast];
     }
-    else if(touchPoint.x > m_iMaxOffsetX)
+    else if(touchPoint.x > _m_maxOffsetX)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionWest];
     }
-    else if(touchPoint.x < m_iMinOffsetX)
+    else if(touchPoint.x < _m_minOffsetX)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionEast];
     }
-    else if(touchPoint.y > m_iMaxOffsetY)
+    else if(touchPoint.y >_m_maxOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionNorth];
     }
-    else if(touchPoint.y < m_iMinOffsetY)
+    else if(touchPoint.y < _m_minOffsetY)
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionSouth];
     }
     else
     {
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
-        CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
+        [self invokeCallback:iGaiaJoystickCallback::iGaia_E_JoystickDirectionNone];
     }
     
-    CGRect tRect = m_pControl.frame;
-    tRect.origin.x = touchPoint.x - tRect.size.width / 2;
-    tRect.origin.y = touchPoint.y - tRect.size.height / 2;
-    m_pControl.frame = tRect;*/
+    CGRect rect = _m_control.frame;
+    rect.origin.x = touchPoint.x - rect.size.width / 2;
+    rect.origin.y = touchPoint.y - rect.size.height / 2;
+    _m_control.frame = rect;
 }
 
 

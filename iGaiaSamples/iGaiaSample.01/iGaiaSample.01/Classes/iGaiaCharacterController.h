@@ -5,9 +5,19 @@
 //  Created by Sergey Sergeev on 12/17/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
+#ifndef iGaiaCharacterControllerClass
+#define iGaiaCharacterControllerClass
 
-#import <Foundation/Foundation.h>
+class iGaiaCharacterController
+{
+private:
 
-@interface iGaiaCharacterController : NSObject
+protected:
 
-@end
+public:
+    iGaiaCharacterController(void) = default;
+    ~iGaiaCharacterController(void) = default;
+
+};
+
+#endif

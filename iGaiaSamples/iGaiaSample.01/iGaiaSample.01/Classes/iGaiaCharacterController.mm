@@ -6,8 +6,4 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaCharacterController.h"
-
-@implementation iGaiaCharacterController
-
-@end
+#include "iGaiaCharacterController.h"
