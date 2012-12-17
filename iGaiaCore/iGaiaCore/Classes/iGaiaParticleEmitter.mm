@@ -63,12 +63,13 @@ iGaiaParticleEmitter::iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaPart
     }
     
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, false);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
     m_material->Set_CullFaceMode(GL_FRONT);
     m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+    
     
     m_updateMode = iGaia_E_UpdateModeAsync;
     m_lastEmittTimestamp = 0;
@@ -178,7 +179,7 @@ void iGaiaParticleEmitter::OnUpdate(void)
     });
 }
 
-ui32 iGaiaParticleEmitter::Get_Priority(void)
+ui32 iGaiaParticleEmitter::OnDrawIndex(void)
 {
     return kiGaiaParticlesRenderPriority;
 }

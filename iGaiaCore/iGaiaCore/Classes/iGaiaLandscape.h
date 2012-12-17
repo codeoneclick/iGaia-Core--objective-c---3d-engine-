@@ -41,6 +41,8 @@ public:
     iGaiaLandscape(const iGaiaLandscapeSettings& _settings);
     ~iGaiaLandscape(void);
     
+    void Set_Clipping(const glm::vec4& _clipping);
+    
     void OnUpdate(void);
 };
 

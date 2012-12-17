@@ -98,6 +98,12 @@ void iGaiaStageProcessor::PushShape3d(iGaiaShape3d* _shape3d)
     
     iGaiaShape3d* shape3d = _shape3d;
     m_shapes3d.insert(shape3d);
+    
+    if(m_ocean != nullptr)
+    {
+        shape3d->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+    }
+    
     shape3d->Set_Camera(m_camera);
     shape3d->Set_Light(m_light);
     shape3d->Set_UpdateMgr(m_updateMgr);
@@ -125,6 +131,8 @@ void iGaiaStageProcessor::Set_Ocean(iGaiaOcean* _ocean)
         shape3d->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
     }
     
+    m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+    
     m_ocean->Set_Camera(m_camera);
     m_ocean->Set_Light(m_light);
     m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection));
@@ -145,6 +153,11 @@ void iGaiaStageProcessor::Set_Landscape(iGaiaLandscape *_landscape)
     }
     
     m_landscape = _landscape;
+    
+    if(m_ocean != nullptr)
+    {
+        m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
+    }
     
     m_landscape->Set_Camera(m_camera);
     m_landscape->Set_Light(m_light);

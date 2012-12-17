@@ -29,6 +29,8 @@
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
 }
+@property (weak, nonatomic) IBOutlet UILabel *m_framePerSecondLabel;
+@property (weak, nonatomic) IBOutlet UIView *m_GLView;
 @end
 
 @implementation FirstViewController
@@ -49,7 +51,7 @@ std::mutex mutex_01;
 {
     [super viewDidLoad];
 
-    [self.view addSubview:[iGaiaGLWindow_iOS SharedInstance]];
+    [self.m_GLView addSubview:[iGaiaGLWindow_iOS SharedInstance]];
 
     m_camera = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateCamera(45.0f, 0.1f, 1000.0f, vec4(0.0f, 0.0f, [iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height));
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Camera(m_camera);
@@ -142,7 +144,7 @@ std::mutex mutex_01;
 
     iGaiaParticleEmitter* emitter = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateParticleEmitter(settings_particle);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushParticleEmitter(emitter);
-    emitter->Set_Position(vec3(8.0f, 2.5f, 16.0f));
+    emitter->Set_Position(vec3(16.0f, 4.0f, 32.0f));
     
     //[[iGaiaStageMgr sharedInstance].m_soundMgr createBackgroundMusicFromFile:@"music" withExtension:@"mp3" withKey:@"music"];
     //[[iGaiaStageMgr sharedInstance].m_soundMgr playMusicWithKey:@"music" timesToRepeat:-1];
@@ -168,6 +170,20 @@ std::mutex mutex_01;
     //[ocean setTextureWithFileName:@"ocean_riple.pvr" forSlot:E_TEXTURE_SLOT_03 withWrap:iGaiaTextureSettingValues.repeat];
     
     //[[iGaiaLoop sharedInstance] addEventListener:self];
+    
+    NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
+    NSInvocation *pInvocation = [NSInvocation invocationWithMethodSignature:pMethodSignature];
+    [pInvocation setTarget:self];
+    [pInvocation setSelector:@selector(onTick:)];
+    NSTimer *pTimer = [NSTimer timerWithTimeInterval:0.01 invocation:pInvocation repeats:YES];
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop addTimer:pTimer forMode:NSDefaultRunLoopMode];
+}
+
+-(void)onTick:(NSTimer *)timer
+{
+    [self.m_framePerSecondLabel setText:[NSString stringWithFormat:@"FPS : %i", [iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond]];
+    [self onUpdate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,4 +208,9 @@ std::mutex mutex_01;
     m_camera->Set_Rotation(angle);
 };
 
+- (void)viewDidUnload {
+    [self setM_framePerSecondLabel:nil];
+    [self setM_GLView:nil];
+    [super viewDidUnload];
+}
 @end

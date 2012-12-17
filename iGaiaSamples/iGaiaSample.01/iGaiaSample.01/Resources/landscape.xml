@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings name="landscape">
-    <width value="256" />
-    <height value="256" />
+    <width value="64" />
+    <height value="64" />
     <scaleFactor x="1" y="1" />
     <heightmap value="heightmap.map" />
     <textures>
@@ -9,5 +9,7 @@
     </textures>
     <shaders>
         <shader_01 id="0" mode="0" />
+        <shader_02 id="0" mode="1" />
+        <shader_03 id="0" mode="2" />
     </shaders>
 </settings>

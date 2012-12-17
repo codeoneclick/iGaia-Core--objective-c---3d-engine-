@@ -62,6 +62,9 @@ private:
     f32 m_lastParticleEmittTime;
     
     void CreateParticle(ui32 _index);
+    
+    ui32 OnDrawIndex(void);
+    
 protected:
     
 public:
@@ -69,8 +72,6 @@ public:
     ~iGaiaParticleEmitter(void);
     
     void OnUpdate(void);
-    
-    ui32 Get_Priority(void);
     
     void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);

@@ -10,7 +10,7 @@
 
 iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* _landscapeData, ui32 _ladnscapeWidth, ui32 _landscapeHeight, f32 _level_01, f32 _level_02, f32 _level_03)
 {
-    ui32 textureHandle;
+    /*ui32 textureHandle;
     glGenTextures(1, &textureHandle);
     glBindTexture(GL_TEXTURE_2D, textureHandle);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -41,5 +41,5 @@ iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* 
 
         }
     }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);*/
 }

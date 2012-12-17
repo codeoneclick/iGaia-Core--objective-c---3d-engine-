@@ -13,9 +13,9 @@ const char* ShaderLandscapeF = STRINGIFY(
                                        
 void main(void)
 {
-    /*if(OUT_Clip < 0.0)
+    if(OUT_Clip < 0.0)
           discard;
-
+    /*
     lowp float fAmbientFactor = 0.33;
     
     lowp vec4 vDiffuseColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord);

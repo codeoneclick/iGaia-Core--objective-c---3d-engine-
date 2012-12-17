@@ -91,6 +91,18 @@ void iGaiaRenderMgr::OnUpdate(void)
     m_outletOperation->Unbind();
 
     [[iGaiaGLWindow_iOS SharedInstance].m_context presentRenderbuffer:GL_RENDERBUFFER];
+    
+    
+    static ui64 lastTime = 0;
+    ui64 currentTime = Get_TickCount();
+    static ui32 currentFramesPerCount = 0;
+    currentFramesPerCount++;
+    if(currentTime - lastTime > 1000 )
+    {
+        lastTime = Get_TickCount();
+        [iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond = currentFramesPerCount;
+        currentFramesPerCount = 0;
+    }
 
     GLenum error = glGetError();
     if (error != GL_NO_ERROR)

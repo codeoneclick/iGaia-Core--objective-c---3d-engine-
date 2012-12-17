@@ -22,6 +22,8 @@ extern struct iGaiaLandscapeSettingsXMLValue
     const char* texture_wrap;
     const char* shaders;
     const char* shader_01;
+    const char* shader_02;
+    const char* shader_03;
     const char* shader_id;
     const char* shader_mode;
 
@@ -41,6 +43,8 @@ struct iGaiaLandscapeSettingsXMLValue iGaiaLandscapeSettingsXMLValue =
     .texture_wrap = "wrap",
     .shaders = "shaders",
     .shader_01 = "shader_01",
+    .shader_02 = "shader_02",
+    .shader_03 = "shader_03",
     .shader_id = "id",
     .shader_mode = "mode"
 };
@@ -79,9 +83,19 @@ iGaiaLandscape::iGaiaLandscapeSettings iGaiaParser_LandscapeSettings::Get_Settin
     iGaiaObject3d::iGaiaObject3dShaderSettings settingsShader_01;
     settingsShader_01.m_shader = static_cast<iGaiaShader::iGaia_E_Shader>(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_01).attribute(iGaiaLandscapeSettingsXMLValue.shader_id).as_int());
     settingsShader_01.m_mode = static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace >(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_01).attribute(iGaiaLandscapeSettingsXMLValue.shader_mode).as_int());
+    
+    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShader_02;
+    settingsShader_02.m_shader = static_cast<iGaiaShader::iGaia_E_Shader>(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_02).attribute(iGaiaLandscapeSettingsXMLValue.shader_id).as_int());
+    settingsShader_02.m_mode = static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace >(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_02).attribute(iGaiaLandscapeSettingsXMLValue.shader_mode).as_int());
+    
+    iGaiaObject3d::iGaiaObject3dShaderSettings settingsShader_03;
+    settingsShader_03.m_shader = static_cast<iGaiaShader::iGaia_E_Shader>(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_03).attribute(iGaiaLandscapeSettingsXMLValue.shader_id).as_int());
+    settingsShader_03.m_mode = static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace >(settings_node.child(iGaiaLandscapeSettingsXMLValue.shaders).child(iGaiaLandscapeSettingsXMLValue.shader_03).attribute(iGaiaLandscapeSettingsXMLValue.shader_mode).as_int());
 
     settings.m_textures.push_back(settingsTexture_01);
     settings.m_shaders.push_back(settingsShader_01);
+    settings.m_shaders.push_back(settingsShader_02);
+    settings.m_shaders.push_back(settingsShader_03);
     
     return settings;
 }

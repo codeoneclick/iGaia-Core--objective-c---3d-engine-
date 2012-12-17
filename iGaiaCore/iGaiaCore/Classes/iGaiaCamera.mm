@@ -136,9 +136,9 @@ void iGaiaCamera::ListenUpdateMgr(bool _value)
 
 void iGaiaCamera::OnUpdate(void)
 {
-    m_position.y = 20.0f;
-    m_position.x = m_look.x + cosf(-m_rotation) * -60.0f;
-    m_position.z = m_look.z + sinf(-m_rotation) * -60.0f;
+    m_position.y = 30.0f;
+    m_position.x = m_look.x + cosf(-m_rotation) * -30.0f;
+    m_position.z = m_look.z + sinf(-m_rotation) * -30.0f;
     m_view = lookAt(m_position, m_look, m_up);
 
     vec3 position = m_position;
@@ -184,13 +184,17 @@ mat4x4 iGaiaCamera::Get_CylindricalMatrixForPosition(const vec3 &_position)
 
 mat4x4 iGaiaCamera::Get_SphericalMatrixForPosition(const vec3 &_position)
 {
-    vec3 direction = m_position - _position;
+    vec3 direction = _position - m_position;
     direction = normalize(direction);
+    
     vec3 up = vec3(m_view[1][0], m_view[1][1], m_view[1][2]);
+    up = normalize(up);
 
     vec3 right = cross(direction, up);
     right = normalize(right);
-    up = cross(right, direction);
+    
+    up = cross(direction, right);
+    up = normalize(up);
 
     mat4x4 sphericalMatrix;
     sphericalMatrix[0][0] = right.x;

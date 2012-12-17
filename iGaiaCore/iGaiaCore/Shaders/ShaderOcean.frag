@@ -16,12 +16,13 @@ void main(void)
 	vTexCoordProj = clamp(vTexCoordProj, 0.001, 0.999);
     lowp vec4 vReflectionColor = texture2D(EXT_TEXTURE_01, vTexCoordProj);
     
-    /*vTexCoordProj = OUT_TexCoordProj.xy;
+    vTexCoordProj = OUT_TexCoordProj.xy;
     vTexCoordProj.x = 0.5 + 0.5 * vTexCoordProj.x / OUT_TexCoordProj.w;
     vTexCoordProj.y = 0.5 + 0.5 * vTexCoordProj.y / OUT_TexCoordProj.w;
     vTexCoordProj = clamp(vTexCoordProj, 0.001, 0.999);
     lowp vec4 vRefractionColor = texture2D(EXT_TEXTURE_02, vTexCoordProj);
     
+    /*
     highp vec2 vTexCoord_01 = vec2(OUT_TexCoord.x * 8.0 + sin(EXT_Timer) * 0.33,
 								   OUT_TexCoord.y * 8.0 + cos(EXT_Timer) * 0.66);
 	
@@ -41,6 +42,7 @@ void main(void)
                                    
     lowp vec4 vWaterColor = texture2D(EXT_TEXTURE_03, vTexCoord_01) + texture2D(EXT_TEXTURE_03, vTexCoord_02);
     vReflectionColor = mix(vReflectionColor, vWaterColor, 0.5);
+    vReflectionColor = mix(vRefractionColor, vReflectionColor, 0.75);
     vReflectionColor.a = 1.0 - clamp((length(OUT_Position - EXT_Center) - 32.0) / 64.0, 0.0, 1.0);
     gl_FragColor = vReflectionColor;
 }
