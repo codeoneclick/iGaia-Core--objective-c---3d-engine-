@@ -25,11 +25,6 @@ iGaiaNavigationHelper::iGaiaNavigationHelper(f32 _moveForwardSpeed, f32 _moveBac
     m_heightmapHeight = 0;
 }
 
-void iGaiaNavigationHelper::Set_Camera(iGaiaCamera* _camera)
-{
-    m_camera = _camera;
-}
-
 void iGaiaNavigationHelper::Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight, vec2 _heightmapScaleFactor)
 {
     m_heightmapData = _heightmapData;
@@ -40,7 +35,7 @@ void iGaiaNavigationHelper::Set_Heightmap(f32* _heightmapData, ui32 _heightmapWi
 
 bool iGaiaNavigationHelper::MoveForward(void)
 {
-    vec3 precomputePosition = vec3(m_position.x + sinf(m_rotation.y) * m_moveForwardSpeed, 0.0f, m_position.z + cosf(m_rotation.y) * m_moveForwardSpeed);
+    vec3 precomputePosition = vec3(m_position.x + cosf(-m_rotation.y) * m_moveForwardSpeed, 0.0f, m_position.z + sinf(-m_rotation.y) * m_moveForwardSpeed);
     if(floorf(precomputePosition.x) > m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
        floorf(precomputePosition.z) > m_heightmapHeight ||
@@ -58,7 +53,7 @@ bool iGaiaNavigationHelper::MoveForward(void)
 
 bool iGaiaNavigationHelper::MoveBackward(void)
 {
-    vec3 precomputePosition = vec3(m_position.x - sinf(m_rotation.y) * m_moveBackwardSpeed, 0.0f, m_position.z - cosf(m_rotation.y) * m_moveBackwardSpeed);
+    vec3 precomputePosition = vec3(m_position.x - cosf(-m_rotation.y) * m_moveBackwardSpeed, 0.0f, m_position.z - sinf(-m_rotation.y) * m_moveBackwardSpeed);
     if(floorf(precomputePosition.x) > m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
        floorf(precomputePosition.z) > m_heightmapHeight ||

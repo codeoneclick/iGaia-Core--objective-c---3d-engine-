@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings name="building_01">
-    <mesh name="building_01.mdl" />
+<settings name="building_03">
+    <mesh name="building_03.mdl" />
     <textures>
         <texture_01 name="building.pvr" slot="0" wrap="1" />
     </textures>

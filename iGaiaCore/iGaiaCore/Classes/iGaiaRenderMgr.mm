@@ -71,7 +71,7 @@ void iGaiaRenderMgr::OnUpdate(void)
         m_offscreenProcessingOperation.pop();
     }
 
-    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
+    for(i32 i = (iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue - 1); i >= 0; --i)
     {
         m_worldSpaceOperations[i]->Bind();
         m_worldSpaceOperations[i]->Draw();

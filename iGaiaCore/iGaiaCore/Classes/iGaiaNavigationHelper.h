@@ -23,8 +23,6 @@ private:
     vec3 m_position;
     vec3 m_rotation;
 
-    iGaiaCamera* m_camera;
-
     f32* m_heightmapData;
     vec2 m_heightmapScaleFactor;
     ui32 m_heightmapWidth;
@@ -37,7 +35,6 @@ public:
     iGaiaNavigationHelper(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
     ~iGaiaNavigationHelper(void) = default;
 
-    void Set_Camera(iGaiaCamera* _camera);
     void Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight, vec2 _heightmapScaleFactor);
 
     bool MoveForward(void);

@@ -5,7 +5,7 @@
     <scaleFactor x="1" y="1" />
     <heightmap value="heightmap.map" />
     <textures>
-        <texture_01 name="default.pvr" slot="0" wrap="1" />
+        <texture_01 name="landscape_01_diffuse.pvr" slot="0" wrap="1" />
     </textures>
     <shaders>
         <shader_01 id="0" mode="0" />

@@ -29,6 +29,11 @@ private:
 
     iGaiaCamera* m_camera;
 
+    vec3 m_position;
+    vec3 m_rotation;
+
+    f32 m_rotationMixFactor;
+
 protected:
 
 public:

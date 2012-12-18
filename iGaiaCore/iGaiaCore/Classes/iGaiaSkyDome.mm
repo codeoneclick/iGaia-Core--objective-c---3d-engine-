@@ -16,8 +16,8 @@ iGaiaSkyDome::iGaiaSkyDome(const iGaiaSkyDomeSettings& _settings)
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(24, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
     
-    vec3 minBound = vec3( -1.0f, -1.0f, -1.0f);
-    vec3 maxBound = vec3(  1.0f,  1.0f,  1.0f);
+    vec3 minBound = vec3( -4.0f, -4.0f, -4.0f);
+    vec3 maxBound = vec3(  4.0f,  4.0f,  4.0f);
     
     vertexData[0].m_position = vec3(minBound.x,  minBound.y, maxBound.z);
     vertexData[1].m_position = vec3(maxBound.x,  minBound.y, maxBound.z);
@@ -143,7 +143,7 @@ iGaiaSkyDome::iGaiaSkyDome(const iGaiaSkyDomeSettings& _settings)
     }
 
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, false);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, false);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, false);
     m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
     m_material->Set_CullFaceMode(GL_FRONT);

@@ -145,7 +145,7 @@ f32* iGaiaLandscape::Get_HeightmapData(void)
 
 vec2 iGaiaLandscape::Get_ScaleFactor(void)
 {
-    
+    return m_scaleFactor;
 }
 
 void iGaiaLandscape::OnUpdate(void)
