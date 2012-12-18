@@ -29,6 +29,7 @@
 @property (nonatomic, unsafe_unretained) iGaiaScene* m_scene;
 @property (weak, nonatomic) IBOutlet UILabel *m_framePerSecondLabel;
 @property (weak, nonatomic) IBOutlet UIView *m_GLView;
+@property (strong, nonatomic) IBOutlet iGaiaMoveController_iOS *m_moveController;
 @end
 
 @implementation FirstViewController
@@ -53,6 +54,7 @@ std::mutex mutex_01;
     
     _m_scene = new iGaiaScene();
     _m_scene->Load("");
+    _m_scene->Get_CharacterController()->Set_MoveController(_m_moveController);
 
         
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
@@ -93,6 +95,7 @@ std::mutex mutex_01;
 - (void)viewDidUnload {
     [self setM_framePerSecondLabel:nil];
     [self setM_GLView:nil];
+    [self setM_moveController:nil];
     [super viewDidUnload];
 }
 @end

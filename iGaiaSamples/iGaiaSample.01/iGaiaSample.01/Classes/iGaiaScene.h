@@ -23,11 +23,12 @@ private:
 protected:
 
 public:
-    iGaiaScene(void) = default;
-    ~iGaiaScene(void) = default;
+    iGaiaScene(void);
+    ~iGaiaScene(void);
 
     void Load(const string& _name);
 
+    iGaiaCharacterController* Get_CharacterController(void);
 };
 
 #endif

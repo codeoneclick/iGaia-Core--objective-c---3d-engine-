@@ -127,41 +127,41 @@ void iGaiaNavigationHelper::SteerRight(void)
 
 vec3 iGaiaNavigationHelper::Get_Position(void)
 {
-
+    return m_position;
 }
 
 void iGaiaNavigationHelper::Set_Position(const vec3& _position)
 {
-
+    m_position = _position;
 }
 
 vec3 iGaiaNavigationHelper::Get_Rotation(void)
 {
-
+    return m_rotation;
 }
 
 void iGaiaNavigationHelper::Set_Rotation(const vec3& _rotation)
 {
-    
+    m_rotation = _rotation;
 }
 
 void iGaiaNavigationHelper::Set_MoveForwardSpeed(f32 _speed)
 {
-
+    m_moveForwardSpeed = _speed;
 }
 
 void iGaiaNavigationHelper::Set_MoveBackwardSpeed(f32 _speed)
 {
-
+    m_moveBackwardSpeed = _speed;
 }
 
 void iGaiaNavigationHelper::Set_StrafeSpeed(f32 _speed)
 {
-
+    m_strafeSpeed = _speed;
 }
 
 void iGaiaNavigationHelper::Set_SteerSpeed(f32 _speed)
 {
-    
+    m_steerSpeed = _speed;
 }
 

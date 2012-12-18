@@ -9,6 +9,16 @@
 #include "iGaiaScene.h"
 #include "iGaiaSettings_iOS.h"
 
+iGaiaScene::iGaiaScene(void)
+{
+    m_characterController = new iGaiaCharacterController();
+}
+
+iGaiaScene::~iGaiaScene(void)
+{
+
+}
+
 void iGaiaScene::Load(const string& _name)
 {
     m_camera = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateCamera(45.0f, 0.1f, 1000.0f, vec4(0.0f, 0.0f, [iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height));
@@ -45,4 +55,12 @@ void iGaiaScene::Load(const string& _name)
     iGaiaParticleEmitter* emitter = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateParticleEmitter(settings_particle);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushParticleEmitter(emitter);
     emitter->Set_Position(vec3(16.0f, 4.0f, 32.0f));
+
+    m_characterController->Set_Camera(m_camera);
+    m_characterController->Set_Heightmap(landscape->Get_HeightmapData(), landscape->Get_Width(), landscape->Get_Height(), landscape->Get_ScaleFactor());
+}
+
+iGaiaCharacterController* iGaiaScene::Get_CharacterController(void)
+{
+    return m_characterController;
 }
