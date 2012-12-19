@@ -52,6 +52,7 @@
 		A4466549161B1A490025601F /* iGaiaGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4466548161B1A490025601F /* iGaiaGLWindow_iOS.mm */; };
 		A45F610D160327D2005B10A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A45F610C160327D2005B10A3 /* Foundation.framework */; };
 		A48CAAAD16369416009CB4AA /* iGaiaCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */; };
+		A49020811681B6310081487E /* iGaiaQuadTreeObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49020801681B6310081487E /* iGaiaQuadTreeObject3d.mm */; };
 		A494C0CE163A89A100E8BCF6 /* iGaiaSoundMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4FB158716397F07002B59D6 /* iGaiaSoundMgr.mm */; };
 		A49C460D16708DC300316865 /* iGaiaUpdateMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C460C16708DC200316865 /* iGaiaUpdateMgr.mm */; };
 		A49C46111670A55300316865 /* iGaiaStageFabricator.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49C46101670A55300316865 /* iGaiaStageFabricator.mm */; };
@@ -244,6 +245,8 @@
 		A45F6110160327D2005B10A3 /* iGaiaCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGaiaCore-Prefix.pch"; sourceTree = "<group>"; };
 		A48CAAAB16369415009CB4AA /* iGaiaCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCommon.h; path = iGaiaCore/Classes/iGaiaCommon.h; sourceTree = "<group>"; };
 		A48CAAAC16369416009CB4AA /* iGaiaCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCommon.mm; path = iGaiaCore/Classes/iGaiaCommon.mm; sourceTree = "<group>"; };
+		A490207F1681B6310081487E /* iGaiaQuadTreeObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaQuadTreeObject3d.h; path = iGaiaCore/Classes/iGaiaQuadTreeObject3d.h; sourceTree = "<group>"; };
+		A49020801681B6310081487E /* iGaiaQuadTreeObject3d.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaQuadTreeObject3d.mm; path = iGaiaCore/Classes/iGaiaQuadTreeObject3d.mm; sourceTree = "<group>"; };
 		A49C460B16708DC200316865 /* iGaiaUpdateMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaUpdateMgr.h; path = iGaiaCore/Classes/iGaiaUpdateMgr.h; sourceTree = "<group>"; };
 		A49C460C16708DC200316865 /* iGaiaUpdateMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaUpdateMgr.mm; path = iGaiaCore/Classes/iGaiaUpdateMgr.mm; sourceTree = "<group>"; };
 		A49C460F1670A55200316865 /* iGaiaStageFabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaStageFabricator.h; path = iGaiaCore/Classes/iGaiaStageFabricator.h; sourceTree = "<group>"; };
@@ -948,6 +951,8 @@
 				A4BF9F3616197DC300004F34 /* iGaiaLight.mm */,
 				A4BF9F3816197DDF00004F34 /* iGaiaBoundBox.h */,
 				A4BF9F3916197DDF00004F34 /* iGaiaBoundBox.mm */,
+				A490207F1681B6310081487E /* iGaiaQuadTreeObject3d.h */,
+				A49020801681B6310081487E /* iGaiaQuadTreeObject3d.mm */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1477,6 +1482,7 @@
 				A4E5119B167B8A100069F06A /* iGaiaLandscapeHeightmapTextureProcessorHelper.mm in Sources */,
 				A4B9D5F0167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm in Sources */,
 				A4B9D5F9167F2E7F00CF7C90 /* iGaiaNavigationHelper.mm in Sources */,
+				A49020811681B6310081487E /* iGaiaQuadTreeObject3d.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
