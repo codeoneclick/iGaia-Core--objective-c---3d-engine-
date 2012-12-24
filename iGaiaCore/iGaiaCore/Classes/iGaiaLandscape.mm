@@ -82,6 +82,9 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.landscape", iGaiaResource::iGaia_E_CreationModeCustom);
     
+    m_quadTree = new iGaiaQuadTreeObject3d();
+    m_quadTree->BuildRoot(vertexBuffer, indexBuffer, m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 1, m_width);
+    
     for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
     {
         iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
@@ -150,6 +153,7 @@ vec2 iGaiaLandscape::Get_ScaleFactor(void)
 
 void iGaiaLandscape::OnUpdate(void)
 {
+    m_quadTree->Update(m_camera->Get_Frustum());
     iGaiaObject3d::OnUpdate();
 }
 

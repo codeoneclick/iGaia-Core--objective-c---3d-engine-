@@ -9,6 +9,7 @@
 #define iGaiaLandscapeClass
 
 #include "iGaiaObject3d.h"
+#include "iGaiaQuadTreeObject3d.h"
 
 class iGaiaLandscape : public iGaiaObject3d
 {
@@ -41,6 +42,8 @@ private:
 
     iGaiaTexture* m_heightmapTexture;
     iGaiaTexture* m_splattingTexture;
+    
+    iGaiaQuadTreeObject3d* m_quadTree;
     
 protected:
     

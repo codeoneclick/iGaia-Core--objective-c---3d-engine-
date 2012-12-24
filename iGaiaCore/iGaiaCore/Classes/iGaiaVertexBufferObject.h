@@ -11,6 +11,8 @@
 
 #import "iGaiaShader.h"
 
+#define kVertexBufferNumHandles 3
+
 class iGaiaVertexBufferObject
 {
 public:
@@ -25,7 +27,8 @@ public:
 private:
     ui32 m_numVertexes;
     iGaiaShader* m_operatingShader;
-    ui32 m_handle;
+    ui32 m_handles[kVertexBufferNumHandles];
+    i32 m_handleId;
     iGaiaVertex* m_data;
     GLenum m_mode;
 protected:

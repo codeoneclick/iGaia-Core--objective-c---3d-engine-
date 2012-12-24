@@ -11,10 +11,13 @@
 
 #import "iGaiaResource.h"
 
+#define kIndexBufferNumHandles 3
+
 class iGaiaIndexBufferObject
 {
 private:
-    ui32 m_handle;
+    ui32 m_handles[kIndexBufferNumHandles];
+    i32 m_handleId;
     ui16* m_data;
     GLenum m_mode;
     ui32 m_numIndexes;
@@ -25,6 +28,7 @@ public:
     ~iGaiaIndexBufferObject(void);
 
     ui32 Get_NumIndexes(void);
+    void Set_NumIndexes(ui32 _numIndexes);
 
     ui16* Lock(void);
     void Unlock(void);

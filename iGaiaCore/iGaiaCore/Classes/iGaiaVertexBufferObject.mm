@@ -14,14 +14,14 @@ iGaiaVertexBufferObject::iGaiaVertexBufferObject(ui32 _numVertexes, GLenum _mode
     m_mode = _mode;
     m_numVertexes = _numVertexes;
     m_data = new iGaiaVertex[m_numVertexes];
-    glGenBuffers(1, &m_handle);
+    m_handleId = -1;
+    glGenBuffers(kVertexBufferNumHandles, m_handles);
 }
 
 iGaiaVertexBufferObject::~iGaiaVertexBufferObject(void)
 {
     delete [] m_data;
-    glDeleteBuffers(1, &m_handle);
-    m_handle = NULL;
+    glDeleteBuffers(kVertexBufferNumHandles, m_handles);
 }
 
 u8vec4 iGaiaVertexBufferObject::CompressVec3(const vec3 &_uncompressed)
@@ -61,13 +61,18 @@ void iGaiaVertexBufferObject::Set_OperatingShader(iGaiaShader *_shader)
 
 void iGaiaVertexBufferObject::Unlock(void)
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_handle);
+    m_handleId++;
+    if(m_handleId >= kVertexBufferNumHandles)
+    {
+        m_handleId = 0;
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_handleId]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(iGaiaVertex) * m_numVertexes, m_data, m_mode);
 }
 
 void iGaiaVertexBufferObject::Bind(void)
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_handle);
+    glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_handleId]);
     ui32 bytesPerVertex = 0;
     i32 slot = m_operatingShader->Get_VertexSlotHandle(iGaiaShader::iGaia_E_ShaderVertexSlotPosition);
     if(slot >= 0)
@@ -107,7 +112,7 @@ void iGaiaVertexBufferObject::Bind(void)
 
 void iGaiaVertexBufferObject::Unbind(void)
 {
-    glBindBuffer(GL_ARRAY_BUFFER, m_handle);
+    glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_handleId]);
     GLint slot = m_operatingShader->Get_VertexSlotHandle(iGaiaShader::iGaia_E_ShaderVertexSlotPosition);
     if(slot >= 0)
     {

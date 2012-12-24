@@ -35,28 +35,33 @@ void iGaiaFrustum::iGaiaPlane::Update(const vec3 &_point_01, const vec3 &_point_
 
 iGaiaFrustum::iGaiaFrustum(iGaiaCamera* _camera)
 {
-    m_cameraReference = _camera;
+    m_camera = _camera;
 }
 
 iGaiaFrustum::~iGaiaFrustum(void)
 {
-    m_cameraReference = nullptr;
+    m_camera = nullptr;
+}
+
+void iGaiaFrustum::Set_Camera(iGaiaCamera *_camera)
+{
+    m_camera = _camera;
 }
 
 void iGaiaFrustum::OnUpdate(void)
 {
-    f32 tan = tanf(radians(m_cameraReference->Get_Fov()) * 0.5f);
-	f32 nearHeight = m_cameraReference->Get_Near() * tan;
-	f32 nearWidth = nearHeight * m_cameraReference->Get_Aspect();
-	f32 farHeight = m_cameraReference->Get_Far()  * tan;
-	f32 farWidth = farHeight * m_cameraReference->Get_Aspect();
+    f32 tan = tanf(radians(m_camera->Get_Fov()) * 0.5f);
+	f32 nearHeight = m_camera->Get_Near() * tan;
+	f32 nearWidth = nearHeight * m_camera->Get_Aspect();
+	f32 farHeight = m_camera->Get_Far()  * tan;
+	f32 farWidth = farHeight * m_camera->Get_Aspect();
 
-	vec3 basis_Z = normalize(m_cameraReference->Get_Position() - m_cameraReference->Get_LookAt());
-	vec3 basis_X = normalize(cross(m_cameraReference->Get_Up(), basis_Z));
+	vec3 basis_Z = normalize(m_camera->Get_Position() - m_camera->Get_LookAt());
+	vec3 basis_X = normalize(cross(m_camera->Get_Up(), basis_Z));
 	vec3 basis_Y = cross(basis_Z, basis_X);
 
-	vec3 nearOffset = m_cameraReference->Get_Position() - basis_Z * m_cameraReference->Get_Near();
-	vec3 farOffset = m_cameraReference->Get_Position() - basis_Z * m_cameraReference->Get_Far();
+	vec3 nearOffset = m_camera->Get_Position() - basis_Z * m_camera->Get_Near();
+	vec3 farOffset = m_camera->Get_Position() - basis_Z * m_camera->Get_Far();
 
 	vec3 nearTopLeftPoint = nearOffset + basis_Y * nearHeight - basis_X * nearWidth;
 	vec3 nearTopRightPoint = nearOffset + basis_Y * nearHeight + basis_X * nearWidth;

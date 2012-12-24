@@ -134,6 +134,11 @@ void iGaiaCamera::ListenUpdateMgr(bool _value)
     }
 }
 
+iGaiaFrustum* iGaiaCamera::Get_Frustum(void)
+{
+    return m_frustum;
+}
+
 void iGaiaCamera::OnUpdate(void)
 {
     m_position.y = 16.0f;

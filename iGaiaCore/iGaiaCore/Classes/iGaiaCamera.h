@@ -80,6 +80,8 @@ public:
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
 
     void ListenUpdateMgr(bool _value);
+    
+    iGaiaFrustum* Get_Frustum(void);
 };
 
 #endif

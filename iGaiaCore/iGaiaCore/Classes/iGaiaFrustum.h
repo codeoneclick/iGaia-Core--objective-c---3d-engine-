@@ -48,13 +48,15 @@ private:
     };
 
      iGaiaPlane m_planes[iGaia_E_FrustumPlaneMaxValue];
-     iGaiaCamera* m_cameraReference;
+     iGaiaCamera* m_camera;
     
 protected:
 
 public:
     iGaiaFrustum(iGaiaCamera* _camera);
     ~iGaiaFrustum(void);
+    
+    void Set_Camera(iGaiaCamera* _camera);
 
     void OnUpdate(void);
 
