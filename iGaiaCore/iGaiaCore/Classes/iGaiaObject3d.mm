@@ -12,7 +12,8 @@
 #import "iGaiaLogger.h"
 #include "iGaiaThreadQueue.h"
 
-static dispatch_queue_t g_onUpdateQueue;
+dispatch_queue_t g_onUpdateQueue;
+string g_updateQueueName = "igaia.onupdate.queue";
 
 iGaiaObject3d::iGaiaObject3d(void)
 {
@@ -33,6 +34,7 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_minBound = vec3(0.0f, 0.0f, 0.0f);
     
     m_material = new iGaiaMaterial();
+
     m_mesh = nullptr;
     m_camera = nullptr;
     m_light = nullptr;
@@ -48,7 +50,7 @@ iGaiaObject3d::~iGaiaObject3d(void)
     
 }
 
-void iGaiaObject3d::Set_Position(const vec3& _position)
+void iGaiaObject3d::Set_Position(vec3 const& _position)
 {
     m_position = _position;
 }
@@ -58,7 +60,7 @@ vec3 iGaiaObject3d::Get_Position(void)
     return m_position;
 }
 
-void iGaiaObject3d::Set_Rotation(const vec3& _rotation)
+void iGaiaObject3d::Set_Rotation(vec3 const& _rotation)
 {
     m_rotation = _rotation;
 }
@@ -68,7 +70,7 @@ vec3 iGaiaObject3d::Get_Rotation(void)
     return m_rotation;
 }
 
-void iGaiaObject3d::Set_Scale(const vec3& _scale)
+void iGaiaObject3d::Set_Scale(vec3 const& _scale)
 {
     m_scale = _scale;
 }
@@ -117,13 +119,14 @@ void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
     }
 }
 
-void iGaiaObject3d::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
+void iGaiaObject3d::Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
 {
     m_material->Set_Texture(_name, _slot, _wrap);
 }
 
 void iGaiaObject3d::ListenRenderMgr(bool _value)
 {
+    assert(m_renderMgr != nullptr);
     if(_value)
     {
         for(ui32 _mode = 0; _mode < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++_mode)
@@ -148,6 +151,7 @@ void iGaiaObject3d::ListenRenderMgr(bool _value)
 
 void iGaiaObject3d::ListenUpdateMgr(bool _value)
 {
+    assert(m_updateMgr != nullptr);
     if(_value)
     {
         m_updateMgr->AddEventListener(&m_updateCallback);
@@ -160,9 +164,9 @@ void iGaiaObject3d::ListenUpdateMgr(bool _value)
 
 void iGaiaObject3d::OnUpdate(void)
 {
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        g_onUpdateQueue = dispatch_queue_create("igaia.onupdate.queue", DISPATCH_QUEUE_SERIAL);
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        g_onUpdateQueue = dispatch_queue_create(g_updateQueueName.c_str(), DISPATCH_QUEUE_SERIAL);
     });
     
     if(m_updateMode == iGaia_E_UpdateModeAsync)
@@ -208,6 +212,9 @@ ui32 iGaiaObject3d::OnDrawIndex(void)
 
 void iGaiaObject3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
+    assert(m_material != nullptr);
+    assert(m_mesh != nullptr);
+
     m_material->Bind(_mode);
     m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_OperatingShader());
     m_mesh->Bind();
@@ -215,6 +222,9 @@ void iGaiaObject3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 
 void iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
+    assert(m_material != nullptr);
+    assert(m_mesh != nullptr);
+
     m_material->Unbind(_mode);
     m_mesh->Unbind();
 }

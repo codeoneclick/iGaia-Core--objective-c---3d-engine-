@@ -79,16 +79,17 @@ protected:
     iGaiaUpdateMgr* m_updateMgr;
 
 public:
+    
     iGaiaObject3d(void);
     virtual ~iGaiaObject3d(void);
     
-    void Set_Position(const vec3& _position);
+    void Set_Position(vec3 const& _position);
     vec3 Get_Position(void);
 
-    void Set_Rotation(const vec3& _rotation);
+    void Set_Rotation(vec3 const& _rotation);
     vec3 Get_Rotation(void);
     
-    void Set_Scale(const vec3& _scale);
+    void Set_Scale(vec3 const& _scale);
     vec3 Get_Scale(void);
 
     vec3 Get_MaxBound(void);
@@ -98,7 +99,7 @@ public:
     void Set_Light(iGaiaLight* _light);
 
     void Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode);
-    void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
+    void Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
     void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
