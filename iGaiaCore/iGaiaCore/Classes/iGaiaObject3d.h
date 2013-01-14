@@ -25,7 +25,7 @@
 #include "iGaiaCrossCallback.h"
 #include "iGaiaTouchCrossCallback.h"
 
-class iGaiaObject3d
+class iGaiaObject3d : public iGaiaRenderInterface, public iGaiaUpdateInterface
 {
 public:
     
@@ -45,15 +45,9 @@ private:
 
 protected:
     
-    enum iGaia_E_UpdateMode
-    {
-        iGaia_E_UpdateModeSync = 0,
-        iGaia_E_UpdateModeAsync
-    };
-    
     mat4x4 m_worldMatrix;
     
-    iGaiaMaterial* m_material;
+    map<ui32, iGaiaMaterial*> m_material;
     iGaiaMesh* m_mesh;
     
     vec3 m_position;
@@ -65,27 +59,13 @@ protected:
     
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
-
-    iGaia_E_UpdateMode m_updateMode;
     
-    iGaiaRenderCallback m_renderCallback;
-    iGaiaUpdateCallback m_updateCallback;
+    virtual ui32 GetDrawPriority_Receiver(void);
+    virtual void Bind_Receiver(ui32 _mode);
+    virtual void Unbind_Receiver(ui32 _mode);
+    virtual void Draw_Receiver(ui32 _mode);
     
-    iGaiaCrossCallback m_crossCallback;
-    iGaiaVertexBufferObject::iGaiaVertex* m_crossVertexData;
-
-    virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    virtual ui32 OnDrawIndex(void);
-    
-    string OnRetriveGuid(void);
-    virtual iGaiaVertexBufferObject::iGaiaVertex* OnRetriveVertexData(void);
-    virtual ui16* OnRetriveIndexData(void);
-    virtual ui32 OnRetriveNumVertexes(void);
-    virtual ui32 OnRetriveNumIndexes(void);
-
-    virtual void OnUpdate(void);
+    virtual void Update_Receiver(f32 _deltaTime);
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
@@ -111,8 +91,9 @@ public:
     void Set_Camera(iGaiaCamera* _camera);
     void Set_Light(iGaiaLight* _light);
 
+    void Set_Material(iGaiaMaterial* _material, ui32 _mode);
     void Set_Shader(iGaiaShader* _shader, ui32 _mode);
-    void Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot);
+    void Set_Texture(iGaiaTexture* _texture, ui32 _slot, ui32 _mode);
 
     void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);

@@ -58,16 +58,6 @@ iGaiaMesh::~iGaiaMesh(void)
     delete m_indexBuffer;
 }
 
-void iGaiaMesh::Set_Settings(const map<ui32, ui32> &_settings)
-{
-    m_settings = _settings;
-}
-
-map<ui32, ui32> iGaiaMesh::Get_Settings(void)
-{
-    return m_settings;
-}
-
 iGaiaVertexBufferObject* iGaiaMesh::Get_VertexBuffer(void)
 {
     return m_vertexBuffer;

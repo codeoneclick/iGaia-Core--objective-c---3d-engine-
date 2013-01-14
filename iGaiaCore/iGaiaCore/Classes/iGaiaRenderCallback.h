@@ -1,5 +1,5 @@
 //
-//  iGaiaRenderListener.h
+//  iGaiaRenderCallback.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 10/2/12.
@@ -10,63 +10,100 @@
 
 #include "iGaiaMaterial.h"
 
-typedef std::function<ui32(void)> OnDrawIndexListener;
-typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnBindListener;
-typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnUnbindListener;
-typedef std::function<void(iGaiaMaterial::iGaia_E_RenderModeWorldSpace)> OnDrawListener;
+typedef std::function<ui32(void)> __GetDrawPriority_Listener;
+typedef std::function<void(ui32)> __Bind_Listener;
+typedef std::function<void(ui32)> __Unbind_Listener;
+typedef std::function<void(ui32)> __Draw_Listener;
 
 class iGaiaRenderCallback final
 {
 private:
-    OnDrawIndexListener m_onDrawIndexListener;
-    OnBindListener m_onBindListener;
-    OnUnbindListener m_onUnbindListener;
-    OnDrawListener m_onDrawListener;
+    
+    __GetDrawPriority_Listener m_getDrawPriorityListener;
+    __Bind_Listener m_bindListener;
+    __Unbind_Listener m_unbindListener;
+    __Draw_Listener m_drawListener;
+    
 protected:
 
 public:
-    iGaiaRenderCallback(void) = default;
+    
+    iGaiaRenderCallback(void)
+    {
+        m_getDrawPriorityListener = nullptr;
+        m_bindListener = nullptr;
+        m_unbindListener = nullptr;
+        m_drawListener = nullptr;
+    }
+    
     ~iGaiaRenderCallback(void) = default;
     
-    void Set_OnDrawIndexListener(const OnDrawIndexListener& _listener)
+    void Set_GetDrawPriority_Listener(__GetDrawPriority_Listener const& _listener)
     {
-        m_onDrawIndexListener = _listener;
+        m_getDrawPriorityListener = _listener;
     }
     
-    void Set_OnBindListener(const OnBindListener& _listener)
+    void Set_Bind_Listener(__Bind_Listener const& _listener)
     {
-        m_onBindListener = _listener;
+        m_bindListener = _listener;
     }
     
-    void Set_OnUnbindListener(const OnUnbindListener& _listener)
+    void Set_Unbind_Listener(__Unbind_Listener const& _listener)
     {
-        m_onUnbindListener = _listener;
+        m_unbindListener = _listener;
     }
     
-    void Set_OnDrawListener(const OnDrawListener& _listener)
+    void Set_Draw_Listener(__Draw_Listener const& _listener)
     {
-        m_onDrawListener = _listener;
+        m_drawListener = _listener;
     }
     
-    ui32 InvokeOnDrawIndexListener(void)
+    ui32 Notify_GetDrawPriority_Listener(void)
     {
-        return m_onDrawIndexListener();
+        assert(m_getDrawPriorityListener != nullptr);
+        return m_getDrawPriorityListener();
     }
     
-    void InvokeOnBindListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+    void Notify_Bind_Listener(ui32 _mode)
     {
-        m_onBindListener(_mode);
+        assert(m_bindListener != nullptr);
+        m_bindListener(_mode);
     }
     
-    void InvokeOnUnbindListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+    void Notify_Unbind_Listener(ui32 _mode)
     {
-        m_onUnbindListener(_mode);
+        assert(m_unbindListener != nullptr);
+        m_unbindListener(_mode);
     }
     
-    void InvokeOnDrawListener(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+    void Notify_Draw_Listener(ui32 _mode)
     {
-        m_onDrawListener(_mode);
+        assert(m_drawListener != nullptr);
+        m_drawListener(_mode);
     }
+};
+
+class iGaiaRenderInterface
+{
+protected:
+    
+    iGaiaRenderCallback m_renderCallback;
+    
+    virtual void Bind_Receiver(ui32 _mode) = 0;
+    virtual void Unbind_Receiver(ui32 _mode) = 0;
+    virtual void Draw_Receiver(ui32 _mode) = 0;
+    virtual ui32 GetDrawPriority_Receiver(void) = 0;
+    
+public:
+    
+    iGaiaRenderInterface(void)
+    {
+        m_renderCallback.Set_Draw_Listener(std::bind(&iGaiaRenderInterface::Draw_Receiver, this, std::placeholders::_1));
+        m_renderCallback.Set_GetDrawPriority_Listener(std::bind(&iGaiaRenderInterface::GetDrawPriority_Receiver, this));
+        m_renderCallback.Set_Bind_Listener(std::bind(&iGaiaRenderInterface::Bind_Receiver, this, std::placeholders::_1));
+        m_renderCallback.Set_Unbind_Listener(std::bind(&iGaiaRenderInterface::Unbind_Receiver, this, std::placeholders::_1));
+    }
+    ~iGaiaRenderInterface(void) = default;
 };
 
 #endif

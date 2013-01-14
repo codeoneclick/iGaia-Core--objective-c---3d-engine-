@@ -586,9 +586,9 @@
 			isa = PBXGroup;
 			children = (
 				15835CBF1621E6180074FB90 /* iGaiaLoopCallback.h */,
+				15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */,
 				A446654A161B1B920025601F /* iGaiaRenderCallback.h */,
 				A4BFA2121619DB6E00004F34 /* iGaiaLoadCallback.h */,
-				15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */,
 				A4C8995C16281E78003AC188 /* iGaiaCrossCallback.h */,
 				A4C899671628281C003AC188 /* iGaiaTouchCallback.h */,
 				2190A539168E30E200F4DFF5 /* iGaiaTouchCrossCallback.h */,

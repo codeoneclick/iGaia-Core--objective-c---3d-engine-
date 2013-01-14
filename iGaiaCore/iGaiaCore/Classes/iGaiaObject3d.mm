@@ -18,19 +18,6 @@ string g_updateQueueName = "igaia.onupdate.queue";
 
 iGaiaObject3d::iGaiaObject3d(void)
 {
-    m_renderCallback.Set_OnDrawIndexListener(std::bind(&iGaiaObject3d::OnDrawIndex, this));
-    m_renderCallback.Set_OnBindListener(std::bind(&iGaiaObject3d::OnBind, this, std::placeholders::_1));
-    m_renderCallback.Set_OnDrawListener(std::bind(&iGaiaObject3d::OnDraw, this, std::placeholders::_1));
-    m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
-
-    m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaObject3d::OnUpdate, this));
-    
-    m_crossCallback.Set_OnRetriveGuidListener(std::bind(&iGaiaObject3d::OnRetriveGuid, this));
-    m_crossCallback.Set_OnRetriveVertexDataListener(std::bind(&iGaiaObject3d::OnRetriveVertexData, this));
-    m_crossCallback.Set_OnRetriveIndexDataListener(std::bind(&iGaiaObject3d::OnRetriveIndexData, this));
-    m_crossCallback.Set_OnRetriveNumVertexesListener(std::bind(&iGaiaObject3d::OnRetriveNumVertexes, this));
-    m_crossCallback.Set_OnRetriveNumIndexesListener(std::bind(&iGaiaObject3d::OnRetriveNumIndexes, this));
-
     m_worldMatrix = mat4x4();
     
     m_position = vec3(0.0f, 0.0f, 0.0f);

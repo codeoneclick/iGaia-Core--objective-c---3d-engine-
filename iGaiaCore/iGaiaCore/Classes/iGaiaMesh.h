@@ -24,9 +24,6 @@ protected:
 public:
     iGaiaMesh(iGaiaVertexBufferObject* _vertexBuffer, iGaiaIndexBufferObject* _indexBuffer, const string& _name, iGaiaResource::iGaia_E_CreationMode _mode);
     ~iGaiaMesh(void);
-    
-    map<ui32, ui32> Get_Settings(void);
-    void Set_Settings(const map<ui32, ui32>& _settings);
 
     iGaiaVertexBufferObject* Get_VertexBuffer(void);
     iGaiaIndexBufferObject* Get_IndexBuffer(void);
