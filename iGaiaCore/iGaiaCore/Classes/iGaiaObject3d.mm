@@ -112,6 +112,7 @@ void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
 
 void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 {
+    assert(m_material != nullptr);
     m_material->Set_Shader(_shader, _mode);
     if(m_renderMgr != nullptr)
     {
@@ -121,6 +122,7 @@ void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 
 void iGaiaObject3d::Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
 {
+    assert(m_material != nullptr);
     m_material->Set_Texture(_name, _slot, _wrap);
 }
 

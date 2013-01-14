@@ -23,7 +23,12 @@ iGaiaTexture::~iGaiaTexture(void)
     glDeleteTextures(1, &m_handle);
 }
 
-map<ui32, ui32> iGaiaTexture::Get_Settings(void)
+void iGaiaTexture::Set_WrapMode(string const& _wrapMode)
+{
+    
+}
+
+/*map<ui32, ui32> iGaiaTexture::Get_Settings(void)
 {
     return m_settings;
 }
@@ -52,7 +57,7 @@ void iGaiaTexture::Set_Settings(const map<ui32, ui32>& _settings)
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         }
     }
-}
+}*/
 
 ui32 iGaiaTexture::Get_Handle(void)
 {

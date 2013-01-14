@@ -14,15 +14,13 @@
 class iGaiaTexture : public iGaiaResource
 {
 public:
-    enum iGaia_E_TextureSettingsKey
+    struct iGaiaTextureWrapMode
     {
-        iGaia_E_TextureSettingsKeyWrapMode = 0
+        string iGaiaTextureWrapModeRepeat;
+        string iGaiaTextureWrapModeClamp;
+        string iGaiaTextureWrapModeMirror;
     };
-    enum iGaia_E_TextureSettingsValue
-    {
-        iGaia_E_TextureSettingsValueClamp = 0,
-        iGaia_E_TextureSettingsValueRepeat
-    };
+
 private:
     ui32 m_handle;
     ui16 m_width;
@@ -33,8 +31,10 @@ public:
     iGaiaTexture(ui32 _handle, ui16 _width, ui16 _height, const string& _name, iGaiaResource::iGaia_E_CreationMode _creationMode);
     ~iGaiaTexture(void);
 
-    map<ui32, ui32> Get_Settings(void);
-    void Set_Settings(const map<ui32, ui32>& _settings);
+    void Set_WrapMode(string const& _wrapMode);
+
+    //map<ui32, ui32> Get_Settings(void);
+    //void Set_Settings(const map<ui32, ui32>& _settings);
     
     ui32 Get_Handle(void);
     
