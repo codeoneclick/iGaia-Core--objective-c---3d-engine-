@@ -11,25 +11,77 @@
 #include "iGaiaVertexBufferObject.h"
 #include "iGaiaIndexBufferObject.h"
 
+typedef std::function<iGaiaVertexBufferObject::iGaiaVertex*(void)> OnRetriveVertexDataListener;
+typedef std::function<ui16*(void)> OnRetriveIndexDataListener;
+typedef std::function<ui32(void)> OnRetriveNumVertexesListener;
+typedef std::function<ui32(void)> OnRetriveNumIndexesListener;
+typedef std::function<string(void)> OnRetriveGuidListener;
+
 class iGaiaCrossCallback
 {
 private:
-
+    
+    OnRetriveVertexDataListener m_onRetriveVertexeDataListener;
+    OnRetriveIndexDataListener m_onRetriveIndexDataListener;
+    OnRetriveNumVertexesListener m_onRetriveNumVertexesListener;
+    OnRetriveNumIndexesListener m_onRetriveNumIndexesListener;
+    OnRetriveGuidListener m_onRetriveGuidListener;
+    
 protected:
-    iGaiaVertexBufferObject::iGaiaVertex* m_crossOperationVertexData;
-    ui16* m_crossOperationIndexData;
-    ui32 m_crossOperationNumVertexes;
-    ui32 m_crossOperationNumIndexes;
+    
 public:
-    iGaiaCrossCallback(void) { };
-    virtual ~iGaiaCrossCallback(void) { };
+    iGaiaCrossCallback(void) = default;
+    virtual ~iGaiaCrossCallback(void) = default;
+    
+    void Set_OnRetriveVertexDataListener(OnRetriveVertexDataListener const& _listener)
+    {
+        m_onRetriveVertexeDataListener = _listener;
+    }
+    
+    void Set_OnRetriveIndexDataListener(OnRetriveIndexDataListener const& _listener)
+    {
+        m_onRetriveIndexDataListener = _listener;
+    }
+    
+    void Set_OnRetriveNumVertexesListener(OnRetriveNumVertexesListener const& _listener)
+    {
+        m_onRetriveNumVertexesListener = _listener;
+    }
+    
+    void Set_OnRetriveNumIndexesListener(OnRetriveNumIndexesListener const& _listener)
+    {
+        m_onRetriveNumIndexesListener = _listener;
+    }
+    
+    void Set_OnRetriveGuidListener(OnRetriveGuidListener const& _listener)
+    {
+        m_onRetriveGuidListener = _listener;
+    }
 
-    virtual iGaiaVertexBufferObject::iGaiaVertex* Get_CrossOperationVertexData(void) = 0;
-    virtual ui16* Get_CrossOperationIndexData(void) = 0;
-    virtual ui32 Get_CrossOperationNumVertexes(void) = 0;
-    virtual ui32 Get_CrossOperationNumIndexes(void) = 0;
+    iGaiaVertexBufferObject::iGaiaVertex* InvokeOnRetriveVertexDataListener(void)
+    {
+        return m_onRetriveVertexeDataListener();
+    }
 
-    virtual void OnCross(void) = 0;
+    ui16* InvokeOnRetriveIndexDataListener(void)
+    {
+        return m_onRetriveIndexDataListener();
+    }
+
+    ui32 InvokeOnRetriveNumVertexesListener(void)
+    {
+        return m_onRetriveNumVertexesListener();
+    }
+
+    ui32 InvokeOnRetriveNumIndexesListener(void)
+    {
+        return m_onRetriveNumIndexesListener();
+    }
+    
+    string InvokeOnRetriveGuidListener(void)
+    {
+        return m_onRetriveGuidListener();
+    }
 };
 
 #endif

@@ -20,6 +20,10 @@
 
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
+#include "iGaiaTouchMgr.h"
+
+#include "iGaiaCrossCallback.h"
+#include "iGaiaTouchCrossCallback.h"
 
 class iGaiaObject3d
 {
@@ -35,7 +39,6 @@ public:
     {
         string m_name;
         iGaiaShader::iGaia_E_ShaderTextureSlot m_slot;
-        iGaiaTexture::iGaia_E_TextureSettingsValue m_wrap;
     };
     
 private:
@@ -67,16 +70,26 @@ protected:
     
     iGaiaRenderCallback m_renderCallback;
     iGaiaUpdateCallback m_updateCallback;
+    
+    iGaiaCrossCallback m_crossCallback;
+    iGaiaVertexBufferObject::iGaiaVertex* m_crossVertexData;
 
     virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual ui32 OnDrawIndex(void);
+    
+    string OnRetriveGuid(void);
+    virtual iGaiaVertexBufferObject::iGaiaVertex* OnRetriveVertexData(void);
+    virtual ui16* OnRetriveIndexData(void);
+    virtual ui32 OnRetriveNumVertexes(void);
+    virtual ui32 OnRetriveNumIndexes(void);
 
     virtual void OnUpdate(void);
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
+    iGaiaTouchMgr* m_touchMgr;
 
 public:
     
@@ -98,14 +111,17 @@ public:
     void Set_Camera(iGaiaCamera* _camera);
     void Set_Light(iGaiaLight* _light);
 
-    void Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode);
-    void Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
+    void Set_Shader(iGaiaShader* _shader, ui32 _mode);
+    void Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot);
 
     void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
+    void Set_TouchMgr(iGaiaTouchMgr* _touchMgr);
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);
+    
+    void ListenUserInteraction(bool _value, iGaiaTouchCrossCallback* _listener);
 };
 
 #endif

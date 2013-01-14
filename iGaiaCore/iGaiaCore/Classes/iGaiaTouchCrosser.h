@@ -10,9 +10,10 @@
 
 #include "iGaiaCrossCallback.h"
 #include "iGaiaTouchCallback.h"
+#include "iGaiaTouchCrossCallback.h"
 #include "iGaiaCamera.h"
 
-class iGaiaTouchCrosser : public iGaiaTouchCallback
+class iGaiaTouchCrosser
 {
 private:
     struct iGaiaRay
@@ -21,11 +22,17 @@ private:
         vec3 m_direction;
     };
 
-    iGaiaCamera* m_cameraReference;
-    set<iGaiaCrossCallback*> m_listeners;
+    iGaiaCamera* m_camera;
+    
+    set<pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*>> m_listeners;
+    
+    iGaiaTouchCallback m_touchCallback;
 
     iGaiaRay Unproject(const vec2& _point);
-    bool IsCross(iGaiaCrossCallback* _listener, const iGaiaRay& _ray);
+    bool IsCross(iGaiaTouchCrossCallback* _listener_01, iGaiaCrossCallback* _listener_02, const iGaiaRay& _ray);
+    
+    void OnTouch(f32 _x, f32 _y);
+    
 protected:
 
 public:
@@ -34,10 +41,10 @@ public:
 
     void Set_Camera(iGaiaCamera* _camera);
 
-    void AddEventListener(iGaiaCrossCallback* _listener);
-    void RemoveEventListener(iGaiaCrossCallback* _listener);
-
-    void OnTouch(f32 _x, f32 _y);
+    void AddEventListener(pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*> _listener);
+    void RemoveEventListener(pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*> _listener);
+    
+    iGaiaTouchCallback* Get_TouchCallback(void);
 };
 
 #endif

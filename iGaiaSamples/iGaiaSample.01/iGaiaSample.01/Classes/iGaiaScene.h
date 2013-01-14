@@ -20,6 +20,10 @@ private:
     iGaiaLight* m_light;
     iGaiaCharacterController* m_characterController;
     
+    iGaiaTouchCrossCallback m_touchCrossCallback;
+    
+    void OnTouchCross(string const& _guid);
+    
 protected:
 
 public:

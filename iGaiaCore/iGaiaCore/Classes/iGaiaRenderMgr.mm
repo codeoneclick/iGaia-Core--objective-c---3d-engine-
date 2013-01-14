@@ -85,7 +85,7 @@ void iGaiaRenderMgr::OnUpdate(void)
         m_screenSpaceOperations[i]->Unbind();
     }
 
-    m_outletOperation->Get_OperatingMaterial()->Set_Texture(m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple]->Get_OperatingTexture(), iGaiaShader::iGaia_E_ShaderTextureSlot_01);
+    m_outletOperation->Get_OperatingMaterial()->Set_Texture(m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon]->Get_OperatingTexture(), iGaiaShader::iGaia_E_ShaderTextureSlot_01);
     m_outletOperation->Bind();
     m_outletOperation->Draw();
     m_outletOperation->Unbind();
@@ -107,7 +107,7 @@ void iGaiaRenderMgr::OnUpdate(void)
     GLenum error = glGetError();
     if (error != GL_NO_ERROR)
     {
-        iGaiaLog(@"GL error -> %i", error);
+        iGaiaLog("GL error -> %i", error);
     }
 }
 

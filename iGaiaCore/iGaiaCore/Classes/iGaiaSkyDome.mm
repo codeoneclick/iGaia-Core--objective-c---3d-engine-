@@ -185,11 +185,11 @@ void iGaiaSkyDome::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     
     switch (_mode)
     {
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon:
         {
             if(m_material->Get_OperatingShader() == nil)
             {
-                iGaiaLog(@"Shader MODE_SIMPLE == nil");
+                iGaiaLog("Shader MODE_SIMPLE == nil");
             }
             
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);

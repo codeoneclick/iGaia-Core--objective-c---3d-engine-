@@ -34,7 +34,7 @@ iGaiaRenderOperationWorldSpace::iGaiaRenderOperationWorldSpace(iGaiaMaterial::iG
 
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
     {
-        iGaiaLog(@"Failed init render state");
+        iGaiaLog("Failed init render state");
     }
 
     m_operatingTexture = new iGaiaTexture(textureHandle, m_frameSize.x, m_frameSize.y, _name, iGaiaResource::iGaia_E_CreationModeCustom);

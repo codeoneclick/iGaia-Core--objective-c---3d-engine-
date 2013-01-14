@@ -12,12 +12,12 @@
 
 + (CGRect)Get_Frame
 {
-    return CGRectMake(0, 0, 480, 320);
+    return CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }
 
 + (CGSize)Get_Size
 {
-    return CGSizeMake(480, 320);
+    return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }
 
 @end

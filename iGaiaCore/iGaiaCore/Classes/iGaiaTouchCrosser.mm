@@ -8,10 +8,12 @@
 
 #import "iGaiaTouchCrosser.h"
 #import "iGaiaLogger.h"
+#import "iGaiaSettings_iOS.h"
 
 iGaiaTouchCrosser::iGaiaTouchCrosser(void)
 {
-
+    m_camera = nullptr;
+    m_touchCallback.Set_OnTouchListener(std::bind(&iGaiaTouchCrosser::OnTouch, this, placeholders::_1, placeholders::_2));
 }
 
 iGaiaTouchCrosser::~iGaiaTouchCrosser(void)
@@ -21,27 +23,33 @@ iGaiaTouchCrosser::~iGaiaTouchCrosser(void)
 
 void iGaiaTouchCrosser::Set_Camera(iGaiaCamera *_camera)
 {
-    m_cameraReference = _camera;
+    m_camera = _camera;
+}
+
+iGaiaTouchCallback* iGaiaTouchCrosser::Get_TouchCallback(void)
+{
+    return &m_touchCallback;
 }
 
 
-void iGaiaTouchCrosser::AddEventListener(iGaiaCrossCallback* _listener)
+void iGaiaTouchCrosser::AddEventListener(pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*> _listener)
 {
     m_listeners.insert(_listener);
 }
 
-void iGaiaTouchCrosser::RemoveEventListener(iGaiaCrossCallback* _listener)
+void iGaiaTouchCrosser::RemoveEventListener(pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*> _listener)
 {
     m_listeners.erase(_listener);
 }
 
 iGaiaTouchCrosser::iGaiaRay iGaiaTouchCrosser::Unproject(const vec2& _point)
 {
-    mat4x4 projection = m_cameraReference->Get_ProjectionMatrix();
-    CGRect viewport = CGRectMake(0, 0, 320, 480);
+    assert(m_camera != nullptr);
+    mat4x4 projection = m_camera->Get_ProjectionMatrix();
+    CGRect viewport = [iGaiaSettings_iOS Get_Frame];
     f32 screenX =  -((( 2.0f * _point.x ) / viewport.size.width) - 1.0f ) / projection[0][0];
     f32 screenY =  -((( 2.0f * (viewport.size.height - _point.y) ) / viewport.size.height) - 1.0f ) / projection[1][1];
-    mat4x4 inverseView = inverse(m_cameraReference->Get_ViewMatrix());
+    mat4x4 inverseView = inverse(m_camera->Get_ViewMatrix());
 
     iGaiaRay ray;
     ray.m_direction.x  = (screenX * inverseView[0][0] + screenY * inverseView[1][0] + inverseView[2][0]);
@@ -53,11 +61,11 @@ iGaiaTouchCrosser::iGaiaRay iGaiaTouchCrosser::Unproject(const vec2& _point)
     return ray;
 }
 
-bool iGaiaTouchCrosser::IsCross(iGaiaCrossCallback *_listener, const iGaiaTouchCrosser::iGaiaRay &_ray)
+bool iGaiaTouchCrosser::IsCross(iGaiaTouchCrossCallback* _listener_01, iGaiaCrossCallback* _listener_02, const iGaiaRay& _ray)
 {
-    iGaiaVertexBufferObject::iGaiaVertex* vertexData = _listener->Get_CrossOperationVertexData();
-    ui16* indexData = _listener->Get_CrossOperationIndexData();
-    for(ui32 i = 0; i < _listener->Get_CrossOperationNumIndexes(); i += 3)
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = _listener_02->InvokeOnRetriveVertexDataListener();
+    ui16* indexData = _listener_02->InvokeOnRetriveIndexDataListener();
+    for(ui32 i = 0; i < _listener_02->InvokeOnRetriveNumIndexesListener(); i += 3)
     {
         vec3 point_01 = vertexData[indexData[i + 0]].m_position;
         vec3 point_02 = vertexData[indexData[i + 1]].m_position;
@@ -89,8 +97,8 @@ bool iGaiaTouchCrosser::IsCross(iGaiaCrossCallback *_listener, const iGaiaTouchC
             continue;
         }
 
-        glm::vec3 crossPoint = point_01 + (edge_01 * u) + (edge_02 * v);
-        iGaiaLog(@"Cross Point : x :%f, y :%f, z :%f", crossPoint.x, crossPoint.y, crossPoint.z);
+        vec3 crossPoint = point_01 + (edge_01 * u) + (edge_02 * v);
+        iGaiaLog("Cross Point : x :%f, y :%f, z :%f", crossPoint.x, crossPoint.y, crossPoint.z);
         return true;
     }
     return false;
@@ -100,11 +108,11 @@ void iGaiaTouchCrosser::OnTouch(f32 _x, f32 _y)
 {
     iGaiaRay ray = Unproject(vec2(_x, _y));
 
-    for(iGaiaCrossCallback* listener : m_listeners)
+    for(pair<iGaiaTouchCrossCallback*, iGaiaCrossCallback*> listener : m_listeners)
     {
-        if(IsCross(listener, ray));
+        if(IsCross(listener.first,listener.second, ray));
         {
-            listener->OnCross();
+            listener.first->InvokeOnTouchListener(listener.second->InvokeOnRetriveGuidListener());
         }
     }
 }

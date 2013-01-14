@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaObject3d.h"
-#import "iGaiaResourceMgr.h"
-#import "iGaiaStageMgr.h"
-#import "iGaiaLogger.h"
+#include "iGaiaObject3d.h"
+#include "iGaiaResourceMgr.h"
+#include "iGaiaStageMgr.h"
+#include "iGaiaLogger.h"
+#include "iGaiaException.h"
 #include "iGaiaThreadQueue.h"
 
 dispatch_queue_t g_onUpdateQueue;
@@ -23,6 +24,12 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
 
     m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaObject3d::OnUpdate, this));
+    
+    m_crossCallback.Set_OnRetriveGuidListener(std::bind(&iGaiaObject3d::OnRetriveGuid, this));
+    m_crossCallback.Set_OnRetriveVertexDataListener(std::bind(&iGaiaObject3d::OnRetriveVertexData, this));
+    m_crossCallback.Set_OnRetriveIndexDataListener(std::bind(&iGaiaObject3d::OnRetriveIndexData, this));
+    m_crossCallback.Set_OnRetriveNumVertexesListener(std::bind(&iGaiaObject3d::OnRetriveNumVertexes, this));
+    m_crossCallback.Set_OnRetriveNumIndexesListener(std::bind(&iGaiaObject3d::OnRetriveNumIndexes, this));
 
     m_worldMatrix = mat4x4();
     
@@ -38,9 +45,11 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_mesh = nullptr;
     m_camera = nullptr;
     m_light = nullptr;
+    m_crossVertexData = nullptr;
 
     m_renderMgr = nullptr;
     m_updateMgr = nullptr;
+    m_touchMgr = nullptr;
     
     m_updateMode = iGaia_E_UpdateModeSync;
 }
@@ -110,6 +119,11 @@ void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
     m_updateMgr = _updateMgr;
 }
 
+void iGaiaObject3d::Set_TouchMgr(iGaiaTouchMgr *_touchMgr)
+{
+    m_touchMgr = _touchMgr;
+}
+
 void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
 {
     assert(m_material != nullptr);
@@ -124,6 +138,53 @@ void iGaiaObject3d::Set_Texture(string const& _name, iGaiaShader::iGaia_E_Shader
 {
     assert(m_material != nullptr);
     m_material->Set_Texture(_name, _slot, _wrap);
+}
+
+string iGaiaObject3d::OnRetriveGuid(void)
+{
+    return "";
+}
+
+iGaiaVertexBufferObject::iGaiaVertex* iGaiaObject3d::OnRetriveVertexData(void)
+{
+    assert(m_mesh != nullptr);
+    assert(m_mesh->Get_VertexBuffer() != nullptr);
+    assert(m_mesh->Get_VertexBuffer()->Lock() != nullptr);
+    
+    if(m_crossVertexData == nullptr)
+    {
+        m_crossVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
+    }
+    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
+    for(ui32 i = 0; i < m_mesh->Get_NumVertexes(); ++i)
+    {
+        vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
+        position = m_worldMatrix * position;
+        m_crossVertexData[i].m_position = vec3(position.x, position.y, position.z);
+    }
+    return m_crossVertexData;
+}
+
+ui16* iGaiaObject3d::OnRetriveIndexData(void)
+{
+    assert(m_mesh != nullptr);
+    assert(m_mesh->Get_IndexBuffer() != nullptr);
+    assert(m_mesh->Get_IndexBuffer()->Lock() != nullptr);
+    return m_mesh->Get_IndexBuffer()->Lock();
+}
+
+ui32 iGaiaObject3d::OnRetriveNumVertexes(void)
+{
+    assert(m_mesh != nullptr);
+    assert(m_mesh->Get_NumVertexes() != 0);
+    return m_mesh->Get_NumVertexes();
+}
+
+ui32 iGaiaObject3d::OnRetriveNumIndexes(void)
+{
+    assert(m_mesh != nullptr);
+    assert(m_mesh->Get_NumIndexes() != 0);
+    return m_mesh->Get_NumIndexes();
 }
 
 void iGaiaObject3d::ListenRenderMgr(bool _value)
@@ -164,10 +225,28 @@ void iGaiaObject3d::ListenUpdateMgr(bool _value)
     }
 }
 
+void iGaiaObject3d::ListenUserInteraction(bool _value, iGaiaTouchCrossCallback *_listener)
+{
+    assert(m_touchMgr != nullptr);
+    if(_value)
+    {
+        m_touchMgr->Get_TouchCrosser()->AddEventListener(std::make_pair(_listener, &m_crossCallback));
+    }
+    else
+    {
+        m_touchMgr->Get_TouchCrosser()->RemoveEventListener(std::make_pair(_listener, &m_crossCallback));
+    }
+}
+
 void iGaiaObject3d::OnUpdate(void)
 {
+<<<<<<< HEAD
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+=======
     static dispatch_once_t once;
     dispatch_once(&once, ^{
+>>>>>>> da997e710868e1dd68e845cac66d3b7b79e6f930
         g_onUpdateQueue = dispatch_queue_create(g_updateQueueName.c_str(), DISPATCH_QUEUE_SERIAL);
     });
     

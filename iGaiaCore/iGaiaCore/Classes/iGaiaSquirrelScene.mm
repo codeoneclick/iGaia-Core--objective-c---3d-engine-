@@ -49,7 +49,7 @@ SQInteger sq_createCamera(HSQUIRRELVM vm)
         sq_pushuserpointer(vm, (SQUserPointer)camera);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -64,7 +64,7 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
 
         iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsSimple;
         shaderSettingsSimple.m_shader = iGaiaShader::iGaia_E_ShaderShape3d;
-        shaderSettingsSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple;
+        shaderSettingsSimple.m_mode = iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon;
         settings.m_shaders.push_back(shaderSettingsSimple);
 
         iGaiaObject3d::iGaiaObject3dShaderSettings shaderSettingsReflection;
@@ -83,6 +83,6 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
         sq_pushuserpointer(vm, (SQUserPointer)shape3d);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }

@@ -23,41 +23,37 @@ iGaiaTexture::~iGaiaTexture(void)
     glDeleteTextures(1, &m_handle);
 }
 
-void iGaiaTexture::Set_WrapMode(string const& _wrapMode)
+void iGaiaTexture::Set_WrapMode(iGaiaTexture::WrapMode _wrapMode)
 {
-    
-}
 
-/*map<ui32, ui32> iGaiaTexture::Get_Settings(void)
-{
-    return m_settings;
-}
-
-void iGaiaTexture::Set_Settings(const map<ui32, ui32>& _settings)
-{
-    if(m_settings == _settings)
+    switch (_wrapMode)
     {
-        return;
-    }
-    
-    m_settings = _settings;
-    
-    if(m_settings.find(iGaia_E_TextureSettingsKeyWrapMode) != m_settings.end())
-    {
-        if(m_settings.find(iGaia_E_TextureSettingsKeyWrapMode)->second == iGaia_E_TextureSettingsValueClamp)
-        {
-            Bind();
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        }
-        else if(m_settings.find(iGaia_E_TextureSettingsKeyWrapMode)->second == iGaia_E_TextureSettingsValueRepeat)
+        case iGaiaTexture::WrapMode::repeat:
         {
             Bind();
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         }
+            break;
+        case iGaiaTexture::WrapMode::clamp:
+        {
+            Bind();
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        }
+            break;
+        case iGaiaTexture::WrapMode::mirror:
+        {
+            Bind();
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+        }
+            break;
+
+        default:
+            break;
     }
-}*/
+}
 
 ui32 iGaiaTexture::Get_Handle(void)
 {

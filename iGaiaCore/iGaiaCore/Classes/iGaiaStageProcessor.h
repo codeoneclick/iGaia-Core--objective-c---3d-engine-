@@ -25,6 +25,7 @@ class iGaiaStageProcessor
 private:
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
+    iGaiaTouchMgr* m_touchMgr;
 
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;

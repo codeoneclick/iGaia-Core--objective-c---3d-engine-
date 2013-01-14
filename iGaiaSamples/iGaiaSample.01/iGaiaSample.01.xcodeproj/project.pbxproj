@@ -21,6 +21,7 @@
 		15AD3F2116236879004CB184 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 15AD3F1C16236879004CB184 /* building_06.mdl */; };
 		2155D7C5163863BC0012D346 /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7C4163863BC0012D346 /* fire.pvr */; };
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
+		215C117716A17E3D00197CE0 /* music_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 215C117616A17E3D00197CE0 /* music_02.mp3 */; };
 		A40A97B81642CCE400424B76 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40A97B71642CCE300424B76 /* Settings.bundle */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
 		A41381DA167B339A00FF06AF /* landscape.xml in Resources */ = {isa = PBXBuildFile; fileRef = A41381D9167B339A00FF06AF /* landscape.xml */; };
@@ -110,6 +111,7 @@
 		15AD3F1C16236879004CB184 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
 		2155D7C4163863BC0012D346 /* fire.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = fire.pvr; sourceTree = "<group>"; };
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
+		215C117616A17E3D00197CE0 /* music_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_02.mp3; sourceTree = "<group>"; };
 		A40A97B71642CCE300424B76 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
 		A41381D9167B339A00FF06AF /* landscape.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = landscape.xml; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		A494C0D8163AA62B00E8BCF6 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				215C117616A17E3D00197CE0 /* music_02.mp3 */,
 				A494C0D9163AA63700E8BCF6 /* laser.caf */,
 				A494C0DA163AA63700E8BCF6 /* music.mp3 */,
 				A494C0DB163AA63700E8BCF6 /* photon.caf */,
@@ -566,6 +569,7 @@
 				A490205C1680D9740081487E /* landscape_01_diffuse.pvr in Resources */,
 				A490205D1680D9740081487E /* landscape_02_diffuse.pvr in Resources */,
 				A490205E1680D9740081487E /* landscape_03_diffuse.pvr in Resources */,
+				215C117716A17E3D00197CE0 /* music_02.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,23 +668,22 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "/System/Library/Frameworks/Python.framework/Versions/2.7/**";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/**",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/Python.framework/Versions/2.7\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -698,7 +701,7 @@
 				GCC_PREFIX_HEADER = "iGaiaSample.01/iGaiaSample.01-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../iGaiaCore\"/**";
 				INFOPLIST_FILE = "iGaiaSample.01/iGaiaSample.01-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/**",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/Python.framework/Versions/2.7\"",
@@ -707,6 +710,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

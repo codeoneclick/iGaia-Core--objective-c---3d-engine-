@@ -71,7 +71,7 @@ void iGaiaSoundMgr::CreateSound(const string& _name, const string& _extension, c
 
 	if(result != 0)
     {
-		iGaiaLog(@"Cannot open file with name: %@", path);
+		iGaiaLog("Cannot open file with name: %@", path);
         return;
 	}
 
@@ -80,7 +80,7 @@ void iGaiaSoundMgr::CreateSound(const string& _name, const string& _extension, c
 	result = AudioFileGetProperty(soundId, kAudioFilePropertyAudioDataByteCount, &size, &data);
 	if(result != 0)
     {
-        iGaiaLog(@"Cannot get file size with name: %@", path);
+        iGaiaLog("Cannot get file size with name: %@", path);
         return;
     }
 
@@ -91,7 +91,7 @@ void iGaiaSoundMgr::CreateSound(const string& _name, const string& _extension, c
 
 	if(result != 0)
     {
-		iGaiaLog(@"Cannot load sound with name: %@", path);
+		iGaiaLog("Cannot load sound with name: %@", path);
 		return;
 	}
 
@@ -118,7 +118,7 @@ ui32 iGaiaSoundMgr::PlaySound(const string& _key, ALfloat _gain, ALfloat _pitch,
     ALenum error = alGetError();
 	if(m_sounds.find(_key) == m_sounds.end())
     {
-        iGaiaLog(@"Cannot play sound with key: %s", _key.c_str());
+        iGaiaLog("Cannot play sound with key: %s", _key.c_str());
         return 0;
     }
     ui32 soundId = m_sounds.find(_key)->second;
@@ -141,7 +141,7 @@ ui32 iGaiaSoundMgr::PlaySound(const string& _key, ALfloat _gain, ALfloat _pitch,
 	error = alGetError();
 	if(error != 0)
     {
-        iGaiaLog(@"Cannot play sound with key: %s", _key.c_str());
+        iGaiaLog("Cannot play sound with key: %s", _key.c_str());
 		return 0;
 	}
 	alSourcePlay(sourceId);
@@ -155,14 +155,14 @@ void iGaiaSoundMgr::PlayMusic(const string& _key, ui32 _repeatCount)
 
     if(!path)
     {
-        iGaiaLog(@"Cannot play music with key: %@", _key.c_str());
+        iGaiaLog("Cannot play music with key: %@", _key.c_str());
         return;
     }
 
     m_backgroundAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&error];
     if(!m_backgroundAudio)
     {
-        iGaiaLog(@"Cannot play music with key: %d", error);
+        iGaiaLog("Cannot play music with key: %d", error);
         return;
     }
 

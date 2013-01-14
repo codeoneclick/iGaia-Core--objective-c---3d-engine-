@@ -8,33 +8,21 @@
 
 #import "iGaiaLogger.h"
 
-@implementation iGaiaLogger
-
-void _iGaiaLog(const char *file, int lineNumber, const char *funcName, NSString *format,...)
+void _iGaiaLog(const char* _file, int _line, const char* _function, const char* _format,...)
 {
-	va_list ap;
-	va_start (ap, format);
-	if (![format hasSuffix: @"\n"])
-    {
-		format = [format stringByAppendingString: @"\n"];
-	}
-	NSString *body =  [[NSString alloc] initWithFormat: format arguments: ap];
-	va_end (ap);
-	NSString* threadName = [[NSThread currentThread] name];
-	NSString *fileName=[[NSString stringWithUTF8String:file] lastPathComponent];
-
-	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-	[outputFormatter setDateFormat:@"H:m:s"];
-	NSString *timestamp_str = [outputFormatter stringFromDate:[NSDate date]];
-
-	if (threadName != nil && ![threadName isEqualToString:@""])
-    {
-		fprintf(stderr,"[%s] (%s) (%s:%d) %s: %s",[timestamp_str UTF8String], [threadName UTF8String], [fileName UTF8String],lineNumber, funcName,[body UTF8String]);
-	}
-    else
-    {
-		fprintf(stderr,"[%s] (%p) (%s:%d) %s: %s",[timestamp_str UTF8String], [NSThread currentThread],[fileName UTF8String],lineNumber, funcName,[body UTF8String]);
-	}
+    va_list args_list;
+    
+    va_start(args_list, _format);
+    
+    char buffer[1024] = { 0 };
+    
+    sprintf(&buffer[0], "{ \n File: %s, \n", _file);
+    sprintf(&buffer[strlen(buffer)], "Line: %d, \n", _line);
+    sprintf(&buffer[strlen(buffer)], "Function: %s, \n", _function);
+    sprintf(&buffer[strlen(buffer)], "Message: ");
+    vsprintf(&buffer[strlen(buffer)], _format, args_list);
+    
+    va_end(args_list);
+    
+    fprintf(stderr,"Log: \n %s \n } \n", buffer);
 }
-
-@end

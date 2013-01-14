@@ -51,7 +51,7 @@ SQInteger sq_getPositionObject3d(HSQUIRRELVM vm)
         iGaiaSquirrelCommon::SharedInstance()->PushVecto3d(position.x, position.y, position.z);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -68,7 +68,7 @@ SQInteger sq_setPositionObject3d(HSQUIRRELVM vm)
         shape3d->Set_Position(position);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -84,7 +84,7 @@ SQInteger sq_getRotationObject3d(HSQUIRRELVM vm)
         iGaiaSquirrelCommon::SharedInstance()->PushVecto3d(rotation.x, rotation.y, rotation.z);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -101,7 +101,7 @@ SQInteger sq_setRotationObject3d(HSQUIRRELVM vm)
         shape3d->Set_Rotation(rotation);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -118,7 +118,7 @@ SQInteger sq_setShaderObject3d(HSQUIRRELVM vm)
         shape3d->Set_Shader(static_cast<iGaiaShader::iGaia_E_Shader>(shader), mode);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 
@@ -135,6 +135,6 @@ SQInteger sq_setTextureObject3d(HSQUIRRELVM vm)
         shape3d->Set_Texture(name, static_cast<iGaiaShader::iGaia_E_ShaderTextureSlot>(slot), iGaiaTexture::iGaia_E_TextureSettingsValueClamp);
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }

@@ -67,7 +67,7 @@ SQInteger sq_createParticleEmmiterSettings(HSQUIRRELVM vm)
         iGaiaStageMgr::SharedInstance()->Get_ParticleMgr()->PushParticleEmitterSettings(settings, "emitter");*/
         return true;
     }
-    iGaiaLog(@"Script call args NULL.");
+    iGaiaLog("Script call args NULL.");
     return false;
 }
 

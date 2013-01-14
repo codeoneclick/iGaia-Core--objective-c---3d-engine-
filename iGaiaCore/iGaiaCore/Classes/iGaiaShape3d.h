@@ -9,9 +9,8 @@
 #define iGaiaShape3dClass
 
 #include "iGaiaObject3d.h"
-#include "iGaiaCrossCallback.h"
 
-class iGaiaShape3d : public iGaiaObject3d, public iGaiaCrossCallback
+class iGaiaShape3d : public iGaiaObject3d
 {
 public:
     
@@ -23,11 +22,6 @@ public:
     };
 
 private:
-    
-    iGaiaVertexBufferObject::iGaiaVertex* m_crossingVertexData;
-    ui16* m_crossingIndexData;
-    ui32 m_crossingNumVertexes;
-    ui32 m_crossingNumIndexes;
     
 protected:
 

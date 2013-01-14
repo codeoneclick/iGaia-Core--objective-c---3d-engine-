@@ -13,17 +13,16 @@
 
 iGaiaMaterial::iGaiaMaterial(void)
 {
-    for(ui32 i = 0; i < iGaia_E_RenderModeWorldSpaceMaxValue + iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
-    {
-        m_shaders[i] = nullptr;
-    }
+    m_shader = nullptr;
+    
     for(NSUInteger i = 0; i < iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue; ++i)
     {
         m_textures[i] = nullptr;
     }
 
-    m_states[iGaia_E_RenderStateDepthMask] = YES;
-    m_states[iGaia_E_RenderStateDepthTest] = YES;
+    m_states[RenderState::DepthTest] = true;
+    m_states[RenderState::DepthMask] = true;
+    m_states[RenderState::Blend] = false;
 }
 
 iGaiaMaterial::~iGaiaMaterial(void)
@@ -41,9 +40,9 @@ void iGaiaMaterial::Set_BlendFunctionSource(GLenum _blendFunction)
     m_blendFunctionSource = _blendFunction;
 }
 
-void iGaiaMaterial::Set_BlendFunctionDest(GLenum _blendFunction)
+void iGaiaMaterial::Set_BlendFunctionDestination(GLenum _blendFunction)
 {
-    m_blendFunctionDest = _blendFunction;
+    m_blendFunctionDestination = _blendFunction;
 }
 
 void iGaiaMaterial::Set_Clipping(const vec4& _clipping)
@@ -56,33 +55,14 @@ vec4 iGaiaMaterial::Get_Clipping(void)
     return m_clipping;
 }
 
-void iGaiaMaterial::Set_OperatingShader(iGaiaShader* _shader)
+void iGaiaMaterial::Set_RenderState(iGaiaMaterial::RenderState _renderState, bool _value)
 {
-    m_operatingShader = _shader;
+    m_states[_renderState] = _value;
 }
 
-iGaiaShader* iGaiaMaterial::Get_OperatingShader(void)
+void iGaiaMaterial::Set_Shader(iGaiaShader* _shader)
 {
-    return m_operatingShader;
-}
-
-void iGaiaMaterial::InvalidateState(iGaiaMaterial::iGaia_E_RenderState _state, bool _value)
-{
-    m_states[_state] = _value;
-}
-
-void iGaiaMaterial::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
-{
-    m_shaders[_mode] = iGaiaResourceMgr::SharedInstance()->Get_Shader(_shader);
-}
-
-bool iGaiaMaterial::IsContainRenderMode(ui32 _mode)
-{
-    if(m_shaders[_mode] != nullptr)
-    {
-        return true;
-    }
-    return false;
+    m_shader = _shader;
 }
 
 void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot)
@@ -90,34 +70,21 @@ void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_Sha
     m_textures[_slot] = _texture;
 }
 
-void iGaiaMaterial::Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
+void iGaiaMaterial::Bind(void)
 {
-    m_textures[_slot] = iGaiaResourceMgr::SharedInstance()->Get_Texture(_name);
-    map<ui32, ui32> settings;
-    settings[iGaiaTexture::iGaia_E_TextureSettingsKeyWrapMode] = _wrap;
-    m_textures[_slot]->Set_Settings(settings);
-}
-
-void iGaiaMaterial::Bind(ui32 _mode)
-{
-    m_operatingShader =  m_shaders[_mode];
-    if(m_operatingShader == nullptr)
-    {
-        iGaiaLog(@"State : %i not setted for current material.", _mode);
-        return;
-    }
-
-    m_operatingShader->Bind();
+    assert(m_shader != nullptr);
+    
+    m_shader->Bind();
 
     for(ui32 i = 0; i < iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue; ++i)
     {
         if(m_textures[i] != nullptr)
         {
-            m_operatingShader->Set_Texture(m_textures[i], static_cast<iGaiaShader::iGaia_E_ShaderTextureSlot>(i));
+            m_shader->Set_Texture(m_textures[i], static_cast<iGaiaShader::iGaia_E_ShaderTextureSlot>(i));
         }
     }
 
-    if(m_states[iGaia_E_RenderStateDepthTest])
+    if(m_states[RenderState::DepthTest])
     {
         glEnable(GL_DEPTH_TEST);
     }
@@ -127,7 +94,7 @@ void iGaiaMaterial::Bind(ui32 _mode)
     }
 
 
-    if(m_states[iGaia_E_RenderStateDepthMask])
+    if(m_states[RenderState::DepthMask])
     {
         glDepthMask(GL_TRUE);
     }
@@ -136,7 +103,7 @@ void iGaiaMaterial::Bind(ui32 _mode)
         glDepthMask(GL_FALSE);
     }
 
-    if(m_states[iGaia_E_RenderStateCullMode])
+    if(m_states[RenderState::CullFace])
     {
         glEnable(GL_CULL_FACE);
         glCullFace(m_cullFaceMode);
@@ -146,10 +113,10 @@ void iGaiaMaterial::Bind(ui32 _mode)
         glDisable(GL_CULL_FACE);
     }
 
-    if(m_states[iGaia_E_RenderStateBlendMode])
+    if(m_states[RenderState::Blend])
     {
         glEnable(GL_BLEND);
-        glBlendFunc(m_blendFunctionSource, m_blendFunctionDest);
+        glBlendFunc(m_blendFunctionSource, m_blendFunctionDestination);
     }
     else
     {
@@ -157,8 +124,8 @@ void iGaiaMaterial::Bind(ui32 _mode)
     }
 }
 
-void iGaiaMaterial::Unbind(ui32 _mode)
+void iGaiaMaterial::Unbind(void)
 {
-    m_operatingShader->Unbind();
+    m_shader->Unbind();
 }
 
