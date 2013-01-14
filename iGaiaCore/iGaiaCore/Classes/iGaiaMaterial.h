@@ -26,7 +26,7 @@ public:
     };
     enum iGaia_E_RenderModeWorldSpace
     {
-        iGaia_E_RenderModeWorldSpaceSimple = 0,
+        iGaia_E_RenderModeWorldSpaceCommon = 0,
         iGaia_E_RenderModeWorldSpaceReflection = 1,
         iGaia_E_RenderModeWorldSpaceRefraction = 2,
         iGaia_E_RenderModeWorldSpaceScreenNormalMap = 3,

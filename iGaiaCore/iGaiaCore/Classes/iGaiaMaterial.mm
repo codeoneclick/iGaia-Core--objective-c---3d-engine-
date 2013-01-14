@@ -103,7 +103,7 @@ void iGaiaMaterial::Bind(ui32 _mode)
     m_operatingShader =  m_shaders[_mode];
     if(m_operatingShader == nullptr)
     {
-        iGaiaLog(@"State : %i not setted for current material.", _mode);
+        iGaiaLog("State : %i not setted for current material.", _mode);
         return;
     }
 

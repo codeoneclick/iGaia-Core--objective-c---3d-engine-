@@ -10,7 +10,7 @@
 		15835CB6162184800074FB90 /* iGaiaObject3d.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15835CB5162184800074FB90 /* iGaiaObject3d.mm */; };
 		15835CBE1621E5EB0074FB90 /* iGaiaGameLoop_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15835CBD1621E5EB0074FB90 /* iGaiaGameLoop_iOS.mm */; };
 		158FD6E016272E1E00595AF9 /* iGaiaTouchMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 158FD6DF16272E1E00595AF9 /* iGaiaTouchMgr.mm */; };
-		158FD6E716272FA700595AF9 /* iGaiaiOSTouchResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 158FD6E616272FA700595AF9 /* iGaiaiOSTouchResponder.mm */; };
+		158FD6E716272FA700595AF9 /* iGaiaTouchResponder_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 158FD6E616272FA700595AF9 /* iGaiaTouchResponder_iOS.mm */; };
 		15A5B2E616308F5000229239 /* iGaiaSquirrelParticleEmitter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A5B2E516308F4F00229239 /* iGaiaSquirrelParticleEmitter.mm */; };
 		15A882F416275F5B00671CDC /* iGaiaSquirrelCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F316275F5B00671CDC /* iGaiaSquirrelCommon.mm */; };
 		15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A882F716275F8F00671CDC /* iGaiaSquirrelRuntime.mm */; };
@@ -19,6 +19,7 @@
 		15A8834F162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */; };
 		21079A15167A5C320086429B /* iGaiaLandscape.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21079A14167A5C320086429B /* iGaiaLandscape.mm */; };
 		210B3E5B164846A7005278F3 /* iGaiaResource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 210B3E5A164846A6005278F3 /* iGaiaResource.mm */; };
+		2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2190A536000004B600F4DFF5 /* iGaiaException.mm */; };
 		21916222165C0F8B00F4CED4 /* iGaiaThreadMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */; };
 		21916237165C1B7600F4CED4 /* iGaiaThreadQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */; };
 		A40C5A551625791800120D76 /* sqstdaux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2E1625791800120D76 /* sqstdaux.cpp */; };
@@ -119,8 +120,8 @@
 		15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaUpdateCallback.h; path = iGaiaCore/Classes/iGaiaUpdateCallback.h; sourceTree = "<group>"; };
 		158FD6DE16272E1E00595AF9 /* iGaiaTouchMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchMgr.h; path = iGaiaCore/Classes/iGaiaTouchMgr.h; sourceTree = "<group>"; };
 		158FD6DF16272E1E00595AF9 /* iGaiaTouchMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaTouchMgr.mm; path = iGaiaCore/Classes/iGaiaTouchMgr.mm; sourceTree = "<group>"; };
-		158FD6E516272FA700595AF9 /* iGaiaiOSTouchResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaiOSTouchResponder.h; path = iGaiaCore/Classes/iGaiaiOSTouchResponder.h; sourceTree = "<group>"; };
-		158FD6E616272FA700595AF9 /* iGaiaiOSTouchResponder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaiOSTouchResponder.mm; path = iGaiaCore/Classes/iGaiaiOSTouchResponder.mm; sourceTree = "<group>"; };
+		158FD6E516272FA700595AF9 /* iGaiaTouchResponder_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchResponder_iOS.h; path = iGaiaCore/Classes/iGaiaTouchResponder_iOS.h; sourceTree = "<group>"; };
+		158FD6E616272FA700595AF9 /* iGaiaTouchResponder_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaTouchResponder_iOS.mm; path = iGaiaCore/Classes/iGaiaTouchResponder_iOS.mm; sourceTree = "<group>"; };
 		15A5B2E416308F4F00229239 /* iGaiaSquirrelParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelParticleEmitter.h; path = iGaiaCore/Classes/iGaiaSquirrelParticleEmitter.h; sourceTree = "<group>"; };
 		15A5B2E516308F4F00229239 /* iGaiaSquirrelParticleEmitter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSquirrelParticleEmitter.mm; path = iGaiaCore/Classes/iGaiaSquirrelParticleEmitter.mm; sourceTree = "<group>"; };
 		15A882F216275F5B00671CDC /* iGaiaSquirrelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSquirrelCommon.h; path = iGaiaCore/Classes/iGaiaSquirrelCommon.h; sourceTree = "<group>"; };
@@ -136,6 +137,9 @@
 		21079A13167A5C320086429B /* iGaiaLandscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLandscape.h; path = iGaiaCore/Classes/iGaiaLandscape.h; sourceTree = "<group>"; };
 		21079A14167A5C320086429B /* iGaiaLandscape.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLandscape.mm; path = iGaiaCore/Classes/iGaiaLandscape.mm; sourceTree = "<group>"; };
 		210B3E5A164846A6005278F3 /* iGaiaResource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaResource.mm; path = iGaiaCore/Classes/iGaiaResource.mm; sourceTree = "<group>"; };
+		2190A535000004B600F4DFF5 /* iGaiaException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaException.h; path = iGaiaCore/Classes/iGaiaException.h; sourceTree = "<group>"; };
+		2190A536000004B600F4DFF5 /* iGaiaException.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaException.mm; path = iGaiaCore/Classes/iGaiaException.mm; sourceTree = "<group>"; };
+		2190A539168E30E200F4DFF5 /* iGaiaTouchCrossCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchCrossCallback.h; path = iGaiaCore/Classes/iGaiaTouchCrossCallback.h; sourceTree = "<group>"; };
 		21916215165C0F4400F4CED4 /* iGaiaThreadMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaThreadMgr.h; path = iGaiaCore/Classes/iGaiaThreadMgr.h; sourceTree = "<group>"; };
 		21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaThreadMgr.mm; path = iGaiaCore/Classes/iGaiaThreadMgr.mm; sourceTree = "<group>"; };
 		21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaThreadQueue.mm; path = iGaiaCore/Classes/iGaiaThreadQueue.mm; sourceTree = "<group>"; };
@@ -587,6 +591,7 @@
 				15835CC11621F2910074FB90 /* iGaiaUpdateCallback.h */,
 				A4C8995C16281E78003AC188 /* iGaiaCrossCallback.h */,
 				A4C899671628281C003AC188 /* iGaiaTouchCallback.h */,
+				2190A539168E30E200F4DFF5 /* iGaiaTouchCrossCallback.h */,
 			);
 			name = Callbacks;
 			sourceTree = "<group>";
@@ -596,8 +601,8 @@
 			children = (
 				158FD6DE16272E1E00595AF9 /* iGaiaTouchMgr.h */,
 				158FD6DF16272E1E00595AF9 /* iGaiaTouchMgr.mm */,
-				158FD6E516272FA700595AF9 /* iGaiaiOSTouchResponder.h */,
-				158FD6E616272FA700595AF9 /* iGaiaiOSTouchResponder.mm */,
+				158FD6E516272FA700595AF9 /* iGaiaTouchResponder_iOS.h */,
+				158FD6E616272FA700595AF9 /* iGaiaTouchResponder_iOS.mm */,
 				A4C8995016281CE2003AC188 /* iGaiaTouchCrosser.h */,
 				A4C8995116281CE2003AC188 /* iGaiaTouchCrosser.mm */,
 			);
@@ -1283,6 +1288,8 @@
 				A4D1B2D01642C8CD00FA3BE5 /* iGaiaSettings_iOS.mm */,
 				A4466547161B1A490025601F /* iGaiaGLWindow_iOS.h */,
 				A4466548161B1A490025601F /* iGaiaGLWindow_iOS.mm */,
+				2190A535000004B600F4DFF5 /* iGaiaException.h */,
+				2190A536000004B600F4DFF5 /* iGaiaException.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1448,7 +1455,7 @@
 				A40C5A681625791800120D76 /* sqvm.cpp in Sources */,
 				A40C5A6D1625796900120D76 /* iGaiaScriptMgr.mm in Sources */,
 				158FD6E016272E1E00595AF9 /* iGaiaTouchMgr.mm in Sources */,
-				158FD6E716272FA700595AF9 /* iGaiaiOSTouchResponder.mm in Sources */,
+				158FD6E716272FA700595AF9 /* iGaiaTouchResponder_iOS.mm in Sources */,
 				15A882F416275F5B00671CDC /* iGaiaSquirrelCommon.mm in Sources */,
 				15A882F816275F8F00671CDC /* iGaiaSquirrelRuntime.mm in Sources */,
 				15A882FB1627601100671CDC /* iGaiaSquirrelScene.mm in Sources */,
@@ -1483,6 +1490,7 @@
 				A4B9D5F0167F0DD500CF7C90 /* iGaiaLandscapeHeightmapHelper.mm in Sources */,
 				A4B9D5F9167F2E7F00CF7C90 /* iGaiaNavigationHelper.mm in Sources */,
 				A49020811681B6310081487E /* iGaiaQuadTreeObject3d.mm in Sources */,
+				2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1541,6 +1549,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Sergeev (RJ3533Y67B)";
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
@@ -1550,6 +1559,7 @@
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "EDD16827-8112-4756-B313-267C31ACAC0E";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7;
 			};
@@ -1561,6 +1571,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sergey Sergeev (RJ3533Y67B)";
 				DSTROOT = /tmp/iGaiaCore.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
@@ -1570,6 +1581,7 @@
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "EDD16827-8112-4756-B313-267C31ACAC0E";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = /System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7;
 			};

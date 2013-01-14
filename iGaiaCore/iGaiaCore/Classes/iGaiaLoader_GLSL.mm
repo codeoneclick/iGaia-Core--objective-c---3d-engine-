@@ -22,7 +22,7 @@ ui32 iGaiaLoader_GLSL::CompileShaderData(const i8* _data, GLenum _shader)
     {
         GLchar message[256];
         glGetShaderInfoLog(handle, sizeof(message), 0, &message[0]);
-        iGaiaLog(@"Shader error -> %s", message);
+        iGaiaLog("Shader error -> %s", message);
         handle = 0;
     }
     return handle;
@@ -44,7 +44,7 @@ iGaiaShader* iGaiaLoader_GLSL::LoadShader(const i8 *_vertexShaderData, const i8 
     {
         char message[256];
         glGetProgramInfoLog(handle, sizeof(message), 0, &message[0]);
-        iGaiaLog(@"Shader error -> %s", message);
+        iGaiaLog("Shader error -> %s", message);
     }
     iGaiaShader* shader = new iGaiaShader(handle);
     return shader;

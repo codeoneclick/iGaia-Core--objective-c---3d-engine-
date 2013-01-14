@@ -10,9 +10,9 @@
 
 iGaiaTouchMgr::iGaiaTouchMgr(void)
 {
-    m_responder = [iGaiaiOSTouchResponder new];
+    m_responder = [iGaiaTouchResponder_iOS new];
     m_crosser = new iGaiaTouchCrosser();
-    [m_responder AddEventListener:m_crosser];
+    [m_responder AddEventListener:m_crosser->Get_TouchCallback()];
 }
 
 iGaiaTouchMgr::~iGaiaTouchMgr(void)
@@ -20,12 +20,7 @@ iGaiaTouchMgr::~iGaiaTouchMgr(void)
     
 }
 
-void iGaiaTouchMgr::Set_OperationView(UIView* _view)
-{
-    m_responder.m_operationView = _view;
-}
-
-iGaiaiOSTouchResponder* iGaiaTouchMgr::Get_TouchResponder(void)
+iGaiaTouchResponder_iOS* iGaiaTouchMgr::Get_TouchResponder(void)
 {
     return m_responder;
 }

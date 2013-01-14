@@ -76,7 +76,7 @@ void iGaiaLoader_PVR::ParseFileWithName(const string &_name)
         m_size.y = header->dwHeight;
         m_compressed = YES;
         m_headerSize = header->dwHeaderSize;
-        iGaiaLog(@"Parse Texture with old pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
+        iGaiaLog("Parse Texture with old pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->dwMipMapCount ? header->dwMipMapCount : 1);
         m_status = iGaia_E_LoadStatusDone;
         return;
     }
@@ -117,7 +117,7 @@ void iGaiaLoader_PVR::ParseFileWithName(const string &_name)
         m_size.y = header->u32Height;
         m_compressed = YES;
         m_headerSize = PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
-        iGaiaLog(@"Parse Texture with new pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
+        iGaiaLog("Parse Texture with new pvr format -> : %s, with width : %f,  with height : %f, with mips : %d", m_name.c_str(), m_size.x, m_size.y, header->u32MIPMapCount ? header->u32MIPMapCount : 1);
         m_status = iGaia_E_LoadStatusDone;
     }
 }

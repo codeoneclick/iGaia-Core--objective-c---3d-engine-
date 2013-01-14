@@ -22,7 +22,6 @@ private:
     iGaiaStageFabricator* m_stageFabricator;
     iGaiaStageProcessor* m_stageProcessor;
     iGaiaScriptMgr* m_scriptMgr;
-    iGaiaTouchMgr* m_userInputMgr;
     iGaiaSoundMgr* m_soundMgr;
 protected:
 
@@ -35,7 +34,6 @@ public:
     iGaiaStageFabricator* Get_StageFabricator(void);
     iGaiaStageProcessor* Get_StageProcessor(void);
     iGaiaScriptMgr* Get_ScriptMgr(void);
-    iGaiaTouchMgr* Get_UserInputMgr(void);
     iGaiaSoundMgr* Get_SoundMgr(void);
 };
 

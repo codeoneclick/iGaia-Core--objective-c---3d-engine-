@@ -8,10 +8,12 @@
 
 #include "iGaiaScene.h"
 #include "iGaiaSettings_iOS.h"
+#include "iGaiaLogger.h"
 
 iGaiaScene::iGaiaScene(void)
 {
     m_characterController = new iGaiaCharacterController();
+    m_touchCrossCallback.Set_OnTouchCrossListener(bind(&iGaiaScene::OnTouchCross, this, placeholders::_1));
 }
 
 iGaiaScene::~iGaiaScene(void)
@@ -34,6 +36,7 @@ void iGaiaScene::Load(const string& _name)
     iGaiaShape3d* shape3d = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateShape3d(settingsBuilding_01);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->PushShape3d(shape3d);
     shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
+    shape3d->ListenUserInteraction(true, &m_touchCrossCallback);
 
     iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome = iGaiaResourceMgr::SharedInstance()->Get_SkyDomeSettings("skydome.xml");
     iGaiaSkyDome* skydome = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateSkyDome(settingsSkyDome);
@@ -47,8 +50,8 @@ void iGaiaScene::Load(const string& _name)
     iGaiaOcean* ocean = iGaiaSharedFacade::SharedInstance()->Get_StageFabricator()->CreateOcean(settingsOcean);
     iGaiaSharedFacade::SharedInstance()->Get_StageProcessor()->Set_Ocean(ocean);
 
-    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->CreateMusic("music", "mp3", "music");
-    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->PlayMusic("music", -1);
+    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->CreateMusic("music_02", "mp3", "music");
+    iGaiaSharedFacade::SharedInstance()->Get_SoundMgr()->PlayMusic("music", 5);
 
     iGaiaParticleEmitter::iGaiaParticleEmitterSettings settings_particle = iGaiaResourceMgr::SharedInstance()->Get_ParticleEmitterSettings("particle_emitter_fire.xml");
 
@@ -63,4 +66,9 @@ void iGaiaScene::Load(const string& _name)
 iGaiaCharacterController* iGaiaScene::Get_CharacterController(void)
 {
     return m_characterController;
+}
+
+void iGaiaScene::OnTouchCross(const string &_guid)
+{
+    iGaiaLog("touch callback");
 }

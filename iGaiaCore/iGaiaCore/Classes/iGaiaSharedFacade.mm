@@ -13,7 +13,6 @@ iGaiaSharedFacade::iGaiaSharedFacade(void)
     m_stageFabricator = new iGaiaStageFabricator();
     m_stageProcessor = new iGaiaStageProcessor();
     m_scriptMgr = new iGaiaScriptMgr();
-    m_userInputMgr = new iGaiaTouchMgr();
     m_soundMgr = new iGaiaSoundMgr();
 }
 
@@ -45,11 +44,6 @@ iGaiaStageProcessor* iGaiaSharedFacade::Get_StageProcessor(void)
 iGaiaScriptMgr* iGaiaSharedFacade::Get_ScriptMgr(void)
 {
     return m_scriptMgr;
-}
-
-iGaiaTouchMgr* iGaiaSharedFacade::Get_UserInputMgr(void)
-{
-    return m_userInputMgr;
 }
 
 iGaiaSoundMgr* iGaiaSharedFacade::Get_SoundMgr(void)

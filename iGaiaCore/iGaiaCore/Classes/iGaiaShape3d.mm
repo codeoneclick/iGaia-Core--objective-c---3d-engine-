@@ -14,12 +14,6 @@ static ui32 kiGaiaShape3dRenderPriority = 5;
 
 iGaiaShape3d::iGaiaShape3d(const iGaiaShape3dSettings& _settings)
 {
-    m_crossingVertexData = nullptr;
-    m_crossingIndexData = nullptr;
-    
-    m_crossingNumVertexes = 0;
-    m_crossingNumIndexes = 0;
-
     m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_settings.m_meshName);
 
     for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
@@ -55,49 +49,12 @@ void iGaiaShape3d::Set_Mesh(const string& _name)
     if(m_mesh == nullptr)
     {
          m_mesh = iGaiaResourceMgr::SharedInstance()->Get_Mesh(_name);
-        if(m_crossingVertexData != nullptr)
-        {
-            delete m_crossingVertexData;
-        }
-        m_crossingVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
     }
 }
 
 void iGaiaShape3d::Set_Clipping(const glm::vec4& _clipping)
 {
     m_material->Set_Clipping(_clipping);
-}
-
-iGaiaVertexBufferObject::iGaiaVertex* iGaiaShape3d::Get_CrossOperationVertexData(void)
-{
-    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
-    for(ui32 i = 0; i < m_mesh->Get_NumVertexes(); ++i)
-    {
-        vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
-        position = m_worldMatrix * position;
-        m_crossingVertexData[i].m_position = glm::vec3(position.x, position.y, position.z);
-    }
-    return m_crossingVertexData;
-}
-
-ui16* iGaiaShape3d::Get_CrossOperationIndexData(void)
-{
-    return m_crossingIndexData = m_mesh->Get_IndexBuffer()->Lock();
-}
-
-ui32 iGaiaShape3d::Get_CrossOperationNumVertexes(void)
-{
-    return m_crossingNumVertexes = m_mesh->Get_NumVertexes();
-}
-
-ui32 iGaiaShape3d::Get_CrossOperationNumIndexes(void)
-{
-    return m_crossingNumIndexes = m_mesh->Get_NumIndexes();
-}
-
-void iGaiaShape3d::OnCross(void)
-{
-    
 }
 
 void iGaiaShape3d::OnUpdate(void)
@@ -126,11 +83,11 @@ void iGaiaShape3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
     
     switch (_mode)
     {
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceSimple:
+        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon:
         {
             if(m_material->Get_OperatingShader() == nil)
             {
-                iGaiaLog(@"Shader MODE_SIMPLE == nil");
+                iGaiaLog("Shader MODE_SIMPLE == nil");
             }
             
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
@@ -145,7 +102,7 @@ void iGaiaShape3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
         {
             if(m_material->Get_OperatingShader() == nil)
             {
-                iGaiaLog(@"Shader MODE_REFLECTION == nil");
+                iGaiaLog("Shader MODE_REFLECTION == nil");
             }
             
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
@@ -162,7 +119,7 @@ void iGaiaShape3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
         {
             if(m_material->Get_OperatingShader() == nil)
             {
-                iGaiaLog(@"Shader MODE_REFRACTION == nil");
+                iGaiaLog("Shader MODE_REFRACTION == nil");
             }
             
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);

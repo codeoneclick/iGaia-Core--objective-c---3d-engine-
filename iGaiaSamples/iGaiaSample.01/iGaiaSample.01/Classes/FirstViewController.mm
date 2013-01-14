@@ -56,7 +56,6 @@ std::mutex mutex_01;
     _m_scene->Load("");
     _m_scene->Get_CharacterController()->Set_MoveController(_m_moveController);
 
-        
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
     NSInvocation *pInvocation = [NSInvocation invocationWithMethodSignature:pMethodSignature];
     [pInvocation setTarget:self];

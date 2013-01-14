@@ -30,7 +30,7 @@ void sq_printfunc(HSQUIRRELVM vm, const SQChar *s,...)
 	va_list args;
     va_start(args, s);
     SQChar* message = va_arg(args, SQChar*);
-    iGaiaLog(@"%s", message);
+    iGaiaLog("%s", message);
     va_end(args);
 }
 
@@ -39,7 +39,7 @@ void sq_errorfunc(HSQUIRRELVM vm, const SQChar *s,...)
     va_list args;
     va_start(args, s);
     SQChar* message = va_arg(args, SQChar*);
-    iGaiaLog(@"%s", message);
+    iGaiaLog("%s", message);
     va_end(args);
 }
 
@@ -65,16 +65,16 @@ SQInteger sq_compile_buffer(HSQUIRRELVM v, const char* script, const char* sourc
 		sq_pushroottable(v);
 		if (SQ_FAILED(sq_call(v, 1, SQFalse, SQTrue)))
         {
-            iGaiaLog(@"Error -> script compile failure");
+            iGaiaLog("Error -> script compile failure");
 			return 0;
 		}
 	}
     else
     {
-        iGaiaLog(@"Error -> script compile failure");
+        iGaiaLog("Error -> script compile failure");
 		return 0;
 	}
-    iGaiaLog(@"Script compile success");
+    iGaiaLog("Script compile success");
 	return 1;
 }
 
@@ -151,21 +151,21 @@ bool iGaiaSquirrelCommon::LoadScript(const string& _name)
     NSString* path = [[NSBundle mainBundle] pathForResource:[NSString stringWithCString:_name.c_str() encoding:NSUTF8StringEncoding] ofType:nil];
 	if (path == nil)
     {
-        iGaiaLog(@"Error -> script path incorrect");
+        iGaiaLog("Error -> script path incorrect");
 		return NO;
 	}
 
     NSFileManager* manager = [NSFileManager defaultManager];
 	if (![manager fileExistsAtPath:path])
     {
-        iGaiaLog(@"Error -> script does not exist");
+        iGaiaLog("Error -> script does not exist");
 		return NO;
     }
 
     NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:path];
 	if (file == nil)
     {
-        iGaiaLog(@"Error -> script does not exist");
+        iGaiaLog("Error -> script does not exist");
 		return NO;
 	}
 
@@ -181,19 +181,19 @@ bool iGaiaSquirrelCommon::LoadScript(const string& _name)
             sq_pushroottable(m_squireel_vm);
             if (SQ_FAILED(sq_call(m_squireel_vm, 1, SQFalse, SQTrue)))
             {
-                iGaiaLog(@"Error -> script compile failure");
+                iGaiaLog("Error -> script compile failure");
                 return NO;
             }
             else
             {
-                iGaiaLog(@"Script %s compile success", _name.c_str());
+                iGaiaLog("Script %s compile success", _name.c_str());
                 return YES;
             }
         }
         else
         {
             [file closeFile];
-            iGaiaLog(@"Error -> script compile failure");
+            iGaiaLog("Error -> script compile failure");
             return NO;
         }
     }
@@ -202,7 +202,7 @@ bool iGaiaSquirrelCommon::LoadScript(const string& _name)
 	NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error: nil];
 	if (content == nil)
     {
-        iGaiaLog(@"Error -> script content does not exist");
+        iGaiaLog("Error -> script content does not exist");
 		return NO;
 	}
 
@@ -303,7 +303,7 @@ SQFloat iGaiaSquirrelCommon::PopFloat(i32 _index)
         sq_getfloat(m_squireel_vm, _index, &value);
         return value;
     }
-    iGaiaLog(@"Script arg index :%i incorrect.", _index);
+    iGaiaLog("Script arg index :%i incorrect.", _index);
     return value;
 }
 
@@ -316,7 +316,7 @@ const SQChar* iGaiaSquirrelCommon::PopString(i32 _index)
         sq_getstring(m_squireel_vm, _index, &value);
         return value;
     }
-    iGaiaLog(@"Script arg index :%i incorrect.", _index);
+    iGaiaLog("Script arg index :%i incorrect.", _index);
     return value;
 }
 
@@ -328,7 +328,7 @@ SQInteger iGaiaSquirrelCommon::PopInteger(i32 _index)
         sq_getinteger(m_squireel_vm, _index, &value);
         return value;
     }
-    iGaiaLog(@"Script arg index :%i incorrect.", _index);
+    iGaiaLog("Script arg index :%i incorrect.", _index);
     return value;
 }
 
@@ -340,6 +340,6 @@ SQUserPointer iGaiaSquirrelCommon::PopUserData(i32 _index)
         sq_getuserpointer(m_squireel_vm, _index, &value);
         return value;
     }
-    iGaiaLog(@"Script arg index :%i incorrect.", _index);
+    iGaiaLog("Script arg index :%i incorrect.", _index);
     return value;
 }
