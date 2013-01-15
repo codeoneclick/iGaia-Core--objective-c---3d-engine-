@@ -14,11 +14,9 @@ class iGaiaShape3d : public iGaiaObject3d
 {
 public:
     
-    struct iGaiaShape3dSettings
+    struct iGaiaShape3dSettings : public iGaiaObject3d::iGaiaObject3dSettings
     {
-        vector<iGaiaObject3dShaderSettings> m_shaders;
-        vector<iGaiaObject3dTextureSettings> m_textures;
-        string m_meshName;
+        string m_name;
     };
 
 private:

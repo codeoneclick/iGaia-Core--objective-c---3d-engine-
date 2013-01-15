@@ -28,17 +28,39 @@
 class iGaiaObject3d : public iGaiaRenderInterface, public iGaiaUpdateInterface
 {
 public:
-    
-    struct iGaiaObject3dShaderSettings
-    {
-        iGaiaShader::iGaia_E_Shader m_shader;
-        iGaiaMaterial::iGaia_E_RenderModeWorldSpace m_mode;
-    };
 
-    struct iGaiaObject3dTextureSettings
+    struct iGaiaTextureSettings
     {
         string m_name;
-        iGaiaShader::iGaia_E_ShaderTextureSlot m_slot;
+        ui32 m_slot;
+        ui32 m_wrap;
+    };
+
+    struct iGaiaShaderSettings
+    {
+        string m_vsName;
+        string m_fsName;
+    };
+
+    struct iGaiaMaterialSettings
+    {
+        bool m_isCullFace;
+        bool m_isBlend;
+        bool m_isDepthTest;
+        bool m_isDepthMask;
+        ui32 m_cullFaceMode;
+        ui32 m_blendFunctionSource;
+        ui32 m_blendFunctionDestination;
+
+        vector<iGaiaTextureSettings> m_textureSettings;
+        iGaiaShaderSettings m_shaderSettings;
+
+        ui32 m_renderMode;
+    };
+
+    struct iGaiaObject3dSettings
+    {
+        vector<iGaiaMaterialSettings> m_materials;
     };
     
 private:
@@ -101,8 +123,6 @@ public:
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);
-    
-    void ListenUserInteraction(bool _value, iGaiaTouchCrossCallback* _listener);
 };
 
 #endif
