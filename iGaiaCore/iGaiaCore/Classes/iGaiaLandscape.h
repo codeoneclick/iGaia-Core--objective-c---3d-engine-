@@ -23,10 +23,8 @@ public:
         vec2 m_scaleFactor;
     };
     
-    struct iGaiaLandscapeSettings
+    struct iGaiaLandscapeSettings : public iGaiaObject3d::iGaiaObject3dSettings
     {
-        vector<iGaiaObject3dShaderSettings> m_shaders;
-        vector<iGaiaObject3dTextureSettings> m_textures;
         f32 m_width;
         f32 m_height;
         vec2 m_scaleFactor;
@@ -46,22 +44,19 @@ private:
     iGaiaQuadTreeObject3d* m_quadTree;
     
 protected:
-    
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    
-    ui32 OnDrawIndex(void);
-    
-    void OnLoad(iGaiaResource* _resource);
-    void OnUpdate(void);
+
+    void Bind_Receiver(ui32 _mode);
+    void Unbind_Receiver(ui32 _mode);
+    void Draw_Receiver(ui32 _mode);
+
+    void Update_Receiver(f32 _deltaTime);
     
 public:
     
-    iGaiaLandscape(const iGaiaLandscapeSettings& _settings);
+    iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaLandscapeSettings const& _settings);
     ~iGaiaLandscape(void);
-    
-    void Set_Clipping(const glm::vec4& _clipping);
+
+    void Set_Clipping(vec4 const& _clipping, ui32 _renderMode);
 
     iGaiaTexture* Get_HeightmapTexture(void);
     iGaiaTexture* Get_SplattingTexture(void);

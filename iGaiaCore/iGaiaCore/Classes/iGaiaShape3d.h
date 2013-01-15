@@ -23,28 +23,18 @@ private:
     
 protected:
 
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-
-    ui32 OnDrawIndex(void);
+    void Bind_Receiver(ui32 _mode);
+    void Unbind_Receiver(ui32 _mode);
+    void Draw_Receiver(ui32 _mode);
+    
+    void Update_Receiver(f32 _deltaTime);
     
 public:
     
-    iGaiaShape3d(const iGaiaShape3dSettings& _settings);
+    iGaiaShape3d(iGaiaResourceMgr* _resourceMgr, const iGaiaShape3dSettings& _settings);
     ~iGaiaShape3d(void);
-    
-    void Set_Mesh(const string& _name);
-    void Set_Clipping(const glm::vec4& _clipping);
-    
-    void OnUpdate(void);
-    
-    iGaiaVertexBufferObject::iGaiaVertex* Get_CrossOperationVertexData(void);
-    ui16* Get_CrossOperationIndexData(void);
-    ui32 Get_CrossOperationNumVertexes(void);
-    ui32 Get_CrossOperationNumIndexes(void);
-    
-    void OnCross(void);
+
+    void Set_Clipping(vec4 const& _clipping, ui32 _renderMode);
 };
 
 #endif

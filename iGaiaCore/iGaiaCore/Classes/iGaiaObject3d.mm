@@ -14,7 +14,7 @@
 #include "iGaiaThreadQueue.h"
 
 dispatch_queue_t g_onUpdateQueue;
-string g_updateQueueName = "igaia.onupdate.queue";
+string g_updateQueueName = "igaia.update.queue";
 
 iGaiaObject3d::iGaiaObject3d(void)
 {
@@ -26,24 +26,45 @@ iGaiaObject3d::iGaiaObject3d(void)
     
     m_maxBound = vec3(0.0f, 0.0f, 0.0f);
     m_minBound = vec3(0.0f, 0.0f, 0.0f);
-    
-    m_material = new iGaiaMaterial();
 
     m_mesh = nullptr;
     m_camera = nullptr;
     m_light = nullptr;
-    m_crossVertexData = nullptr;
 
     m_renderMgr = nullptr;
     m_updateMgr = nullptr;
-    m_touchMgr = nullptr;
-    
-    m_updateMode = iGaia_E_UpdateModeSync;
 }
 
 iGaiaObject3d::~iGaiaObject3d(void)
 {
-    
+
+}
+
+void iGaiaObject3d::ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaObject3dSettings const& _settings)
+{
+    for (ui32 i = 0; i < _settings.m_materialsSettings.size(); ++i)
+    {
+        iGaiaMaterialSettings materialSettings = _settings.m_materialsSettings[i];
+        iGaiaMaterial* material = new iGaiaMaterial();
+        material->Set_RenderState(iGaiaMaterial::RenderState::CullFace, materialSettings.m_isCullFace);
+        material->Set_RenderState(iGaiaMaterial::RenderState::DepthTest , materialSettings.m_isDepthTest);
+        material->Set_RenderState(iGaiaMaterial::RenderState::DepthMask , materialSettings.m_isDepthMask);
+        material->Set_RenderState(iGaiaMaterial::RenderState::Blend , materialSettings.m_isBlend);
+        material->Set_CullFaceMode(materialSettings.m_cullFaceMode);
+        material->Set_BlendFunctionSource(materialSettings.m_blendFunctionSource);
+        material->Set_BlendFunctionDestination(materialSettings.m_blendFunctionDestination);
+
+        iGaiaShader* shader = nullptr;
+
+        for (ui32 j = 0; j < materialSettings.m_texturesSettings.size(); ++j)
+        {
+            iGaiaTextureSettings textureSettings = materialSettings.m_texturesSettings[j];
+            iGaiaTexture* texture = _resourceMgr->Get_Texture(textureSettings.m_name);
+            texture->Set_WrapMode(textureSettings.m_wrap);
+            material->Set_Texture(texture, textureSettings.m_slot);
+        }
+        m_materials.insert(make_pair(materialSettings.m_renderMode, material));
+    }
 }
 
 void iGaiaObject3d::Set_Position(vec3 const& _position)
@@ -96,6 +117,30 @@ void iGaiaObject3d::Set_Light(iGaiaLight* _light)
     m_light = _light;
 }
 
+void iGaiaObject3d::Set_Material(iGaiaMaterial* _material, ui32 _mode)
+{
+    m_materials.insert(make_pair(_mode, _material));
+    
+    if(m_renderMgr != nullptr)
+    {
+        m_renderMgr->AddEventListener(&m_renderCallback, _mode);
+    }
+}
+
+void iGaiaObject3d::Set_Shader(iGaiaShader* _shader, ui32 _mode)
+{
+    assert(m_materials.find(_mode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
+    material->Set_Shader(_shader);
+}
+
+void iGaiaObject3d::Set_Texture(iGaiaTexture* _texture, ui32 _slot, ui32 _mode)
+{
+    assert(m_materials.find(_mode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
+    material->Set_Texture(_texture, _slot);
+}
+
 void iGaiaObject3d::Set_RenderMgr(iGaiaRenderMgr *_renderMgr)
 {
     m_renderMgr = _renderMgr;
@@ -106,95 +151,21 @@ void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
     m_updateMgr = _updateMgr;
 }
 
-void iGaiaObject3d::Set_TouchMgr(iGaiaTouchMgr *_touchMgr)
-{
-    m_touchMgr = _touchMgr;
-}
-
-void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)
-{
-    assert(m_material != nullptr);
-    m_material->Set_Shader(_shader, _mode);
-    if(m_renderMgr != nullptr)
-    {
-        m_renderMgr->AddEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
-    }
-}
-
-void iGaiaObject3d::Set_Texture(string const& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap)
-{
-    assert(m_material != nullptr);
-    m_material->Set_Texture(_name, _slot, _wrap);
-}
-
-string iGaiaObject3d::OnRetriveGuid(void)
-{
-    return "";
-}
-
-iGaiaVertexBufferObject::iGaiaVertex* iGaiaObject3d::OnRetriveVertexData(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_VertexBuffer() != nullptr);
-    assert(m_mesh->Get_VertexBuffer()->Lock() != nullptr);
-    
-    if(m_crossVertexData == nullptr)
-    {
-        m_crossVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
-    }
-    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
-    for(ui32 i = 0; i < m_mesh->Get_NumVertexes(); ++i)
-    {
-        vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
-        position = m_worldMatrix * position;
-        m_crossVertexData[i].m_position = vec3(position.x, position.y, position.z);
-    }
-    return m_crossVertexData;
-}
-
-ui16* iGaiaObject3d::OnRetriveIndexData(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_IndexBuffer() != nullptr);
-    assert(m_mesh->Get_IndexBuffer()->Lock() != nullptr);
-    return m_mesh->Get_IndexBuffer()->Lock();
-}
-
-ui32 iGaiaObject3d::OnRetriveNumVertexes(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_NumVertexes() != 0);
-    return m_mesh->Get_NumVertexes();
-}
-
-ui32 iGaiaObject3d::OnRetriveNumIndexes(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_NumIndexes() != 0);
-    return m_mesh->Get_NumIndexes();
-}
-
 void iGaiaObject3d::ListenRenderMgr(bool _value)
 {
     assert(m_renderMgr != nullptr);
     if(_value)
     {
-        for(ui32 _mode = 0; _mode < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++_mode)
+        for(map<ui32, iGaiaMaterial*>::iterator iterator = m_materials.begin(); iterator != m_materials.end(); ++iterator)
         {
-            if(m_material->IsContainRenderMode(_mode) == true)
-            {
-                m_renderMgr->AddEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
-            }
+            m_renderMgr->AddEventListener(&m_renderCallback, iterator->first);
         }
     }
     else
     {
-        for(ui32 _mode = 0; _mode < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++_mode)
+        for(map<ui32, iGaiaMaterial*>::iterator iterator = m_materials.begin(); iterator != m_materials.end(); ++iterator)
         {
-            if(m_material->IsContainRenderMode(_mode) == true)
-            {
-                m_renderMgr->RemoveEventListener(&m_renderCallback, static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(_mode));
-            }
+            m_renderMgr->RemoveEventListener(&m_renderCallback, iterator->first);
         }
     }
 }
@@ -212,32 +183,14 @@ void iGaiaObject3d::ListenUpdateMgr(bool _value)
     }
 }
 
-void iGaiaObject3d::ListenUserInteraction(bool _value, iGaiaTouchCrossCallback *_listener)
+void iGaiaObject3d::Update_Receiver(f32 _deltaTime)
 {
-    assert(m_touchMgr != nullptr);
-    if(_value)
-    {
-        m_touchMgr->Get_TouchCrosser()->AddEventListener(std::make_pair(_listener, &m_crossCallback));
-    }
-    else
-    {
-        m_touchMgr->Get_TouchCrosser()->RemoveEventListener(std::make_pair(_listener, &m_crossCallback));
-    }
-}
-
-void iGaiaObject3d::OnUpdate(void)
-{
-<<<<<<< HEAD
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-=======
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
->>>>>>> da997e710868e1dd68e845cac66d3b7b79e6f930
         g_onUpdateQueue = dispatch_queue_create(g_updateQueueName.c_str(), DISPATCH_QUEUE_SERIAL);
     });
     
-    if(m_updateMode == iGaia_E_UpdateModeAsync)
+    if(m_updateMode == async)
     {
         vec3 position = m_position;
         vec3 rotation = m_rotation;
@@ -258,7 +211,7 @@ void iGaiaObject3d::OnUpdate(void)
             });
         });
     }
-    else if(m_updateMode == iGaia_E_UpdateModeSync)
+    else if(m_updateMode == sync)
     {
         mat4x4 rotationMatrix, translationMatrix, scaleMatrix, worldMatrix;
         rotationMatrix = rotate(mat4(1.0f), m_rotation.x, vec3(1.0f, 0.0f, 0.0f));
@@ -273,31 +226,31 @@ void iGaiaObject3d::OnUpdate(void)
     }
 }
 
-ui32 iGaiaObject3d::OnDrawIndex(void)
+ui32 iGaiaObject3d::GetDrawPriority_Receiver(void)
 {
-    return 0;
+    return m_drawPriority;
 }
 
-void iGaiaObject3d::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::Bind_Receiver(ui32 _mode)
 {
-    assert(m_material != nullptr);
+    assert(m_materials.find(_mode) != m_materials.end());
     assert(m_mesh != nullptr);
-
-    m_material->Bind(_mode);
-    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_OperatingShader());
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
+    material->Bind();
+    m_mesh->Get_VertexBuffer()->Set_OperatingShader(material->Get_Shader());
     m_mesh->Bind();
 }
 
-void iGaiaObject3d::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::Unbind_Receiver(ui32 _mode)
 {
-    assert(m_material != nullptr);
+    assert(m_materials.find(_mode) != m_materials.end());
     assert(m_mesh != nullptr);
-
-    m_material->Unbind(_mode);
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
+    material->Unbind();
     m_mesh->Unbind();
 }
 
-void iGaiaObject3d::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaObject3d::Draw_Receiver(ui32 _mode)
 {
     
 }

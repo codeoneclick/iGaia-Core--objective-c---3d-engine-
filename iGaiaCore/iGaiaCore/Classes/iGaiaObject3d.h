@@ -20,7 +20,7 @@
 
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
-#include "iGaiaTouchMgr.h"
+#include "iGaiaResourceMgr.h"
 
 #include "iGaiaCrossCallback.h"
 #include "iGaiaTouchCrossCallback.h"
@@ -52,7 +52,7 @@ public:
         ui32 m_blendFunctionSource;
         ui32 m_blendFunctionDestination;
 
-        vector<iGaiaTextureSettings> m_textureSettings;
+        vector<iGaiaTextureSettings> m_texturesSettings;
         iGaiaShaderSettings m_shaderSettings;
 
         ui32 m_renderMode;
@@ -60,7 +60,7 @@ public:
 
     struct iGaiaObject3dSettings
     {
-        vector<iGaiaMaterialSettings> m_materials;
+        vector<iGaiaMaterialSettings> m_materialsSettings;
     };
     
 private:
@@ -69,7 +69,7 @@ protected:
     
     mat4x4 m_worldMatrix;
     
-    map<ui32, iGaiaMaterial*> m_material;
+    map<ui32, iGaiaMaterial*> m_materials;
     iGaiaMesh* m_mesh;
     
     vec3 m_position;
@@ -82,16 +82,17 @@ protected:
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
     
-    virtual ui32 GetDrawPriority_Receiver(void);
+    ui32 GetDrawPriority_Receiver(void);
     virtual void Bind_Receiver(ui32 _mode);
     virtual void Unbind_Receiver(ui32 _mode);
     virtual void Draw_Receiver(ui32 _mode);
     
     virtual void Update_Receiver(f32 _deltaTime);
 
+    void ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaObject3dSettings const& _settings);
+
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
-    iGaiaTouchMgr* m_touchMgr;
 
 public:
     
@@ -119,7 +120,6 @@ public:
 
     void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
-    void Set_TouchMgr(iGaiaTouchMgr* _touchMgr);
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);

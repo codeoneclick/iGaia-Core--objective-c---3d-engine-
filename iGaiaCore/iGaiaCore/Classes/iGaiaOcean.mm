@@ -11,14 +11,11 @@
 
 static ui32 kiGaiaOceanRenderPriority = 6;
 
-iGaiaOcean::iGaiaOcean(const iGaiaOceanSettings& _settings)
+iGaiaOcean::iGaiaOcean(iGaiaResourceMgr* _resourceMgr, iGaiaOceanSettings const& _settings)
 {
     m_width = _settings.m_width;
     m_height = _settings.m_height;
     m_altitude = _settings.m_altitude;
-
-    m_reflectionTexture = nullptr;
-    m_refractionTexture = nullptr;
 
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(4, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();
@@ -49,27 +46,7 @@ iGaiaOcean::iGaiaOcean(const iGaiaOceanSettings& _settings)
 
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.ocean", iGaiaResource::iGaia_E_CreationModeCustom);
 
-    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
-    {
-        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
-        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
-    }
-
-    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
-    {
-        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
-        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
-    }
-
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, true);
-    m_material->Set_CullFaceMode(GL_FRONT);
-    m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
-    m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
-
-    m_updateMode = iGaia_E_UpdateModeSync;
+    iGaiaObject3d::ApplyObject3dSettings(_resourceMgr, _settings);
 
     m_waveGeneratorTimer = 0.0f;
     m_waveGeneratorInterval = 0.005f;
@@ -80,37 +57,25 @@ iGaiaOcean::~iGaiaOcean(void)
 
 }
 
-void iGaiaOcean::Set_ReflectionTexture(iGaiaTexture* _texture)
+void iGaiaOcean::Set_ReflectionTexture(iGaiaTexture* _texture, ui32 _renderMode)
 {
-    if(_texture == m_reflectionTexture)
-    {
-        // TODO : log
-        return;
-    }
-    m_reflectionTexture = _texture;
-    m_material->Set_Texture(m_reflectionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_01);
+    assert(m_materials.find(_renderMode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_renderMode)->second;
+    material->Set_Texture(_texture, iGaiaShader::iGaia_E_ShaderTextureSlot_01);
 }
 
-void iGaiaOcean::Set_RefractionTexture(iGaiaTexture* _texture)
+void iGaiaOcean::Set_RefractionTexture(iGaiaTexture* _texture, ui32 _renderMode)
 {
-    if(_texture == m_refractionTexture)
-    {
-        // TODO : log
-        return;
-    }
-    m_refractionTexture = _texture;
-    m_material->Set_Texture(m_refractionTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_02);
+    assert(m_materials.find(_renderMode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_renderMode)->second;
+    material->Set_Texture(_texture, iGaiaShader::iGaia_E_ShaderTextureSlot_01);
 }
 
-void iGaiaOcean::Set_HeightmapTexture(iGaiaTexture *_texture)
+void iGaiaOcean::Set_HeightmapTexture(iGaiaTexture *_texture, ui32 _renderMode)
 {
-    if(_texture == m_heightmapTexture)
-    {
-        // TODO : log
-        return;
-    }
-    m_heightmapTexture = _texture;
-    m_material->Set_Texture(m_heightmapTexture, iGaiaShader::iGaia_E_ShaderTextureSlot_03);
+    assert(m_materials.find(_renderMode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_renderMode)->second;
+    material->Set_Texture(_texture, iGaiaShader::iGaia_E_ShaderTextureSlot_01);
 }
 
 f32 iGaiaOcean::Get_Altitude(void)
@@ -118,62 +83,43 @@ f32 iGaiaOcean::Get_Altitude(void)
     return m_altitude + 0.1f;
 }
 
-void iGaiaOcean::OnUpdate(void)
+void iGaiaOcean::Update_Receiver(f32 _deltaTime)
 {
     m_waveGeneratorTimer += m_waveGeneratorInterval;
-    iGaiaObject3d::OnUpdate();
+    iGaiaObject3d::Update_Receiver(_deltaTime);
 }
 
-ui32 iGaiaOcean::OnDrawIndex(void)
+void iGaiaOcean::Bind_Receiver(ui32 _mode)
 {
-    return kiGaiaOceanRenderPriority;
+    iGaiaObject3d::Bind_Receiver(_mode);
 }
 
-void iGaiaOcean::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaOcean::Unbind_Receiver(ui32 _mode)
 {
-    iGaiaObject3d::OnBind(_mode);
+    iGaiaObject3d::Unbind_Receiver(_mode);
 }
 
-void iGaiaOcean::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaOcean::Draw_Receiver(ui32 _mode)
 {
-    iGaiaObject3d::OnUnbind(_mode);
-}
+    assert(m_materials.find(_mode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
 
-void iGaiaOcean::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
-{
-    iGaiaObject3d::OnDraw(_mode);
+    iGaiaObject3d::Draw_Receiver(_mode);
 
     switch (_mode)
     {
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon:
+        case iGaiaMaterial::RenderModeWorldSpace::Common :
         {
-            if(m_material->Get_OperatingShader() == nil)
-            {
-                iGaiaLog("Shader MODE_SIMPLE == nil");
-            }
-            
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
-            
-            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
-            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
-            m_material->Get_OperatingShader()->Set_FloatCustom(m_waveGeneratorTimer, "EXT_Timer");
-        }
-            break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection:
-        {
-            
-        }
-            break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction:
-        {
-            
-        }
-            break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceScreenNormalMap:
-        {
-            
+            iGaiaShader* shader = material->Get_Shader();
+            assert(shader != nullptr);
+
+            shader->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            shader->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            shader->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+
+            shader->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            shader->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            shader->Set_FloatCustom(m_waveGeneratorTimer, "EXT_Timer");
         }
             break;
         default:

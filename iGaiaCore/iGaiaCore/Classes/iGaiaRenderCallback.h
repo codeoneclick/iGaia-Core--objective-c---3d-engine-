@@ -88,6 +88,8 @@ class iGaiaRenderInterface
 protected:
     
     iGaiaRenderCallback m_renderCallback;
+
+    ui32 m_drawPriority;
     
     virtual void Bind_Receiver(ui32 _mode) = 0;
     virtual void Unbind_Receiver(ui32 _mode) = 0;

@@ -22,15 +22,14 @@ public:
         Blend,
         DepthTest,
         DepthMask,
-        MAX
+        RenderStateMaxValue
     };
-    enum iGaia_E_RenderModeWorldSpace
+    enum RenderModeWorldSpace
     {
-        iGaia_E_RenderModeWorldSpaceCommon = 0,
-        iGaia_E_RenderModeWorldSpaceReflection = 1,
-        iGaia_E_RenderModeWorldSpaceRefraction = 2,
-        iGaia_E_RenderModeWorldSpaceScreenNormalMap = 3,
-        iGaia_E_RenderModeWorldSpaceMaxValue = 4
+        Common = 0,
+        Reflection,
+        Refraction,
+        RenderModeWorldSpaceMaxValue
     };
 
     enum iGaia_E_RenderModeScreenSpace
@@ -49,8 +48,8 @@ private:
     GLenum m_blendFunctionDestination;
     vec4 m_clipping;
     iGaiaShader* m_shader;
-    iGaiaTexture* m_textures[iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue];
-    bool m_states[RenderState::MAX];
+    map<ui32, iGaiaTexture*> m_textures;
+    bool m_states[RenderState::RenderStateMaxValue];
     
 protected:
 
@@ -66,7 +65,8 @@ public:
     void Set_RenderState(RenderState _renderState, bool _value);
 
     void Set_Shader(iGaiaShader* _shader);
-    void Set_Texture(iGaiaTexture* _texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot);
+    void Set_Texture(iGaiaTexture* _texture, ui32 _slot);
+    iGaiaShader* Get_Shader(void);
 
     vec4 Get_Clipping(void);
 

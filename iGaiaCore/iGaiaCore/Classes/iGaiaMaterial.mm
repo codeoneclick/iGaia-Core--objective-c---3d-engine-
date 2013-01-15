@@ -14,15 +14,6 @@
 iGaiaMaterial::iGaiaMaterial(void)
 {
     m_shader = nullptr;
-    
-    for(NSUInteger i = 0; i < iGaiaShader::iGaia_E_ShaderTextureSlotMaxValue; ++i)
-    {
-        m_textures[i] = nullptr;
-    }
-
-    m_states[RenderState::DepthTest] = true;
-    m_states[RenderState::DepthMask] = true;
-    m_states[RenderState::Blend] = false;
 }
 
 iGaiaMaterial::~iGaiaMaterial(void)
@@ -65,9 +56,15 @@ void iGaiaMaterial::Set_Shader(iGaiaShader* _shader)
     m_shader = _shader;
 }
 
-void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, iGaiaShader::iGaia_E_ShaderTextureSlot _slot)
+iGaiaShader* iGaiaMaterial::Get_Shader(void)
 {
-    m_textures[_slot] = _texture;
+    return m_shader;
+}
+
+void iGaiaMaterial::Set_Texture(iGaiaTexture *_texture, ui32 _slot)
+{
+    assert(_slot < iGaiaShader::iGaia_E_ShaderVertexSlotMaxValue);
+    m_textures.insert(make_pair(_slot, _texture));
 }
 
 void iGaiaMaterial::Bind(void)

@@ -10,8 +10,6 @@
 
 iGaiaCamera::iGaiaCamera(f32 _fov, f32 _near, f32 _far, vec4 _viewport)
 {
-    m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaCamera::OnUpdate, this));
-    
     m_fov = _fov;
     m_aspect = static_cast<f32>(_viewport.z) / static_cast<f32>(_viewport.w);
     m_near = _near;
@@ -139,7 +137,7 @@ iGaiaFrustum* iGaiaCamera::Get_Frustum(void)
     return m_frustum;
 }
 
-void iGaiaCamera::OnUpdate(void)
+void iGaiaCamera::Update_Receiver(f32 _deltaTime)
 {
     m_position.y = 16.0f;
     m_position.x = m_look.x + cosf(-m_rotation) * -16.0f;

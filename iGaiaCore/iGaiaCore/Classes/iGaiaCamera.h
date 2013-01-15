@@ -13,7 +13,7 @@
 #include "iGaiaUpdateCallback.h"
 #include "iGaiaUpdateMgr.h"
 
-class iGaiaCamera
+class iGaiaCamera : public iGaiaUpdateInterface
 {
 private:
     
@@ -39,7 +39,7 @@ private:
     
     iGaiaUpdateMgr* m_updateMgr;
 
-    void OnUpdate(void);
+    void Update_Receiver(f32 _deltaTime);
     
 protected:
 

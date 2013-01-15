@@ -14,11 +14,8 @@ class iGaiaParticleEmitter : public iGaiaObject3d
 {
 public:
 
-    struct iGaiaParticleEmitterSettings
+    struct iGaiaParticleEmitterSettings : public iGaiaObject3d::iGaiaObject3dSettings
     {
-        vector<iGaiaObject3dShaderSettings> m_shaders;
-        vector<iGaiaObject3dTextureSettings> m_textures;
-        
         ui32 m_numParticles;
 
         f32 m_duration;
@@ -62,21 +59,18 @@ private:
     f32 m_lastParticleEmittTime;
     
     void CreateParticle(ui32 _index);
-    
-    ui32 OnDrawIndex(void);
+
+    void Bind_Receiver(ui32 _mode);
+    void Unbind_Receiver(ui32 _mode);
+    void Draw_Receiver(ui32 _mode);
+
+    void Update_Receiver(f32 _deltaTime);
     
 protected:
     
 public:
-    iGaiaParticleEmitter(const iGaiaParticleEmitter::iGaiaParticleEmitterSettings& _settings);
+    iGaiaParticleEmitter(iGaiaResourceMgr* _resourceMgr, iGaiaParticleEmitter::iGaiaParticleEmitterSettings const& _settings);
     ~iGaiaParticleEmitter(void);
-    
-    void OnUpdate(void);
-    
-    void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    
-    void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
 };
 
 #endif

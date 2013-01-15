@@ -13,7 +13,7 @@
 
 static ui32 kiGaiaLandscapeRenderPriority = 3;
 
-iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
+iGaiaLandscape::iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaLandscapeSettings const& _settings)
 {
 
     m_width = _settings.m_width;
@@ -81,34 +81,14 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     indexBuffer->Unlock();
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.landscape", iGaiaResource::iGaia_E_CreationModeCustom);
-    
+
+    iGaiaObject3d::ApplyObject3dSettings(_resourceMgr, _settings);
+
     m_quadTree = new iGaiaQuadTreeObject3d();
     m_quadTree->BuildRoot(vertexBuffer, indexBuffer, m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 2, m_width);
-    
-    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
-    {
-        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
-        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
-    }
-    
-    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
-    {
-        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
-        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
-    }
-    
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
-    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, false);
-    m_material->Set_CullFaceMode(GL_FRONT);
-    m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
-    m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
 
     m_heightmapTexture = iGaiaLandscapeHeightmapTextureProcessorHelper::CreateTexture(m_heightmapData, m_width, m_height, m_scaleFactor, m_maxAltitude);
     m_splattingTexture = iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(m_heightmapData, m_width, m_height, m_scaleFactor, 0.0f, 0.1f, 1.0f);
-    
-    m_updateMode = iGaia_E_UpdateModeSync;
 }
 
 iGaiaLandscape::~iGaiaLandscape(void)
@@ -116,9 +96,11 @@ iGaiaLandscape::~iGaiaLandscape(void)
     
 }
 
-void iGaiaLandscape::Set_Clipping(const glm::vec4& _clipping)
+void iGaiaLandscape::Set_Clipping(vec4 const& _clipping, ui32 _renderMode)
 {
-    m_material->Set_Clipping(_clipping);
+    assert(m_materials.find(_renderMode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_renderMode)->second;
+    material->Set_Clipping(_clipping);
 }
 
 iGaiaTexture* iGaiaLandscape::Get_HeightmapTexture(void)
@@ -151,87 +133,71 @@ vec2 iGaiaLandscape::Get_ScaleFactor(void)
     return m_scaleFactor;
 }
 
-void iGaiaLandscape::OnUpdate(void)
+void iGaiaLandscape::Update_Receiver(f32 _deltaTime)
 {
     m_quadTree->Update(m_camera->Get_Frustum());
-    iGaiaObject3d::OnUpdate();
+    iGaiaObject3d::Update_Receiver(_deltaTime);
 }
 
-ui32 iGaiaLandscape::OnDrawIndex(void)
+void iGaiaLandscape::Bind_Receiver(ui32 _mode)
 {
-    return kiGaiaLandscapeRenderPriority;
+    iGaiaObject3d::Bind_Receiver(_mode);
 }
 
-void iGaiaLandscape::OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaLandscape::Unbind_Receiver(ui32 _mode)
 {
-    iGaiaObject3d::OnBind(_mode);
+    iGaiaObject3d::Unbind_Receiver(_mode);
 }
 
-void iGaiaLandscape::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
+void iGaiaLandscape::Draw_Receiver(ui32 _mode)
 {
-    iGaiaObject3d::OnUnbind(_mode);
-}
+    assert(m_materials.find(_mode) != m_materials.end());
+    iGaiaMaterial* material = m_materials.find(_mode)->second;
 
-void iGaiaLandscape::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
-{
-    iGaiaObject3d::OnDraw(_mode);
+    iGaiaObject3d::Draw_Receiver(_mode);
     
     switch (_mode)
     {
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon:
+        case iGaiaMaterial::RenderModeWorldSpace::Common :
         {
-            if(m_material->Get_OperatingShader() == nil)
-            {
-                iGaiaLog("Shader MODE_SIMPLE == nil");
-            }
-            
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
-            
-            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
-            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
-            glm::vec4 clipping = m_material->Get_Clipping();
-            m_material->Get_OperatingShader()->Set_Vector4(clipping, iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
+            iGaiaShader* shader = material->Get_Shader();
+            assert(shader != nullptr);
+
+            shader->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            shader->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            shader->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+
+            shader->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            shader->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            shader->Set_Vector4(material->Get_Clipping(), iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
         }
             break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceReflection:
+        case iGaiaMaterial::RenderModeWorldSpace::Reflection :
         {
-            if(m_material->Get_OperatingShader() == nil)
-            {
-                iGaiaLog("Shader MODE_REFLECTION == nil");
-            }
-            
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewReflectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
-            
-            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
-            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
-            vec4 clipping = m_material->Get_Clipping();
-            m_material->Get_OperatingShader()->Set_Vector4(clipping, iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
+            iGaiaShader* shader = material->Get_Shader();
+            assert(shader != nullptr);
+
+            shader->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            shader->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            shader->Set_Matrix4x4(m_camera->Get_ViewReflectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+
+            shader->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            shader->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            shader->Set_Vector4(material->Get_Clipping(), iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
         }
             break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceRefraction:
+        case iGaiaMaterial::RenderModeWorldSpace ::Refraction :
         {
-            if(m_material->Get_OperatingShader() == nil)
-            {
-                iGaiaLog("Shader MODE_REFRACTION == nil");
-            }
-            
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
-            
-            m_material->Get_OperatingShader()->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
-            m_material->Get_OperatingShader()->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
-            glm::vec4 clipping = m_material->Get_Clipping();
-            clipping.y *= -1.0f;
-            m_material->Get_OperatingShader()->Set_Vector4(clipping, iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
-        }
-            break;
-        case iGaiaMaterial::iGaia_E_RenderModeWorldSpaceScreenNormalMap:
-        {
+            iGaiaShader* shader = material->Get_Shader();
+            assert(shader != nullptr);
+
+            shader->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            shader->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
+            shader->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
+
+            shader->Set_Vector3(m_camera->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorEyePosition);
+            shader->Set_Vector3(m_light->Get_Position(), iGaiaShader::iGaia_E_ShaderAttributeVectorLightPosition);
+            shader->Set_Vector4(material->Get_Clipping(), iGaiaShader::iGaia_E_ShaderAttributePlaneClipping);
         }
             break;
         default:

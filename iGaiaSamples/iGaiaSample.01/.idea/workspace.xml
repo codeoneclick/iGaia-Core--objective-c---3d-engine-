@@ -23,25 +23,193 @@
       <file leaf-file-name="iGaiaMaterial.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="8" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+            <state line="50" column="42" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#201#226#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaLandscapeHeightmapTextureProcessorHelper.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscapeHeightmapTextureProcessorHelper.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="46" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iGaiaShader.mm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.mm">
+      <file leaf-file-name="iGaiaParticleMgr.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleMgr.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="25" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
+            <state line="19" column="25" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iGaiaShader.h" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.h">
+      <file leaf-file-name="iGaiaParticleEmitter.mm" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.mm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="47" selection-start="3247" selection-end="3247" vertical-scroll-proportion="2.2281775">
+            <state line="187" column="45" selection-start="7959" selection-end="7959" vertical-scroll-proportion="5.6136823">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaParticleEmitter.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="25" selection-start="1494" selection-end="1593" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaParticleMgr.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleMgr.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="45" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#150#179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaLandscape.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="163" column="38" selection-start="4729" selection-end="4813" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaLandscape.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="41" selection-start="895" selection-end="1043" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaOcean.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="116" column="24" selection-start="3561" selection-end="3561" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaRenderCallback.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaRenderCallback.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="23" selection-start="2113" selection-end="2127" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaObject3d.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="31" selection-start="1940" selection-end="1971" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#200#226#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaShaderMgr.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShaderMgr.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaShaderMgr.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShaderMgr.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaShape3d.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="39" selection-start="1396" selection-end="1480" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaShape3d.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="4" selection-start="717" selection-end="776" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaObject3d.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="77" selection-start="925" selection-end="925" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaOcean.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="0" selection-start="572" selection-end="724" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaSkyDome.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="130" column="118" selection-start="4868" selection-end="4868" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaSkyDome.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="17" selection-start="579" selection-end="611" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaMesh.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMesh.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iGaiaMesh.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMesh.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -50,16 +218,7 @@
       <file leaf-file-name="iGaiaMaterial.mm" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.mm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="21" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.mm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iGaiaSample.01/Classes/AppDelegate.mm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="43" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
+            <state line="67" column="1" selection-start="1324" selection-end="1324" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,7 +234,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaRenderCallback.h" />
         <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.mm" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.h" />
+        <option value="$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.mm" />
       </list>
     </option>
   </component>
@@ -246,7 +419,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ResourceEngine" />
+              <option name="myItemId" value="StageEngine" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -272,11 +445,63 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ResourceEngine" />
+              <option name="myItemId" value="StageEngine" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
+              <option name="myItemId" value="Objects" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaSample.01" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaCore" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaCore" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ParticleEngine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaSample.01" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaCore" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGaiaCore" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Callbacks" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodePBXReferenceNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,12 +589,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21029411" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22647059" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14797136" sideWeight="0.21764706" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20843278" sideWeight="0.74558824" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2370724" sideWeight="0.7897059" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25441176" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20525059" sideWeight="0.2367647" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -379,7 +605,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -438,98 +663,118 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/iGaiaSample.01/Classes/AppDelegate.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="43" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="47" selection-start="3247" selection-end="3247" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="8" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iGaiaSample.01/Classes/AppDelegate.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="47" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.mm">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMesh.mm">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.h">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="31" column="17" selection-start="579" selection-end="611" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.mm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="39" selection-start="4162" selection-end="4162" vertical-scroll-proportion="0.3328125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iGaiaSample.01/Classes/AppDelegate.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="43" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
+        <state line="42" column="77" selection-start="925" selection-end="925" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.h">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaSkyDome.mm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="8" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+        <state line="130" column="118" selection-start="4868" selection-end="4868" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaMaterial.mm">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.mm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
+        <state line="116" column="24" selection-start="3561" selection-end="3561" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.mm">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaObject3d.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
+        <state line="92" column="31" selection-start="1940" selection-end="1971" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#200#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaOcean.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="572" selection-end="724" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShader.h">
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscapeHeightmapTextureProcessorHelper.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="47" selection-start="3247" selection-end="3247" vertical-scroll-proportion="2.2281775">
+        <state line="19" column="46" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="4" selection-start="717" selection-end="776" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaShape3d.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="39" selection-start="1396" selection-end="1480" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleMgr.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="45" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#150#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="41" selection-start="895" selection-end="1043" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleMgr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="25" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="25" selection-start="1494" selection-end="1593" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaLandscape.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="38" selection-start="4729" selection-end="4813" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../iGaiaCore/iGaiaCore/Classes/iGaiaParticleEmitter.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="45" selection-start="7959" selection-end="7959" vertical-scroll-proportion="5.6136823">
           <folding />
         </state>
       </provider>
