@@ -14,13 +14,14 @@
 class iGaiaLoader_GLSL
 {
 private:
-    static ui32 CompileShaderData(const i8* _data, GLenum _shader);
+    ui32 CompileShaderData(i8* _data, GLenum _shader);
+    ui32 LinkShaders(i8* _vertexShaderData, i8* _fragmentShaderData);
 protected:
 
 public:
     iGaiaLoader_GLSL(void) = default;
     ~iGaiaLoader_GLSL(void) = default;
-    static iGaiaShader* LoadShader(const i8* _vertexShaderData, const i8* _fragmentShaderData);
+    iGaiaShader* LoadShader(string const& _vsName, string const& _fsName);
 };
 
 #endif

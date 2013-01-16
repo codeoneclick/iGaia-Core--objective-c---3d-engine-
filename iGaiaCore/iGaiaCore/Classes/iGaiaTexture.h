@@ -17,9 +17,9 @@ public:
     
     enum WrapMode
     {
-        repeat = 0,
-        clamp,
-        mirror
+        Repeat = 0,
+        Clamp,
+        Mirror
     };
 
 private:

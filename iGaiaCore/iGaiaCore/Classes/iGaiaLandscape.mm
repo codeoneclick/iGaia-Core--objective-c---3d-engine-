@@ -13,7 +13,7 @@
 
 static ui32 kiGaiaLandscapeRenderPriority = 3;
 
-iGaiaLandscape::iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaLandscapeSettings const& _settings)
+iGaiaLandscape::iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::LandscapeSettings const& _settings)
 {
 
     m_width = _settings.m_width;

@@ -7,18 +7,18 @@
 //
 
 #include "iGaiaCommon.h"
-#include "iGaiaOcean.h"
+#include "iGaiaParser_Object3dSettings.h"
 
 class iGaiaParser_OceanSettings
 {
 private:
 
 protected:
-
+    iGaiaParser_Object3dSettings m_parserObject3d;
 public:
 
     iGaiaParser_OceanSettings(void);
     ~iGaiaParser_OceanSettings(void);
 
-    iGaiaOcean::iGaiaOceanSettings Get_Settings(const string& _name);
+    iGaiaSettingsProvider::OceanSettings DeserializeSettings(string const& _name);
 };

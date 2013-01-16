@@ -7,18 +7,18 @@
 //
 
 #include "iGaiaCommon.h"
-#include "iGaiaSkyDome.h"
+#include "iGaiaParser_Object3dSettings.h"
 
 class iGaiaParser_SkyDomeSettings
 {
 private:
 
 protected:
-
+    iGaiaParser_Object3dSettings m_parserObject3d;
 public:
 
     iGaiaParser_SkyDomeSettings(void);
     ~iGaiaParser_SkyDomeSettings(void);
 
-    iGaiaSkyDome::iGaiaSkyDomeSettings Get_Settings(const string& _name);
+    iGaiaSettingsProvider::SkyDomeSettings DeserializeSettings(string const& _name);
 };

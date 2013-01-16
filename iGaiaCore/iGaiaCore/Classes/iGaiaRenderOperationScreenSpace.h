@@ -16,8 +16,8 @@
 class iGaiaRenderOperationScreenSpace
 {
 private:
-    iGaiaTexture* m_operatingTexture;
-    iGaiaMaterial* m_operatingMaterial;
+    iGaiaTexture* m_frameTexture;
+    iGaiaMaterial* m_material;
     GLuint m_frameBufferHandle;
     GLuint m_depthBufferHandle;
     glm::vec2 m_frameSize;
@@ -25,11 +25,10 @@ private:
 protected:
     
 public:
-    iGaiaRenderOperationScreenSpace(vec2 _frameSize, iGaiaShader::iGaia_E_Shader _shader,const string& _name);
+    iGaiaRenderOperationScreenSpace(vec2 _frameSize, iGaiaMaterial* _material, string const& _name);
     ~iGaiaRenderOperationScreenSpace(void);
 
-    iGaiaMaterial* Get_OperatingMaterial(void);
-    iGaiaTexture* Get_OperatingTexture(void);
+    iGaiaTexture* Get_FrameTexture(void);
 
     void Bind(void);
     void Unbind(void);

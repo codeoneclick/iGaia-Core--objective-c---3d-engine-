@@ -7,20 +7,20 @@
 //
 
 #include "iGaiaCommon.h"
-#include "iGaiaParticleEmitter.h"
+#include "iGaiaParser_Object3dSettings.h"
 
 class iGaiaParser_ParticleEmitterSettings
 {
 private:
 
 protected:
-
+    iGaiaParser_Object3dSettings m_parserObject3d;
 public:
     
     iGaiaParser_ParticleEmitterSettings(void);
     ~iGaiaParser_ParticleEmitterSettings(void);
 
-    iGaiaParticleEmitter::iGaiaParticleEmitterSettings Get_Settings(const string& _name);
+    iGaiaSettingsProvider::ParticleEmitterSettings DeserializeSettings(string const& _name);
     
 };
 

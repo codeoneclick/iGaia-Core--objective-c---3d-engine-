@@ -15,29 +15,6 @@ class iGaiaShader
 {
 public :
 
-enum iGaia_E_Shader
-{
-    iGaia_E_ShaderLandscape = 0,
-    iGaia_E_ShaderLandscapeND = 1,
-    iGaia_E_ShaderShape3d = 2,
-    iGaia_E_ShaderShapeND = 3,
-    iGaia_E_ShaderGrass = 4,
-    iGaia_E_ShaderGrassND = 5,
-    iGaia_E_ShaderOcean = 6,
-    iGaia_E_ShaderDecal = 7,
-    iGaia_E_ShaderParticle = 8,
-    iGaia_E_ShaderParticleND = 9,
-    iGaia_E_ShaderSkydome = 10,
-    iGaia_E_ShaderLandscapeEdge = 11,
-    iGaia_E_ShaderScreenQuadSimple,
-    iGaia_E_ShaderScreenQuadBloomExtract,
-    iGaia_E_ShaderScreenQuadBloomCombine,
-    iGaia_E_ShaderScreenQuadBlur,
-    iGaia_E_ShaderScreenQuadEdgeDetect,
-    iGaia_E_ShaderScreenQuadLandscapeSplatting,
-    iGaia_E_ShaderMaxValue
-};
-
 enum iGaia_E_ShaderVertexSlot
 {
     iGaia_E_ShaderVertexSlotPosition = 0,

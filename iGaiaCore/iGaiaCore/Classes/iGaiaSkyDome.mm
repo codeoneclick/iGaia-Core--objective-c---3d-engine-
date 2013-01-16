@@ -11,7 +11,7 @@
 
 static ui32 kiGaiaSkyDomeRenderPriority = 0;
 
-iGaiaSkyDome::iGaiaSkyDome(iGaiaResourceMgr* _resourceMgr, iGaiaSkyDomeSettings const& _settings)
+iGaiaSkyDome::iGaiaSkyDome(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::SkyDomeSettings const& _settings)
 {
     iGaiaVertexBufferObject* vertexBuffer = new iGaiaVertexBufferObject(24, GL_STATIC_DRAW);
     iGaiaVertexBufferObject::iGaiaVertex* vertexData = vertexBuffer->Lock();

@@ -12,7 +12,7 @@
 
 static ui32 kiGaiaShape3dRenderPriority = 5;
 
-iGaiaShape3d::iGaiaShape3d(iGaiaResourceMgr* _resourceMgr, const iGaiaShape3dSettings& _settings)
+iGaiaShape3d::iGaiaShape3d(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::Shape3dSettings const& _settings)
 {
     m_mesh = _resourceMgr->Get_Mesh(_settings.m_name);
     iGaiaObject3d::ApplyObject3dSettings(_resourceMgr, _settings);

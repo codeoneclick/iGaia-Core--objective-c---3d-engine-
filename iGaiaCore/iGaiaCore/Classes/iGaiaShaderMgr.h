@@ -14,14 +14,14 @@
 class iGaiaShaderMgr
 {
 private:
-    iGaiaShader* m_shaders[iGaiaShader::iGaia_E_ShaderMaxValue];
+    map<string, iGaiaShader*> m_shadersContainer;
 protected:
     
 public:
     iGaiaShaderMgr(void);
     ~iGaiaShaderMgr(void);
     
-    iGaiaShader* Get_Shader(iGaiaShader::iGaia_E_Shader _shader);
+    iGaiaShader* Get_Shader(string const& _vsName, string const& _fsName);
 };
 
 #endif

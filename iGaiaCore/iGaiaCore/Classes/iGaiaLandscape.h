@@ -23,13 +23,6 @@ public:
         vec2 m_scaleFactor;
     };
     
-    struct iGaiaLandscapeSettings : public iGaiaObject3d::iGaiaObject3dSettings
-    {
-        f32 m_width;
-        f32 m_height;
-        vec2 m_scaleFactor;
-    };
-    
 private:
     
     ui32 m_width;
@@ -53,7 +46,7 @@ protected:
     
 public:
     
-    iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaLandscapeSettings const& _settings);
+    iGaiaLandscape(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::LandscapeSettings const& _settings);
     ~iGaiaLandscape(void);
 
     void Set_Clipping(vec4 const& _clipping, ui32 _renderMode);

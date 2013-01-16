@@ -12,12 +12,6 @@
 
 class iGaiaSkyDome : public iGaiaObject3d
 {
-public:
-
-    struct iGaiaSkyDomeSettings : public iGaiaObject3d::iGaiaObject3dSettings
-    {
-    };
-    
 private:
 
 protected:
@@ -29,7 +23,7 @@ protected:
     void Update_Receiver(f32 _deltaTime);
     
 public:
-    iGaiaSkyDome(iGaiaResourceMgr* _resourceMgr, iGaiaSkyDomeSettings const& _settings);
+    iGaiaSkyDome(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::SkyDomeSettings const& _settings);
     ~iGaiaSkyDome(void);
 };
 

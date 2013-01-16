@@ -12,13 +12,6 @@
 
 class iGaiaShape3d : public iGaiaObject3d
 {
-public:
-    
-    struct iGaiaShape3dSettings : public iGaiaObject3d::iGaiaObject3dSettings
-    {
-        string m_name;
-    };
-
 private:
     
 protected:
@@ -31,7 +24,7 @@ protected:
     
 public:
     
-    iGaiaShape3d(iGaiaResourceMgr* _resourceMgr, const iGaiaShape3dSettings& _settings);
+    iGaiaShape3d(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::Shape3dSettings const& _settings);
     ~iGaiaShape3d(void);
 
     void Set_Clipping(vec4 const& _clipping, ui32 _renderMode);

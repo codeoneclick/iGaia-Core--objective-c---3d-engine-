@@ -12,15 +12,6 @@
 
 class iGaiaOcean : public iGaiaObject3d
 {
-public:
-
-    struct iGaiaOceanSettings : public iGaiaObject3d::iGaiaObject3dSettings
-    {
-        f32 m_width;
-        f32 m_height;
-        f32 m_altitude;
-    };
-
 private:
 
     f32 m_width;
@@ -38,7 +29,7 @@ protected:
     void Update_Receiver(f32 _deltaTime);
     
 public:
-    iGaiaOcean(iGaiaResourceMgr* _resourceMgr, iGaiaOceanSettings const& _settings);
+    iGaiaOcean(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::OceanSettings const& _settings);
     ~iGaiaOcean(void);
 
     void Set_ReflectionTexture(iGaiaTexture* _texture, ui32 _renderMode);

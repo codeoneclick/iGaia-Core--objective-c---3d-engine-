@@ -28,21 +28,21 @@ void iGaiaTexture::Set_WrapMode(iGaiaTexture::WrapMode _wrapMode)
 
     switch (_wrapMode)
     {
-        case iGaiaTexture::WrapMode::repeat:
+        case iGaiaTexture::WrapMode::Repeat:
         {
             Bind();
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         }
             break;
-        case iGaiaTexture::WrapMode::clamp:
+        case iGaiaTexture::WrapMode::Clamp:
         {
             Bind();
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         }
             break;
-        case iGaiaTexture::WrapMode::mirror:
+        case iGaiaTexture::WrapMode::Mirror:
         {
             Bind();
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);

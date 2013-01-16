@@ -7,18 +7,18 @@
 //
 
 #include "iGaiaCommon.h"
-#include "iGaiaShape3d.h"
+#include "iGaiaParser_Object3dSettings.h"
 
 class iGaiaParser_Shape3dSettings
 {
 private:
 
 protected:
-
+    iGaiaParser_Object3dSettings m_parserObject3d;
 public:
 
     iGaiaParser_Shape3dSettings(void);
     ~iGaiaParser_Shape3dSettings(void);
 
-    iGaiaShape3d::iGaiaShape3dSettings Get_Settings(const string& _name);
+    iGaiaSettingsProvider::Shape3dSettings DeserializeSettings(string const& _name);
 };

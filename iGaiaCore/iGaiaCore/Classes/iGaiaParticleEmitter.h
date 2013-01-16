@@ -12,37 +12,6 @@
 
 class iGaiaParticleEmitter : public iGaiaObject3d
 {
-public:
-
-    struct iGaiaParticleEmitterSettings : public iGaiaObject3d::iGaiaObject3dSettings
-    {
-        ui32 m_numParticles;
-
-        f32 m_duration;
-        f32 m_durationRandomness;
-
-        f32 m_velocitySensitivity;
-
-        f32 m_minHorizontalVelocity;
-        f32 m_maxHorizontalVelocity;
-
-        f32 m_minVerticalVelocity;
-        f32 m_maxVerticalVelocity;
-
-        f32 m_endVelocity;
-
-        vec3 m_gravity;
-
-        u8vec4 m_startColor;
-        u8vec4 m_endColor;
-
-        vec2 m_startSize;
-        vec2 m_endSize;
-        
-        f32 m_minParticleEmittInterval;
-        f32 m_maxParticleEmittInterval;
-    };
-
 private:
     
     struct iGaiaParticle

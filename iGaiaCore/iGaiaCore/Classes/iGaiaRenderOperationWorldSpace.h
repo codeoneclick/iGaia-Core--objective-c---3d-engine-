@@ -15,19 +15,19 @@
 class iGaiaRenderOperationWorldSpace
 {
 private:
-    iGaiaTexture* m_operatingTexture;
+    iGaiaTexture* m_frameTexture;
     GLuint m_frameBufferHandle;
     GLuint m_depthBufferHandle;
     vec2 m_frameSize;
     map<ui32, set<iGaiaRenderCallback*>> m_listeners;
-    iGaiaMaterial::iGaia_E_RenderModeWorldSpace m_mode;
+    iGaiaMaterial::RenderModeWorldSpace m_renderMode;
 protected:
 
 public:
-    iGaiaRenderOperationWorldSpace(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode, vec2 _frameSize, const string& _name);
+    iGaiaRenderOperationWorldSpace(iGaiaMaterial::RenderModeWorldSpace _renderMode, vec2 _frameSize, string const& _name);
     ~iGaiaRenderOperationWorldSpace(void);
 
-    iGaiaTexture* Get_OperatingTexture(void);
+    iGaiaTexture* Get_FrameTexture(void);
 
     void AddEventListener(iGaiaRenderCallback* _listener);
     void RemoveEventListener(iGaiaRenderCallback* _listener);

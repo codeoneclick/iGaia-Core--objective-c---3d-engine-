@@ -11,7 +11,7 @@
 
 static ui32 kiGaiaOceanRenderPriority = 6;
 
-iGaiaOcean::iGaiaOcean(iGaiaResourceMgr* _resourceMgr, iGaiaOceanSettings const& _settings)
+iGaiaOcean::iGaiaOcean(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::OceanSettings const& _settings)
 {
     m_width = _settings.m_width;
     m_height = _settings.m_height;

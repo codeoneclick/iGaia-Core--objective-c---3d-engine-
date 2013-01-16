@@ -40,11 +40,11 @@ iGaiaObject3d::~iGaiaObject3d(void)
 
 }
 
-void iGaiaObject3d::ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaObject3dSettings const& _settings)
+void iGaiaObject3d::ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::Object3dSettings const& _settings)
 {
     for (ui32 i = 0; i < _settings.m_materialsSettings.size(); ++i)
     {
-        iGaiaMaterialSettings materialSettings = _settings.m_materialsSettings[i];
+        iGaiaSettingsProvider::MaterialSettings materialSettings = _settings.m_materialsSettings[i];
         iGaiaMaterial* material = new iGaiaMaterial();
         material->Set_RenderState(iGaiaMaterial::RenderState::CullFace, materialSettings.m_isCullFace);
         material->Set_RenderState(iGaiaMaterial::RenderState::DepthTest , materialSettings.m_isDepthTest);
@@ -58,7 +58,7 @@ void iGaiaObject3d::ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaO
 
         for (ui32 j = 0; j < materialSettings.m_texturesSettings.size(); ++j)
         {
-            iGaiaTextureSettings textureSettings = materialSettings.m_texturesSettings[j];
+            iGaiaSettingsProvider::TextureSettings textureSettings = materialSettings.m_texturesSettings[j];
             iGaiaTexture* texture = _resourceMgr->Get_Texture(textureSettings.m_name);
             texture->Set_WrapMode(textureSettings.m_wrap);
             material->Set_Texture(texture, textureSettings.m_slot);

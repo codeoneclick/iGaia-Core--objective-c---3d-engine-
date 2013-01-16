@@ -21,48 +21,13 @@
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
 #include "iGaiaResourceMgr.h"
+#include "iGaiaSettingsProvider.h"
 
 #include "iGaiaCrossCallback.h"
 #include "iGaiaTouchCrossCallback.h"
 
 class iGaiaObject3d : public iGaiaRenderInterface, public iGaiaUpdateInterface
 {
-public:
-
-    struct iGaiaTextureSettings
-    {
-        string m_name;
-        ui32 m_slot;
-        ui32 m_wrap;
-    };
-
-    struct iGaiaShaderSettings
-    {
-        string m_vsName;
-        string m_fsName;
-    };
-
-    struct iGaiaMaterialSettings
-    {
-        bool m_isCullFace;
-        bool m_isBlend;
-        bool m_isDepthTest;
-        bool m_isDepthMask;
-        ui32 m_cullFaceMode;
-        ui32 m_blendFunctionSource;
-        ui32 m_blendFunctionDestination;
-
-        vector<iGaiaTextureSettings> m_texturesSettings;
-        iGaiaShaderSettings m_shaderSettings;
-
-        ui32 m_renderMode;
-    };
-
-    struct iGaiaObject3dSettings
-    {
-        vector<iGaiaMaterialSettings> m_materialsSettings;
-    };
-    
 private:
 
 protected:
@@ -89,7 +54,7 @@ protected:
     
     virtual void Update_Receiver(f32 _deltaTime);
 
-    void ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaObject3dSettings const& _settings);
+    void ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::Object3dSettings const& _settings);
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
