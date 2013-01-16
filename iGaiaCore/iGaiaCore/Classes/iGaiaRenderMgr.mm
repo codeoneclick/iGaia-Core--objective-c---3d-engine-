@@ -17,17 +17,25 @@ iGaiaRenderMgr::iGaiaRenderMgr(void)
     m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaRenderMgr::OnUpdate, this));
     [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
 
-    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue; ++i)
+    for(ui32 i = 0; i < iGaiaMaterial::RenderModeWorldSpace::RenderModeWorldSpaceMaxValue; ++i)
     {
-        m_worldSpaceOperations[i] = new iGaiaRenderOperationWorldSpace(static_cast<iGaiaMaterial::iGaia_E_RenderModeWorldSpace>(i), vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), "render.mode.worldspace");
+        iGaiaRenderOperationWorldSpace* operation = new iGaiaRenderOperationWorldSpace(static_cast<iGaiaMaterial::RenderModeWorldSpace>(i), vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), "render.mode.worldspace");
+        m_worldSpaceRenderOperationsContainer.insert(make_pair(i, operation));
     }
 
-    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
-    {
-        m_screenSpaceOperations[i] = new iGaiaRenderOperationScreenSpace(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, "render.mode.screenspace");
-    }
-
-    m_outletOperation = new iGaiaRenderOperationOutlet(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, [iGaiaGLWindow_iOS SharedInstance].m_frameBufferHandle, [iGaiaGLWindow_iOS SharedInstance].m_renderBufferHandle);
+    iGaiaMaterial* material = new iGaiaMaterial();
+    material->Set_RenderState(iGaiaMaterial::RenderState::CullFace, false);
+    material->Set_RenderState(iGaiaMaterial::RenderState::DepthTest , false);
+    material->Set_RenderState(iGaiaMaterial::RenderState::DepthMask , false);
+    material->Set_RenderState(iGaiaMaterial::RenderState::Blend , false);
+    material->Set_CullFaceMode(GL_FRONT);
+    material->Set_BlendFunctionSource(GL_ALPHA);
+    material->Set_BlendFunctionDestination(GL_ONE);
+    
+    iGaiaShader* shader = _resourceMgr->Get_Shader("", "");
+    material->Set_Shader(shader);
+    
+    m_outletOperation = new iGaiaRenderOperationOutlet(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), material, [iGaiaGLWindow_iOS SharedInstance].m_frameBufferHandle, [iGaiaGLWindow_iOS SharedInstance].m_renderBufferHandle);
 }
 
 iGaiaRenderMgr::~iGaiaRenderMgr(void)

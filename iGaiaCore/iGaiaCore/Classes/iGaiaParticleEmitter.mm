@@ -12,7 +12,7 @@
 static ui32 kiGaiaParticlesRenderPriority = 7;
 static dispatch_queue_t g_onUpdateEmitterQueue;
 
-iGaiaParticleEmitter::iGaiaParticleEmitter(iGaiaResourceMgr* _resourceMgr, iGaiaParticleEmitter::iGaiaParticleEmitterSettings const& _settings)
+iGaiaParticleEmitter::iGaiaParticleEmitter(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::ParticleEmitterSettings const& _settings)
 {
     m_settings = _settings;
     m_particles = new iGaiaParticle[m_settings.m_numParticles];

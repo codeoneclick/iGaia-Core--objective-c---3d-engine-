@@ -11,7 +11,7 @@
 
 static NSUInteger k_RENDER_OPERATION_OUTLET_MODE = 0;
 
-iGaiaRenderOperationOutlet::iGaiaRenderOperationOutlet(vec2 _frameSize, iGaiaShader::iGaia_E_Shader _shader, ui32 _frameBufferHandle, ui32 _renderBufferHandle)
+iGaiaRenderOperationOutlet::iGaiaRenderOperationOutlet(vec2 _frameSize, iGaiaMaterial* _material, ui32 _frameBufferHandle, ui32 _renderBufferHandle)
 {
     m_frameSize = _frameSize;
     m_frameBufferHandle = _frameBufferHandle;
@@ -39,17 +39,7 @@ iGaiaRenderOperationOutlet::iGaiaRenderOperationOutlet(vec2 _frameSize, iGaiaSha
     indexData[5] = 3;
     indexBuffer->Unlock();
 
-    m_operatingMaterial = new iGaiaMaterial();
-    m_operatingMaterial->Set_Shader(_shader, k_RENDER_OPERATION_OUTLET_MODE);
-
-    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, false);
-    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
-    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, false);
-    m_operatingMaterial->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, false);
-
-    m_operatingMaterial->Set_CullFaceMode(GL_FRONT);
-    m_operatingMaterial->Set_BlendFunctionSource(GL_SRC_ALPHA);
-    m_operatingMaterial->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+    m_material = _material;
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "render.operation.outlet", iGaiaResource::iGaia_E_CreationModeCustom);
 }
@@ -57,11 +47,6 @@ iGaiaRenderOperationOutlet::iGaiaRenderOperationOutlet(vec2 _frameSize, iGaiaSha
 iGaiaRenderOperationOutlet::~iGaiaRenderOperationOutlet(void)
 {
 
-}
-
-iGaiaMaterial* iGaiaRenderOperationOutlet::Get_OperatingMaterial(void)
-{
-    return m_operatingMaterial;
 }
 
 void iGaiaRenderOperationOutlet::Bind(void)
@@ -72,15 +57,15 @@ void iGaiaRenderOperationOutlet::Bind(void)
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    m_operatingMaterial->Bind(k_RENDER_OPERATION_OUTLET_MODE);
-    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_operatingMaterial->Get_OperatingShader());
+    m_material->Bind();
+    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_Shader());
     m_mesh->Bind();
 }
 
 void iGaiaRenderOperationOutlet::Unbind(void)
 {
     m_mesh->Unbind();
-    m_operatingMaterial->Unbind(k_RENDER_OPERATION_OUTLET_MODE);
+    m_material->Unbind();
 }
 
 void iGaiaRenderOperationOutlet::Draw(void)

@@ -54,7 +54,7 @@ void iGaiaObject3d::ApplyObject3dSettings(iGaiaResourceMgr* _resourceMgr, iGaiaS
         material->Set_BlendFunctionSource(materialSettings.m_blendFunctionSource);
         material->Set_BlendFunctionDestination(materialSettings.m_blendFunctionDestination);
 
-        iGaiaShader* shader = nullptr;
+        iGaiaShader* shader = _resourceMgr->Get_Shader(materialSettings.m_shaderSettings.m_vsName, materialSettings.m_shaderSettings.m_fsName);
 
         for (ui32 j = 0; j < materialSettings.m_texturesSettings.size(); ++j)
         {

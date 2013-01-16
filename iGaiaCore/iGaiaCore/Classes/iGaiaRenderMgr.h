@@ -23,8 +23,8 @@ class iGaiaRenderMgr
 {
 private:
 
-    iGaiaRenderOperationWorldSpace* m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue];
-    iGaiaRenderOperationScreenSpace* m_screenSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue];
+    map<ui32, iGaiaRenderOperationWorldSpace*> m_worldSpaceRenderOperationsContainer;
+    map<ui32, iGaiaRenderOperationScreenSpace*> m_screenSpaceRenderOperationsContainer;
     iGaiaRenderOperationOutlet* m_outletOperation;
     
     queue<iGaiaRenderOperationOffscreenProcessingHelper*> m_offscreenProcessingOperation;
@@ -38,10 +38,10 @@ public:
     iGaiaRenderMgr(void);
     ~iGaiaRenderMgr(void);
 
-    void AddEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    void RemoveEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    iGaiaTexture* Get_TextureFromWorldSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
-    iGaiaTexture* Get_TextureFromScreenSpaceRenderMode(iGaiaMaterial::iGaia_E_RenderModeScreenSpace _mode);
+    void AddEventListener(iGaiaRenderCallback* _listener, ui32 _renderMode);
+    void RemoveEventListener(iGaiaRenderCallback* _listener, ui32 _renderMode);
+    iGaiaTexture* Get_TextureFromWorldSpaceRenderMode(ui32 _renderMode);
+    iGaiaTexture* Get_TextureFromScreenSpaceRenderMode(ui32 _renderMode);
 
     void AddOffscreenProcessOperation(iGaiaRenderOperationOffscreenProcessingHelper* _operation);
     

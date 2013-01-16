@@ -22,7 +22,7 @@ private:
         u8vec4 m_color;
         f32 m_timestamp;
     };
-    iGaiaParticleEmitterSettings m_settings;
+    iGaiaSettingsProvider::ParticleEmitterSettings m_settings;
     iGaiaParticle* m_particles;
     f32 m_lastEmittTimestamp;
     f32 m_lastParticleEmittTime;
@@ -38,7 +38,7 @@ private:
 protected:
     
 public:
-    iGaiaParticleEmitter(iGaiaResourceMgr* _resourceMgr, iGaiaParticleEmitter::iGaiaParticleEmitterSettings const& _settings);
+    iGaiaParticleEmitter(iGaiaResourceMgr* _resourceMgr, iGaiaSettingsProvider::ParticleEmitterSettings const& _settings);
     ~iGaiaParticleEmitter(void);
 };
 

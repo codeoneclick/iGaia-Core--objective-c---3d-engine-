@@ -83,8 +83,8 @@ void iGaiaRenderOperationScreenSpace::Bind(void)
     glClearColor(0, 0, 0, 1);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    m_operatingMaterial->Bind(k_RENDER_OPERATION_SCREEN_SPACE_MODE);
-    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_operatingMaterial->Get_OperatingShader());
+    m_material->Bind();
+    m_mesh->Get_VertexBuffer()->Set_OperatingShader(m_material->Get_Shader());
     m_mesh->Bind();
 }
 
@@ -92,7 +92,7 @@ void iGaiaRenderOperationScreenSpace::Unbind(void)
 {
     m_mesh->Get_VertexBuffer()->Unbind();
     m_mesh->Get_IndexBuffer()->Unbind();
-    m_operatingMaterial->Unbind(k_RENDER_OPERATION_SCREEN_SPACE_MODE);
+    m_material->Unbind();
 }
 
 void iGaiaRenderOperationScreenSpace::Draw(void)
