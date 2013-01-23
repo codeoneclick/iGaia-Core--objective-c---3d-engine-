@@ -35,6 +35,8 @@
     if(self)
     {
         _m_callback = @selector(onUpdate:);
+        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:_m_callback];
+        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;
 }

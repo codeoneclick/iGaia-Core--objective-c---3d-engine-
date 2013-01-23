@@ -12,8 +12,10 @@
 #include "iGaiaSettings_iOS.h"
 #include "iGaiaLogger.h"
 
-iGaiaRenderMgr::iGaiaRenderMgr(void)
+iGaiaRenderMgr::iGaiaRenderMgr(const iGaiaGLContext* _glContext)
 {
+    m_glContext = _glContext;
+    
     m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaRenderMgr::OnUpdate, this));
     [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
 
@@ -27,7 +29,7 @@ iGaiaRenderMgr::iGaiaRenderMgr(void)
         m_screenSpaceOperations[i] = new iGaiaRenderOperationScreenSpace(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, "render.mode.screenspace");
     }
 
-    m_outletOperation = new iGaiaRenderOperationOutlet(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, [iGaiaGLWindow_iOS SharedInstance].m_frameBufferHandle, [iGaiaGLWindow_iOS SharedInstance].m_renderBufferHandle);
+    m_outletOperation = new iGaiaRenderOperationOutlet(vec2([iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height), iGaiaShader::iGaia_E_ShaderScreenQuadSimple, m_glContext->Get_FrameBufferHandle(), m_glContext->Get_RenderBufferHandle());
 }
 
 iGaiaRenderMgr::~iGaiaRenderMgr(void)
@@ -90,7 +92,7 @@ void iGaiaRenderMgr::OnUpdate(void)
     m_outletOperation->Draw();
     m_outletOperation->Unbind();
 
-    [[iGaiaGLWindow_iOS SharedInstance].m_context presentRenderbuffer:GL_RENDERBUFFER];
+    m_glContext->PresentRenderBuffer();
     
     
     static ui64 lastTime = 0;
@@ -100,7 +102,7 @@ void iGaiaRenderMgr::OnUpdate(void)
     if(currentTime - lastTime > 1000 )
     {
         lastTime = Get_TickCount();
-        [iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond = currentFramesPerCount;
+        //[iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond = currentFramesPerCount;
         currentFramesPerCount = 0;
     }
 

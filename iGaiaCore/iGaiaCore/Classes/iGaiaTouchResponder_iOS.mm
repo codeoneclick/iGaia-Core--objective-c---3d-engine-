@@ -25,8 +25,8 @@
     if(self)
     {
         [self removeFromSuperview];
-        [self setFrame:[iGaiaGLWindow_iOS SharedInstance].frame];
-        [[iGaiaGLWindow_iOS SharedInstance] addSubview:self];
+        //[self setFrame:[iGaiaGLWindow_iOS SharedInstance].frame];
+        //[[iGaiaGLWindow_iOS SharedInstance] addSubview:self];
     }
     return self;
 }
@@ -45,7 +45,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
+        //CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
     }
 }
 
@@ -53,7 +53,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
+        //CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
     }
 }
 
@@ -61,12 +61,12 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
+        //CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
 
         for (set<iGaiaTouchCallback*>::iterator iterator = m_listeners.begin(); iterator != m_listeners.end(); ++iterator)
         {
             iGaiaTouchCallback* listener = *iterator;
-            listener->InvokeOnTouchListener(touchLocation.x, touchLocation.y);
+            //listener->InvokeOnTouchListener(touchLocation.x, touchLocation.y);
         }
     }
 }
@@ -75,7 +75,7 @@
 {
     for (UITouch*touch in touches)
     {
-        CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
+        //CGPoint touchLocation = [touch locationInView:[iGaiaGLWindow_iOS SharedInstance]];
     }
 }
 

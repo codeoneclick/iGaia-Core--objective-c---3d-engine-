@@ -9,6 +9,8 @@
 #ifndef iGaiaRenderMgrClass
 #define iGaiaRenderMgrClass
 
+#include "iGaiaGLContext.h"
+
 #include "iGaiaRenderCallback.h"
 #include "iGaiaLoopCallback.h"
 #include "iGaiaShader.h"
@@ -22,6 +24,8 @@
 class iGaiaRenderMgr
 {
 private:
+    
+    const iGaiaGLContext* m_glContext;
 
     iGaiaRenderOperationWorldSpace* m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceMaxValue];
     iGaiaRenderOperationScreenSpace* m_screenSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue];
@@ -35,7 +39,7 @@ protected:
 
 public:
     
-    iGaiaRenderMgr(void);
+    iGaiaRenderMgr(const iGaiaGLContext* _glContext);
     ~iGaiaRenderMgr(void);
 
     void AddEventListener(iGaiaRenderCallback* _listener, iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);

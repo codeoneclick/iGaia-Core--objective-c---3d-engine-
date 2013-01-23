@@ -44,8 +44,6 @@
     return self;
 }
 
-std::mutex mutex_01;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

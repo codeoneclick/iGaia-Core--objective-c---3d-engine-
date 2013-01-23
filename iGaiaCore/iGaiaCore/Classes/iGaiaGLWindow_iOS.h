@@ -10,15 +10,12 @@
 #define iGaiaGLWindow_iOSClass
 
 #include "iGaiaCommon.h"
+#include "iGaiaGLContext.h"
 
 @interface iGaiaGLWindow_iOS : UIView
 
-@property(nonatomic, readonly) EAGLContext* m_context;
-@property(nonatomic, readonly) NSUInteger m_frameBufferHandle;
-@property(nonatomic, readonly) NSUInteger m_renderBufferHandle;
+@property(nonatomic, unsafe_unretained, readonly) iGaiaGLContext* m_context;
 @property(nonatomic, assign) ui32 m_framesPerSecond;
-
-+ (iGaiaGLWindow_iOS*)SharedInstance;
 
 @end
 

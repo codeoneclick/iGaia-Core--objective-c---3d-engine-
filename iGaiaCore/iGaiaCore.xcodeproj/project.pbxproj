@@ -22,6 +22,8 @@
 		2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2190A536000004B600F4DFF5 /* iGaiaException.mm */; };
 		21916222165C0F8B00F4CED4 /* iGaiaThreadMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */; };
 		21916237165C1B7600F4CED4 /* iGaiaThreadQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */; };
+		21EB07AB16AF28D1001E5B63 /* iGaiaGLContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21EB07A916AF28CE001E5B63 /* iGaiaGLContext.mm */; };
+		21EB07AF16AF2DD8001E5B63 /* iGaiaGLContext_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21EB07AD16AF2DD5001E5B63 /* iGaiaGLContext_iOS.mm */; };
 		A40C5A551625791800120D76 /* sqstdaux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2E1625791800120D76 /* sqstdaux.cpp */; };
 		A40C5A561625791800120D76 /* sqstdblob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A2F1625791800120D76 /* sqstdblob.cpp */; };
 		A40C5A571625791800120D76 /* sqstdio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A311625791800120D76 /* sqstdio.cpp */; };
@@ -144,6 +146,10 @@
 		21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaThreadMgr.mm; path = iGaiaCore/Classes/iGaiaThreadMgr.mm; sourceTree = "<group>"; };
 		21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaThreadQueue.mm; path = iGaiaCore/Classes/iGaiaThreadQueue.mm; sourceTree = "<group>"; };
 		21916236165C1B7600F4CED4 /* iGaiaThreadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaThreadQueue.h; path = iGaiaCore/Classes/iGaiaThreadQueue.h; sourceTree = "<group>"; };
+		21EB07A916AF28CE001E5B63 /* iGaiaGLContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGLContext.mm; path = iGaiaCore/Classes/iGaiaGLContext.mm; sourceTree = "<group>"; };
+		21EB07AA16AF28D0001E5B63 /* iGaiaGLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGLContext.h; path = iGaiaCore/Classes/iGaiaGLContext.h; sourceTree = "<group>"; };
+		21EB07AD16AF2DD5001E5B63 /* iGaiaGLContext_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGLContext_iOS.mm; path = iGaiaCore/Classes/iGaiaGLContext_iOS.mm; sourceTree = "<group>"; };
+		21EB07AE16AF2DD7001E5B63 /* iGaiaGLContext_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGLContext_iOS.h; path = iGaiaCore/Classes/iGaiaGLContext_iOS.h; sourceTree = "<group>"; };
 		A40C5A261625791800120D76 /* sqstdaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdaux.h; sourceTree = "<group>"; };
 		A40C5A271625791800120D76 /* sqstdblob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdblob.h; sourceTree = "<group>"; };
 		A40C5A281625791800120D76 /* sqstdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqstdio.h; sourceTree = "<group>"; };
@@ -1290,6 +1296,10 @@
 				A4466548161B1A490025601F /* iGaiaGLWindow_iOS.mm */,
 				2190A535000004B600F4DFF5 /* iGaiaException.h */,
 				2190A536000004B600F4DFF5 /* iGaiaException.mm */,
+				21EB07AA16AF28D0001E5B63 /* iGaiaGLContext.h */,
+				21EB07A916AF28CE001E5B63 /* iGaiaGLContext.mm */,
+				21EB07AE16AF2DD7001E5B63 /* iGaiaGLContext_iOS.h */,
+				21EB07AD16AF2DD5001E5B63 /* iGaiaGLContext_iOS.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1491,6 +1501,8 @@
 				A4B9D5F9167F2E7F00CF7C90 /* iGaiaNavigationHelper.mm in Sources */,
 				A49020811681B6310081487E /* iGaiaQuadTreeObject3d.mm in Sources */,
 				2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */,
+				21EB07AB16AF28D1001E5B63 /* iGaiaGLContext.mm in Sources */,
+				21EB07AF16AF2DD8001E5B63 /* iGaiaGLContext_iOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
