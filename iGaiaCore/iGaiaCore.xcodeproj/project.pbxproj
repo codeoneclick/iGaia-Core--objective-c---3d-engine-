@@ -19,6 +19,10 @@
 		15A8834F162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A8834E162DE7ED00671CDC /* iGaiaSquirrelParticleMgr.mm */; };
 		21079A15167A5C320086429B /* iGaiaLandscape.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21079A14167A5C320086429B /* iGaiaLandscape.mm */; };
 		210B3E5B164846A7005278F3 /* iGaiaResource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 210B3E5A164846A6005278F3 /* iGaiaResource.mm */; };
+		214C5D2F16B1D2CC00ECFAE9 /* iGaiaRoot.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D2D16B1D2CC00ECFAE9 /* iGaiaRoot.mm */; };
+		214C5D3316B1D63300ECFAE9 /* iGaiaSceneGraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3116B1D63300ECFAE9 /* iGaiaSceneGraph.mm */; };
+		214C5D3616B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3416B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm */; };
+		214C5D3C16B1DA8200ECFAE9 /* iGaiaSceneContainer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3A16B1DA8100ECFAE9 /* iGaiaSceneContainer.mm */; };
 		2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2190A536000004B600F4DFF5 /* iGaiaException.mm */; };
 		21916222165C0F8B00F4CED4 /* iGaiaThreadMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */; };
 		21916237165C1B7600F4CED4 /* iGaiaThreadQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */; };
@@ -139,6 +143,14 @@
 		21079A13167A5C320086429B /* iGaiaLandscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaLandscape.h; path = iGaiaCore/Classes/iGaiaLandscape.h; sourceTree = "<group>"; };
 		21079A14167A5C320086429B /* iGaiaLandscape.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaLandscape.mm; path = iGaiaCore/Classes/iGaiaLandscape.mm; sourceTree = "<group>"; };
 		210B3E5A164846A6005278F3 /* iGaiaResource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaResource.mm; path = iGaiaCore/Classes/iGaiaResource.mm; sourceTree = "<group>"; };
+		214C5D2D16B1D2CC00ECFAE9 /* iGaiaRoot.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaRoot.mm; path = iGaiaCore/Classes/iGaiaRoot.mm; sourceTree = "<group>"; };
+		214C5D2E16B1D2CC00ECFAE9 /* iGaiaRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaRoot.h; path = iGaiaCore/Classes/iGaiaRoot.h; sourceTree = "<group>"; };
+		214C5D3116B1D63300ECFAE9 /* iGaiaSceneGraph.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSceneGraph.mm; path = iGaiaCore/Classes/iGaiaSceneGraph.mm; sourceTree = "<group>"; };
+		214C5D3216B1D63300ECFAE9 /* iGaiaSceneGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneGraph.h; path = iGaiaCore/Classes/iGaiaSceneGraph.h; sourceTree = "<group>"; };
+		214C5D3416B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSceneFabricator.mm; path = iGaiaCore/Classes/iGaiaSceneFabricator.mm; sourceTree = "<group>"; };
+		214C5D3516B1D9A600ECFAE9 /* iGaiaSceneFabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneFabricator.h; path = iGaiaCore/Classes/iGaiaSceneFabricator.h; sourceTree = "<group>"; };
+		214C5D3A16B1DA8100ECFAE9 /* iGaiaSceneContainer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSceneContainer.mm; path = iGaiaCore/Classes/iGaiaSceneContainer.mm; sourceTree = "<group>"; };
+		214C5D3B16B1DA8200ECFAE9 /* iGaiaSceneContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneContainer.h; path = iGaiaCore/Classes/iGaiaSceneContainer.h; sourceTree = "<group>"; };
 		2190A535000004B600F4DFF5 /* iGaiaException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaException.h; path = iGaiaCore/Classes/iGaiaException.h; sourceTree = "<group>"; };
 		2190A536000004B600F4DFF5 /* iGaiaException.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaException.mm; path = iGaiaCore/Classes/iGaiaException.mm; sourceTree = "<group>"; };
 		2190A539168E30E200F4DFF5 /* iGaiaTouchCrossCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchCrossCallback.h; path = iGaiaCore/Classes/iGaiaTouchCrossCallback.h; sourceTree = "<group>"; };
@@ -928,6 +940,12 @@
 				A49C46161670A59200316865 /* iGaiaStageProcessor.mm */,
 				A49C46181670A61400316865 /* iGaiaSharedFacade.h */,
 				A49C46191670A61400316865 /* iGaiaSharedFacade.mm */,
+				214C5D3216B1D63300ECFAE9 /* iGaiaSceneGraph.h */,
+				214C5D3116B1D63300ECFAE9 /* iGaiaSceneGraph.mm */,
+				214C5D3516B1D9A600ECFAE9 /* iGaiaSceneFabricator.h */,
+				214C5D3416B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm */,
+				214C5D3B16B1DA8200ECFAE9 /* iGaiaSceneContainer.h */,
+				214C5D3A16B1DA8100ECFAE9 /* iGaiaSceneContainer.mm */,
 			);
 			name = StageEngine;
 			sourceTree = "<group>";
@@ -1300,6 +1318,8 @@
 				21EB07A916AF28CE001E5B63 /* iGaiaGLContext.mm */,
 				21EB07AE16AF2DD7001E5B63 /* iGaiaGLContext_iOS.h */,
 				21EB07AD16AF2DD5001E5B63 /* iGaiaGLContext_iOS.mm */,
+				214C5D2E16B1D2CC00ECFAE9 /* iGaiaRoot.h */,
+				214C5D2D16B1D2CC00ECFAE9 /* iGaiaRoot.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1503,6 +1523,10 @@
 				2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */,
 				21EB07AB16AF28D1001E5B63 /* iGaiaGLContext.mm in Sources */,
 				21EB07AF16AF2DD8001E5B63 /* iGaiaGLContext_iOS.mm in Sources */,
+				214C5D2F16B1D2CC00ECFAE9 /* iGaiaRoot.mm in Sources */,
+				214C5D3316B1D63300ECFAE9 /* iGaiaSceneGraph.mm in Sources */,
+				214C5D3616B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm in Sources */,
+				214C5D3C16B1DA8200ECFAE9 /* iGaiaSceneContainer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

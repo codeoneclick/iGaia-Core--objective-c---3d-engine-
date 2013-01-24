@@ -20,7 +20,7 @@ protected:
     ui32 m_renderBufferHandle;
 public:
     iGaiaGLContext(void);
-    ~iGaiaGLContext(void);
+    virtual ~iGaiaGLContext(void);
     
     const ui32 Get_FrameBufferHandle(void) const;
     const ui32 Get_RenderBufferHandle(void) const;

@@ -22,6 +22,7 @@
 #include <mutex>
 #include <thread>
 #include "iGaiaScene.h"
+#include "iGaiaRoot.h"
 
 //#import <Python/Python.h>
 
@@ -48,7 +49,9 @@
 {
     [super viewDidLoad];
 
-    [self.m_GLView addSubview:[iGaiaGLWindow_iOS SharedInstance]];
+    UIView* glView = [[iGaiaGLWindow_iOS alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    iGaiaRoot* root = new iGaiaRoot(glView);
+    [self.m_GLView addSubview:glView];
     
     _m_scene = new iGaiaScene();
     _m_scene->Load("");
@@ -65,7 +68,7 @@
 
 -(void)onTick:(NSTimer *)timer
 {
-    [self.m_framePerSecondLabel setText:[NSString stringWithFormat:@"FPS : %i", [iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond]];
+    //[self.m_framePerSecondLabel setText:[NSString stringWithFormat:@"FPS : %i", [iGaiaGLWindow_iOS SharedInstance].m_framesPerSecond]];
     [self onUpdate];
 }
 

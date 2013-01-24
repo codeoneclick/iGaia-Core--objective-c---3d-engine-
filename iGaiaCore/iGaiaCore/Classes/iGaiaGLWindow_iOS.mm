@@ -7,7 +7,6 @@
 //
 
 #include "iGaiaGLWindow_iOS.h"
-#include "iGaiaGLContext_iOS.h"
 
 @implementation iGaiaGLWindow_iOS
 
@@ -20,9 +19,7 @@
 {
     if (self = [super initWithFrame:frame])
     {
-        CAEAGLLayer* eaglLayer = (CAEAGLLayer*)super.layer;
-        eaglLayer.opaque = YES;
-        _m_context = new iGaiaGLContext_iOS(eaglLayer);
+        super.layer.opaque = YES;
     }
     return self;
 }

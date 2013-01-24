@@ -10,7 +10,7 @@
 
 iGaiaStageProcessor::iGaiaStageProcessor(void)
 {
-    m_renderMgr = new iGaiaRenderMgr();
+    m_renderMgr = new iGaiaRenderMgr(nullptr);
     m_updateMgr = new iGaiaUpdateMgr();
     m_touchMgr = new iGaiaTouchMgr();
 
