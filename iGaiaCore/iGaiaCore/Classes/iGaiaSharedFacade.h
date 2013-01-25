@@ -9,7 +9,7 @@
 #ifndef iGaiaSharedFacadeClass
 #define iGaiaSharedFacadeClass
 
-#include "iGaiaCommon.h"
+/*#include "iGaiaCommon.h"
 #include "iGaiaStageFabricator.h"
 #include "iGaiaStageProcessor.h"
 #include "iGaiaScriptMgr.h"
@@ -35,7 +35,7 @@ public:
     iGaiaStageProcessor* Get_StageProcessor(void);
     iGaiaScriptMgr* Get_ScriptMgr(void);
     iGaiaSoundMgr* Get_SoundMgr(void);
-};
+};*/
 
 #endif
 

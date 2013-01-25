@@ -7,8 +7,9 @@
 //
 
 #include "iGaiaSquirrelObject3d.h"
-#include "iGaiaSharedFacade.h"
 #include "iGaiaLogger.h"
+#include "iGaiaShape3d.h"
+
 
 SQInteger sq_getPositionObject3d(HSQUIRRELVM vm);
 SQInteger sq_setPositionObject3d(HSQUIRRELVM vm);

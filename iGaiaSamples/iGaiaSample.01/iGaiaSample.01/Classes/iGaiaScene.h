@@ -11,6 +11,7 @@
 #include "iGaiaSharedFacade.h"
 #include "iGaiaResourceMgr.h"
 #include "iGaiaCharacterController.h"
+#include "iGaiaRoot.h"
 
 class iGaiaScene
 {
@@ -30,7 +31,7 @@ public:
     iGaiaScene(void);
     ~iGaiaScene(void);
 
-    void Load(const string& _name);
+    void Load(iGaiaRoot* _root);
 
     iGaiaCharacterController* Get_CharacterController(void);
 };

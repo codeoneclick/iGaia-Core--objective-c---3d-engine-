@@ -49,12 +49,12 @@
 {
     [super viewDidLoad];
 
-    UIView* glView = [[iGaiaGLWindow_iOS alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIView* glView = [[iGaiaGLWindow_iOS alloc] initWithFrame:[iGaiaSettings_iOS Get_Frame]];
     iGaiaRoot* root = new iGaiaRoot(glView);
     [self.m_GLView addSubview:glView];
     
     _m_scene = new iGaiaScene();
-    _m_scene->Load("");
+    _m_scene->Load(root);
     _m_scene->Get_CharacterController()->Set_MoveController(_m_moveController);
 
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];

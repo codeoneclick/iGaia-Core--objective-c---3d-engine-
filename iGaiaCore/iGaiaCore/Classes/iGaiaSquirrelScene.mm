@@ -8,7 +8,8 @@
 
 #include "iGaiaSquirrelScene.h"
 #include "iGaiaLogger.h"
-#include "iGaiaSharedFacade.h"
+#include "iGaiaCamera.h"
+#include "iGaiaShape3d.h"juji
 
 SQInteger sq_createCamera(HSQUIRRELVM vm);
 SQInteger sq_createShape3d(HSQUIRRELVM vm);
@@ -36,7 +37,7 @@ void iGaiaSquirrelScene::Bind(void)
 
 SQInteger sq_createCamera(HSQUIRRELVM vm)
 {
-    SQInteger numArgs = sq_gettop(vm);
+    /*SQInteger numArgs = sq_gettop(vm);
     if (numArgs >= 2)
     {
         SQFloat fov = iGaiaSquirrelCommon::SharedInstance()->PopFloat(2); 
@@ -49,13 +50,13 @@ SQInteger sq_createCamera(HSQUIRRELVM vm)
         sq_pushuserpointer(vm, (SQUserPointer)camera);
         return true;
     }
-    iGaiaLog("Script call args NULL.");
+    iGaiaLog("Script call args NULL.");*/
     return false;
 }
 
 SQInteger sq_createShape3d(HSQUIRRELVM vm)
 {
-    SQInteger numArgs = sq_gettop(vm);
+    /*SQInteger numArgs = sq_gettop(vm);
     if (numArgs >= 2)
     {
         const SQChar* f_name = iGaiaSquirrelCommon::SharedInstance()->PopString(2);
@@ -83,6 +84,6 @@ SQInteger sq_createShape3d(HSQUIRRELVM vm)
         sq_pushuserpointer(vm, (SQUserPointer)shape3d);
         return true;
     }
-    iGaiaLog("Script call args NULL.");
+    iGaiaLog("Script call args NULL.");*/
     return false;
 }

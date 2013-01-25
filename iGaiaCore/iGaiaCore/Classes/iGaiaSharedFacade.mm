@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
 
-#import "iGaiaSharedFacade.h"
+/*#import "iGaiaSharedFacade.h"
 
 iGaiaSharedFacade::iGaiaSharedFacade(void)
 {
@@ -49,4 +49,4 @@ iGaiaScriptMgr* iGaiaSharedFacade::Get_ScriptMgr(void)
 iGaiaSoundMgr* iGaiaSharedFacade::Get_SoundMgr(void)
 {
     return m_soundMgr;
-}
+}*/

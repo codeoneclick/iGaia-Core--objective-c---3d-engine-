@@ -12,6 +12,7 @@
 #include "iGaiaCommon.h"
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
+#include "iGaiaTouchMgr.h"
 
 #include "iGaiaCamera.h"
 #include "iGaiaLight.h"
@@ -37,9 +38,10 @@ private:
 protected:
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
+    iGaiaTouchMgr* m_inputMgr;
     
-    iGaiaSceneGraph(void) = default;
-    virtual ~iGaiaSceneGraph(void) = default;
+    iGaiaSceneGraph(void);
+    virtual ~iGaiaSceneGraph(void);
     
 public:
     
