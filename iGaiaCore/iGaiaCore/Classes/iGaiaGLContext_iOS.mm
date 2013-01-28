@@ -31,7 +31,7 @@ iGaiaGLContext_iOS::~iGaiaGLContext_iOS(void)
     
 }
 
-void iGaiaGLContext_iOS::PresentRenderBuffer(void) const
+void iGaiaGLContext_iOS::Present(void) const
 {
     assert(m_iOSGLContext != nullptr);
     [m_iOSGLContext presentRenderbuffer:GL_RENDERBUFFER];

@@ -12,7 +12,6 @@
 
 iGaiaScene::iGaiaScene(void)
 {
-    m_characterController = new iGaiaCharacterController();
     m_touchCrossCallback.Set_OnTouchCrossListener(bind(&iGaiaScene::OnTouchCross, this, placeholders::_1));
 }
 
@@ -21,9 +20,11 @@ iGaiaScene::~iGaiaScene(void)
 
 }
 
-void iGaiaScene::Load(iGaiaRoot* _root)
+void iGaiaScene::Load(iGaiaRoot* _root, iGaiaGestureRecognizerController* _gestureRecognizer)
 {
     m_camera = _root->CreateCamera(45.0f, 0.1f, 1000.0f, vec4(0.0f, 0.0f, [iGaiaSettings_iOS Get_Size].width, [iGaiaSettings_iOS Get_Size].height));
+    
+    m_characterController = new iGaiaCharacterController(_gestureRecognizer);
 
     _root->Set_Camera(m_camera);
     m_camera->Set_Position(vec3(0.0f, 0.0f, 0.0f));

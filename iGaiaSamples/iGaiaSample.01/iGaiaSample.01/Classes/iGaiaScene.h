@@ -31,7 +31,7 @@ public:
     iGaiaScene(void);
     ~iGaiaScene(void);
 
-    void Load(iGaiaRoot* _root);
+    void Load(iGaiaRoot* _root, iGaiaGestureRecognizerController* _gestureRecognizer);
 
     iGaiaCharacterController* Get_CharacterController(void);
 };

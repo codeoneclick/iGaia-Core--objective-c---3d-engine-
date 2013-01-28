@@ -21,7 +21,7 @@ public:
     iGaiaGLContext_iOS(const CAEAGLLayer* _iOSGLLayer);
     ~iGaiaGLContext_iOS(void);
     
-    void PresentRenderBuffer(void) const;
+    void Present(void) const;
 };
 
 #endif 

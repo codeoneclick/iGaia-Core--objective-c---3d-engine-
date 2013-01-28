@@ -12,8 +12,9 @@
 #include "iGaiaLoopCallback.h"
 #include "iGaiaNavigationHelper.h"
 #include "iGaiaCamera.h"
+#include "iGaiaGestureRecognizerController.h"
 
-class iGaiaCharacterController
+class iGaiaCharacterController : public iGaiaGestureRecognizerCallback_PROTOCOL
 {
 private:
     
@@ -35,9 +36,12 @@ private:
     f32 m_rotationMixFactor;
 
 protected:
+    
+    void PanGestureRecognizerReceiver(const vec2& _point, const vec2& _velocity);
+    void RotateGestureRecognizerReceiver(const f32 _rotation, const f32 _velocity);
 
 public:
-    iGaiaCharacterController(void);
+    iGaiaCharacterController(iGaiaGestureRecognizerController* _gestureRecognizer);
     ~iGaiaCharacterController(void);
 
     void Set_MoveController(iGaiaMoveController_iOS* _moveController);

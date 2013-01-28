@@ -23,6 +23,8 @@
 		214C5D3316B1D63300ECFAE9 /* iGaiaSceneGraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3116B1D63300ECFAE9 /* iGaiaSceneGraph.mm */; };
 		214C5D3616B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3416B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm */; };
 		214C5D3C16B1DA8200ECFAE9 /* iGaiaSceneContainer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D3A16B1DA8100ECFAE9 /* iGaiaSceneContainer.mm */; };
+		214C5D4316B3F0DC00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D4116B3F0DA00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm */; };
+		214C5D4616B4074C00ECFAE9 /* iGaiaGestureRecognizerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 214C5D4416B4074B00ECFAE9 /* iGaiaGestureRecognizerController.mm */; };
 		2190A537000004B700F4DFF5 /* iGaiaException.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2190A536000004B600F4DFF5 /* iGaiaException.mm */; };
 		21916222165C0F8B00F4CED4 /* iGaiaThreadMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916221165C0F8B00F4CED4 /* iGaiaThreadMgr.mm */; };
 		21916237165C1B7600F4CED4 /* iGaiaThreadQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21916235165C1B7600F4CED4 /* iGaiaThreadQueue.mm */; };
@@ -151,6 +153,10 @@
 		214C5D3516B1D9A600ECFAE9 /* iGaiaSceneFabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneFabricator.h; path = iGaiaCore/Classes/iGaiaSceneFabricator.h; sourceTree = "<group>"; };
 		214C5D3A16B1DA8100ECFAE9 /* iGaiaSceneContainer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaSceneContainer.mm; path = iGaiaCore/Classes/iGaiaSceneContainer.mm; sourceTree = "<group>"; };
 		214C5D3B16B1DA8200ECFAE9 /* iGaiaSceneContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaSceneContainer.h; path = iGaiaCore/Classes/iGaiaSceneContainer.h; sourceTree = "<group>"; };
+		214C5D4116B3F0DA00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGestureRecognizerController_iOS.mm; path = iGaiaCore/Classes/iGaiaGestureRecognizerController_iOS.mm; sourceTree = "<group>"; };
+		214C5D4216B3F0DB00ECFAE9 /* iGaiaGestureRecognizerController_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGestureRecognizerController_iOS.h; path = iGaiaCore/Classes/iGaiaGestureRecognizerController_iOS.h; sourceTree = "<group>"; };
+		214C5D4416B4074B00ECFAE9 /* iGaiaGestureRecognizerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaGestureRecognizerController.mm; path = iGaiaCore/Classes/iGaiaGestureRecognizerController.mm; sourceTree = "<group>"; };
+		214C5D4516B4074B00ECFAE9 /* iGaiaGestureRecognizerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaGestureRecognizerController.h; path = iGaiaCore/Classes/iGaiaGestureRecognizerController.h; sourceTree = "<group>"; };
 		2190A535000004B600F4DFF5 /* iGaiaException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaException.h; path = iGaiaCore/Classes/iGaiaException.h; sourceTree = "<group>"; };
 		2190A536000004B600F4DFF5 /* iGaiaException.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaException.mm; path = iGaiaCore/Classes/iGaiaException.mm; sourceTree = "<group>"; };
 		2190A539168E30E200F4DFF5 /* iGaiaTouchCrossCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGaiaTouchCrossCallback.h; path = iGaiaCore/Classes/iGaiaTouchCrossCallback.h; sourceTree = "<group>"; };
@@ -1320,6 +1326,10 @@
 				21EB07AD16AF2DD5001E5B63 /* iGaiaGLContext_iOS.mm */,
 				214C5D2E16B1D2CC00ECFAE9 /* iGaiaRoot.h */,
 				214C5D2D16B1D2CC00ECFAE9 /* iGaiaRoot.mm */,
+				214C5D4216B3F0DB00ECFAE9 /* iGaiaGestureRecognizerController_iOS.h */,
+				214C5D4116B3F0DA00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm */,
+				214C5D4516B4074B00ECFAE9 /* iGaiaGestureRecognizerController.h */,
+				214C5D4416B4074B00ECFAE9 /* iGaiaGestureRecognizerController.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1527,6 +1537,8 @@
 				214C5D3316B1D63300ECFAE9 /* iGaiaSceneGraph.mm in Sources */,
 				214C5D3616B1D9A600ECFAE9 /* iGaiaSceneFabricator.mm in Sources */,
 				214C5D3C16B1DA8200ECFAE9 /* iGaiaSceneContainer.mm in Sources */,
+				214C5D4316B3F0DC00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm in Sources */,
+				214C5D4616B4074C00ECFAE9 /* iGaiaGestureRecognizerController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

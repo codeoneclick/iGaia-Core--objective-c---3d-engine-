@@ -92,7 +92,7 @@ void iGaiaRenderMgr::OnUpdate(void)
     m_outletOperation->Draw();
     m_outletOperation->Unbind();
 
-    m_glContext->PresentRenderBuffer();
+    m_glContext->Present();
     
     
     static ui64 lastTime = 0;

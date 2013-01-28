@@ -681,9 +681,11 @@
 					"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/**",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/Python.framework/Versions/2.7\"",
 				);
+				OTHER_CFLAGS = "-Weffc++";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Weffc++";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -711,6 +713,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Weffc++";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

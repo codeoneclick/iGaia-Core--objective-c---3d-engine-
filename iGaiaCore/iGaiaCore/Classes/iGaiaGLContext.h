@@ -25,7 +25,7 @@ public:
     const ui32 Get_FrameBufferHandle(void) const;
     const ui32 Get_RenderBufferHandle(void) const;
     
-    virtual void PresentRenderBuffer(void) const = 0;
+    virtual void Present(void) const = 0;
 };
 
 #endif

@@ -23,6 +23,7 @@
 #include <thread>
 #include "iGaiaScene.h"
 #include "iGaiaRoot.h"
+#include "iGaiaGestureRecognizerController_iOS.h"
 
 //#import <Python/Python.h>
 
@@ -53,8 +54,10 @@
     iGaiaRoot* root = new iGaiaRoot(glView);
     [self.m_GLView addSubview:glView];
     
+    iGaiaGestureRecognizerController_iOS* gestureRecognizer = new iGaiaGestureRecognizerController_iOS(glView);
+    
     _m_scene = new iGaiaScene();
-    _m_scene->Load(root);
+    _m_scene->Load(root, gestureRecognizer);
     _m_scene->Get_CharacterController()->Set_MoveController(_m_moveController);
 
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
