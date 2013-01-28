@@ -52,6 +52,7 @@
 		A40C5A681625791800120D76 /* sqvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A531625791800120D76 /* sqvm.cpp */; };
 		A40C5A6D1625796900120D76 /* iGaiaScriptMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A40C5A6C1625796900120D76 /* iGaiaScriptMgr.mm */; };
 		A41381D7167B31D000FF06AF /* iGaiaParser_LandscapeSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A41381D6167B31D000FF06AF /* iGaiaParser_LandscapeSettings.mm */; };
+		A422BC3016B6AD5A001C2A7B /* iGaiaCollider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A422BC2E16B6AD58001C2A7B /* iGaiaCollider.mm */; };
 		A425F73A1675DA26005A4A7D /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425F7381675DA26005A4A7D /* pugixml.cpp */; };
 		A425F73F1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm in Sources */ = {isa = PBXBuildFile; fileRef = A425F73E1675E286005A4A7D /* iGaiaParser_ParticleEmitterSettings.mm */; };
 		A427C1EB164A635900D87FE9 /* iGaiaLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = A427C1EA164A635900D87FE9 /* iGaiaLoader.mm */; };
@@ -217,6 +218,8 @@
 		A40C5A6C1625796900120D76 /* iGaiaScriptMgr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaScriptMgr.mm; path = iGaiaCore/Classes/iGaiaScriptMgr.mm; sourceTree = "<group>"; };
 		A41381D5167B31D000FF06AF /* iGaiaParser_LandscapeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaParser_LandscapeSettings.h; path = iGaiaCore/Classes/iGaiaParser_LandscapeSettings.h; sourceTree = "<group>"; };
 		A41381D6167B31D000FF06AF /* iGaiaParser_LandscapeSettings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaParser_LandscapeSettings.mm; path = iGaiaCore/Classes/iGaiaParser_LandscapeSettings.mm; sourceTree = "<group>"; };
+		A422BC2E16B6AD58001C2A7B /* iGaiaCollider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iGaiaCollider.mm; path = iGaiaCore/Classes/iGaiaCollider.mm; sourceTree = "<group>"; };
+		A422BC2F16B6AD59001C2A7B /* iGaiaCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iGaiaCollider.h; path = iGaiaCore/Classes/iGaiaCollider.h; sourceTree = "<group>"; };
 		A425F7371675DA26005A4A7D /* pugiconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugiconfig.hpp; sourceTree = "<group>"; };
 		A425F7381675DA26005A4A7D /* pugixml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixml.cpp; sourceTree = "<group>"; };
 		A425F7391675DA26005A4A7D /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				214C5D4116B3F0DA00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm */,
 				214C5D4516B4074B00ECFAE9 /* iGaiaGestureRecognizerController.h */,
 				214C5D4416B4074B00ECFAE9 /* iGaiaGestureRecognizerController.mm */,
+				A422BC2F16B6AD59001C2A7B /* iGaiaCollider.h */,
+				A422BC2E16B6AD58001C2A7B /* iGaiaCollider.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1539,6 +1544,7 @@
 				214C5D3C16B1DA8200ECFAE9 /* iGaiaSceneContainer.mm in Sources */,
 				214C5D4316B3F0DC00ECFAE9 /* iGaiaGestureRecognizerController_iOS.mm in Sources */,
 				214C5D4616B4074C00ECFAE9 /* iGaiaGestureRecognizerController.mm in Sources */,
+				A422BC3016B6AD5A001C2A7B /* iGaiaCollider.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

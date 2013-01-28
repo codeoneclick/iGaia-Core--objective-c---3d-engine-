@@ -81,7 +81,7 @@ UIGestureRecognizerDelegate
 
 @end
 
-iGaiaGestureRecognizerController_iOS::iGaiaGestureRecognizerController_iOS(UIView* _view)
+iGaiaGestureRecognizerController_iOS::iGaiaGestureRecognizerController_iOS(const UIView* _view)
 {
     m_bridgeTail = [iGaiaGestureRecognizerHandler new];
     m_bridgeTail.m_bridgeHead = this;

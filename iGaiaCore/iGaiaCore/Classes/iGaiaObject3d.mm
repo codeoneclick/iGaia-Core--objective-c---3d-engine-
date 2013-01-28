@@ -24,14 +24,8 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_renderCallback.Set_OnUnbindListener(std::bind(&iGaiaObject3d::OnUnbind, this, std::placeholders::_1));
 
     m_updateCallback.Set_OnUpdateListener(std::bind(&iGaiaObject3d::OnUpdate, this));
-    
-    m_crossCallback.Set_OnRetriveGuidListener(std::bind(&iGaiaObject3d::OnRetriveGuid, this));
-    m_crossCallback.Set_OnRetriveVertexDataListener(std::bind(&iGaiaObject3d::OnRetriveVertexData, this));
-    m_crossCallback.Set_OnRetriveIndexDataListener(std::bind(&iGaiaObject3d::OnRetriveIndexData, this));
-    m_crossCallback.Set_OnRetriveNumVertexesListener(std::bind(&iGaiaObject3d::OnRetriveNumVertexes, this));
-    m_crossCallback.Set_OnRetriveNumIndexesListener(std::bind(&iGaiaObject3d::OnRetriveNumIndexes, this));
 
-    m_worldMatrix = mat4x4();
+    m_matrixWorld = mat4x4();
     
     m_position = vec3(0.0f, 0.0f, 0.0f);
     m_rotation = vec3(0.0f, 0.0f, 0.0f);
@@ -44,7 +38,6 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_mesh = nullptr;
     m_camera = nullptr;
     m_light = nullptr;
-    m_crossVertexData = nullptr;
 
     m_renderMgr = nullptr;
     m_updateMgr = nullptr;
@@ -137,53 +130,6 @@ void iGaiaObject3d::Set_Texture(const string& _name, iGaiaShader::iGaia_E_Shader
     m_material->Set_Texture(_name, _slot, _wrap);
 }
 
-string iGaiaObject3d::OnRetriveGuid(void)
-{
-    return "";
-}
-
-iGaiaVertexBufferObject::iGaiaVertex* iGaiaObject3d::OnRetriveVertexData(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_VertexBuffer() != nullptr);
-    assert(m_mesh->Get_VertexBuffer()->Lock() != nullptr);
-    
-    if(m_crossVertexData == nullptr)
-    {
-        m_crossVertexData = new iGaiaVertexBufferObject::iGaiaVertex[m_mesh->Get_NumVertexes()];
-    }
-    iGaiaVertexBufferObject::iGaiaVertex* vertexData = m_mesh->Get_VertexBuffer()->Lock();
-    for(ui32 i = 0; i < m_mesh->Get_NumVertexes(); ++i)
-    {
-        vec4 position = vec4(vertexData[i].m_position.x, vertexData[i].m_position.y, vertexData[i].m_position.z, 1.0f);
-        position = m_worldMatrix * position;
-        m_crossVertexData[i].m_position = vec3(position.x, position.y, position.z);
-    }
-    return m_crossVertexData;
-}
-
-ui16* iGaiaObject3d::OnRetriveIndexData(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_IndexBuffer() != nullptr);
-    assert(m_mesh->Get_IndexBuffer()->Lock() != nullptr);
-    return m_mesh->Get_IndexBuffer()->Lock();
-}
-
-ui32 iGaiaObject3d::OnRetriveNumVertexes(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_NumVertexes() != 0);
-    return m_mesh->Get_NumVertexes();
-}
-
-ui32 iGaiaObject3d::OnRetriveNumIndexes(void)
-{
-    assert(m_mesh != nullptr);
-    assert(m_mesh->Get_NumIndexes() != 0);
-    return m_mesh->Get_NumIndexes();
-}
-
 void iGaiaObject3d::ListenRenderMgr(bool _value)
 {
     if(_value)
@@ -220,17 +166,13 @@ void iGaiaObject3d::ListenUpdateMgr(bool _value)
     }
 }
 
-void iGaiaObject3d::ListenUserInteraction(bool _value, iGaiaTouchCrossCallback *_listener)
+void iGaiaObject3d::ColliderDataDeserializeReceiver(iGaiaColliderDataMapper *_mapper)
 {
-    assert(m_touchMgr != nullptr);
-    if(_value)
-    {
-        m_touchMgr->Get_TouchCrosser()->AddEventListener(std::make_pair(_listener, &m_crossCallback));
-    }
-    else
-    {
-        m_touchMgr->Get_TouchCrosser()->RemoveEventListener(std::make_pair(_listener, &m_crossCallback));
-    }
+    assert(m_mesh != nullptr);
+    assert(m_mesh->Get_VertexBuffer() != nullptr);
+    assert(m_mesh->Get_IndexBuffer() != nullptr);
+
+    _mapper->Deserialize(m_mesh->Get_VertexBuffer(), m_mesh->Get_IndexBuffer(), m_matrixWorld);
 }
 
 void iGaiaObject3d::OnUpdate(void)
@@ -257,7 +199,7 @@ void iGaiaObject3d::OnUpdate(void)
             
             worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
             dispatch_async(dispatch_get_main_queue(), ^{
-                m_worldMatrix = worldMatrix;
+                m_matrixWorld = worldMatrix;
             });
         });
     }
@@ -272,7 +214,7 @@ void iGaiaObject3d::OnUpdate(void)
         
         scaleMatrix = scale(mat4(1.0f), m_scale);
         
-        m_worldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
+        m_matrixWorld = translationMatrix * rotationMatrix * scaleMatrix;
     }
 }
 

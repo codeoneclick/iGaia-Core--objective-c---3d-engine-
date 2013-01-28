@@ -23,7 +23,7 @@ protected:
     
 public:
     
-    iGaiaGestureRecognizerController_iOS(UIView* _view);
+    iGaiaGestureRecognizerController_iOS(const UIView* _view);
     ~iGaiaGestureRecognizerController_iOS(void);
     
     void HandleTapGesture(const CGPoint& _point);

@@ -13,17 +13,20 @@
 #include "iGaiaCharacterController.h"
 #include "iGaiaRoot.h"
 
-class iGaiaScene
+class iGaiaScene : public iGaiaGestureRecognizerCallback_PROTOCOL
 {
 private:
     
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
     iGaiaCharacterController* m_characterController;
+    iGaiaLandscape* m_landscape;
     
     iGaiaTouchCrossCallback m_touchCrossCallback;
     
     void OnTouchCross(string const& _guid);
+
+    void TapGestureRecognizerReceiver(const vec2& _point);
     
 protected:
 
@@ -31,7 +34,7 @@ public:
     iGaiaScene(void);
     ~iGaiaScene(void);
 
-    void Load(iGaiaRoot* _root, iGaiaGestureRecognizerController* _gestureRecognizer);
+    void Load(iGaiaRoot* _root);
 
     iGaiaCharacterController* Get_CharacterController(void);
 };

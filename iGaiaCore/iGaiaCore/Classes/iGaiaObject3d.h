@@ -24,8 +24,9 @@
 
 #include "iGaiaCrossCallback.h"
 #include "iGaiaTouchCrossCallback.h"
+#include "iGaiaCollider.h"
 
-class iGaiaObject3d
+class iGaiaObject3d : public iGaiaColliderData_PROTOCOL
 {
 public:
     
@@ -52,7 +53,7 @@ protected:
         iGaia_E_UpdateModeAsync
     };
     
-    mat4x4 m_worldMatrix;
+    mat4x4 m_matrixWorld;
     
     iGaiaMaterial* m_material;
     iGaiaMesh* m_mesh;
@@ -71,22 +72,15 @@ protected:
     
     iGaiaRenderCallback m_renderCallback;
     iGaiaUpdateCallback m_updateCallback;
-    
-    iGaiaCrossCallback m_crossCallback;
-    iGaiaVertexBufferObject::iGaiaVertex* m_crossVertexData;
 
     virtual void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     virtual ui32 OnDrawIndex(void);
-    
-    string OnRetriveGuid(void);
-    virtual iGaiaVertexBufferObject::iGaiaVertex* OnRetriveVertexData(void);
-    virtual ui16* OnRetriveIndexData(void);
-    virtual ui32 OnRetriveNumVertexes(void);
-    virtual ui32 OnRetriveNumIndexes(void);
 
     virtual void OnUpdate(void);
+
+    virtual void ColliderDataDeserializeReceiver(iGaiaColliderDataMapper* _mapper);
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
@@ -120,8 +114,6 @@ public:
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);
-    
-    void ListenUserInteraction(bool _value, iGaiaTouchCrossCallback* _listener);
 };
 
 #endif

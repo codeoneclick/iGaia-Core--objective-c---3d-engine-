@@ -13,16 +13,23 @@
 #include "iGaiaGLContext.h"
 #include "iGaiaSceneGraph.h"
 #include "iGaiaSceneFabricator.h"
+#include "iGaiaGestureRecognizerController.h"
 
 class iGaiaRoot : public iGaiaSceneGraph, public iGaiaSceneFabricator
 {
 private:
+    
     iGaiaGLContext* m_glContext;
+    iGaiaGestureRecognizerController* m_gestureRecognizer;
+    
 protected:
     
 public:
+    
     iGaiaRoot(const UIView* _glView);
     ~iGaiaRoot(void);
+
+    iGaiaGestureRecognizerController* Get_GestureRecognizer(void);
 };
 
 #endif

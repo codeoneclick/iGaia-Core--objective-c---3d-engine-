@@ -185,7 +185,7 @@ void iGaiaLandscape::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
                 iGaiaLog("Shader MODE_SIMPLE == nil");
             }
             
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_matrixWorld, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
             
@@ -202,7 +202,7 @@ void iGaiaLandscape::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
                 iGaiaLog("Shader MODE_REFLECTION == nil");
             }
             
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_matrixWorld, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewReflectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
             
@@ -219,7 +219,7 @@ void iGaiaLandscape::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
                 iGaiaLog("Shader MODE_REFRACTION == nil");
             }
             
-            m_material->Get_OperatingShader()->Set_Matrix4x4(m_worldMatrix, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
+            m_material->Get_OperatingShader()->Set_Matrix4x4(m_matrixWorld, iGaiaShader::iGaia_E_ShaderAttributeMatrixWorld);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixProjection);
             m_material->Get_OperatingShader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), iGaiaShader::iGaia_E_ShaderAttributeMatrixView);
             

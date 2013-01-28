@@ -49,26 +49,31 @@ void iGaiaGestureRecognizerCallback::Set_LongTapGestureRecognizer(__GestureRecog
 
 void iGaiaGestureRecognizerCallback::NotifyTapGestureRecognizerEvent(const vec2& _point) const
 {
+    assert(m_gestureRecognizerTapListener != nullptr);
     m_gestureRecognizerTapListener(_point);
 }
 
 void iGaiaGestureRecognizerCallback::NotifyPanGestureRecognizerEvent(const vec2& _point, const vec2& _velocity) const
 {
+    assert(m_gestureRecognizerPanListener != nullptr);
     m_gestureRecognizerPanListener(_point, _velocity);
 }
 
 void iGaiaGestureRecognizerCallback::NotifyRotateGestureRecognizerEvent(const f32 _rotation, const f32 _velocity) const
 {
+    assert(m_gestureRecognizerRotateListener);
     m_gestureRecognizerRotateListener(_rotation, _velocity);
 }
 
 void iGaiaGestureRecognizerCallback::NotifyPinchGestureRecognizerEvent(const f32 _scale, const f32 _velocity) const
 {
+    assert(m_gestureRecognizerPinchListener);
     m_gestureRecognizerPinchListener(_scale, _velocity);
 }
 
 void iGaiaGestureRecognizerCallback::NotifyLongTapGestureRecognizerEvent(const vec2& _point) const
 {
+    assert(m_gestureRecognizerLongTapListener);
     m_gestureRecognizerLongTapListener(_point);
 }
 
@@ -94,27 +99,27 @@ iGaiaGestureRecognizerCallback_PROTOCOL::~iGaiaGestureRecognizerCallback_PROTOCO
 void iGaiaGestureRecognizerCallback_PROTOCOL::TapGestureRecognizerReceiver(const vec2& _point)
 {
     assert(false);
-};
+}
 
 void iGaiaGestureRecognizerCallback_PROTOCOL::PanGestureRecognizerReceiver(const vec2& _point, const vec2& _velocity)
 {
     assert(false);
-};
+}
 
 void iGaiaGestureRecognizerCallback_PROTOCOL::RotateGestureRecognizerReceiver(const f32 _rotation, const f32 _velocity)
 {
     assert(false);
-};
+}
 
 void iGaiaGestureRecognizerCallback_PROTOCOL::PinchGestureRecognizerReceiver(const f32 _scale, const f32 _velocity)
 {
     assert(false);
-};
+}
 
 void iGaiaGestureRecognizerCallback_PROTOCOL::LongTapGestureRecognizerReceiver(const vec2& _point)
 {
     assert(false);
-};
+}
 
 iGaiaGestureRecognizerController::~iGaiaGestureRecognizerController(void)
 {

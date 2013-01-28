@@ -79,12 +79,6 @@ protected:
     virtual void PinchGestureRecognizerReceiver(const f32 _scale, const f32 _velocity);
     virtual void LongTapGestureRecognizerReceiver(const vec2& _point);
     
-    typedef function<void(const vec2&)> __GestureRecognizerTap_LISTENER;
-    typedef function<void(const vec2&, const vec2&)> __GestureRecognizerPan_LISTENER;
-    typedef function<void(const f32, const f32)> __GestureRecognizerRotate_LISTENER;
-    typedef function<void(const f32, const f32)> __GestureRecognizerPinch_LISTENER;
-    typedef function<void(const vec2&)> __GestureRecognizerLongTap_LISTENER;
-    
 public:
     
     virtual ~iGaiaGestureRecognizerCallback_PROTOCOL(void);
@@ -98,10 +92,10 @@ private:
 protected:
     
     map<iGaiaGestureRecognizerType, set<const iGaiaGestureRecognizerCallback*>> m_listeners;
+    iGaiaGestureRecognizerController(void) = default;
     
 public:
     
-    iGaiaGestureRecognizerController(void) = default;
     virtual ~iGaiaGestureRecognizerController(void);
     
     void AddEventListener(const iGaiaGestureRecognizerCallback* _listener, iGaiaGestureRecognizerType _type);
