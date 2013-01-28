@@ -71,7 +71,7 @@ bool iGaiaNavigationHelper::MoveBackward(void)
 
 bool iGaiaNavigationHelper::MoveLeft(void)
 {
-    vec3 precomputePosition = vec3(m_position.x - sinf(-m_rotation.y) * m_moveBackwardSpeed, 0.0f, m_position.z - cosf(-m_rotation.y) * m_moveBackwardSpeed);
+    vec3 precomputePosition = vec3(m_position.x - sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z - cosf(m_rotation.y) * m_strafeSpeed);
     if(floorf(precomputePosition.x) > m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
        floorf(precomputePosition.z) > m_heightmapHeight ||
@@ -89,7 +89,7 @@ bool iGaiaNavigationHelper::MoveLeft(void)
 
 bool iGaiaNavigationHelper::MoveRight(void)
 {
-    vec3 precomputePosition = vec3(m_position.x + sinf(-m_rotation.y) * m_moveBackwardSpeed, 0.0f, m_position.z + cosf(-m_rotation.y) * m_moveBackwardSpeed);
+    vec3 precomputePosition = vec3(m_position.x + sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z + cosf(m_rotation.y) * m_strafeSpeed);
     if(floorf(precomputePosition.x) > m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
        floorf(precomputePosition.z) > m_heightmapHeight ||

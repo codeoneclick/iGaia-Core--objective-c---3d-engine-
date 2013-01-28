@@ -33,7 +33,14 @@ UIGestureRecognizerDelegate
     if ([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged)
     {
         CGPoint point = [sender translationInView:[sender view]];
+        
         CGPoint velocity = [sender velocityInView:[sender view]];
+        /*point.x = fabsf(point.x) > 2.0f ? point.x : 0.0f;
+        point.y = fabsf(point.y) > 2.0f ? point.y : 0.0f;
+        static f32 max = 0.0f;
+        max = fabsf(point.x) > max ? fabsf(point.x) : max;*/
+        //iGaiaLog("Pan max value : %f", max);
+        iGaiaLog("Pan offset : %f, %f", point.x * velocity.x, point.y * velocity.y);
         [sender setTranslation:CGPointZero inView:[sender view]];
         self.m_bridgeHead->HandlePanGesture(point, velocity);
     }
@@ -112,8 +119,6 @@ iGaiaGestureRecognizerController_iOS::~iGaiaGestureRecognizerController_iOS(void
 
 void iGaiaGestureRecognizerController_iOS::HandleTapGesture(const CGPoint& _point)
 {
-    iGaiaLog("Handle Tap gesture : Point - %f, %f", _point.x, _point.y);
-    
     if(m_listeners.find(GestureRecognizerTap) != m_listeners.end())
     {
         for(set<const iGaiaGestureRecognizerCallback*>::iterator iterator = m_listeners.find(GestureRecognizerTap)->second.begin(); iterator !=  m_listeners.find(GestureRecognizerTap)->second.end(); ++iterator)
@@ -126,8 +131,6 @@ void iGaiaGestureRecognizerController_iOS::HandleTapGesture(const CGPoint& _poin
 
 void iGaiaGestureRecognizerController_iOS::HandlePanGesture(const CGPoint& _point, const CGPoint& _velocity)
 {
-    iGaiaLog("Handle Pan gesture : Point - %f, %f, Velocity - %f, %f", _point.x, _point.y, _velocity.x, _velocity.y);
-    
     if(m_listeners.find(GestureRecognizerPan) != m_listeners.end())
     {
         for(set<const iGaiaGestureRecognizerCallback*>::iterator iterator = m_listeners.find(GestureRecognizerPan)->second.begin(); iterator !=  m_listeners.find(GestureRecognizerPan)->second.end(); ++iterator)
@@ -140,8 +143,6 @@ void iGaiaGestureRecognizerController_iOS::HandlePanGesture(const CGPoint& _poin
 
 void iGaiaGestureRecognizerController_iOS::HandleRotateGesture(const CGFloat _rotation, const CGFloat _velocity)
 {
-    iGaiaLog("Handle Rotate gesture : Rotation - %f, Velocity %f", _rotation, _velocity);
-    
     if(m_listeners.find(GestureRecognizerRotate) != m_listeners.end())
     {
         for(set<const iGaiaGestureRecognizerCallback*>::iterator iterator = m_listeners.find(GestureRecognizerRotate)->second.begin(); iterator !=  m_listeners.find(GestureRecognizerRotate)->second.end(); ++iterator)
@@ -153,9 +154,7 @@ void iGaiaGestureRecognizerController_iOS::HandleRotateGesture(const CGFloat _ro
 }
 
 void iGaiaGestureRecognizerController_iOS::HandlePinchGesture(const CGFloat _scale, const CGFloat _velocity)
-{
-    iGaiaLog("Handle Pinch gesture : Scale - %f, Velocity %f", _scale, _velocity);
-    
+{ 
     if(m_listeners.find(GestureRecognizerPinch) != m_listeners.end())
     {
         for(set<const iGaiaGestureRecognizerCallback*>::iterator iterator = m_listeners.find(GestureRecognizerPinch)->second.begin(); iterator !=  m_listeners.find(GestureRecognizerPinch)->second.end(); ++iterator)
@@ -167,9 +166,7 @@ void iGaiaGestureRecognizerController_iOS::HandlePinchGesture(const CGFloat _sca
 }
 
 void iGaiaGestureRecognizerController_iOS::HandleLongTapGesture(const CGPoint& _point)
-{
-    iGaiaLog("Handle LongTap gesture : Point  - %f, %f", _point.x, _point.y);
-    
+{  
     if(m_listeners.find(GestureRecognizerLongTap) != m_listeners.end())
     {
         for(set<const iGaiaGestureRecognizerCallback*>::iterator iterator = m_listeners.find(GestureRecognizerLongTap)->second.begin(); iterator !=  m_listeners.find(GestureRecognizerLongTap)->second.end(); ++iterator)

@@ -80,12 +80,12 @@ void iGaiaRenderMgr::OnUpdate(void)
         m_worldSpaceOperations[i]->Unbind();
     }
 
-    for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
+    /*for(ui32 i = 0; i < iGaiaMaterial::iGaia_E_RenderModeScreenSpaceMaxValue; ++i)
     {
         m_screenSpaceOperations[i]->Bind();
         m_screenSpaceOperations[i]->Draw();
         m_screenSpaceOperations[i]->Unbind();
-    }
+    }*/
 
     m_outletOperation->Get_OperatingMaterial()->Set_Texture(m_worldSpaceOperations[iGaiaMaterial::iGaia_E_RenderModeWorldSpaceCommon]->Get_OperatingTexture(), iGaiaShader::iGaia_E_ShaderTextureSlot_01);
     m_outletOperation->Bind();

@@ -15,7 +15,7 @@ iGaiaCharacterController::iGaiaCharacterController(iGaiaGestureRecognizerControl
     m_moveController = nullptr;
     m_camera = nullptr;
     m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
-    m_navigationHelper = new iGaiaNavigationHelper(0.66f, 0.33f, 0.66f, 0.066f);
+    m_navigationHelper = new iGaiaNavigationHelper(0.75f, 0.75f, 0.75f, 0.066f);
     m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaCharacterController::OnLoop, this));
     [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
 
@@ -27,7 +27,7 @@ iGaiaCharacterController::iGaiaCharacterController(iGaiaGestureRecognizerControl
 
     m_rotationMixFactor = 0.1f;
     
-    ConnectCallback();
+    ConnectGestureRecognizerCallback();
     _gestureRecognizer->AddEventListener(&m_gestureRecognizerCallback, iGaiaGestureRecognizerType::GestureRecognizerPan);
     _gestureRecognizer->AddEventListener(&m_gestureRecognizerCallback, iGaiaGestureRecognizerType::GestureRecognizerRotate);
 }
@@ -103,6 +103,10 @@ void iGaiaCharacterController::PanGestureRecognizerReceiver(const vec2& _point, 
     {
         m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
     }
+    
+    m_navigationHelper->Set_MoveForwardSpeed(fabsf(_point.y / 20.0f));
+    m_navigationHelper->Set_MoveBackwardSpeed(fabsf(_point.y / 20.0f));
+    m_navigationHelper->Set_StrafeSpeed(fabsf(_point.x / 20.0f));
 }
 
 void iGaiaCharacterController::RotateGestureRecognizerReceiver(const f32 _rotation, const f32 _velocity)

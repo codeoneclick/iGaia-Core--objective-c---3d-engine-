@@ -151,6 +151,8 @@ void iGaiaCollider::Unproject(const mat4x4 &_matrixProjection, const mat4x4 &_ma
 bool iGaiaCollider::Collide(const mat4x4 &_matrixProjection, const mat4x4 &_matrixView, const vec4 &_viewport, const vec2 &_point)
 {
     assert(m_collider != nullptr);
+    
+    Unproject(_matrixProjection, _matrixView, _viewport, _point);
 
     iGaiaColliderDataMapper mapper;
     m_collider->m_colliderDataCallback.NotifyColliderDataDeserializeListener(&mapper);

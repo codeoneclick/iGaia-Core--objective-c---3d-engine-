@@ -21,6 +21,7 @@ private:
     iGaiaLight* m_light;
     iGaiaCharacterController* m_characterController;
     iGaiaLandscape* m_landscape;
+    iGaiaShape3d* m_shape3d;
     
     iGaiaTouchCrossCallback m_touchCrossCallback;
     

@@ -43,6 +43,8 @@ iGaiaObject3d::iGaiaObject3d(void)
     m_updateMgr = nullptr;
     m_touchMgr = nullptr;
     
+    ConnectColliderDataCallback();
+    
     m_updateMode = iGaia_E_UpdateModeSync;
 }
 

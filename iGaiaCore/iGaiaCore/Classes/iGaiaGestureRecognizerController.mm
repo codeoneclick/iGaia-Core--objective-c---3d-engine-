@@ -82,7 +82,7 @@ iGaiaGestureRecognizerCallback_PROTOCOL::iGaiaGestureRecognizerCallback_PROTOCOL
 
 }
 
-void iGaiaGestureRecognizerCallback_PROTOCOL::ConnectCallback(void)
+void iGaiaGestureRecognizerCallback_PROTOCOL::ConnectGestureRecognizerCallback(void)
 {
     m_gestureRecognizerCallback.Set_TapGestureRecognizer(bind(&iGaiaGestureRecognizerCallback_PROTOCOL::TapGestureRecognizerReceiver, this, placeholders::_1));
     m_gestureRecognizerCallback.Set_PanGestureRecognizer(bind(&iGaiaGestureRecognizerCallback_PROTOCOL::PanGestureRecognizerReceiver, this, placeholders::_1, placeholders::_2));

@@ -71,7 +71,7 @@ protected:
     
     iGaiaGestureRecognizerCallback_PROTOCOL(void);
     
-    void ConnectCallback(void);
+    void ConnectGestureRecognizerCallback(void);
     
     virtual void TapGestureRecognizerReceiver(const vec2& _point);
     virtual void PanGestureRecognizerReceiver(const vec2& _point, const vec2& _velocity);

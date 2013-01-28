@@ -27,7 +27,7 @@ void iGaiaScene::Load(iGaiaRoot* _root)
     
     m_characterController = new iGaiaCharacterController(_root->Get_GestureRecognizer());
 
-    ConnectCallback();
+    ConnectGestureRecognizerCallback();
     _root->Get_GestureRecognizer()->AddEventListener(&m_gestureRecognizerCallback, iGaiaGestureRecognizerType::GestureRecognizerTap);
 
     _root->Set_Camera(m_camera);
@@ -38,9 +38,9 @@ void iGaiaScene::Load(iGaiaRoot* _root)
     _root->Set_Light(m_light);
 
     iGaiaShape3d::iGaiaShape3dSettings settingsBuilding_01 = iGaiaResourceMgr::SharedInstance()->Get_Shape3dSettings("building_01.xml");
-    iGaiaShape3d* shape3d = _root->CreateShape3d(settingsBuilding_01);
-    _root->PushShape3d(shape3d);
-    shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
+    m_shape3d = _root->CreateShape3d(settingsBuilding_01);
+    _root->PushShape3d(m_shape3d);
+    m_shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
 
     iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome = iGaiaResourceMgr::SharedInstance()->Get_SkyDomeSettings("skydome.xml");
     iGaiaSkyDome* skydome = _root->CreateSkyDome(settingsSkyDome);
@@ -74,12 +74,12 @@ iGaiaCharacterController* iGaiaScene::Get_CharacterController(void)
 
 void iGaiaScene::TapGestureRecognizerReceiver(const vec2 &_point)
 {
-    iGaiaCollider collider(m_landscape);
+    iGaiaCollider collider(m_shape3d);
     CGRect viewport = [iGaiaSettings_iOS Get_Frame];
      
     if(collider.Collide(m_camera->Get_ProjectionMatrix(), m_camera->Get_ViewMatrix(), vec4(0.0f, 0.0f, viewport.size.width, viewport.size.height), _point))
     {
-        iGaiaLog("Collide point on landscape : x - %f, y - %f, z - %f", collider.Get_CollidePoint().x, collider.Get_CollidePoint().y, collider.Get_CollidePoint().z);
+        iGaiaLog("Collide point on shape : x - %f, y - %f, z - %f", collider.Get_CollidePoint().x, collider.Get_CollidePoint().y, collider.Get_CollidePoint().z);
     }
 }
 
