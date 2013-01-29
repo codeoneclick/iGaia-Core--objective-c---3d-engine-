@@ -10,6 +10,7 @@
 
 #include "iGaiaObject3d.h"
 #include "iGaiaQuadTreeObject3d.h"
+#include "iGaiaSettingsContainer.h"
 
 class iGaiaLandscape : public iGaiaObject3d
 {
@@ -55,6 +56,8 @@ protected:
     
     void OnLoad(iGaiaResource* _resource);
     void OnUpdate(void);
+
+    iGaiaLandscape(const iGaiaSettingsContainer::LandscapeSettings& _settings, const iGaiaQuadTreeObject3d* _quadTree, iGaiaMesh* _mesh);
     
 public:
     

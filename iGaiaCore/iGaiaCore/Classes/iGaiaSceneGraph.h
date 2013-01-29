@@ -12,7 +12,6 @@
 #include "iGaiaCommon.h"
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
-#include "iGaiaTouchMgr.h"
 
 #include "iGaiaCamera.h"
 #include "iGaiaLight.h"
@@ -21,11 +20,11 @@
 #include "iGaiaSkyDome.h"
 #include "iGaiaLandscape.h"
 #include "iGaiaParticleEmitter.h"
-#include "iGaiaNavigationHelper.h"
 
 class iGaiaSceneGraph
 {
 private:
+    
     iGaiaCamera* m_camera;
     iGaiaLight* m_light;
     
@@ -35,15 +34,17 @@ private:
     
     set<iGaiaShape3d*> m_shapes3d;
     set<iGaiaParticleEmitter*> m_particleEmitters;
+    
 protected:
+    
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
-    iGaiaTouchMgr* m_inputMgr;
     
     iGaiaSceneGraph(void);
-    virtual ~iGaiaSceneGraph(void);
     
 public:
+
+    virtual ~iGaiaSceneGraph(void);
     
     void Set_Camera(iGaiaCamera* _camera);
     void Set_Light(iGaiaLight* _light);

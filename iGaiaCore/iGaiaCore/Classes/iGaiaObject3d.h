@@ -20,10 +20,7 @@
 
 #include "iGaiaRenderMgr.h"
 #include "iGaiaUpdateMgr.h"
-#include "iGaiaTouchMgr.h"
 
-#include "iGaiaCrossCallback.h"
-#include "iGaiaTouchCrossCallback.h"
 #include "iGaiaCollider.h"
 
 class iGaiaObject3d : public iGaiaColliderData_PROTOCOL
@@ -84,9 +81,9 @@ protected:
 
     iGaiaRenderMgr* m_renderMgr;
     iGaiaUpdateMgr* m_updateMgr;
-    iGaiaTouchMgr* m_touchMgr;
 
 public:
+    
     iGaiaObject3d(void);
     virtual ~iGaiaObject3d(void);
     
@@ -110,10 +107,10 @@ public:
 
     void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
     void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
-    void Set_TouchMgr(iGaiaTouchMgr* _touchMgr);
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);
+    
 };
 
 #endif

@@ -10,7 +10,7 @@
 
 #include "iGaiaMoveController_iOS.h"
 #include "iGaiaLoopCallback.h"
-#include "iGaiaNavigationHelper.h"
+#include "iGaiaNavigator.h"
 #include "iGaiaCamera.h"
 #include "iGaiaGestureRecognizerController.h"
 
@@ -26,7 +26,7 @@ private:
     iGaiaLoopCallback m_loopCallback;
     void OnLoop(void);
 
-    iGaiaNavigationHelper* m_navigationHelper;
+    iGaiaNavigator* m_navigator;
 
     iGaiaCamera* m_camera;
 

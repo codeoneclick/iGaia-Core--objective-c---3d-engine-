@@ -9,7 +9,7 @@
 #include "iGaiaSquirrelScene.h"
 #include "iGaiaLogger.h"
 #include "iGaiaCamera.h"
-#include "iGaiaShape3d.h"juji
+#include "iGaiaShape3d.h"
 
 SQInteger sq_createCamera(HSQUIRRELVM vm);
 SQInteger sq_createShape3d(HSQUIRRELVM vm);

@@ -34,8 +34,6 @@ void iGaiaSceneGraph::Set_Camera(iGaiaCamera* _camera)
     m_camera->Set_UpdateMgr(m_updateMgr);
     m_camera->ListenUpdateMgr(true);
     
-    m_inputMgr->Get_TouchCrosser()->Set_Camera(m_camera);
-    
     for(set<iGaiaShape3d*>::iterator iterator = m_shapes3d.begin(); iterator != m_shapes3d.end(); ++iterator)
     {
         iGaiaShape3d* shape3d = *iterator;
@@ -107,7 +105,6 @@ void iGaiaSceneGraph::PushShape3d(iGaiaShape3d* _shape3d)
     shape3d->Set_Light(m_light);
     shape3d->Set_UpdateMgr(m_updateMgr);
     shape3d->Set_RenderMgr(m_renderMgr);
-    shape3d->Set_TouchMgr(m_inputMgr);
     shape3d->ListenUpdateMgr(true);
     shape3d->ListenRenderMgr(true);
 }

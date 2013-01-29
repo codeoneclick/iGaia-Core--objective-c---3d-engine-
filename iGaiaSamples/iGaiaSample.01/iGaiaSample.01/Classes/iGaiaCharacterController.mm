@@ -15,15 +15,15 @@ iGaiaCharacterController::iGaiaCharacterController(iGaiaGestureRecognizerControl
     m_moveController = nullptr;
     m_camera = nullptr;
     m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
-    m_navigationHelper = new iGaiaNavigationHelper(0.75f, 0.75f, 0.75f, 0.066f);
+    m_navigator = new iGaiaNavigator(0.75f, 0.75f, 0.75f, 0.066f);
     m_loopCallback.Set_OnUpdateListener(std::bind(&iGaiaCharacterController::OnLoop, this));
     [[iGaiaGameLoop_iOS SharedInstance] AddEventListener:&m_loopCallback];
 
     m_position = vec3(0.0f, 0.0f, 0.0f);
     m_rotation = vec3(0.0f, 0.0f, 0.0f);
 
-    m_navigationHelper->Set_Position(m_position);
-    m_navigationHelper->Set_Rotation(m_rotation);
+    m_navigator->Set_Position(m_position);
+    m_navigator->Set_Rotation(m_rotation);
 
     m_rotationMixFactor = 0.1f;
     
@@ -62,7 +62,7 @@ void iGaiaCharacterController::Set_Camera(iGaiaCamera *_camera)
 
 void iGaiaCharacterController::Set_Heightmap(f32 *_heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight, vec2 _heightmapScaleFactor)
 {
-    m_navigationHelper->Set_Heightmap(_heightmapData, _heightmapWidth, _heightmapHeight, _heightmapScaleFactor);
+    m_navigator->Set_Heightmap(_heightmapData, _heightmapWidth, _heightmapHeight, _heightmapScaleFactor);
 }
 
 void iGaiaCharacterController::PanGestureRecognizerReceiver(const vec2& _point, const vec2& _velocity)
@@ -104,20 +104,20 @@ void iGaiaCharacterController::PanGestureRecognizerReceiver(const vec2& _point, 
         m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
     }
     
-    m_navigationHelper->Set_MoveForwardSpeed(fabsf(_point.y / 20.0f));
-    m_navigationHelper->Set_MoveBackwardSpeed(fabsf(_point.y / 20.0f));
-    m_navigationHelper->Set_StrafeSpeed(fabsf(_point.x / 20.0f));
+    m_navigator->Set_MoveForwardSpeed(fabsf(_point.y / 20.0f));
+    m_navigator->Set_MoveBackwardSpeed(fabsf(_point.y / 20.0f));
+    m_navigator->Set_StrafeSpeed(fabsf(_point.x / 20.0f));
 }
 
 void iGaiaCharacterController::RotateGestureRecognizerReceiver(const f32 _rotation, const f32 _velocity)
 {
     if(_rotation > 0)
     {
-        m_navigationHelper->SteerLeft();
+        m_navigator->SteerLeft();
     }
     else
     {
-        m_navigationHelper->SteerRight();
+        m_navigator->SteerRight();
     }
 }
 
@@ -132,60 +132,54 @@ void iGaiaCharacterController::OnLoop(void)
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNorth:
         {
-            m_navigationHelper->MoveBackward();
-            
+            m_navigator->MoveBackward();
+
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionSouth:
         {
-            m_navigationHelper->MoveForward();
+            m_navigator->MoveForward();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionWest:
         {
-            //m_navigationHelper->SteerRight();
-            m_navigationHelper->MoveRight();
+            m_navigator->MoveRight();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionEast:
         {
-            //m_navigationHelper->SteerLeft();
-            m_navigationHelper->MoveLeft();
+            m_navigator->MoveLeft();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNorthWest:
         {
-            m_navigationHelper->MoveBackward();
-            //m_navigationHelper->SteerRight();
-             m_navigationHelper->MoveRight();
+            m_navigator->MoveBackward();
+            m_navigator->MoveRight();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNorthEast:
         {
-            m_navigationHelper->MoveBackward();
-            //m_navigationHelper->SteerLeft();
-            m_navigationHelper->MoveLeft();
+            m_navigator->MoveBackward();
+            m_navigator->MoveLeft();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionSouthWest:
         {
-            m_navigationHelper->MoveForward();
-            //m_navigationHelper->SteerRight();
-             m_navigationHelper->MoveRight();
+            m_navigator->MoveForward();
+            m_navigator->MoveRight();
         }
             break;
         case iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionSouthEast:
         {
-            m_navigationHelper->MoveForward();
-            //m_navigationHelper->SteerLeft();
-            m_navigationHelper->MoveLeft();
+            m_navigator->MoveForward();
+            m_navigator->MoveLeft();
         }
             break;
     }
 
-    m_position = m_navigationHelper->Get_Position();
-    m_rotation = m_navigationHelper->Get_Rotation();
-    
+    m_position = m_navigator->Get_Position();
+    m_rotation = m_navigator->Get_Rotation();
+
     m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
 
     if(m_camera != nullptr)

@@ -1,17 +1,17 @@
 //
-//  iGaiaNavigationHelper.h
+//  iGaiaNavigator.h
 //  iGaiaCore
 //
 //  Created by Sergey Sergeev on 12/17/12.
 //  Copyright (c) 2012 Sergey Sergeev. All rights reserved.
 //
-#ifndef iGaiaNavigationHelperClass
-#define iGaiaNavigationHelperClass
+#ifndef iGaiaNavigatorClass
+#define iGaiaNavigatorClass
 
 #import "iGaiaCommon.h"
 #import "iGaiaCamera.h"
 
-class iGaiaNavigationHelper
+class iGaiaNavigator
 {
 private:
     
@@ -32,8 +32,8 @@ protected:
 
 public:
     
-    iGaiaNavigationHelper(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
-    ~iGaiaNavigationHelper(void) = default;
+    iGaiaNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
+    ~iGaiaNavigator(void) = default;
 
     void Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight, vec2 _heightmapScaleFactor);
 

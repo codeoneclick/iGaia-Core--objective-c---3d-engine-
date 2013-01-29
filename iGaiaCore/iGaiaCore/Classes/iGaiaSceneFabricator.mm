@@ -32,12 +32,6 @@ iGaiaLight* iGaiaSceneFabricator::CreateLight(void)
     return light;
 }
 
-iGaiaNavigationHelper* iGaiaSceneFabricator::CreateNavigationHelper(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed)
-{
-    iGaiaNavigationHelper* navigationHelper = new iGaiaNavigationHelper(_moveForwardSpeed, _moveBackwardSpeed, _strafeSpeed, _steerSpeed);
-    return navigationHelper;
-}
-
 iGaiaShape3d* iGaiaSceneFabricator::CreateShape3d(const iGaiaShape3d::iGaiaShape3dSettings& _settings)
 {
     iGaiaShape3d* shape3d = new iGaiaShape3d(_settings);

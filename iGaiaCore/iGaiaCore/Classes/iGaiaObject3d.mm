@@ -41,7 +41,6 @@ iGaiaObject3d::iGaiaObject3d(void)
 
     m_renderMgr = nullptr;
     m_updateMgr = nullptr;
-    m_touchMgr = nullptr;
     
     ConnectColliderDataCallback();
     
@@ -111,11 +110,6 @@ void iGaiaObject3d::Set_RenderMgr(iGaiaRenderMgr *_renderMgr)
 void iGaiaObject3d::Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr)
 {
     m_updateMgr = _updateMgr;
-}
-
-void iGaiaObject3d::Set_TouchMgr(iGaiaTouchMgr *_touchMgr)
-{
-    m_touchMgr = _touchMgr;
 }
 
 void iGaiaObject3d::Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode)

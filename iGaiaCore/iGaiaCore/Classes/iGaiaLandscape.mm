@@ -111,6 +111,11 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     m_updateMode = iGaia_E_UpdateModeSync;
 }
 
+iGaiaLandscape::iGaiaLandscape(const iGaiaSettingsContainer::LandscapeSettings& _settings, const iGaiaQuadTreeObject3d* _quadTree, iGaiaMesh* _mesh)
+{
+    
+}
+
 iGaiaLandscape::~iGaiaLandscape(void)
 {
     

@@ -19,7 +19,6 @@ iGaiaRoot::iGaiaRoot(const UIView* _glView)
     
     m_renderMgr = new iGaiaRenderMgr(m_glContext);
     m_updateMgr = new iGaiaUpdateMgr();
-    m_inputMgr = new iGaiaTouchMgr();
 }
 
 iGaiaRoot::~iGaiaRoot(void)

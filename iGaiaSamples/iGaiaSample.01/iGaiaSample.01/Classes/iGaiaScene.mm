@@ -13,7 +13,6 @@
 
 iGaiaScene::iGaiaScene(void)
 {
-    m_touchCrossCallback.Set_OnTouchCrossListener(bind(&iGaiaScene::OnTouchCross, this, placeholders::_1));
 }
 
 iGaiaScene::~iGaiaScene(void)
@@ -81,9 +80,4 @@ void iGaiaScene::TapGestureRecognizerReceiver(const vec2 &_point)
     {
         iGaiaLog("Collide point on shape : x - %f, y - %f, z - %f", collider.Get_CollidePoint().x, collider.Get_CollidePoint().y, collider.Get_CollidePoint().z);
     }
-}
-
-void iGaiaScene::OnTouchCross(const string &_guid)
-{
-    iGaiaLog("touch callback");
 }

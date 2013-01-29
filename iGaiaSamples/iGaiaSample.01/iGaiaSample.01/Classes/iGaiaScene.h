@@ -8,7 +8,6 @@
 #ifndef iGaiaSceneClass
 #define iGaiaSceneClass
 
-#include "iGaiaSharedFacade.h"
 #include "iGaiaResourceMgr.h"
 #include "iGaiaCharacterController.h"
 #include "iGaiaRoot.h"
@@ -22,8 +21,6 @@ private:
     iGaiaCharacterController* m_characterController;
     iGaiaLandscape* m_landscape;
     iGaiaShape3d* m_shape3d;
-    
-    iGaiaTouchCrossCallback m_touchCrossCallback;
     
     void OnTouchCross(string const& _guid);
 

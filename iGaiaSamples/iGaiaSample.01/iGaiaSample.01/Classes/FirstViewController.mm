@@ -8,7 +8,6 @@
 
 #import "FirstViewController.h"
 
-#include "iGaiaSharedFacade.h"
 #include "iGaiaGLWindow_iOS.h"
 #include "iGaiaSettings_iOS.h"
 #include "iGaiaResourceMgr.h"
@@ -60,6 +59,7 @@
 
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
     NSInvocation *pInvocation = [NSInvocation invocationWithMethodSignature:pMethodSignature];
+    [pInvocation invoke];
     [pInvocation setTarget:self];
     [pInvocation setSelector:@selector(onTick:)];
     NSTimer *pTimer = [NSTimer timerWithTimeInterval:0.01 invocation:pInvocation repeats:YES];
