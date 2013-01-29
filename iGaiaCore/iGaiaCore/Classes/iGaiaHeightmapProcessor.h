@@ -17,13 +17,46 @@ class iGaiaHeightmapProcessor
 {
 private:
 
+    struct MutableLandscapeData
+    {
+        iGaiaMesh* m_mesh;
+        iGaiaQuadTreeObject3d* m_quadTree;
+
+        MutableLandscapeData(void)
+        {
+            m_mesh = nullptr;
+            m_quadTree = nullptr;
+        }
+    };
+
+    struct LandscapeIndex
+    {
+        ui32 i;
+        ui32 j;
+        LandscapeIndex(ui32 _i, ui32 _j) : i(_i), j(_j){};
+    };
+
     ui32 m_chunkWidth;
     ui32 m_chunkHeight;
 
     ui32 m_chunkRowsCount;
     ui32 m_chunkCellsCount;
 
+    const f32* m_heightmap;
+    const f32* m_splatting;
+
+    iGaiaTexture** m_splattingTextures;
+
+    ui32 m_width;
+    ui32 m_height;
+
+    iGaiaIndexBufferObject* CreateIndexBuffer(void);
+    void FillVertexBuffer(iGaiaVertexBufferObject* _vertexBuffer, ui32 _widthOffset, ui32 _heightOffset);
+
+    MutableLandscapeData** m_mutableLandscapeContainer;
+
 protected:
+
 
 public:
     
