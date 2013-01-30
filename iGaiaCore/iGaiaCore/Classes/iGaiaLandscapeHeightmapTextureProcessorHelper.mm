@@ -24,7 +24,7 @@ iGaiaTexture* iGaiaLandscapeHeightmapTextureProcessorHelper::CreateTexture(f32* 
     {
         for(int j = 0; j < _height; j++)
         {
-            f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(_data, _width, _height, vec2(i * _scaleFactor.x, j * _scaleFactor.y), _scaleFactor) / _maxAltitude;
+            f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(_data, _width, _height, vec3(i * _scaleFactor.x, 0.0f, j * _scaleFactor.y), _scaleFactor) / _maxAltitude;
             
             if(height > 0.0f || height < -1.0f)
             {

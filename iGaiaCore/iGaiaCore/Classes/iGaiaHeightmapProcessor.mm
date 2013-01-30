@@ -10,8 +10,8 @@
 
 iGaiaHeightmapProcessor::iGaiaHeightmapProcessor(const f32* _heightmap, const f32* _splatting, const ui32 _width, const ui32 _height, iGaiaTexture** _splattingTextures)
 {
-    m_chunkWidth = 32;
-    m_chunkHeight = 32;
+    m_chunkWidth = 64;
+    m_chunkHeight = 64;
 
     m_chunkRowsCount = _width / m_chunkWidth;
     m_chunkCellsCount = _height / m_chunkHeight;
@@ -92,9 +92,9 @@ void iGaiaHeightmapProcessor::FillVertexBuffer(iGaiaVertexBufferObject *_vertexB
     {
         for(ui32 j = 0; j < m_chunkHeight;++j)
         {
-            vertexData[index].m_position.x = i * _widthOffset + i;
-            vertexData[index].m_position.y = m_heightmap[(i * _widthOffset + i) + (j * _heightOffset + j) * m_height];
-            vertexData[index].m_position.z = j * _heightOffset + j;
+            vertexData[index].m_position.x = i + _widthOffset * m_chunkWidth;
+            vertexData[index].m_position.y = m_heightmap[(i + _widthOffset * m_chunkWidth) + (j + _heightOffset * m_chunkHeight) * m_height];
+            vertexData[index].m_position.z = j + _heightOffset * m_chunkHeight;
 
             vertexData[index].m_texcoord.x = i / static_cast<f32>(m_chunkWidth);
             vertexData[index].m_texcoord.y = j / static_cast<f32>(m_chunkHeight);
@@ -115,10 +115,41 @@ void iGaiaHeightmapProcessor::Process(void)
             assert(m_mutableLandscapeContainer[i + j * m_chunkRowsCount] != nullptr);
             MutableLandscapeData* mutableLandscapeData = m_mutableLandscapeContainer[i + j * m_chunkRowsCount];
             FillVertexBuffer(mutableLandscapeData->m_mesh->Get_VertexBuffer(), i, j);
+            
+            mutableLandscapeData->m_mesh->FillBoundBox();
+            
+            // TODO : reimplement quad tree processing
+            mutableLandscapeData->m_quadTree->BuildRoot(mutableLandscapeData->m_mesh->Get_VertexBuffer(), mutableLandscapeData->m_mesh->Get_IndexBuffer(), mutableLandscapeData->m_mesh->Get_MaxBound(), mutableLandscapeData->m_mesh->Get_MinBound(), 2, m_chunkWidth);
         }
     }
 }
 
+iGaiaMesh* iGaiaHeightmapProcessor::Get_MeshForIndex(ui32 _i, ui32 _j)
+{
+    assert(m_mutableLandscapeContainer != nullptr);
+    assert(m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount] != nullptr);
+    assert(m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount]->m_mesh != nullptr);
+    
+    return m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount]->m_mesh;
+}
 
+iGaiaQuadTreeObject3d* iGaiaHeightmapProcessor::Get_QuadTreeForIndex(ui32 _i, ui32 _j)
+{
+    assert(m_mutableLandscapeContainer != nullptr);
+    assert(m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount] != nullptr);
+    assert(m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount]->m_quadTree != nullptr);
+    
+    return m_mutableLandscapeContainer[_i + _j * m_chunkRowsCount]->m_quadTree;
+}
+
+ui32 iGaiaHeightmapProcessor::Get_ChunkRowsCount(void)
+{
+    return m_chunkRowsCount;
+}
+
+ui32 iGaiaHeightmapProcessor::Get_ChunkCellsCount(void)
+{
+    return m_chunkCellsCount;
+}
 
 

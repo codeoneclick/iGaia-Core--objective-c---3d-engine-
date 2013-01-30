@@ -131,7 +131,7 @@ void iGaiaSceneGraph::Set_Ocean(iGaiaOcean* _ocean)
     if(m_landscape != nullptr)
     {
         m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
-        m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
+        //m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
     }
     
     m_ocean->Set_Camera(m_camera);
@@ -158,7 +158,7 @@ void iGaiaSceneGraph::Set_Landscape(iGaiaLandscape *_landscape)
     if(m_ocean != nullptr)
     {
         m_landscape->Set_Clipping(vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()));
-        m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
+        //m_ocean->Set_HeightmapTexture(m_landscape->Get_HeightmapTexture());
     }
     
     m_landscape->Set_Camera(m_camera);

@@ -26,7 +26,7 @@ iGaiaTexture* iGaiaLandscapeSplattingTextureProcessorHelper::CreateTexture(f32* 
         {
             data[i + j * _height] = iGaia_RGB(255, 0, 0);
 
-            f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(_data, _width, _height, vec2(i * _scaleFactor.x, j * _scaleFactor.y), _scaleFactor);
+            f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(_data, _width, _height, vec3(i * _scaleFactor.x, 0.0f, j * _scaleFactor.y), _scaleFactor);
 
             if(height > _level_03)
             {

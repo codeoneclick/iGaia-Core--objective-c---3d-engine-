@@ -48,6 +48,8 @@ private:
     
 protected:
     
+    friend class iGaiaLandscapeWrapper;
+    
     void OnBind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
     void OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode);
@@ -57,22 +59,23 @@ protected:
     void OnLoad(iGaiaResource* _resource);
     void OnUpdate(void);
 
-    iGaiaLandscape(const iGaiaSettingsContainer::LandscapeSettings& _settings, const iGaiaQuadTreeObject3d* _quadTree, iGaiaMesh* _mesh);
+    iGaiaLandscape(void);
+    iGaiaLandscape(const iGaiaLandscapeSettings& _settings, iGaiaMesh* _mesh, iGaiaQuadTreeObject3d* _quadTree);
     
 public:
     
     iGaiaLandscape(const iGaiaLandscapeSettings& _settings);
-    ~iGaiaLandscape(void);
+    virtual ~iGaiaLandscape(void);
     
-    void Set_Clipping(const glm::vec4& _clipping);
+    virtual void Set_Clipping(const glm::vec4& _clipping);
 
-    iGaiaTexture* Get_HeightmapTexture(void);
-    iGaiaTexture* Get_SplattingTexture(void);
+    virtual iGaiaTexture* Get_HeightmapTexture(void);
+    virtual iGaiaTexture* Get_SplattingTexture(void);
 
-    ui32 Get_Width(void);
-    ui32 Get_Height(void);
+    virtual ui32 Get_Width(void);
+    virtual ui32 Get_Height(void);
     vec2 Get_ScaleFactor(void);
-    f32* Get_HeightmapData(void);
+    virtual f32* Get_HeightmapData(void);
 };
 
 #endif

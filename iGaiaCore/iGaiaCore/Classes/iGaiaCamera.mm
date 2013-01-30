@@ -141,9 +141,9 @@ iGaiaFrustum* iGaiaCamera::Get_Frustum(void)
 
 void iGaiaCamera::OnUpdate(void)
 {
-    m_position.y = 16.0f;
-    m_position.x = m_look.x + cosf(-m_rotation) * -16.0f;
-    m_position.z = m_look.z + sinf(-m_rotation) * -16.0f;
+    m_position.y = m_look.y + 64.0f;
+    m_position.x = m_look.x + cosf(-m_rotation) * -32.0f;
+    m_position.z = m_look.z + sinf(-m_rotation) * -32.0f;
     m_view = lookAt(m_position, m_look, m_up);
 
     vec3 position = m_position;

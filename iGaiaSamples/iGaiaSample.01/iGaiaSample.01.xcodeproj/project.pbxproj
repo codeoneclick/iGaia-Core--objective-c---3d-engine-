@@ -22,6 +22,7 @@
 		2155D7C5163863BC0012D346 /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7C4163863BC0012D346 /* fire.pvr */; };
 		2155D7CB163867BC0012D346 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 2155D7CA163867BC0012D346 /* ocean_riple.pvr */; };
 		215C117716A17E3D00197CE0 /* music_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 215C117616A17E3D00197CE0 /* music_02.mp3 */; };
+		21724AA616B866BD00FC38A2 /* heightmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 21724AA516B866BD00FC38A2 /* heightmap.png */; };
 		A40A97B81642CCE400424B76 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40A97B71642CCE300424B76 /* Settings.bundle */; };
 		A40C5A77162585FF00120D76 /* Scene_01.nut in Resources */ = {isa = PBXBuildFile; fileRef = A40C5A76162585FF00120D76 /* Scene_01.nut */; };
 		A41381DA167B339A00FF06AF /* landscape.xml in Resources */ = {isa = PBXBuildFile; fileRef = A41381D9167B339A00FF06AF /* landscape.xml */; };
@@ -112,6 +113,7 @@
 		2155D7C4163863BC0012D346 /* fire.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = fire.pvr; sourceTree = "<group>"; };
 		2155D7CA163867BC0012D346 /* ocean_riple.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocean_riple.pvr; sourceTree = "<group>"; };
 		215C117616A17E3D00197CE0 /* music_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_02.mp3; sourceTree = "<group>"; };
+		21724AA516B866BD00FC38A2 /* heightmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heightmap.png; sourceTree = "<group>"; };
 		A40A97B71642CCE300424B76 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A40C5A76162585FF00120D76 /* Scene_01.nut */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scene_01.nut; sourceTree = "<group>"; };
 		A41381D9167B339A00FF06AF /* landscape.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = landscape.xml; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 		A4D1F076160C43FC005307F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				21724AA516B866BD00FC38A2 /* heightmap.png */,
 				A490204F1680D9730081487E /* building_02.xml */,
 				A49020501680D9730081487E /* building_03.xml */,
 				A49020511680D9730081487E /* building_04.xml */,
@@ -570,6 +573,7 @@
 				A490205D1680D9740081487E /* landscape_02_diffuse.pvr in Resources */,
 				A490205E1680D9740081487E /* landscape_03_diffuse.pvr in Resources */,
 				215C117716A17E3D00197CE0 /* music_02.mp3 in Resources */,
+				21724AA616B866BD00FC38A2 /* heightmap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

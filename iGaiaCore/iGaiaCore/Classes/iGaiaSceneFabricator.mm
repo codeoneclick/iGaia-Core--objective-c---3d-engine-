@@ -7,6 +7,7 @@
 //
 
 #include "iGaiaSceneFabricator.h"
+#include "iGaiaLandscapeWrapper.h"
 
 iGaiaSceneFabricator::iGaiaSceneFabricator(void)
 {
@@ -48,7 +49,7 @@ iGaiaOcean* iGaiaSceneFabricator::CreateOcean(const iGaiaOcean::iGaiaOceanSettin
 
 iGaiaLandscape* iGaiaSceneFabricator::CreateLandscape(const iGaiaLandscape::iGaiaLandscapeSettings &_settings)
 {
-    iGaiaLandscape* landscape = new iGaiaLandscape(_settings);
+    iGaiaLandscape* landscape = new iGaiaLandscapeWrapper(_settings);
     m_sceneContainer->AddObject3d(landscape);
     return landscape;
 }

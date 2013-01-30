@@ -30,6 +30,8 @@ public:
 
     iGaiaVertexBufferObject* Get_VertexBuffer(void);
     iGaiaIndexBufferObject* Get_IndexBuffer(void);
+    
+    void FillBoundBox(void);
 
     ui32 Get_NumVertexes(void);
     ui32 Get_NumIndexes(void);

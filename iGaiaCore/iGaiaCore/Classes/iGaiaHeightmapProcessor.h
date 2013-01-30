@@ -64,6 +64,12 @@ public:
     ~iGaiaHeightmapProcessor(void);
 
     void Process(void);
+    
+    ui32 Get_ChunkRowsCount(void);
+    ui32 Get_ChunkCellsCount(void);
+    
+    iGaiaMesh* Get_MeshForIndex(ui32 _i, ui32 _j);
+    iGaiaQuadTreeObject3d* Get_QuadTreeForIndex(ui32 _i, ui32 _j);
 
 };
 

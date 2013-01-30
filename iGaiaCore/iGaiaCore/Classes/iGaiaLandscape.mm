@@ -13,9 +13,13 @@
 
 static ui32 kiGaiaLandscapeRenderPriority = 3;
 
+iGaiaLandscape::iGaiaLandscape(void)
+{
+    
+}
+
 iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
 {
-
     m_width = _settings.m_width;
     m_height = _settings.m_height;
     m_scaleFactor = _settings.m_scaleFactor;
@@ -81,6 +85,7 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     indexBuffer->Unlock();
     
     m_mesh = new iGaiaMesh(vertexBuffer, indexBuffer, "igaia.mesh.landscape", iGaiaResource::iGaia_E_CreationModeCustom);
+    m_mesh->FillBoundBox();
     
     m_quadTree = new iGaiaQuadTreeObject3d();
     m_quadTree->BuildRoot(vertexBuffer, indexBuffer, m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 2, m_width);
@@ -111,9 +116,36 @@ iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings)
     m_updateMode = iGaia_E_UpdateModeSync;
 }
 
-iGaiaLandscape::iGaiaLandscape(const iGaiaSettingsContainer::LandscapeSettings& _settings, const iGaiaQuadTreeObject3d* _quadTree, iGaiaMesh* _mesh)
+iGaiaLandscape::iGaiaLandscape(const iGaiaLandscapeSettings& _settings, iGaiaMesh* _mesh, iGaiaQuadTreeObject3d* _quadTree)
 {
+    m_width = _settings.m_width;
+    m_height = _settings.m_height;
+    m_scaleFactor = _settings.m_scaleFactor;
     
+    m_mesh = _mesh;
+    m_quadTree = _quadTree;
+    
+    for(ui32 i = 0; i < _settings.m_textures.size(); ++i)
+    {
+        iGaiaObject3dTextureSettings textureSettings = _settings.m_textures[i];
+        Set_Texture(textureSettings.m_name, textureSettings.m_slot, textureSettings.m_wrap);
+    }
+    
+    for(ui32 i = 0; i < _settings.m_shaders.size(); ++i)
+    {
+        iGaiaObject3dShaderSettings shaderSettings = _settings.m_shaders[i];
+        Set_Shader(shaderSettings.m_shader, shaderSettings.m_mode);
+    }
+    
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateCullMode, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthMask, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateDepthTest, true);
+    m_material->InvalidateState(iGaiaMaterial::iGaia_E_RenderStateBlendMode, false);
+    m_material->Set_CullFaceMode(GL_FRONT);
+    m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
+    m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_updateMode = iGaia_E_UpdateModeSync;
 }
 
 iGaiaLandscape::~iGaiaLandscape(void)
@@ -158,6 +190,12 @@ vec2 iGaiaLandscape::Get_ScaleFactor(void)
 
 void iGaiaLandscape::OnUpdate(void)
 {
+    i32 result =  m_camera->Get_Frustum()->IsBoundBoxInFrustum(m_mesh->Get_MaxBound(), m_mesh->Get_MinBound());
+    if(result == iGaiaFrustum::iGaia_E_FrustumResultOutside)
+    {
+        return;
+    }
+    
     m_quadTree->Update(m_camera->Get_Frustum());
     iGaiaObject3d::OnUpdate();
 }
@@ -179,6 +217,12 @@ void iGaiaLandscape::OnUnbind(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 
 void iGaiaLandscape::OnDraw(iGaiaMaterial::iGaia_E_RenderModeWorldSpace _mode)
 {
+    i32 result =  m_camera->Get_Frustum()->IsBoundBoxInFrustum(m_mesh->Get_MaxBound(), m_mesh->Get_MinBound());
+    if(result == iGaiaFrustum::iGaia_E_FrustumResultOutside)
+    {
+        return;
+    }
+
     iGaiaObject3d::OnDraw(_mode);
     
     switch (_mode)

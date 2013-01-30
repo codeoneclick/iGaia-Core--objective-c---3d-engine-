@@ -104,9 +104,9 @@ void iGaiaCharacterController::PanGestureRecognizerReceiver(const vec2& _point, 
         m_moveDirection = iGaiaMoveControllerCallback::iGaia_E_MoveControllerDirectionNone;
     }
     
-    m_navigator->Set_MoveForwardSpeed(fabsf(_point.y / 20.0f));
-    m_navigator->Set_MoveBackwardSpeed(fabsf(_point.y / 20.0f));
-    m_navigator->Set_StrafeSpeed(fabsf(_point.x / 20.0f));
+    m_navigator->Set_MoveForwardSpeed(fabsf(_point.y / 2.0f));
+    m_navigator->Set_MoveBackwardSpeed(fabsf(_point.y / 2.0f));
+    m_navigator->Set_StrafeSpeed(fabsf(_point.x / 2.0f));
 }
 
 void iGaiaCharacterController::RotateGestureRecognizerReceiver(const f32 _rotation, const f32 _velocity)

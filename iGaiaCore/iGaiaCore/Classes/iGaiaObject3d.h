@@ -99,17 +99,17 @@ public:
     vec3 Get_MaxBound(void);
     vec3 Get_MinBound(void);
 
-    void Set_Camera(iGaiaCamera* _camera);
-    void Set_Light(iGaiaLight* _light);
+    virtual void Set_Camera(iGaiaCamera* _camera);
+    virtual void Set_Light(iGaiaLight* _light);
 
     void Set_Shader(iGaiaShader::iGaia_E_Shader _shader, ui32 _mode);
     void Set_Texture(const string& _name, iGaiaShader::iGaia_E_ShaderTextureSlot _slot, iGaiaTexture::iGaia_E_TextureSettingsValue _wrap);
 
-    void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
-    void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
+    virtual void Set_RenderMgr(iGaiaRenderMgr* _renderMgr);
+    virtual void Set_UpdateMgr(iGaiaUpdateMgr* _updateMgr);
 
-    void ListenRenderMgr(bool _value);
-    void ListenUpdateMgr(bool _value);
+    virtual void ListenRenderMgr(bool _value);
+    virtual void ListenUpdateMgr(bool _value);
     
 };
 

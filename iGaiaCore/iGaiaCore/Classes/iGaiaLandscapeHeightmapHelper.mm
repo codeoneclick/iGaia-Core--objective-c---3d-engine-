@@ -10,10 +10,10 @@
 
 static f32 g_upVectorOffset = 0.25f;
 
-f32 iGaiaLandscapeHeightmapHelper::Get_HeightValue(f32* _data, ui32 _width, ui32 _height, vec2 _position, vec2 _scaleFactor)
+f32 iGaiaLandscapeHeightmapHelper::Get_HeightValue(f32* _data, ui32 _width, ui32 _height,const vec3& _position,const vec2& _scaleFactor)
 {
-    f32 _x = _position.x / _scaleFactor.x;
-    f32 _z = _position.y / _scaleFactor.y;
+    f32 _x = _position.x / 1.0f;
+    f32 _z = _position.z / 1.0f;
     i32 x = static_cast<i32>(floor(_x));
     i32 z = static_cast<i32>(floor(_z));
     f32 dx = _x - x;
@@ -62,9 +62,9 @@ vec2 iGaiaLandscapeHeightmapHelper::Get_RotationOnHeightmap(f32* _data, ui32 _wi
 {
     vec3 point_01 = _position;
     vec3 point_02 = vec3(_position.x, _position.y + g_upVectorOffset, _position.z);
-    f32 height = Get_HeightValue(_data, _width, _height, vec2(_position.x + g_upVectorOffset, _position.z), _scaleFactor);
+    f32 height = Get_HeightValue(_data, _width, _height, vec3(_position.x + g_upVectorOffset, 0.0f, _position.z), _scaleFactor);
     vec3 point_03 = vec3(_position.x + g_upVectorOffset, height, _position.z);
-    height = Get_HeightValue(_data, _width, _height, vec2(_position.x, _position.z + g_upVectorOffset), _scaleFactor);
+    height = Get_HeightValue(_data, _width, _height, vec3(_position.x, 0.0f, _position.z + g_upVectorOffset), _scaleFactor);
     vec3 point_04 = vec3(_position.x, height, _position.z + g_upVectorOffset);
 
     f32 angle_01 = Get_RotationForPlane(point_01, point_02, point_03);

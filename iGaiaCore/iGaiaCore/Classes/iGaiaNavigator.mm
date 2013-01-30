@@ -44,7 +44,7 @@ bool iGaiaNavigator::MoveForward(void)
     {
         return false;
     }
-    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_heightmapScaleFactor, vec2(precomputePosition.x, precomputePosition.z));
+    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, precomputePosition, m_heightmapScaleFactor);
     m_position = vec3(precomputePosition.x, height, precomputePosition.z);
     vec2 rotationOnHeightmap = iGaiaLandscapeHeightmapHelper::Get_RotationOnHeightmap(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_position, m_heightmapScaleFactor);
     m_rotation = vec3(rotationOnHeightmap.x, m_rotation.y, rotationOnHeightmap.y);
@@ -62,7 +62,7 @@ bool iGaiaNavigator::MoveBackward(void)
     {
         return false;
     }
-    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_heightmapScaleFactor, vec2(precomputePosition.x, precomputePosition.z));
+    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, precomputePosition, m_heightmapScaleFactor);
     m_position = vec3(precomputePosition.x, height, precomputePosition.z);
     vec2 rotationOnHeightmap = iGaiaLandscapeHeightmapHelper::Get_RotationOnHeightmap(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_position, m_heightmapScaleFactor);
     m_rotation = vec3(rotationOnHeightmap.x, m_rotation.y, rotationOnHeightmap.y);
@@ -80,7 +80,7 @@ bool iGaiaNavigator::MoveLeft(void)
     {
         return false;
     }
-    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_heightmapScaleFactor, vec2(precomputePosition.x, precomputePosition.z));
+    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, precomputePosition, m_heightmapScaleFactor);
     m_position = vec3(precomputePosition.x, height, precomputePosition.z);
     vec2 rotationOnHeightmap = iGaiaLandscapeHeightmapHelper::Get_RotationOnHeightmap(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_position, m_heightmapScaleFactor);
     m_rotation = vec3(rotationOnHeightmap.x, m_rotation.y, rotationOnHeightmap.y);
@@ -98,7 +98,7 @@ bool iGaiaNavigator::MoveRight(void)
     {
         return false;
     }
-    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_heightmapScaleFactor, vec2(precomputePosition.x, precomputePosition.z));
+    f32 height = iGaiaLandscapeHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, precomputePosition, m_heightmapScaleFactor);
     m_position = vec3(precomputePosition.x, height, precomputePosition.z);
     vec2 rotationOnHeightmap = iGaiaLandscapeHeightmapHelper::Get_RotationOnHeightmap(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_position, m_heightmapScaleFactor);
     m_rotation = vec3(rotationOnHeightmap.x, m_rotation.y, rotationOnHeightmap.y);

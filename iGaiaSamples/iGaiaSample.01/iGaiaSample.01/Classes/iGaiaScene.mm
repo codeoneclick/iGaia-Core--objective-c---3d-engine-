@@ -38,7 +38,7 @@ void iGaiaScene::Load(iGaiaRoot* _root)
 
     iGaiaShape3d::iGaiaShape3dSettings settingsBuilding_01 = iGaiaResourceMgr::SharedInstance()->Get_Shape3dSettings("building_01.xml");
     m_shape3d = _root->CreateShape3d(settingsBuilding_01);
-    _root->PushShape3d(m_shape3d);
+    //_root->PushShape3d(m_shape3d);
     m_shape3d->Set_Position(vec3(16.0f, 0.0f, 32.0f));
 
     iGaiaSkyDome::iGaiaSkyDomeSettings settingsSkyDome = iGaiaResourceMgr::SharedInstance()->Get_SkyDomeSettings("skydome.xml");
