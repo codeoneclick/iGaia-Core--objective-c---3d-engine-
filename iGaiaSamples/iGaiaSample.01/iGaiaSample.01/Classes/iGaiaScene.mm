@@ -34,6 +34,7 @@ void iGaiaScene::Load(iGaiaRoot* _root)
     m_camera->Set_LookAt(vec3(16.0f, 0.0f, 32.0f));
 
     m_light = _root->CreateLight();
+    m_light->Set_Position(vec3(32.0f, 128.0f, 32.0f));
     _root->Set_Light(m_light);
 
     iGaiaShape3d::iGaiaShape3dSettings settingsBuilding_01 = iGaiaResourceMgr::SharedInstance()->Get_Shape3dSettings("building_01.xml");

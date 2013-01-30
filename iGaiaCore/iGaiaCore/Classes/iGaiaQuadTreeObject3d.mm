@@ -61,9 +61,6 @@ void iGaiaQuadTreeObject3d::BuildRoot(iGaiaVertexBufferObject *_vertexBuffer, iG
 
 void iGaiaQuadTreeObject3d::BuildQuadTreeNode(i32 _size, i32 _depth, iGaiaQuadTreeObject3d* _root)
 {
-    /*static i32 recurseCount = 0;
-    recurseCount++;
-    iGaiaLog("Quad Tree recurse count: %i", recurseCount);*/
     if(_size <= _depth)
     {
         return;

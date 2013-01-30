@@ -1,5 +1,6 @@
 const char* ShaderLandscapeF = STRINGIFY(
-                                                    varying highp vec3  OUT_Light;                                    
+                                                    varying highp vec3  OUT_Light;
+                                                    varying highp vec3  OUT_Normal;
                                                     varying highp vec2  OUT_TexCoord;
                                                     varying lowp float  OUT_Clip;
                                                     uniform lowp sampler2D EXT_TEXTURE_01;
@@ -32,6 +33,7 @@ void main(void)
 
     lowp vec4 vColor = vDiffuseColor * fSelfShadow + vAmbientColor;
     gl_FragColor = vColor;*/
-    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord);
+    lowp float fDiffuseFactor = max(dot(OUT_Normal, OUT_Light), 0.0);
+    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord) * fDiffuseFactor + texture2D(EXT_TEXTURE_01, OUT_TexCoord) * 0.5;
 }
 );

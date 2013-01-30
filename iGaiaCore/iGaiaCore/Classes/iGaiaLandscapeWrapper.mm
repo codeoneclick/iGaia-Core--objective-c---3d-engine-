@@ -15,7 +15,6 @@ iGaiaLandscapeWrapper::iGaiaLandscapeWrapper(const iGaiaLandscapeSettings& _sett
     m_width = 512;
     m_height = 512;
     
-    
     UIImage* image = [UIImage imageNamed:@"heightmap.png"];
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -39,7 +38,6 @@ iGaiaLandscapeWrapper::iGaiaLandscapeWrapper(const iGaiaLandscapeSettings& _sett
         for(ui32 j = 0; j < m_height; ++j)
         {
             m_heightmap[i + j * m_width] = static_cast<f32>(imageData[(i + j * m_width) * 4 + 1]) / 255.0f * 32.0f;
-            //iGaiaLog("Height : %i", imageData[(i + j * m_width) * 4 + 1]);
         }
     }
     

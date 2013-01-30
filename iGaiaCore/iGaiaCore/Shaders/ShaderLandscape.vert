@@ -5,7 +5,8 @@ const char* ShaderLandscapeV = STRINGIFY(
                                         attribute vec4 IN_SLOT_Normal;
                                         attribute vec4 IN_SLOT_Tangent;
                                                     
-                                        varying vec3   OUT_Light;                                  
+                                        varying vec3   OUT_Light;
+                                        varying vec3   OUT_Normal;
                                         varying vec2   OUT_TexCoord;
                                         varying float  OUT_Clip;
                                                    
@@ -32,7 +33,8 @@ void main(void)
                               vTangent.z, vBinormal.z, vNormal.z);
 
     vec3 vLightDirection = vec3(vPosition) - EXT_Light;
-    OUT_Light = normalize(mTangentSpace * vLightDirection);
+    OUT_Light = normalize(vLightDirection);
+    OUT_Normal = vNormal;
     
     OUT_TexCoord = IN_SLOT_TexCoord;
     OUT_Clip = dot(vPosition.xyz, EXT_Clip_Plane.xyz) + EXT_Clip_Plane.w;

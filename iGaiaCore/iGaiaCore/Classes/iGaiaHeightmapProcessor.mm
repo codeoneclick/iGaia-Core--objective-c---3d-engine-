@@ -7,6 +7,7 @@
 //
 
 #include "iGaiaHeightmapProcessor.h"
+#include "iGaiaObject3dBasisHelper.h"
 
 iGaiaHeightmapProcessor::iGaiaHeightmapProcessor(const f32* _heightmap, const f32* _splatting, const ui32 _width, const ui32 _height, iGaiaTexture** _splattingTextures)
 {
@@ -92,9 +93,11 @@ void iGaiaHeightmapProcessor::FillVertexBuffer(iGaiaVertexBufferObject *_vertexB
     {
         for(ui32 j = 0; j < m_chunkHeight;++j)
         {
-            vertexData[index].m_position.x = i + _widthOffset * m_chunkWidth;
-            vertexData[index].m_position.y = m_heightmap[(i + _widthOffset * m_chunkWidth) + (j + _heightOffset * m_chunkHeight) * m_height];
-            vertexData[index].m_position.z = j + _heightOffset * m_chunkHeight;
+            vec2 position = vec2(i + _widthOffset * m_chunkWidth - _widthOffset, j + _heightOffset * m_chunkHeight - _heightOffset);
+
+            vertexData[index].m_position.x = position.x;
+            vertexData[index].m_position.y = m_heightmap[static_cast<ui32>(position.x) + static_cast<ui32>(position.y) * m_height];
+            vertexData[index].m_position.z = position.y;
 
             vertexData[index].m_texcoord.x = i / static_cast<f32>(m_chunkWidth);
             vertexData[index].m_texcoord.y = j / static_cast<f32>(m_chunkHeight);
@@ -115,7 +118,7 @@ void iGaiaHeightmapProcessor::Process(void)
             assert(m_mutableLandscapeContainer[i + j * m_chunkRowsCount] != nullptr);
             MutableLandscapeData* mutableLandscapeData = m_mutableLandscapeContainer[i + j * m_chunkRowsCount];
             FillVertexBuffer(mutableLandscapeData->m_mesh->Get_VertexBuffer(), i, j);
-            
+            iGaiaObject3dBasisHelper::CalculateNormals(mutableLandscapeData->m_mesh->Get_VertexBuffer(), mutableLandscapeData->m_mesh->Get_IndexBuffer());
             mutableLandscapeData->m_mesh->FillBoundBox();
             
             // TODO : reimplement quad tree processing
